@@ -1,7 +1,7 @@
 var R=require("../../../chunks/ssr/[turbopack]_runtime.js")("server/app/(site)/electronics/page.js")
 R.c("server/chunks/ssr/[root-of-the-server]__0z2t3if._.js")
-R.c("server/chunks/ssr/_1_yd7kg._.js")
 R.c("server/chunks/ssr/lib_db_ts_1z17b34._.js")
+R.c("server/chunks/ssr/_0q-oq1q._.js")
 R.c("server/chunks/ssr/node_modules_next_dist_1n3w9lb._.js")
 R.c("server/chunks/ssr/[root-of-the-server]__1v6x3rd._.js")
 R.c("server/chunks/ssr/[root-of-the-server]__0f6s48x._.js")
