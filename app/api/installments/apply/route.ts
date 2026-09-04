@@ -71,7 +71,7 @@ export async function POST(req: NextRequest) {
           <p style="margin:0 0 8px;color:#6b7280;font-size:12px">Application Reference</p>
           <p style="margin:0;color:#D4AF37;font-size:22px;font-weight:900;font-family:monospace">${application.ref}</p>
         </div>
-        <p style="color:#9ca3af;margin:0 0 20px">We'll contact you on WhatsApp at <strong style="color:#fff">${phone}</strong> to complete the process.</p>
+        <p style="color:#9ca3af;margin:0 0 20px">We'll contact you at <strong style="color:#fff">${phone}</strong> to complete the process.</p>
         <p style="color:#6b7280;font-size:12px;margin:0">© ${new Date().getFullYear()} Daisy Gadgets Co.</p>
       </div>`,
     });

@@ -83,9 +83,7 @@ export default function ClothingPage() {
 
               <div className="flex flex-wrap gap-4 justify-center lg:justify-start pt-2">
                 <a
-                  href="https://wa.me/27825876811?text=Hi%20Daisy%20Gadgets%20Co,%20I%20would%20like%20to%20be%20notified%20when%20the%20Clothing%20%26%20Streetwear%20drop%20launches!"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href="mailto:daisygadgetsco@gmail.com?subject=Notify%20me%20when%20Clothing%20%26%20Streetwear%20drops"
                   className="btn-gold px-8 py-4 rounded-xl font-extrabold text-sm flex items-center gap-2 shadow-xl shadow-[#D4AF37]/20"
                 >
                   <Sparkles size={16} /> Notify Me on Drop
@@ -321,7 +319,7 @@ export default function ClothingPage() {
               </div>
               <h3 className="text-base font-bold text-white">Instant Size Exchanges</h3>
               <p className="text-xs text-gray-400 leading-relaxed">
-                If the size doesn't fit exactly as you like, message us on WhatsApp and our courier will swap it at your door within 1–3 business days.
+                If the size doesn't fit exactly as you like, email us and our courier will swap it at your door within 1–3 business days.
               </p>
             </div>
           </div>

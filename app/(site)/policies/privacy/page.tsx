@@ -23,11 +23,11 @@ export default function PrivacyPage() {
           },
           {
             title: "2. Information We Collect",
-            body: "We collect: your name, email address, phone number, and delivery address when you place an order; payment proof uploads; messages sent via WhatsApp or our contact form; and website usage data via analytics.",
+            body: "We collect: your name, email address, phone number, and delivery address when you place an order; payment proof uploads; messages sent via our contact form; and website usage data via analytics.",
           },
           {
             title: "3. How We Use Your Information",
-            body: "Your information is used to: process and fulfill your orders; communicate order updates via email and WhatsApp; respond to enquiries; improve our products and services; and comply with legal obligations.",
+            body: "Your information is used to: process and fulfill your orders; communicate order updates via email; respond to enquiries; improve our products and services; and comply with legal obligations.",
           },
           {
             title: "4. Data Sharing",
@@ -51,7 +51,7 @@ export default function PrivacyPage() {
           },
           {
             title: "9. Contact",
-            body: "To exercise your rights or for privacy questions, contact: daisygadgetsco@gmail.com or WhatsApp +27 82 587 6811.",
+            body: "To exercise your rights or for privacy questions, contact: daisygadgetsco@gmail.com.",
           },
         ].map(({ title, body }) => (
           <div key={title}>

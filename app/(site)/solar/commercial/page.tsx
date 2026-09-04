@@ -141,10 +141,6 @@ export default function CommercialSolar() {
             <Link href="/contact" className="btn-gold px-10 py-4 rounded-xl font-bold text-base">
               Request Commercial Quote
             </Link>
-            <a href="https://wa.me/27825876811" target="_blank" rel="noopener noreferrer"
-              className="btn-outline px-10 py-4 rounded-xl text-base">
-              Chat on WhatsApp
-            </a>
           </div>
         </div>
       </section>

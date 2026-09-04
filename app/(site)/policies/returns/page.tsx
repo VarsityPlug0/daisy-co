@@ -31,7 +31,7 @@ export default function ReturnsPage() {
           },
           {
             title: "4. How to Return",
-            body: "Step 1: Contact us via WhatsApp (+27 82 587 6811) or email with your order reference and reason for return. Step 2: We will provide return shipping instructions. Step 3: Package the item securely and ship it to us. Step 4: Once received and inspected, we process your refund or exchange.",
+            body: "Step 1: Contact us via email with your order reference and reason for return. Step 2: We will provide return shipping instructions. Step 3: Package the item securely and ship it to us. Step 4: Once received and inspected, we process your refund or exchange.",
           },
           {
             title: "5. Return Shipping",
@@ -39,15 +39,15 @@ export default function ReturnsPage() {
           },
           {
             title: "6. Exchanges",
-            body: "We offer exchanges for faulty products or where the wrong item was sent. Contact us on WhatsApp to arrange an exchange.",
+            body: "We offer exchanges for faulty products or where the wrong item was sent. Contact us to arrange an exchange.",
           },
           {
             title: "7. Damaged on Arrival",
-            body: "If your product arrives damaged, contact us immediately via WhatsApp with photos of the damage and packaging. We will arrange a replacement or full refund.",
+            body: "If your product arrives damaged, contact us immediately via email with photos of the damage and packaging. We will arrange a replacement or full refund.",
           },
           {
             title: "8. Contact",
-            body: "Returns enquiries: daisygadgetsco@gmail.com | WhatsApp: +27 82 587 6811",
+            body: "Returns enquiries: daisygadgetsco@gmail.com",
           },
         ].map(({ title, body }) => (
           <div key={title}>

@@ -128,16 +128,14 @@ export default async function Shop({
       <div className="mt-12 bg-[#111111] border border-[#D4AF37]/25 rounded-2xl p-7 text-center">
         <h3 className="text-xl font-bold text-white mb-2">Can&apos;t find what you&apos;re looking for?</h3>
         <p className="text-gray-400 text-sm mb-5 max-w-lg mx-auto leading-relaxed">
-          We source a wide range of gadgets. Chat with us on WhatsApp and we&apos;ll find it for you.
+          We source a wide range of gadgets. Contact us and we&apos;ll find it for you.
         </p>
-        <a
-          href="https://wa.me/27825876811"
-          target="_blank"
-          rel="noopener noreferrer"
+        <Link
+          href="/contact"
           className="btn-gold px-10 py-4 rounded-xl font-bold text-base"
         >
-          Chat on WhatsApp
-        </a>
+          Contact Us
+        </Link>
       </div>
     </div>
   );

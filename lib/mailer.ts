@@ -13,8 +13,8 @@ const DARK        = "#111111";
 const DARK2       = "#161616";
 const BORDER      = "#1F1F1F";
 const MUTED       = "#6b7280";
-const WA_NUM      = "27825876811";
 const SITE        = "https://daisygadgetsco.com";
+const SUPPORT_EMAIL = "daisygadgetsco@gmail.com";
 
 
 function createTransporter() {
@@ -145,7 +145,7 @@ function layout(content: string, accentBar = ""): string {
           <td style="background:${BLACK};padding:24px 36px;border-top:1px solid ${BORDER}">
             <p style="margin:0 0 8px;color:${MUTED};font-size:12px;text-align:center">
               Questions? &nbsp;
-              <a href="https://wa.me/${WA_NUM}" style="color:${GOLD};text-decoration:none;font-weight:600">WhatsApp +27 82 587 6811</a>
+              <a href="mailto:daisygadgetsco@gmail.com" style="color:${GOLD};text-decoration:none;font-weight:600">daisygadgetsco@gmail.com</a>
               &nbsp;·&nbsp;
               <a href="${SITE}" style="color:${GOLD};text-decoration:none;font-weight:600">daisygadgetsco.com</a>
             </p>
@@ -289,7 +289,7 @@ export async function sendOrderConfirmation(data: OrderEmailData) {
     </table>
 
     <div style="text-align:center">
-      ${btn("💬 Chat on WhatsApp", `https://wa.me/${WA_NUM}?text=Hi%2C%20checking%20on%20order%20${data.ref}`, "#25D366", "#fff")}
+      ${btn("✉️ Email Us", `mailto:${SUPPORT_EMAIL}?subject=Order%20${data.ref}`, GOLD, BLACK)}
     </div>
   `);
 
@@ -312,7 +312,7 @@ export async function sendProofAcknowledgement(data: { name: string; email: stri
     </div>
 
     <p style="color:#9ca3af;font-size:14px;margin:0 0 20px">Need help or want to check in?</p>
-    ${btn("Chat on WhatsApp", `https://wa.me/${WA_NUM}?text=Hi%2C%20checking%20on%20order%20${data.ref}`, "#25D366", "#fff")}
+    ${btn("Email Us", `mailto:${SUPPORT_EMAIL}?subject=Order%20${data.ref}`, GOLD, BLACK)}
   `);
   await sendMail({ to: data.email, subject: `Payment Proof Received — ${data.ref} | Daisy Gadgets Co.`, html });
 }
@@ -413,11 +413,11 @@ export async function sendRejectionEmail(data: RejectionEmailData) {
       </table>
     </div>
 
-    <p style="margin:0 0 20px;color:#9ca3af;font-size:14px">Once paid, upload your new proof of payment — or send it directly on WhatsApp and we will update your order manually.</p>
+    <p style="margin:0 0 20px;color:#9ca3af;font-size:14px">Once paid, upload your new proof of payment — or send it directly by email and we will update your order manually.</p>
     <div>
       ${btn("📤 Upload New Proof", `${SITE}/checkout`, GOLD, BLACK)}
       &nbsp;&nbsp;
-      ${btn("💬 Send via WhatsApp", `https://wa.me/${WA_NUM}?text=Hi%2C%20re-sending%20proof%20for%20order%20${data.ref}`, "#25D366", "#fff")}
+      ${btn("✉️ Send via Email", `mailto:${SUPPORT_EMAIL}?subject=Re-sending%20proof%20for%20order%20${data.ref}`, GOLD, BLACK)}
     </div>
   `);
 
@@ -431,14 +431,14 @@ const STATUS_CONTENT: Record<string, { pill: [string, string]; title: string; bo
     icon: "🎊",
     title: "Your payment is confirmed!",
     body: "Great news — your payment has been verified and your order is now being packed and prepared for dispatch. We will notify you as soon as it ships.",
-    cta: ["💬 Chat on WhatsApp", `https://wa.me/${WA_NUM}`],
+    cta: ["✉️ Email Us", `mailto:${SUPPORT_EMAIL}`],
   },
   shipped: {
     pill: ["Shipped", "#3b82f6"],
     icon: "📦",
     title: "Your order has been shipped!",
     body: "We are pleased to inform you that your order has been successfully packed, processed and shipped.\n\nYour parcel is now in transit to the selected delivery destination. Please keep your contact number available in case our delivery team needs to contact you regarding your order.\n\nWe will notify you again when your order moves to Out for Delivery.",
-    cta: ["💬 Track via WhatsApp", `https://wa.me/${WA_NUM}`],
+    cta: ["✉️ Track via Email", `mailto:${SUPPORT_EMAIL}`],
   },
   delivered: {
     pill: ["Delivered", GOLD],
@@ -506,7 +506,7 @@ export async function sendStatusUpdate(data: { name: string; email: string; ref:
     ${trackingHtml}
     ${bodyParagraphs(content.body)}
     ${notesHtml}
-    ${content.cta ? `<div style="margin-top:24px">${btn(content.cta[0], content.cta[1])}&nbsp;&nbsp;${btn("💬 WhatsApp Us", `https://wa.me/${WA_NUM}?text=Hi%2C%20re%20order%20${data.ref}`, "#25D366", "#fff")}</div>` : ""}
+    ${content.cta ? `<div style="margin-top:24px">${btn(content.cta[0], content.cta[1])}&nbsp;&nbsp;${btn("✉️ Email Us", `mailto:${SUPPORT_EMAIL}?subject=Order%20${data.ref}`, GOLD, BLACK)}</div>` : ""}
   `);
 
   await sendMail({ to: data.email, subject: subjects[data.status] ?? `Order Update — ${data.ref}`, html });
@@ -616,7 +616,7 @@ export async function sendTrackingUpdate(data: {
     ${trackingHtml}
     ${bodyHtml}
     <div style="margin-top:8px">
-      ${btn("💬 Chat on WhatsApp", `https://wa.me/${WA_NUM}?text=Hi%2C%20checking%20on%20order%20${data.ref}`, "#25D366", "#fff")}
+      ${btn("✉️ Email Us", `mailto:${SUPPORT_EMAIL}?subject=Order%20${data.ref}`, GOLD, BLACK)}
     </div>
   `);
 
@@ -646,9 +646,9 @@ export async function sendQuoteReply(data: { name: string; email: string; ref: s
     </div>` : ""}
 
     <p style="color:#9ca3af;font-size:14px;margin:0 0 20px">Ready to proceed or have questions?</p>
-    ${btn("Accept Quote", `https://wa.me/${WA_NUM}?text=Hi%2C%20I%20accept%20quote%20${data.ref}`, GOLD, BLACK)}
+    ${btn("Accept Quote", `mailto:${SUPPORT_EMAIL}?subject=Accept%20quote%20${data.ref}`, GOLD, BLACK)}
     &nbsp;&nbsp;
-    ${btn("Ask a Question", `https://wa.me/${WA_NUM}?text=Hi%2C%20question%20about%20quote%20${data.ref}`, "#25D366", "#fff")}
+    ${btn("Ask a Question", `mailto:${SUPPORT_EMAIL}?subject=Question%20about%20quote%20${data.ref}`, GOLD, BLACK)}
   `);
 
   await sendMail({ to: data.email, subject: `Your Quote — ${data.ref} | Daisy Gadgets Co.`, html });
@@ -690,8 +690,8 @@ export async function sendCreditApplicationReceived(data: { name: string; email:
         ${infoRow("Status", "Under Review")}
       </table>
     </div>
-    <p style="color:#9ca3af;font-size:14px;margin:0 0 20px">Questions? Contact us on WhatsApp.</p>
-    ${btn("Chat on WhatsApp", `https://wa.me/${WA_NUM}?text=Hi%2C%20checking%20on%20credit%20application%20${data.ref}`, "#25D366", "#fff")}
+    <p style="color:#9ca3af;font-size:14px;margin:0 0 20px">Questions? Contact us by email.</p>
+    ${btn("Email Us", `mailto:${SUPPORT_EMAIL}?subject=Credit%20application%20${data.ref}`, GOLD, BLACK)}
   `);
   await sendMail({ to: data.email, subject: `Credit Application Received — ${data.ref} | Daisy Gadgets Co.`, html });
 }
@@ -741,7 +741,7 @@ export async function sendCreditRejected(data: { name: string; email: string; re
     </p>
     ${btn("Shop Now", `${SITE}/shop`, GOLD, BLACK)}
     &nbsp;&nbsp;
-    ${btn("Chat with Us", `https://wa.me/${WA_NUM}`, "#25D366", "#fff")}
+    ${btn("Email Us", `mailto:${SUPPORT_EMAIL}`, GOLD, BLACK)}
   `);
   await sendMail({ to: data.email, subject: `Credit Application Update — ${data.ref} | Daisy Gadgets Co.`, html });
 }
@@ -810,13 +810,13 @@ export async function sendWelcomeEmail(data: { name: string; email: string }) {
       ${label("Your Exclusive Discount Code")}
       <p style="margin:12px 0;color:${GOLD};font-size:40px;font-weight:900;letter-spacing:0.15em;font-family:monospace">DAISY25</p>
       <div style="height:1px;background:${BORDER};margin:16px 0"></div>
-      <p style="margin:0;color:${MUTED};font-size:13px;line-height:1.6">💎 25% off your first order — mention this code on WhatsApp<br>when placing your order. Valid for all products.</p>
+      <p style="margin:0;color:${MUTED};font-size:13px;line-height:1.6">💎 25% off your first order — mention this code by email<br>when placing your order. Valid for all products.</p>
     </div>
 
     <p style="color:#9ca3af;font-size:14px;margin:0 0 20px">Browse our full range of gadgets, appliances, solar solutions and more:</p>
     ${btn("🛍️ Shop Now", `${SITE}/shop`)}
     &nbsp;&nbsp;
-    ${btn("💬 Claim via WhatsApp", `https://wa.me/${WA_NUM}?text=Hi%2C%20I%20have%20the%20discount%20code%20DAISY25`, "#25D366", "#fff")}
+    ${btn("✉️ Claim via Email", `mailto:${SUPPORT_EMAIL}?subject=Discount%20code%20DAISY25`, GOLD, BLACK)}
   `);
 
   await sendMail({ to: data.email, subject: "✨ Your 25% Discount Code — Daisy Gadgets Co.", html });
@@ -888,7 +888,7 @@ export async function sendInstallmentApproval(data: {
     <!-- How to start -->
     <div style="background:#f59e0b11;border:1px solid #f59e0b44;border-radius:12px;padding:16px 20px;margin-bottom:24px">
       <p style="margin:0 0 6px;color:#f59e0b;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em">⚡ Next Step — Pay Your Deposit</p>
-      <p style="margin:0;color:#d1d5db;font-size:13px;line-height:1.6">Transfer <strong style="color:#f59e0b">${fmt(data.deposit)}</strong> to one of our accounts below using <strong style="color:#fff">${data.ref}</strong> as your payment reference, then send proof of payment on WhatsApp to activate your plan.</p>
+      <p style="margin:0;color:#d1d5db;font-size:13px;line-height:1.6">Transfer <strong style="color:#f59e0b">${fmt(data.deposit)}</strong> to one of our accounts below using <strong style="color:#fff">${data.ref}</strong> as your payment reference, then send proof of payment by email to activate your plan.</p>
     </div>
 
     ${divider()}
@@ -899,9 +899,9 @@ export async function sendInstallmentApproval(data: {
       ${bankRows}
     </table>
 
-    <!-- WhatsApp CTA -->
+    <!-- Email CTA -->
     <div style="text-align:center;margin-bottom:8px">
-      ${btn("💬 Send Proof of Payment on WhatsApp", `https://wa.me/${WA_NUM}?text=${waMsg}`, "#25D366", "#fff")}
+      ${btn("✉️ Send Proof of Payment by Email", `mailto:${SUPPORT_EMAIL}?subject=${waMsg}`, GOLD, BLACK)}
     </div>
     <p style="margin:12px 0 0;color:${MUTED};font-size:12px;text-align:center">Always use <strong style="color:#fff">${data.ref}</strong> as your payment reference.</p>
   `);
@@ -995,7 +995,7 @@ export async function sendInstallmentReviewing(data: InstallmentUpdateBase) {
       <p style="margin:0 0 8px;color:#3b82f6;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em">What Happens Next</p>
       <p style="margin:0;color:#d1d5db;font-size:13px;line-height:1.8">
         1. We verify your details<br>
-        2. We may reach out on WhatsApp to confirm information<br>
+        2. We may reach out by email or phone to confirm information<br>
         3. You will receive an approval email with your full payment plan
       </p>
     </div>
@@ -1007,7 +1007,7 @@ export async function sendInstallmentReviewing(data: InstallmentUpdateBase) {
     </div>` : ""}
 
     <div style="text-align:center">
-      ${btn("Message Us on WhatsApp", `https://wa.me/${WA_NUM}?text=${waMsg}`, "#25D366", "#fff")}
+      ${btn("Email Us", `mailto:${SUPPORT_EMAIL}?subject=${waMsg}`, GOLD, BLACK)}
     </div>
   `);
 
@@ -1040,7 +1040,7 @@ export async function sendInstallmentAwaitingPayment(data: InstallmentUpdateBase
     </div>` : ""}
 
     <div style="text-align:center">
-      ${btn("Send Proof of Payment", `https://wa.me/${WA_NUM}?text=${waMsg}`, "#25D366", "#fff")}
+      ${btn("Send Proof of Payment", `mailto:${SUPPORT_EMAIL}?subject=${waMsg}`, GOLD, BLACK)}
     </div>
     <p style="margin:12px 0 0;color:${MUTED};font-size:12px;text-align:center">After we confirm receipt, your plan will be activated immediately.</p>
   `);
@@ -1073,7 +1073,7 @@ export async function sendInstallmentActive(data: InstallmentUpdateBase) {
     <div style="background:${BLACK};border:1px solid ${BORDER};border-radius:12px;padding:16px 20px;margin-bottom:24px">
       <p style="margin:0 0 10px;color:#fff;font-size:14px;font-weight:700">Payment Instructions</p>
       <p style="margin:0 0 8px;color:#d1d5db;font-size:13px;line-height:1.6">Make your monthly payment to the same bank account using <strong style="color:${GOLD}">${data.ref}</strong> as your reference.</p>
-      <p style="margin:0;color:#d1d5db;font-size:13px;line-height:1.6">Send proof of each monthly payment on WhatsApp to keep your account in good standing.</p>
+      <p style="margin:0;color:#d1d5db;font-size:13px;line-height:1.6">Send proof of each monthly payment by email to keep your account in good standing.</p>
     </div>
 
     ${data.admin_notes ? `
@@ -1083,7 +1083,7 @@ export async function sendInstallmentActive(data: InstallmentUpdateBase) {
     </div>` : ""}
 
     <div style="text-align:center">
-      ${btn("Contact Us on WhatsApp", `https://wa.me/${WA_NUM}?text=${waMsg}`, "#25D366", "#fff")}
+      ${btn("Contact Us by Email", `mailto:${SUPPORT_EMAIL}?subject=${waMsg}`, GOLD, BLACK)}
     </div>
   `);
 
@@ -1114,13 +1114,13 @@ export async function sendInstallmentCompleted(data: InstallmentUpdateBase) {
 
     <div style="background:${BLACK};border:1px solid ${BORDER};border-radius:12px;padding:16px 20px;margin-bottom:24px">
       <p style="margin:0 0 6px;color:#fff;font-size:14px;font-weight:700">Interested in another product?</p>
-      <p style="margin:0;color:#9ca3af;font-size:13px;line-height:1.6">As a returning customer, you may be eligible for priority approval on your next installment application. Message us on WhatsApp to get started.</p>
+      <p style="margin:0;color:#9ca3af;font-size:13px;line-height:1.6">As a returning customer, you may be eligible for priority approval on your next installment application. Email us to get started.</p>
     </div>
 
     <div style="text-align:center">
       ${btn("Shop Again", `${SITE}/shop`)}
       &nbsp;&nbsp;
-      ${btn("WhatsApp Us", `https://wa.me/${WA_NUM}?text=${waMsg}`, "#25D366", "#fff")}
+      ${btn("Email Us", `mailto:${SUPPORT_EMAIL}?subject=${waMsg}`, GOLD, BLACK)}
     </div>
   `);
 
@@ -1162,7 +1162,7 @@ export async function sendInstallmentDeclined(data: InstallmentUpdateBase) {
     </p>
 
     <div style="text-align:center">
-      ${btn("Discuss Options on WhatsApp", `https://wa.me/${WA_NUM}?text=${waMsg}`, "#25D366", "#fff")}
+      ${btn("Discuss Options by Email", `mailto:${SUPPORT_EMAIL}?subject=${waMsg}`, GOLD, BLACK)}
       <br><br>
       ${btn("Browse Other Products", `${SITE}/shop`)}
     </div>
@@ -1228,7 +1228,7 @@ export async function sendClearCartReminder(data: {
 
     ${divider()}
     <p style="margin:0;color:${MUTED};font-size:13px;text-align:center">
-      Questions? ${btn("WhatsApp Us", `https://wa.me/${WA_NUM}?text=Hi%2C%20my%20order%20ref%20is%20${encodeURIComponent(data.ref)}`, DARK2, GOLD)}
+      Questions? ${btn("Email Us", `mailto:${SUPPORT_EMAIL}?subject=Order%20${encodeURIComponent(data.ref)}`, DARK2, GOLD)}
     </p>
   `;
 

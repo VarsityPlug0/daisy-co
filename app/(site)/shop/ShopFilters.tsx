@@ -171,13 +171,11 @@ export default function ShopFilters({ total }: { total: number }) {
             <Sparkles size={18} className="text-[#D4AF37] shrink-0" />
             <div>
               <p className="text-xs font-bold text-white">Official Clothing & Streetwear Drop — Coming Soon</p>
-              <p className="text-[11px] text-gray-400">Pre-order or enquire on WhatsApp to get launch-day priority.</p>
+              <p className="text-[11px] text-gray-400">Email us to get launch-day priority.</p>
             </div>
           </div>
           <a
-            href="https://wa.me/27825876811?text=Hi%20Daisy%20Gadgets%20Co,%20I'd%20like%20to%20enquire%20about%20the%20Clothing%20drop!"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="mailto:daisygadgetsco@gmail.com?subject=Clothing%20drop%20enquiry"
             className="btn-gold px-4 py-2 rounded-xl text-xs font-bold shrink-0"
           >
             Pre-Order Enquiry

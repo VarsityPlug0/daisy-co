@@ -31,7 +31,7 @@ export default function WarrantyPage() {
           },
           {
             title: "4. How to Claim Warranty",
-            body: "Step 1: Contact us via WhatsApp (+27 82 587 6811) or email with your order reference and a description of the issue. Step 2: Provide photos or a video demonstrating the fault. Step 3: We will assess the claim and advise on the next steps — this may include repair, replacement, or refund depending on the situation.",
+            body: "Step 1: Contact us via email with your order reference and a description of the issue. Step 2: Provide photos or a video demonstrating the fault. Step 3: We will assess the claim and advise on the next steps — this may include repair, replacement, or refund depending on the situation.",
           },
           {
             title: "5. Warranty Processing Time",
@@ -47,7 +47,7 @@ export default function WarrantyPage() {
           },
           {
             title: "8. Contact",
-            body: "Warranty claims: daisygadgetsco@gmail.com | WhatsApp: +27 82 587 6811",
+            body: "Warranty claims: daisygadgetsco@gmail.com",
           },
         ].map(({ title, body }) => (
           <div key={title}>

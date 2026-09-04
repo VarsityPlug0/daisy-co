@@ -27,7 +27,7 @@ export default function TermsPage() {
           },
           {
             title: "3. Ordering",
-            body: "Orders can be placed via our website or directly via WhatsApp. An order is confirmed only after payment has been received and verified. We reserve the right to cancel any order at our discretion, in which case a full refund will be issued.",
+            body: "Orders can be placed via our website or directly by email. An order is confirmed only after payment has been received and verified. We reserve the right to cancel any order at our discretion, in which case a full refund will be issued.",
           },
           {
             title: "4. Payment",
@@ -59,7 +59,7 @@ export default function TermsPage() {
           },
           {
             title: "11. Contact",
-            body: "For questions about these Terms, contact us at daisygadgetsco@gmail.com or via WhatsApp at +27 82 587 6811.",
+            body: "For questions about these Terms, contact us at daisygadgetsco@gmail.com.",
           },
         ].map(({ title, body }) => (
           <div key={title}>

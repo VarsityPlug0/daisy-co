@@ -36,8 +36,6 @@ function track(event: string, extra?: Record<string, unknown>) {
   }).catch(() => {});
 }
 
-const WA_NUM = "27825876811";
-
 export default function InstallmentModal({ product, settings, onClose }: Props) {
   const price = parseFloat(product.price.replace(/[^0-9.]/g, "")) || 0;
   const deposit = Math.max(2000, Math.ceil(price * settings.min_deposit_pct / 100 * 100) / 100);
@@ -113,31 +111,10 @@ export default function InstallmentModal({ product, settings, onClose }: Props) 
       if (!res.ok) throw new Error(data.error ?? "Submission failed");
       setResult({ ref: data.ref, phone: form.phone });
       setStep("success");
-
-      // Direct WhatsApp redirect to the recent number (082 587 6811 / 27825876811)
-      const msg = encodeURIComponent(
-        `Hi Daisy Gadgets Co, I submitted an installment application for the ${product.name} (${term} months, R${monthly.toLocaleString("en-ZA")}/mo). Application Ref: ${data.ref}`
-      );
-      const waUrl = `https://wa.me/${WA_NUM}?text=${msg}`;
-      try {
-        window.open(waUrl, "_blank");
-      } catch {
-        // Handled by manual button on success screen
-      }
     } catch (e: unknown) {
       setError(e instanceof Error ? e.message : "Something went wrong");
     } finally {
       setSubmitting(false);
-    }
-  }
-
-  function handleWhatsApp() {
-    if (result) {
-      track("whatsapp_clicked", { product_id: product.id, ref: result.ref });
-      const msg = encodeURIComponent(
-        `Hi Daisy Gadgets Co, I submitted an installment application for the ${product.name} (${term} months, R${monthly.toLocaleString("en-ZA")}/mo). Application Ref: ${result.ref}`
-      );
-      window.open(`https://wa.me/${WA_NUM}?text=${msg}`, "_blank");
     }
   }
 
@@ -267,7 +244,7 @@ export default function InstallmentModal({ product, settings, onClose }: Props) 
             <div className="space-y-4">
               {[
                 { key: "name",      label: "Full Name",              type: "text",  placeholder: "John Smith" },
-                { key: "phone",     label: "WhatsApp / Mobile",      type: "tel",   placeholder: "082 000 0000" },
+                { key: "phone",     label: "Phone / Mobile",         type: "tel",   placeholder: "082 000 0000" },
                 { key: "email",     label: "Email Address",          type: "email", placeholder: "john@example.com" },
                 { key: "id_number", label: "SA ID / Passport Number", type: "text", placeholder: "8001015009087" },
                 { key: "address",   label: "Delivery Address",       type: "text",  placeholder: "123 Main St, Johannesburg" },
@@ -293,7 +270,7 @@ export default function InstallmentModal({ product, settings, onClose }: Props) 
                   {consent && <Check size={11} color="black" strokeWidth={3} />}
                 </div>
                 <p className="text-gray-500 text-xs leading-relaxed">
-                  I consent to Daisy Gadgets Co. collecting and using my personal information to process this installment application and contact me via WhatsApp.
+                  I consent to Daisy Gadgets Co. collecting and using my personal information to process this installment application and contact me by phone or email.
                 </p>
               </label>
             </div>
@@ -311,7 +288,7 @@ export default function InstallmentModal({ product, settings, onClose }: Props) 
                   ["Deposit",    `R ${deposit.toLocaleString("en-ZA")}`],
                   ["Total Repayable", `R ${total.toLocaleString("en-ZA")}`],
                   ["Name",      form.name],
-                  ["WhatsApp",  form.phone],
+                  ["Phone",     form.phone],
                   ["Email",     form.email],
                 ].map(([label, value]) => (
                   <div key={label} className="flex justify-between items-center px-4 py-3">
@@ -328,7 +305,7 @@ export default function InstallmentModal({ product, settings, onClose }: Props) 
               )}
 
               <p className="text-center text-gray-600 text-xs">
-                No credit bureau check. Our team will contact you on WhatsApp to finalise the agreement.
+                No credit bureau check. Our team will contact you by phone or email to finalise the agreement.
               </p>
             </div>
           )}
@@ -342,7 +319,7 @@ export default function InstallmentModal({ product, settings, onClose }: Props) 
               <div>
                 <h3 className="text-white text-xl font-black mb-2">Application Received!</h3>
                 <p className="text-gray-400 text-sm leading-relaxed">
-                  Your application has been submitted successfully. We&apos;ll contact you on WhatsApp to complete the process.
+                  Your application has been submitted successfully. We&apos;ll contact you by phone or email to complete the process.
                 </p>
               </div>
               <div className="bg-[#0A0A0A] border border-[#1F1F1F] rounded-xl p-4">
@@ -350,17 +327,17 @@ export default function InstallmentModal({ product, settings, onClose }: Props) 
                 <p className="text-[#D4AF37] text-xl font-mono font-black">{result.ref}</p>
               </div>
               <a
-                href={`https://wa.me/${WA_NUM}?text=${encodeURIComponent(
+                href={`mailto:daisygadgetsco@gmail.com?subject=${encodeURIComponent(
+                  `Installment application — ${result.ref}`
+                )}&body=${encodeURIComponent(
                   `Hi Daisy Gadgets Co, I submitted an installment application for the ${product.name} (${term} months, R${monthly.toLocaleString("en-ZA")}/mo). Application Ref: ${result.ref}`
                 )}`}
-                target="_blank"
-                rel="noopener noreferrer"
                 onClick={() => track("whatsapp_clicked", { product_id: product.id, ref: result.ref })}
-                className="w-full flex items-center justify-center gap-3 py-4 rounded-xl font-bold text-white text-base shadow-lg shadow-[#25D366]/20 transition-transform active:scale-95"
-                style={{ background: "#25D366" }}
+                className="w-full flex items-center justify-center gap-3 py-4 rounded-xl font-bold text-white text-base shadow-lg transition-transform active:scale-95"
+                style={{ background: "#D4AF37", color: "#0A0A0A" }}
               >
                 <MessageCircle size={20} />
-                CONTINUE ON WHATSAPP (+27 82 587 6811)
+                EMAIL US TO CONTINUE
               </a>
               <button onClick={onClose}
                 className="w-full text-center text-gray-600 text-sm hover:text-gray-400 transition-colors py-2">

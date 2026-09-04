@@ -72,9 +72,9 @@ export default function DeliveryPage() {
         <h2 className="text-xl font-bold text-white">Frequently Asked</h2>
         {[
           ["Is delivery free?", "Yes! We offer free delivery on all orders within South Africa and free worldwide shipping. No minimum order required."],
-          ["How do I track my order?", "Once your payment is confirmed, you'll receive a tracking number via WhatsApp and email. You can also use our Track Order page."],
-          ["Can I change my delivery address?", "Contact us on WhatsApp as soon as possible after placing your order. We can update your address before dispatch."],
-          ["What if my order arrives damaged?", "Contact us immediately via WhatsApp with photos. We'll arrange a replacement or refund under our returns policy."],
+          ["How do I track my order?", "Once your payment is confirmed, you'll receive a tracking number via email. You can also use our Track Order page."],
+          ["Can I change my delivery address?", "Contact us as soon as possible after placing your order. We can update your address before dispatch."],
+          ["What if my order arrives damaged?", "Contact us immediately via email with photos. We'll arrange a replacement or refund under our returns policy."],
         ].map(([q, a]) => (
           <details key={q as string} className="group bg-[#111111] border border-[#1F1F1F] rounded-2xl overflow-hidden">
             <summary className="flex items-center justify-between px-6 py-5 cursor-pointer select-none list-none">
@@ -88,9 +88,9 @@ export default function DeliveryPage() {
 
       <div className="bg-[#111111] border border-[#D4AF37]/20 rounded-2xl p-8 text-center">
         <h3 className="text-xl font-bold text-white mb-3">Need a delivery quote?</h3>
-        <p className="text-gray-400 text-sm mb-6">Chat with us on WhatsApp for international shipping quotes and special delivery arrangements.</p>
+        <p className="text-gray-400 text-sm mb-6">Contact us for international shipping quotes and special delivery arrangements.</p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <a href="https://wa.me/27825876811" target="_blank" rel="noopener noreferrer" className="btn-gold px-8 py-3.5 rounded-xl font-bold">Chat on WhatsApp</a>
+          <Link href="/contact" className="btn-gold px-8 py-3.5 rounded-xl font-bold">Contact Us</Link>
           <Link href="/track-order" className="btn-outline px-8 py-3.5 rounded-xl font-bold">Track My Order</Link>
         </div>
       </div>

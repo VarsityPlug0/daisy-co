@@ -304,9 +304,9 @@ export default function SolarWizard() {
       });
       const data = await res.json();
       if (res.ok) setSubmitted({ ref: data.ref });
-      else setSubmitError(data.error ?? "Something went wrong. Please try WhatsApp.");
+      else setSubmitError(data.error ?? "Something went wrong. Please try again or email us.");
     } catch {
-      setSubmitError("Network error. Please try WhatsApp instead.");
+      setSubmitError("Network error. Please try again or email us instead.");
     } finally {
       setSubmitting(false);
     }
@@ -329,7 +329,7 @@ export default function SolarWizard() {
             <p className="text-2xl font-bold text-[#D4AF37] tracking-wider">{submitted.ref}</p>
           </div>
           <p className="text-gray-400 mb-6 max-w-md mx-auto leading-relaxed text-sm">
-            We have received your request for the <strong className="text-white">{pkg.name}</strong>. Our team will review it and contact you within 24 hours via WhatsApp or email.
+            We have received your request for the <strong className="text-white">{pkg.name}</strong>. Our team will review it and contact you within 24 hours by email.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button onClick={() => window.dispatchEvent(new CustomEvent("openDaisyChat"))} className="btn-gold px-8 py-3.5 rounded-xl font-bold">

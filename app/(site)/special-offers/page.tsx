@@ -100,9 +100,8 @@ export default async function SpecialOffersPage() {
       )}
 
       <div className="mt-12 bg-[#111111] border border-[#1F1F1F] rounded-2xl p-7 text-center">
-        <p className="text-gray-400 text-sm mb-4">Need a specific product? We source anything. Chat with us on WhatsApp.</p>
-        <a href="https://wa.me/27825876811" target="_blank" rel="noopener noreferrer"
-          className="btn-gold px-10 py-3.5 rounded-xl font-bold">Chat on WhatsApp</a>
+        <p className="text-gray-400 text-sm mb-4">Need a specific product? We source anything. Contact us.</p>
+        <Link href="/contact" className="btn-gold px-10 py-3.5 rounded-xl font-bold">Contact Us</Link>
       </div>
     </div>
   );

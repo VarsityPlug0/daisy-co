@@ -25,7 +25,7 @@ export default function PaymentOptionsPage() {
       <div className="grid sm:grid-cols-2 gap-5 mb-12">
         {[
           { title: "EFT / Bank Transfer", desc: "Transfer directly to our TymeBank business account. Upload proof of payment and your order is processed within 2–4 hours.", badge: "Most Popular" },
-          { title: "Visa & Mastercard", desc: "Card payments accepted via secure payment gateway. Contact us on WhatsApp to process a card payment.", badge: null },
+          { title: "Visa & Mastercard", desc: "Card payments accepted via secure payment gateway. Contact us to process a card payment.", badge: null },
           { title: "All SA Banks", desc: "We accept payments from all major South African banks including Standard Bank, ABSA, Nedbank, Capitec, and more.", badge: null },
         ].map(({ title, desc, badge }) => (
           <div key={title} className="bg-[#111111] border border-[#1F1F1F] rounded-2xl p-6">
@@ -100,7 +100,7 @@ export default function PaymentOptionsPage() {
         <h3 className="text-xl font-bold text-white mb-3">Questions about payment?</h3>
         <p className="text-gray-400 text-sm mb-6">Our team is happy to help you through the payment process.</p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <a href="https://wa.me/27825876811" target="_blank" rel="noopener noreferrer" className="btn-gold px-8 py-3.5 rounded-xl font-bold">Chat on WhatsApp</a>
+          <Link href="/contact" className="btn-gold px-8 py-3.5 rounded-xl font-bold">Contact Us</Link>
           <Link href="/shop" className="btn-outline px-8 py-3.5 rounded-xl font-bold">Start Shopping</Link>
         </div>
       </div>

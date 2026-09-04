@@ -85,7 +85,7 @@ export default function SolarSolutions() {
         {[
           { label: "Delivery",  value: "Nationwide across South Africa" },
           { label: "Warranty",  value: "Full product warranty support" },
-          { label: "Support",   value: "WhatsApp sales & after-sales" },
+          { label: "Support",   value: "Email sales & after-sales" },
         ].map((item) => (
           <div key={item.label}>
             <p className="text-[#D4AF37] text-xs uppercase tracking-widest mb-2">{item.label}</p>
@@ -99,10 +99,6 @@ export default function SolarSolutions() {
         <p className="text-gray-400 mb-5 text-base">Not sure which system you need? Talk to our solar experts.</p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link href="/contact" className="btn-gold px-12 py-4 rounded-xl font-bold text-base">Get a Free Quote</Link>
-          <a href="https://wa.me/27825876811" target="_blank" rel="noopener noreferrer"
-            className="btn-outline px-12 py-4 rounded-xl text-base">
-            Chat on WhatsApp
-          </a>
         </div>
       </div>
     </div>

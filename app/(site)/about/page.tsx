@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ShieldCheck, Truck, BadgeCheck, Headphones, MapPin, Phone, Mail } from "lucide-react";
+import { ShieldCheck, Truck, BadgeCheck, Headphones, MapPin, Mail } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "About Us | Daisy Gadgets Co. — Premium Gadgets Worldwide",
@@ -11,7 +11,7 @@ const values = [
   { icon: BadgeCheck, title: "Authenticity",     desc: "Every product is 100% genuine. We never sell counterfeit goods." },
   { icon: ShieldCheck, title: "Transparency",    desc: "Clear pricing, honest communication, no hidden fees." },
   { icon: Truck,       title: "Reliability",     desc: "We deliver on our promises — fast shipping, secure packaging." },
-  { icon: Headphones,  title: "Customer First",  desc: "Real human support via WhatsApp. We're here when you need us." },
+  { icon: Headphones,  title: "Customer First",  desc: "Real human support by email. We're here when you need us." },
 ];
 
 const areas = [
@@ -54,7 +54,7 @@ export default function AboutPage() {
             Based in Bellville, Cape Town, we serve customers across all 9 South African provinces and ship internationally. Whether you&apos;re buying an iPhone, a PS5, a solar inverter, or a new fridge — we have you covered.
           </p>
           <p className="text-gray-400 leading-relaxed">
-            Our team is available via WhatsApp every day to help you choose the right product, track your order, or resolve any issue.
+            Our team is available by email every day to help you choose the right product, track your order, or resolve any issue.
           </p>
         </div>
         <div className="bg-[#111111] border border-[#1F1F1F] rounded-2xl p-7">
@@ -67,10 +67,6 @@ export default function AboutPage() {
                 <p className="text-gray-500">Okavango Park, Bellville, Cape Town</p>
                 <p className="text-gray-500">South Africa</p>
               </div>
-            </div>
-            <div className="flex items-center gap-3">
-              <Phone size={16} color="#D4AF37" className="shrink-0" />
-              <a href="https://wa.me/27825876811" className="text-white hover:text-[#D4AF37] transition-colors">+27 82 587 6811</a>
             </div>
             <div className="flex items-center gap-3">
               <Mail size={16} color="#D4AF37" className="shrink-0" />
@@ -111,11 +107,10 @@ export default function AboutPage() {
       {/* CTA */}
       <div className="text-center">
         <h2 className="text-2xl font-bold text-white mb-4">Ready to Shop?</h2>
-        <p className="text-gray-400 mb-8">Browse our full catalogue or chat with us on WhatsApp to get started.</p>
+        <p className="text-gray-400 mb-8">Browse our full catalogue to get started.</p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link href="/shop" className="btn-gold px-10 py-4 rounded-xl font-bold">Shop Now</Link>
-          <a href="https://wa.me/27825876811" target="_blank" rel="noopener noreferrer"
-            className="btn-outline px-10 py-4 rounded-xl font-bold">Chat on WhatsApp</a>
+          <Link href="/contact" className="btn-outline px-10 py-4 rounded-xl font-bold">Contact Us</Link>
         </div>
       </div>
 

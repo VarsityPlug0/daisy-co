@@ -28,9 +28,9 @@ const TEMPLATES = [
     label: "Order Follow-up",
     subject: "How is your order from Daisy Gadgets Co.?",
     heading: "How's everything going?",
-    body: "Hi there,\n\nWe hope you're enjoying your recent purchase from Daisy Gadgets Co.!\n\nIf you have any questions or need any support, we're always here to help. Feel free to reach out on WhatsApp anytime.",
-    ctaText: "WhatsApp Us",
-    ctaUrl: "https://wa.me/27825876811",
+    body: "Hi there,\n\nWe hope you're enjoying your recent purchase from Daisy Gadgets Co.!\n\nIf you have any questions or need any support, we're always here to help. Feel free to reach out anytime.",
+    ctaText: "Contact Us",
+    ctaUrl: "https://daisygadgetsco.com/contact",
   },
   {
     id: "new_arrivals",

@@ -31,7 +31,7 @@ export default function RefundPage() {
           },
           {
             title: "4. How to Request a Refund",
-            body: "Contact us via WhatsApp (+27 82 587 6811) or email (daisygadgetsco@gmail.com) with your order reference, reason for the refund, and photos if the product is damaged.",
+            body: "Contact us via email (daisygadgetsco@gmail.com) with your order reference, reason for the refund, and photos if the product is damaged.",
           },
           {
             title: "5. Refund Processing",
@@ -43,7 +43,7 @@ export default function RefundPage() {
           },
           {
             title: "7. Contact Us",
-            body: "For refund enquiries: daisygadgetsco@gmail.com | WhatsApp: +27 82 587 6811",
+            body: "For refund enquiries: daisygadgetsco@gmail.com",
           },
         ].map(({ title, body }) => (
           <div key={title}>

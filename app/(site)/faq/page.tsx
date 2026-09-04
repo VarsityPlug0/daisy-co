@@ -12,15 +12,15 @@ const sections = [
     items: [
       {
         q: "How do I place an order?",
-        a: "Browse our shop, add items to your cart, and proceed to checkout. You can also message us directly on WhatsApp with the product name and we'll assist you through the process.",
+        a: "Browse our shop, add items to your cart, and proceed to checkout. You can also email us directly with the product name and we'll assist you through the process.",
       },
       {
-        q: "Can I order via WhatsApp?",
-        a: "Yes! Many customers prefer to order directly via WhatsApp (+27 82 587 6811). Just send us the product name and your delivery address and we'll create an order for you.",
+        q: "Can I order by email?",
+        a: "Yes! Many customers prefer to order directly by messaging us. Send us the product name and your delivery address via our Contact page and we'll create an order for you.",
       },
       {
         q: "Do you offer bulk or business pricing?",
-        a: "Yes. Orders over R10,000 automatically qualify for a 25% discount. For larger business orders, contact us on WhatsApp to discuss custom pricing.",
+        a: "Yes. Orders over R10,000 automatically qualify for a 25% discount. For larger business orders, contact us to discuss custom pricing.",
       },
       {
         q: "What is the 30% August–December Special?",
@@ -45,7 +45,7 @@ const sections = [
       },
       {
         q: "How long does payment verification take?",
-        a: "Typically 2–4 hours during business hours. We'll send you a confirmation email and WhatsApp message once your payment is verified.",
+        a: "Typically 2–4 hours during business hours. We'll send you a confirmation email once your payment is verified.",
       },
     ],
   },
@@ -54,11 +54,11 @@ const sections = [
     items: [
       {
         q: "Do you offer same-day delivery?",
-        a: "Yes, same-day delivery is available within the Cape Town metro area and select Johannesburg areas, depending on stock location. Orders must be placed before 11am. Chat with us on WhatsApp to confirm availability.",
+        a: "Yes, same-day delivery is available within the Cape Town metro area and select Johannesburg areas, depending on stock location. Orders must be placed before 11am. Contact us to confirm availability.",
       },
       {
         q: "Do you ship internationally?",
-        a: "Yes! We ship worldwide. International shipping rates and timelines vary by country. Contact us on WhatsApp or email for a shipping quote.",
+        a: "Yes! We ship worldwide. International shipping rates and timelines vary by country. Contact us by email for a shipping quote.",
       },
       {
         q: "How long does delivery take in South Africa?",
@@ -66,7 +66,7 @@ const sections = [
       },
       {
         q: "How do I track my order?",
-        a: "Visit our Track Order page and enter your order reference number. You can also message us on WhatsApp with your order reference for a status update.",
+        a: "Visit our Track Order page and enter your order reference number. You can also email us with your order reference for a status update.",
       },
     ],
   },
@@ -83,11 +83,11 @@ const sections = [
       },
       {
         q: "What if my product arrives damaged?",
-        a: "Contact us immediately via WhatsApp with photos of the damage. We will arrange a replacement or refund as per our returns policy.",
+        a: "Contact us immediately via email with photos of the damage. We will arrange a replacement or refund as per our returns policy.",
       },
       {
         q: "Can I request a product not listed on your site?",
-        a: "Absolutely. We source a wide range of products. Send us the product name and model on WhatsApp and we'll check availability and pricing for you.",
+        a: "Absolutely. We source a wide range of products. Send us the product name and model by email and we'll check availability and pricing for you.",
       },
     ],
   },
@@ -100,7 +100,7 @@ const sections = [
       },
       {
         q: "How do I initiate a return?",
-        a: "Message us on WhatsApp with your order reference and reason for return. Our team will guide you through the process.",
+        a: "Email us with your order reference and reason for return. Our team will guide you through the process.",
       },
       {
         q: "How long do refunds take?",
@@ -137,7 +137,7 @@ export default function FAQPage() {
           Frequently Asked <span className="gold-text">Questions</span>
         </h1>
         <p className="text-gray-400 text-lg max-w-xl mx-auto">
-          Can&apos;t find your answer? Chat with us on WhatsApp and we&apos;ll help immediately.
+          Can&apos;t find your answer? Email us and we&apos;ll help immediately.
         </p>
       </div>
 
@@ -166,11 +166,9 @@ export default function FAQPage() {
 
       <div className="mt-14 bg-[#111111] border border-[#D4AF37]/20 rounded-2xl p-8 text-center">
         <h3 className="text-xl font-bold text-white mb-3">Still have questions?</h3>
-        <p className="text-gray-400 mb-6 text-sm">Our team is ready to help. Reach us via WhatsApp for the fastest response.</p>
+        <p className="text-gray-400 mb-6 text-sm">Our team is ready to help. Send us a message and we'll get back to you quickly.</p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <a href="https://wa.me/27825876811" target="_blank" rel="noopener noreferrer"
-            className="btn-gold px-8 py-3.5 rounded-xl font-bold">Chat on WhatsApp</a>
-          <Link href="/contact" className="btn-outline px-8 py-3.5 rounded-xl font-bold">Send a Message</Link>
+          <Link href="/contact" className="btn-gold px-8 py-3.5 rounded-xl font-bold">Send a Message</Link>
         </div>
       </div>
 

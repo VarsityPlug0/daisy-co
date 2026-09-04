@@ -94,7 +94,7 @@ export default function LeadCapturePopup() {
               Claim <span style={{ color: "#D4AF37" }}>25% OFF</span><br />your first order
             </h2>
             <p className="text-gray-400 text-sm leading-relaxed mb-8 max-w-xs mx-auto">
-              Enter your WhatsApp number and we will send you an exclusive discount code right now.
+              Enter your details and we will send you an exclusive discount code right now.
             </p>
             <button
               onClick={() => setStep("form")}
@@ -115,7 +115,7 @@ export default function LeadCapturePopup() {
             <div className="text-center mb-6">
               <p className="text-xs font-bold tracking-[0.2em] text-[#D4AF37] uppercase mb-2">Almost there</p>
               <h2 className="text-white font-black text-2xl">Where do we send your code?</h2>
-              <p className="text-gray-500 text-sm mt-2">Your 25% discount will be sent straight to your WhatsApp.</p>
+              <p className="text-gray-500 text-sm mt-2">Your 25% discount will be sent straight to you.</p>
             </div>
             <form onSubmit={submit} className="space-y-3">
               <input
@@ -127,7 +127,7 @@ export default function LeadCapturePopup() {
               />
               <input
                 type="tel"
-                placeholder="WhatsApp number *"
+                placeholder="Phone number *"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 required
@@ -163,7 +163,7 @@ export default function LeadCapturePopup() {
               You are in{name ? `, ${name.split(" ")[0]}` : ""}!
             </h2>
             <p className="text-gray-400 text-sm leading-relaxed">
-              Your 25% discount code is on its way to your WhatsApp. Happy shopping!
+              Your 25% discount code is on its way. Happy shopping!
             </p>
           </div>
         )}

@@ -3,8 +3,6 @@ import Link from "next/link";
 
 export const dynamic = "force-dynamic";
 
-const WA = "27825876811";
-
 type Lead = {
   id: string;
   name?: string;

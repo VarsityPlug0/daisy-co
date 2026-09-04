@@ -234,7 +234,7 @@ export default function ChatWidget() {
                 />
                 <input
                   type="tel"
-                  placeholder="WhatsApp / phone number *"
+                  placeholder="Phone number *"
                   value={phone}
                   onChange={e => setPhone(e.target.value)}
                   required

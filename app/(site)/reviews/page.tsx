@@ -69,8 +69,7 @@ export default function ReviewsPage() {
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link href="/shop" className="btn-gold px-10 py-4 rounded-xl font-bold">Shop Now</Link>
-          <a href="https://wa.me/27825876811" target="_blank" rel="noopener noreferrer"
-            className="btn-outline px-10 py-4 rounded-xl font-bold">Chat on WhatsApp</a>
+          <Link href="/contact" className="btn-outline px-10 py-4 rounded-xl font-bold">Contact Us</Link>
         </div>
       </div>
 

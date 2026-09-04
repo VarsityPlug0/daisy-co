@@ -154,7 +154,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
               { icon: Check,        text: product.inStock ? "In stock — ready to order" : "Currently out of stock" },
               { icon: Truck,        text: "Nationwide delivery across South Africa" },
               { icon: ShieldCheck,  text: "Full manufacturer warranty included" },
-              { icon: MessageCircle,text: "Expert advice available on WhatsApp" },
+              { icon: MessageCircle,text: "Expert advice available by email" },
             ].map((item) => (
               <div key={item.text} className="flex items-center gap-3 text-sm text-gray-300">
                 <item.icon size={16} color="#D4AF37" strokeWidth={2} className="shrink-0" />
