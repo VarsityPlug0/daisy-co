@@ -64,7 +64,7 @@ export default function CategoriesPage() {
       {/* Add form */}
       <div className="bg-[#111111] border border-[#1F1F1F] rounded-2xl p-5 mb-6">
         <h2 className="text-sm font-semibold text-gray-400 mb-4">Add Category</h2>
-        <form onSubmit={handleAdd} className="flex gap-3">
+        <form onSubmit={handleAdd} className="flex flex-col sm:flex-row gap-3">
           <input
             value={name}
             onChange={(e) => setName(e.target.value)}

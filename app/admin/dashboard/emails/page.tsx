@@ -162,22 +162,24 @@ export default function EmailsPage() {
       {campaigns.length > 0 && (
         <div className="mt-6">
           <h2 className="text-sm font-semibold text-gray-400 uppercase tracking-widest mb-4">Campaign History</h2>
-          <div className="bg-[#111111] border border-[#1F1F1F] rounded-2xl overflow-hidden">
-            <div className="grid grid-cols-[1fr_120px_90px_130px] gap-3 px-5 py-3 border-b border-[#1F1F1F]">
-              {["Subject", "Recipients", "Sent", "Date"].map((h) => (
-                <p key={h} className="text-[11px] text-gray-500 uppercase tracking-wider font-medium">{h}</p>
+          <div className="bg-[#111111] border border-[#1F1F1F] rounded-2xl overflow-hidden overflow-x-auto">
+            <div className="min-w-[560px]">
+              <div className="grid grid-cols-[1fr_120px_90px_130px] gap-3 px-5 py-3 border-b border-[#1F1F1F]">
+                {["Subject", "Recipients", "Sent", "Date"].map((h) => (
+                  <p key={h} className="text-[11px] text-gray-500 uppercase tracking-wider font-medium">{h}</p>
+                ))}
+              </div>
+              {campaigns.map((c) => (
+                <div key={c.id} className="grid grid-cols-[1fr_120px_90px_130px] gap-3 items-center px-5 py-3.5 border-b border-[#1A1A1A] last:border-0">
+                  <p className="text-white text-sm truncate">{c.subject}</p>
+                  <p className="text-gray-400 text-sm capitalize">{c.recipients}</p>
+                  <p className="text-[#D4AF37] font-bold text-sm">{c.sent_to}</p>
+                  <p className="text-gray-500 text-xs">
+                    {new Date(c.createdAt).toLocaleDateString("en-ZA", { day: "numeric", month: "short", year: "numeric" })}
+                  </p>
+                </div>
               ))}
             </div>
-            {campaigns.map((c) => (
-              <div key={c.id} className="grid grid-cols-[1fr_120px_90px_130px] gap-3 items-center px-5 py-3.5 border-b border-[#1A1A1A] last:border-0">
-                <p className="text-white text-sm truncate">{c.subject}</p>
-                <p className="text-gray-400 text-sm capitalize">{c.recipients}</p>
-                <p className="text-[#D4AF37] font-bold text-sm">{c.sent_to}</p>
-                <p className="text-gray-500 text-xs">
-                  {new Date(c.createdAt).toLocaleDateString("en-ZA", { day: "numeric", month: "short", year: "numeric" })}
-                </p>
-              </div>
-            ))}
           </div>
         </div>
       )}

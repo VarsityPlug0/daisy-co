@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { Send, MessageCircle } from "lucide-react";
+import { Send, MessageCircle, ArrowLeft } from "lucide-react";
 
 type Session = {
   id: string; name?: string; phone?: string; email?: string;
@@ -139,7 +139,7 @@ export default function AdminChatPage() {
 
       <div className="flex flex-1 overflow-hidden">
         {/* Sessions sidebar */}
-        <div className="w-72 shrink-0 border-r border-[#1A1A1A] flex flex-col overflow-hidden">
+        <div className={`w-full md:w-72 md:shrink-0 border-r border-[#1A1A1A] flex-col overflow-hidden ${active ? "hidden md:flex" : "flex"}`}>
           <div className="flex-1 overflow-y-auto">
             {sessions.length === 0 && (
               <div className="p-6 text-center text-gray-600 text-sm">No chats yet.</div>
@@ -173,7 +173,7 @@ export default function AdminChatPage() {
         </div>
 
         {/* Chat area */}
-        <div className="flex-1 flex flex-col overflow-hidden">
+        <div className={`flex-1 flex-col overflow-hidden ${active ? "flex" : "hidden md:flex"}`}>
           {!active ? (
             <div className="flex-1 flex flex-col items-center justify-center text-center px-6">
               <MessageCircle size={48} color="#2a2a2a" strokeWidth={1} />
@@ -182,16 +182,23 @@ export default function AdminChatPage() {
           ) : (
             <>
               {/* Chat header */}
-              <div className="px-5 py-3 border-b border-[#1A1A1A] shrink-0 flex items-center justify-between" style={{ background: "#0f0f0f" }}>
-                <div>
-                  <p className="text-white font-semibold">{active.name || "Anonymous"}</p>
-                  <div className="flex gap-3 text-gray-500 text-xs mt-0.5">
-                    {active.phone && <span>📱 {active.phone}</span>}
-                    {active.email && <span>✉ {active.email}</span>}
-                    <span>{active.messageCount} messages</span>
+              <div className="px-4 sm:px-5 py-3 border-b border-[#1A1A1A] shrink-0 flex items-center justify-between gap-2" style={{ background: "#0f0f0f" }}>
+                <div className="flex items-center gap-2 min-w-0">
+                  <button
+                    onClick={() => setActive(null)}
+                    className="md:hidden text-gray-400 hover:text-white shrink-0 -ml-1 p-1">
+                    <ArrowLeft size={18} />
+                  </button>
+                  <div className="min-w-0">
+                    <p className="text-white font-semibold truncate">{active.name || "Anonymous"}</p>
+                    <div className="flex gap-3 text-gray-500 text-xs mt-0.5 truncate">
+                      {active.phone && <span>📱 {active.phone}</span>}
+                      {active.email && <span>✉ {active.email}</span>}
+                      <span>{active.messageCount} messages</span>
+                    </div>
                   </div>
                 </div>
-                <div className="flex gap-2">
+                <div className="flex gap-2 shrink-0">
                   {active.phone && (
                     <a
                       href={`https://wa.me/${active.phone.replace(/[^0-9]/g, "").replace(/^0/, "27")}`}
