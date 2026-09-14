@@ -26,6 +26,7 @@ export default function CheckoutPage() {
   const [submitting, setSubmitting] = useState(false);
   const [copied, setCopied] = useState<string | null>(null);
   const [error, setError] = useState("");
+  const [payfastLoading, setPayfastLoading] = useState(false);
 
   const cartItems = items.map(i => ({ id: i.id, name: i.name, price: i.price, qty: i.qty, imageUrl: i.imageUrl }));
 
@@ -62,6 +63,40 @@ export default function CheckoutPage() {
       setError(e instanceof Error ? e.message : "Something went wrong");
     } finally {
       setSubmitting(false);
+    }
+  }
+
+  async function payWithPayfast() {
+    if (!order) return;
+    setPayfastLoading(true);
+    setError("");
+    try {
+      const res = await fetch("/api/checkout/payfast", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ orderId: order.id }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error ?? "PayFast is unavailable right now");
+
+      // PayFast expects a real form POST, not a redirect — build one
+      // dynamically and submit it, same pattern as any standard PayFast
+      // integration (see lib/payfast.ts for how these fields are signed).
+      const payForm = document.createElement("form");
+      payForm.method = "POST";
+      payForm.action = data.url;
+      for (const [key, value] of Object.entries(data.fields as Record<string, string>)) {
+        const input = document.createElement("input");
+        input.type = "hidden";
+        input.name = key;
+        input.value = value;
+        payForm.appendChild(input);
+      }
+      document.body.appendChild(payForm);
+      payForm.submit();
+    } catch (e: unknown) {
+      setError(e instanceof Error ? e.message : "Something went wrong");
+      setPayfastLoading(false);
     }
   }
 
@@ -248,10 +283,28 @@ export default function CheckoutPage() {
           </div>
         )}
 
-        {/* ── Step 2: EFT Payment ──────────────────────────────── */}
+        {/* ── Step 2: Payment ──────────────────────────────────── */}
         {step === "payment" && order && selectedBank && (
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
             <div className="lg:col-span-3 space-y-6">
+
+              <div className="bg-[#111111] border border-[#D4AF37]/40 rounded-2xl p-7">
+                <p className="section-label mb-2">Pay Instantly</p>
+                <p className="text-gray-400 text-sm mb-5 leading-relaxed">
+                  Pay securely by card, Instant EFT, or other methods via PayFast — your order is confirmed automatically the moment payment clears, no proof upload needed.
+                </p>
+                <button onClick={payWithPayfast} disabled={payfastLoading}
+                  className="btn-gold w-full py-4 rounded-xl font-bold text-base disabled:opacity-50">
+                  {payfastLoading ? "Redirecting to PayFast…" : `Pay R ${order.total.toLocaleString()} with PayFast`}
+                </button>
+              </div>
+
+              <div className="flex items-center gap-3 text-gray-600 text-xs">
+                <div className="flex-1 h-px bg-[#1F1F1F]" />
+                OR PAY MANUALLY VIA EFT
+                <div className="flex-1 h-px bg-[#1F1F1F]" />
+              </div>
+
               <div className="bg-[#111111] border border-[#D4AF37]/20 rounded-2xl p-7">
                 <p className="section-label mb-4">Bank Transfer Details</p>
                 <p className="text-gray-400 text-sm mb-6 leading-relaxed">

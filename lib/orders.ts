@@ -19,7 +19,7 @@ export interface Order {
   items: OrderItem[];
   total: number;
   status: "pending" | "proof_submitted" | "approved" | "rejected" | "shipped" | "delivered";
-  payment_method: "eft";
+  payment_method: "eft" | "payfast";
   proof_url: string | null;
   eft_reference: string | null;
   notes: string | null;
@@ -79,7 +79,7 @@ export function listOrders(): Order[] {
   return rows.map(deserialize);
 }
 
-export function updateOrder(id: string, data: Partial<Pick<Order, "status" | "proof_url" | "notes" | "eft_reference" | "tracking_number">>): Order | null {
+export function updateOrder(id: string, data: Partial<Pick<Order, "status" | "proof_url" | "notes" | "eft_reference" | "tracking_number" | "payment_method">>): Order | null {
   const db = getDb();
   const sets: string[] = [];
   const params: Record<string, unknown> = { id, now: new Date().toISOString() };
@@ -89,6 +89,7 @@ export function updateOrder(id: string, data: Partial<Pick<Order, "status" | "pr
   if (data.notes !== undefined)        { sets.push("notes = @notes");               params.notes = data.notes; }
   if (data.eft_reference !== undefined)   { sets.push("eft_reference = @eft_reference");     params.eft_reference = data.eft_reference; }
   if (data.tracking_number !== undefined) { sets.push("tracking_number = @tracking_number"); params.tracking_number = data.tracking_number; }
+  if (data.payment_method !== undefined)  { sets.push("payment_method = @payment_method");   params.payment_method = data.payment_method; }
 
   if (!sets.length) return getOrder(id);
   sets.push("updatedAt = @now");
