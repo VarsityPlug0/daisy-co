@@ -13,8 +13,10 @@ const navItems = [
 ];
 
 function DaisyLogo() {
+  // White-on-black mark — works as-is on this dark footer, no inversion
+  // needed (same as the real Bevans Sons footer).
   return (
-    <Image src="/logo.jpg" alt="Bevanssons" width={44} height={44} className="rounded-lg" />
+    <Image src="/logo-mark.jpg" alt="Bevanssons" width={40} height={42} />
   );
 }
 

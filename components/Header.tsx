@@ -34,10 +34,12 @@ const clothingLinks = [
 // promo ticker, cart) rather than Bevans' account/wishlist system, which
 // doesn't exist on this platform.
 function BevansLogo() {
+  // Real Bevans Sons logo (pulled from the Bevans client app) is white
+  // artwork on black — same inversion trick their own white Navbar uses
+  // to make it read on a light background.
   return (
-    <div className="bg-[#111111] rounded-md p-1 shrink-0">
-      <Image src="/logo.jpg" alt="Bevanssons" width={40} height={40} className="rounded-sm" />
-    </div>
+    <Image src="/logo-mark.jpg" alt="Bevanssons" width={36} height={38}
+      className="shrink-0" style={{ filter: "invert(1)" }} />
   );
 }
 

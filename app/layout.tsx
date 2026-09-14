@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     siteName: "Bevanssons",
     locale: "en_ZA",
     type: "website",
-    images: [{ url: "/logo.jpg", width: 512, height: 512, alt: "Bevanssons" }],
+    images: [{ url: "/logo.jpg", width: 1536, height: 605, alt: "Bevanssons" }],
   },
   twitter: {
     card: "summary_large_image",
