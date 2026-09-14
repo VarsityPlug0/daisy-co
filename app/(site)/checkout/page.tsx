@@ -1,30 +1,33 @@
 "use client";
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import { useCart } from "@/components/CartContext";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import Image from "next/image";
-import { Upload, CheckCircle, Copy } from "lucide-react";
-import type { BankDetails } from "@/lib/bankDetails";
 
 function parsePrice(p: string): number {
   return parseFloat(p.replace(/[^0-9.]/g, "")) || 0;
 }
 
 export default function CheckoutPage() {
-  const { items, clear } = useCart();
+  return (
+    <Suspense fallback={<div className="min-h-screen" />}>
+      <CheckoutPageContent />
+    </Suspense>
+  );
+}
+
+function CheckoutPageContent() {
+  const { items } = useCart();
   const cartTotal = items.reduce((s, i) => s + parsePrice(i.price) * i.qty, 0);
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const wasCancelled = searchParams.get("cancelled") === "1";
 
-  const [step, setStep] = useState<"details" | "payment" | "done">("details");
+  const [step, setStep] = useState<"details" | "payment">("details");
   const [form, setForm] = useState({ name: "", email: "", phone: "" });
   const [addr, setAddr] = useState({ line1: "", line2: "", suburb: "", city: "", province: "", postal: "" });
   const [order, setOrder] = useState<{ id: string; ref: string; total: number } | null>(null);
-  const [selectedBank, setSelectedBank] = useState<BankDetails | null>(null);
-  const [proof, setProof] = useState<File | null>(null);
-  const [proofPreview, setProofPreview] = useState<string | null>(null);
-  const [uploading, setUploading] = useState(false);
   const [submitting, setSubmitting] = useState(false);
-  const [copied, setCopied] = useState<string | null>(null);
   const [error, setError] = useState("");
   const [payfastLoading, setPayfastLoading] = useState(false);
 
@@ -57,7 +60,6 @@ export default function CheckoutPage() {
       const data = await res.json();
       if (!res.ok) throw new Error(data.error ?? "Order failed");
       setOrder({ id: data.id, ref: data.ref, total: data.total });
-      setSelectedBank(data.bank);
       setStep("payment");
     } catch (e: unknown) {
       setError(e instanceof Error ? e.message : "Something went wrong");
@@ -100,55 +102,6 @@ export default function CheckoutPage() {
     }
   }
 
-  async function submitProof() {
-    if (!proof || !order) return;
-    setUploading(true);
-    setError("");
-    try {
-      const arrayBuffer = await proof.arrayBuffer();
-      const bytes = new Uint8Array(arrayBuffer);
-      let binary = "";
-      for (let i = 0; i < bytes.length; i++) binary += String.fromCharCode(bytes[i]);
-      const base64 = btoa(binary);
-      const res = await fetch("/api/upload-proof", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          file: base64,
-          mimeType: proof.type,
-          filename: proof.name,
-          orderId: order.id,
-          ref: order.ref,
-        }),
-      });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error ?? "Upload failed");
-      clear();
-      setStep("done");
-    } catch (e: unknown) {
-      setError(e instanceof Error ? e.message : "Upload failed");
-    } finally {
-      setUploading(false);
-    }
-  }
-
-  function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
-    const file = e.target.files?.[0];
-    if (!file) return;
-    setProof(file);
-    if (file.type.startsWith("image/")) {
-      setProofPreview(URL.createObjectURL(file));
-    } else {
-      setProofPreview(null);
-    }
-  }
-
-  function copy(text: string, key: string) {
-    navigator.clipboard.writeText(text);
-    setCopied(key);
-    setTimeout(() => setCopied(null), 2000);
-  }
-
   const discount = cartTotal >= 10000 ? cartTotal * 0.25 : 0;
   const finalTotal = cartTotal - discount;
 
@@ -158,19 +111,19 @@ export default function CheckoutPage() {
 
         {/* Step indicator */}
         <div className="flex items-center gap-3 mb-10">
-          {["details", "payment", "done"].map((s, i) => (
+          {["details", "payment"].map((s, i) => (
             <div key={s} className="flex items-center gap-3">
               <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold transition-colors ${
                 step === s ? "bg-[#D4AF37] text-black" :
-                (["details","payment","done"].indexOf(step) > i) ? "bg-[#D4AF37]/30 text-[#D4AF37]" :
+                (["details","payment"].indexOf(step) > i) ? "bg-[#D4AF37]/30 text-[#D4AF37]" :
                 "bg-[#1F1F1F] text-gray-500"
               }`}>
                 {i + 1}
               </div>
               <span className={`hidden sm:inline text-sm font-medium ${step === s ? "text-white" : "text-gray-500"}`}>
-                {s === "details" ? "Your Details" : s === "payment" ? "Pay via EFT" : "Confirmed"}
+                {s === "details" ? "Your Details" : "Payment"}
               </span>
-              {i < 2 && <div className="w-8 sm:w-12 h-px bg-[#1F1F1F]" />}
+              {i < 1 && <div className="w-8 sm:w-12 h-px bg-[#1F1F1F]" />}
             </div>
           ))}
         </div>
@@ -180,6 +133,13 @@ export default function CheckoutPage() {
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
             <div className="lg:col-span-3 bg-[#111111] border border-[#1F1F1F] rounded-2xl p-7">
               <h2 className="text-xl font-bold text-white mb-6">Your Details</h2>
+
+              {wasCancelled && (
+                <p className="text-amber-400 text-sm bg-amber-400/10 border border-amber-400/20 rounded-xl px-4 py-3 mb-5">
+                  Your PayFast payment was cancelled. No charge was made — place your order again whenever you&apos;re ready.
+                </p>
+              )}
+
               <div className="space-y-4">
                 {[
                   { key: "name",  label: "Full Name",     type: "text",  placeholder: "John Smith" },
@@ -284,96 +244,19 @@ export default function CheckoutPage() {
         )}
 
         {/* ── Step 2: Payment ──────────────────────────────────── */}
-        {step === "payment" && order && selectedBank && (
+        {step === "payment" && order && (
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
             <div className="lg:col-span-3 space-y-6">
-
               <div className="bg-[#111111] border border-[#D4AF37]/40 rounded-2xl p-7">
-                <p className="section-label mb-2">Pay Instantly</p>
+                <p className="section-label mb-2">Pay Securely with PayFast</p>
                 <p className="text-gray-400 text-sm mb-5 leading-relaxed">
-                  Pay securely by card, Instant EFT, or other methods via PayFast — your order is confirmed automatically the moment payment clears, no proof upload needed.
+                  Pay by card, Instant EFT, or any other PayFast-supported method. Your order is confirmed automatically the moment payment clears.
                 </p>
                 <button onClick={payWithPayfast} disabled={payfastLoading}
                   className="btn-gold w-full py-4 rounded-xl font-bold text-base disabled:opacity-50">
                   {payfastLoading ? "Redirecting to PayFast…" : `Pay R ${order.total.toLocaleString()} with PayFast`}
                 </button>
-              </div>
-
-              <div className="flex items-center gap-3 text-gray-600 text-xs">
-                <div className="flex-1 h-px bg-[#1F1F1F]" />
-                OR PAY MANUALLY VIA EFT
-                <div className="flex-1 h-px bg-[#1F1F1F]" />
-              </div>
-
-              <div className="bg-[#111111] border border-[#D4AF37]/20 rounded-2xl p-7">
-                <p className="section-label mb-4">Bank Transfer Details</p>
-                <p className="text-gray-400 text-sm mb-6 leading-relaxed">
-                  Transfer the exact amount below to this account, then upload your proof of payment.
-                </p>
-                <div className="space-y-1">
-                  {([
-                    ["Bank",           selectedBank.bank,          false],
-                    ["Account Holder", selectedBank.accountHolder, false],
-                    ["Account Type",   selectedBank.accountType,   false],
-                    ["Account Number", selectedBank.accountNumber, true],
-                    ["Branch Code",    selectedBank.branchCode,    false],
-                    ...(selectedBank.payshap ? [["PayShap", selectedBank.payshap, true]] : []),
-                    ["Reference",      order.ref,                  true],
-                    ["Amount",         `R ${order.total.toLocaleString()}`, false],
-                  ] as [string, string, boolean][]).map(([label, value, copyable]) => (
-                    <div key={label as string} className="flex items-center justify-between py-2.5 border-b border-[#1F1F1F] last:border-0">
-                      <span className="text-gray-500 text-sm">{label as string}</span>
-                      <div className="flex items-center gap-2">
-                        <span className={`text-sm font-semibold ${
-                          label === "Reference" || label === "Amount" || label === "Account Number"
-                            ? "text-[#D4AF37] font-mono"
-                            : "text-white"
-                        }`}>{value as string}</span>
-                        {copyable && (
-                          <button onClick={() => copy(value as string, label as string)} className="text-gray-500 hover:text-[#D4AF37] transition-colors">
-                            {copied === label ? <CheckCircle size={14} color="#22c55e" /> : <Copy size={14} />}
-                          </button>
-                        )}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <div className="bg-[#111111] border border-[#1F1F1F] rounded-2xl p-7">
-                <p className="section-label mb-4">Upload Proof of Payment</p>
-                <p className="text-gray-400 text-sm mb-5">
-                  Upload a screenshot or photo of your payment confirmation. Your order will be processed once verified.
-                </p>
-                <label className="block cursor-pointer">
-                  <div className={`border-2 border-dashed rounded-xl p-8 text-center transition-colors ${
-                    proof ? "border-[#D4AF37]/50 bg-[#D4AF37]/5" : "border-[#2a2a2a] hover:border-[#D4AF37]/30"
-                  }`}>
-                    {proofPreview ? (
-                      <div className="relative h-40 rounded-lg overflow-hidden">
-                        <Image src={proofPreview} alt="Proof" fill className="object-contain" />
-                      </div>
-                    ) : (
-                      <>
-                        <Upload size={28} className="mx-auto mb-3 text-gray-500" />
-                        <p className="text-sm text-gray-400">{proof ? proof.name : "Click to upload proof of payment"}</p>
-                        <p className="text-xs text-gray-600 mt-1">JPG, PNG, WEBP or PDF — max 8 MB</p>
-                      </>
-                    )}
-                  </div>
-                  <input type="file" accept="image/*,.pdf" onChange={handleFileChange} className="hidden" />
-                </label>
                 {error && <p className="text-red-400 text-sm mt-3">{error}</p>}
-                <button onClick={submitProof} disabled={!proof || uploading}
-                  className="btn-gold w-full py-4 rounded-xl font-bold text-base mt-5 disabled:opacity-50">
-                  {uploading ? "Uploading…" : "Submit Proof of Payment"}
-                </button>
-                <p className="text-center text-gray-600 text-xs mt-3">
-                  Don&apos;t have proof yet?{" "}
-                  <button onClick={() => router.push(`/checkout/success?ref=${order.ref}`)} className="text-[#D4AF37] underline">
-                    Submit later
-                  </button>
-                </p>
               </div>
             </div>
 
@@ -390,36 +273,9 @@ export default function CheckoutPage() {
                   <span className="text-white font-bold">R {order.total.toLocaleString()}</span>
                 </div>
                 <p className="text-xs text-gray-600 leading-relaxed">
-                  We will review your proof of payment and confirm your order via email within 2–4 hours.
+                  You&apos;ll be redirected to PayFast to complete payment securely. We never see or store your card details.
                 </p>
               </div>
-            </div>
-          </div>
-        )}
-
-        {/* ── Step 3: Confirmed ────────────────────────────────── */}
-        {step === "done" && order && (
-          <div className="max-w-lg mx-auto text-center py-10">
-            <div className="w-20 h-20 rounded-full bg-[#D4AF37]/10 border border-[#D4AF37]/30 flex items-center justify-center mx-auto mb-6">
-              <CheckCircle size={36} className="text-[#D4AF37]" />
-            </div>
-            <h2 className="text-3xl font-extrabold text-white mb-3">Proof Received!</h2>
-            <p className="text-gray-400 mb-8 leading-relaxed">
-              Thank you {form.name}. We&apos;ve received your proof of payment for order{" "}
-              <span className="text-[#D4AF37] font-semibold">{order.ref}</span>.
-              We&apos;ll verify and confirm via email within 2–4 hours.
-            </p>
-            <div className="bg-[#111111] border border-[#1F1F1F] rounded-2xl p-6 text-left mb-8 space-y-2">
-              <p className="text-sm text-gray-500">Confirmation sent to</p>
-              <p className="text-white font-medium">{form.email}</p>
-            </div>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button onClick={() => router.push("/shop")} className="btn-gold px-8 py-3.5 rounded-xl font-bold">
-                Continue Shopping
-              </button>
-              <button onClick={() => router.push("/")} className="btn-outline px-8 py-3.5 rounded-xl">
-                Back to Home
-              </button>
             </div>
           </div>
         )}

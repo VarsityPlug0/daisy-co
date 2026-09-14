@@ -42,7 +42,7 @@ const REVIEWS = [
 ];
 
 const TRUST = [
-  { icon: ShieldCheck, title: "Secure Payments",     desc: "EFT, PayShap & card payments. SSL-secured checkout." },
+  { icon: ShieldCheck, title: "Secure Payments",     desc: "Instant card & EFT payments via PayFast. SSL-secured checkout." },
   { icon: Truck,       title: "Worldwide Shipping",  desc: "We ship globally. Same-day delivery available in South Africa." },
   { icon: BadgeCheck,  title: "Authentic Products",  desc: "100% genuine products. All items come with full manufacturer warranty." },
   { icon: Headphones,  title: "Email Support",       desc: "Real human support by email. We respond quickly." },

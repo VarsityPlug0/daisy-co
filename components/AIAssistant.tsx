@@ -72,7 +72,7 @@ const GUIDED: Record<string, Message> = {
   },
   "how do i pay?": {
     role: "assistant",
-    content: "We accept the following payment methods:\n\n• **EFT** — TymeBank account 51072673949 (Branch: 678910)\n• **Visa & Mastercard**\n\nFor EFT, simply transfer the amount and upload your proof of payment at checkout. We confirm within 2–4 hours.",
+    content: "All payments are processed instantly and securely through **PayFast**:\n\n• **Visa & Mastercard**\n• **Instant EFT**\n\nJust choose PayFast at checkout — your order confirms automatically the moment payment clears, no proof of payment needed.",
     actions: [
       { label: "View all payment options", href: "/payment-options" },
       { label: "Start shopping", href: "/shop" },

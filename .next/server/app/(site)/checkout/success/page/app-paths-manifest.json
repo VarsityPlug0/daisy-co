@@ -1,0 +1,3 @@
+{
+  "/(site)/checkout/success/page": "app/(site)/checkout/success/page.js"
+}

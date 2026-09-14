@@ -66,6 +66,7 @@ async function handleITN(body: Record<string, string>) {
       total: order.total,
       address: order.address,
       phone: order.phone,
+      paymentMethod: "payfast",
     });
 
     console.log("[PayFast ITN] Confirmed:", order.ref);

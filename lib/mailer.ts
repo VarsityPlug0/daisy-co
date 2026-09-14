@@ -198,6 +198,7 @@ export interface OrderEmailData {
   total: number;
   address?: string;
   phone?: string;
+  paymentMethod?: "payfast" | "eft";
 }
 
 export async function sendOrderConfirmation(data: OrderEmailData) {
@@ -282,7 +283,7 @@ export async function sendOrderConfirmation(data: OrderEmailData) {
           </div>
           <div style="background:${DARK2};border:1px solid ${BORDER};border-radius:10px;padding:16px 18px">
             <p style="margin:0 0 6px;color:${MUTED};font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em">Payment Method</p>
-            <p style="margin:0;color:#d1d5db;font-size:13px">🏦 EFT Bank Transfer<br><span style="color:#22c55e;font-size:12px;font-weight:700">✔ Payment Verified</span></p>
+            <p style="margin:0;color:#d1d5db;font-size:13px">${data.paymentMethod === "eft" ? "🏦 EFT Bank Transfer" : "💳 PayFast"}<br><span style="color:#22c55e;font-size:12px;font-weight:700">✔ Payment Verified</span></p>
           </div>
         </td>
       </tr>

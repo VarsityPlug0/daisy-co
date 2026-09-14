@@ -17,9 +17,9 @@ PRICING & SPECIALS:
 - Prices shown on website already include the 30% discount
 
 PAYMENT:
-- EFT to TymeBank account: 51072673949, Branch: 678910
-- Visa & Mastercard accepted
-- Upload proof of payment after EFT — confirmed within 2–4 hours
+- All payments processed instantly and securely via PayFast at checkout
+- Visa, Mastercard, and Instant EFT accepted
+- Orders confirm automatically the moment payment clears — no proof of payment needed
 
 DELIVERY:
 - Free worldwide shipping on all orders

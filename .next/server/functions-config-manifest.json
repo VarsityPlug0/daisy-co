@@ -4,7 +4,6 @@
     "/api/admin/orders/[id]/notify": {},
     "/api/admin/orders/[id]/proof": {},
     "/api/admin/test-email": {},
-    "/api/admin/upload": {},
-    "/api/upload-proof": {}
+    "/api/admin/upload": {}
   }
 }

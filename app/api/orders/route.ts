@@ -3,7 +3,6 @@ import { createOrder, listOrders } from "@/lib/orders";
 import { isAuthenticated } from "@/lib/auth";
 import { getProduct } from "@/lib/products";
 import { sendMail, sendClearCartReminder } from "@/lib/mailer";
-import { getRotatingBank, getBankById } from "@/lib/bankDetails";
 
 export async function GET() {
   const ok = await isAuthenticated();
@@ -56,15 +55,6 @@ export async function POST(req: NextRequest) {
   const bulkDiscount = computedTotal >= 10000 ? computedTotal * 0.25 : 0;
   const finalTotal = Math.round(computedTotal - bulkDiscount);
 
-  // Reuse the same bank for returning customers (matched by email or phone)
-  const returning = db.prepare(
-    "SELECT bank_id FROM orders WHERE (email = ? OR phone = ?) AND bank_id IS NOT NULL LIMIT 1"
-  ).get(email.trim().toLowerCase(), phone.trim()) as { bank_id: string } | undefined;
-
-  const bank = returning?.bank_id
-    ? getBankById(returning.bank_id)
-    : getRotatingBank((db.prepare("SELECT COUNT(*) as c FROM orders").get() as { c: number }).c);
-
   const order = createOrder({
     name: name.trim(),
     email: email.trim().toLowerCase(),
@@ -72,21 +62,21 @@ export async function POST(req: NextRequest) {
     address: (address ?? "").toString().slice(0, 500).trim(),
     items: validatedItems,
     total: finalTotal,
-    bank_id: bank.id,
   });
 
-  // Email admin — new order alert
+  // Email admin — new order alert. Payment itself is confirmed separately
+  // by the PayFast ITN webhook (routes/checkout/payfast-notify) — this is
+  // just "an order was placed", not proof anyone's paid yet.
   const itemLines = order.items.map(i => `${i.name} × ${i.qty} — R ${parsePrice(i.price).toLocaleString()}`).join("\n");
-  const payshapLine = bank.payshap ? `\nPayShap: ${bank.payshap}` : "";
   const discountLine = bulkDiscount > 0 ? `\nSubtotal: R${computedTotal.toLocaleString()}\nBulk Discount (25%): -R${Math.round(bulkDiscount).toLocaleString()}` : "";
   sendMail({
     to: "daisygadgetsco@gmail.com, moneybman0@gmail.com",
     subject: `New Order ${order.ref} — R${finalTotal.toLocaleString()} — ${name}`,
-    html: `<pre style="font-family:monospace;font-size:13px">New order received.\n\nRef: ${order.ref}\nCustomer: ${name}\nEmail: ${email}\nPhone: ${phone}\nAddress: ${address || "—"}\n\nItems:\n${itemLines}${discountLine}\n\nTotal to collect: R${finalTotal.toLocaleString()}\n\nBank: ${bank.bank} | ${bank.accountHolder} | Acc: ${bank.accountNumber} | Branch: ${bank.branchCode}${payshapLine}</pre>`,
+    html: `<pre style="font-family:monospace;font-size:13px">New order received (awaiting PayFast payment).\n\nRef: ${order.ref}\nCustomer: ${name}\nEmail: ${email}\nPhone: ${phone}\nAddress: ${address || "—"}\n\nItems:\n${itemLines}${discountLine}\n\nTotal to collect: R${finalTotal.toLocaleString()}</pre>`,
   });
 
   // Email customer — clear cart reminder with product images
   sendClearCartReminder({ name: order.name, email: order.email, ref: order.ref, items: order.items });
 
-  return NextResponse.json({ ok: true, ref: order.ref, id: order.id, bank, total: finalTotal });
+  return NextResponse.json({ ok: true, ref: order.ref, id: order.id, total: finalTotal });
 }

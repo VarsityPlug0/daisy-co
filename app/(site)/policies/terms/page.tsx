@@ -31,7 +31,7 @@ export default function TermsPage() {
           },
           {
             title: "4. Payment",
-            body: "Payment is due at the time of ordering. We accept EFT (bank transfer), PayShap, Visa, and Mastercard. For EFT payments, orders are processed once proof of payment is received and verified. All bank charges are the customer's responsibility.",
+            body: "Payment is due at the time of ordering and is processed securely through PayFast, which supports Visa, Mastercard, and Instant EFT. Orders are confirmed automatically once payment is verified. Any bank or card charges are the customer's responsibility.",
           },
           {
             title: "5. Delivery",

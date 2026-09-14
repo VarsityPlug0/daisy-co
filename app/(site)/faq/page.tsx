@@ -33,15 +33,15 @@ const sections = [
     items: [
       {
         q: "What payment methods do you accept?",
-        a: "We accept EFT (bank transfer), Visa, and Mastercard. Our bank details are: TymeBank, Account: 51072673949, Branch: 678910.",
+        a: "We accept card payments (Visa & Mastercard) and Instant EFT, all processed securely through PayFast at checkout.",
       },
       {
-        q: "Is it safe to pay via EFT?",
-        a: "Yes. All EFT payments go directly to our verified TymeBank business account. You will receive an order reference to use as your payment reference.",
+        q: "Is it safe to pay online?",
+        a: "Yes. All payments are processed securely through PayFast — we never see or store your card or banking details.",
       },
       {
-        q: "When do I upload proof of payment?",
-        a: "After placing your order online, you'll be shown our bank details and prompted to upload your proof of payment. Once verified (usually within 2–4 hours), your order is confirmed.",
+        q: "How long until my order is confirmed?",
+        a: "Instantly. Your order confirms automatically the moment PayFast verifies your payment — no waiting, no proof of payment to upload.",
       },
       {
         q: "How long does payment verification take?",

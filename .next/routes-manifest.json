@@ -395,16 +395,16 @@
       "namedRegex": "^/api/track\\-order(?:/)?$"
     },
     {
-      "page": "/api/upload-proof",
-      "regex": "^/api/upload\\-proof(?:/)?$",
-      "routeKeys": {},
-      "namedRegex": "^/api/upload\\-proof(?:/)?$"
-    },
-    {
       "page": "/checkout",
       "regex": "^/checkout(?:/)?$",
       "routeKeys": {},
       "namedRegex": "^/checkout(?:/)?$"
+    },
+    {
+      "page": "/checkout/success",
+      "regex": "^/checkout/success(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/checkout/success(?:/)?$"
     },
     {
       "page": "/clothing",

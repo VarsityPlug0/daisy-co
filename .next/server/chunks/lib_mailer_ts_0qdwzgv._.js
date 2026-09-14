@@ -1,4 +1,4 @@
-module.exports=[67010,33464,e=>{"use strict";var t=e.i(84423),o=e.i(14747),i=e.i(22734);let r=[{id:"tymebank",bank:"TymeBank / GoTymeBank",accountHolder:"Daisy Gadgets Co.",accountType:"Business Account",accountNumber:"51072673949",branchCode:"678910"}];function n(e){return r.find(t=>t.id===e)??r[0]}e.s(["getBankById",0,n,"getRotatingBank",0,function(e){return r[e%r.length]}],33464);let a=o.default.join(process.cwd(),"public","logo.jpg"),l="logo@daisygadgets",p="#D4AF37",s="#f5d76e",d="#0A0A0A",c="#161616",g="#1F1F1F",m="#6b7280",x="https://daisygadgetsco.com",f="daisygadgetsco@gmail.com";async function y(e){let o=process.env.RESEND_API_KEY?t.default.createTransport({host:"smtp.resend.com",port:587,secure:!1,auth:{user:"resend",pass:process.env.RESEND_API_KEY}}):process.env.MAIL_USER&&process.env.MAIL_PASS?t.default.createTransport({service:"gmail",auth:{user:process.env.MAIL_USER,pass:process.env.MAIL_PASS}}):null;if(!o)return void console.error("mailer: env vars missing");try{let t=e.attachments??[];(0,i.existsSync)(a)&&t.unshift({filename:"logo.jpg",path:a,cid:l}),await o.sendMail({from:process.env.RESEND_API_KEY?'"Daisy Gadgets Co." <noreply@daisygadgetsco.com>':`"Daisy Gadgets Co." <${process.env.MAIL_USER??"noreply@daisygadgetsco.com"}>`,to:e.to,subject:e.subject,html:e.html,attachments:t})}catch(e){console.error("mailer send error:",e)}}async function u(e){try{let t=await fetch(e,{signal:AbortSignal.timeout(5e3)});if(!t.ok)return null;return Buffer.from(await t.arrayBuffer())}catch{return null}}async function h(e){let t=[],o=new Map;return await Promise.all(e.map(async(e,i)=>{if(!e.imageUrl)return;let r=await u(e.imageUrl.startsWith("http")?e.imageUrl:x+e.imageUrl);if(!r)return;let n=`product-${i}@daisy`,a=e.imageUrl.split(".").pop()?.split("?")[0]??"jpg";t.push({filename:`product-${i}.${a}`,content:r,cid:n}),o.set(e.imageUrl,`cid:${n}`)})),{attachments:t,cidMap:o}}function b(e,t=""){return`<!DOCTYPE html>
+module.exports=[67010,33464,e=>{"use strict";var t=e.i(84423),o=e.i(14747),i=e.i(22734);let r=[{id:"tymebank",bank:"TymeBank / GoTymeBank",accountHolder:"Daisy Gadgets Co.",accountType:"Business Account",accountNumber:"51072673949",branchCode:"678910"}];function n(e){return r.find(t=>t.id===e)??r[0]}e.s(["getBankById",0,n],33464);let a=o.default.join(process.cwd(),"public","logo.jpg"),l="logo@daisygadgets",p="#D4AF37",s="#f5d76e",d="#0A0A0A",c="#161616",g="#1F1F1F",m="#6b7280",x="https://daisygadgetsco.com",f="daisygadgetsco@gmail.com";async function y(e){let o=process.env.RESEND_API_KEY?t.default.createTransport({host:"smtp.resend.com",port:587,secure:!1,auth:{user:"resend",pass:process.env.RESEND_API_KEY}}):process.env.MAIL_USER&&process.env.MAIL_PASS?t.default.createTransport({service:"gmail",auth:{user:process.env.MAIL_USER,pass:process.env.MAIL_PASS}}):null;if(!o)return void console.error("mailer: env vars missing");try{let t=e.attachments??[];(0,i.existsSync)(a)&&t.unshift({filename:"logo.jpg",path:a,cid:l}),await o.sendMail({from:process.env.RESEND_API_KEY?'"Daisy Gadgets Co." <noreply@daisygadgetsco.com>':`"Daisy Gadgets Co." <${process.env.MAIL_USER??"noreply@daisygadgetsco.com"}>`,to:e.to,subject:e.subject,html:e.html,attachments:t})}catch(e){console.error("mailer send error:",e)}}async function u(e){try{let t=await fetch(e,{signal:AbortSignal.timeout(5e3)});if(!t.ok)return null;return Buffer.from(await t.arrayBuffer())}catch{return null}}async function h(e){let t=[],o=new Map;return await Promise.all(e.map(async(e,i)=>{if(!e.imageUrl)return;let r=await u(e.imageUrl.startsWith("http")?e.imageUrl:x+e.imageUrl);if(!r)return;let n=`product-${i}@daisy`,a=e.imageUrl.split(".").pop()?.split("?")[0]??"jpg";t.push({filename:`product-${i}.${a}`,content:r,cid:n}),o.set(e.imageUrl,`cid:${n}`)})),{attachments:t,cidMap:o}}function b(e,t=""){return`<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -133,7 +133,7 @@ module.exports=[67010,33464,e=>{"use strict";var t=e.i(84423),o=e.i(14747),i=e.i
           </div>
           <div style="background:${c};border:1px solid ${g};border-radius:10px;padding:16px 18px">
             <p style="margin:0 0 6px;color:${m};font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em">Payment Method</p>
-            <p style="margin:0;color:#d1d5db;font-size:13px">🏦 EFT Bank Transfer<br><span style="color:#22c55e;font-size:12px;font-weight:700">✔ Payment Verified</span></p>
+            <p style="margin:0;color:#d1d5db;font-size:13px">${"eft"===e.paymentMethod?"🏦 EFT Bank Transfer":"💳 PayFast"}<br><span style="color:#22c55e;font-size:12px;font-weight:700">✔ Payment Verified</span></p>
           </div>
         </td>
       </tr>
@@ -142,22 +142,7 @@ module.exports=[67010,33464,e=>{"use strict";var t=e.i(84423),o=e.i(14747),i=e.i
     <div style="text-align:center">
       ${w("✉️ Email Us",`mailto:${f}?subject=Order%20${e.ref}`,p,d)}
     </div>
-  `);await y({to:e.email,subject:`Order Confirmed ✨ — ${e.ref} | Daisy Gadgets Co.`,html:r,attachments:t})}async function D(e){let t=b(`
-    ${$("Payment Received")}
-    <h1 style="margin:6px 0 10px;color:#f9fafb;font-size:28px;font-weight:900">✅ We got your proof!</h1>
-    <p style="margin:0 0 24px;color:#9ca3af;font-size:15px;line-height:1.6">
-      Hi ${e.name.split(" ")[0]}, we received your proof of payment for order <strong style="color:${p}">${e.ref}</strong>.
-    </p>
-
-    <div style="background:${c};border:1px solid #22c55e44;border-left:3px solid #22c55e;border-radius:0 12px 12px 0;padding:18px 20px;margin-bottom:28px">
-      <p style="margin:0;color:#86efac;font-size:14px;line-height:1.7">
-        Your proof is under review. We will verify and confirm your order within <strong>24 hours</strong>. You will receive another email as soon as it is approved.
-      </p>
-    </div>
-
-    <p style="color:#9ca3af;font-size:14px;margin:0 0 20px">Need help or want to check in?</p>
-    ${w("Email Us",`mailto:${f}?subject=Order%20${e.ref}`,p,d)}
-  `);await y({to:e.email,subject:`Payment Proof Received — ${e.ref} | Daisy Gadgets Co.`,html:t})}async function C(e){let t=e.bank??n("tymebank"),{attachments:o,cidMap:i}=await h(e.items),r=e.items.map(e=>{let t=(parseFloat(String(e.price).replace(/[^0-9.]/g,""))*e.qty).toLocaleString("en-ZA"),o=parseFloat(String(e.price).replace(/[^0-9.]/g,"")).toLocaleString("en-ZA"),r=e.imageUrl?i.get(e.imageUrl)??(e.imageUrl.startsWith("http")?e.imageUrl:x+e.imageUrl):null,n=r?`<img src="${r}" alt="${e.name}" width="64" height="64" style="width:64px;height:64px;object-fit:cover;border-radius:10px;display:block;border:1px solid ${g}" />`:`<div style="width:64px;height:64px;background:${c};border:1px solid ${g};border-radius:10px"></div>`;return`
+  `);await y({to:e.email,subject:`Order Confirmed ✨ — ${e.ref} | Daisy Gadgets Co.`,html:r,attachments:t})}async function D(e){let t=e.bank??n("tymebank"),{attachments:o,cidMap:i}=await h(e.items),r=e.items.map(e=>{let t=(parseFloat(String(e.price).replace(/[^0-9.]/g,""))*e.qty).toLocaleString("en-ZA"),o=parseFloat(String(e.price).replace(/[^0-9.]/g,"")).toLocaleString("en-ZA"),r=e.imageUrl?i.get(e.imageUrl)??(e.imageUrl.startsWith("http")?e.imageUrl:x+e.imageUrl):null,n=r?`<img src="${r}" alt="${e.name}" width="64" height="64" style="width:64px;height:64px;object-fit:cover;border-radius:10px;display:block;border:1px solid ${g}" />`:`<div style="width:64px;height:64px;background:${c};border:1px solid ${g};border-radius:10px"></div>`;return`
     <tr>
       <td style="padding:12px 0;border-bottom:1px solid ${g};width:76px;vertical-align:middle">${n}</td>
       <td style="padding:12px 10px;border-bottom:1px solid ${g};vertical-align:middle">
@@ -230,7 +215,7 @@ module.exports=[67010,33464,e=>{"use strict";var t=e.i(84423),o=e.i(14747),i=e.i
       &nbsp;&nbsp;
       ${w("✉️ Send via Email",`mailto:${f}?subject=Re-sending%20proof%20for%20order%20${e.ref}`,p,d)}
     </div>
-  `);await y({to:e.email,subject:`⚠️ Action Required — ${e.ref} | Daisy Gadgets Co.`,html:l,attachments:o})}let U={approved:{pill:["Payment Approved","#22c55e"],icon:"🎊",title:"Your payment is confirmed!",body:"Great news — your payment has been verified and your order is now being packed and prepared for dispatch. We will notify you as soon as it ships.",cta:["✉️ Email Us",`mailto:${f}`]},shipped:{pill:["Shipped","#3b82f6"],icon:"📦",title:"Your order has been shipped!",body:"We are pleased to inform you that your order has been successfully packed, processed and shipped.\n\nYour parcel is now in transit to the selected delivery destination. Please keep your contact number available in case our delivery team needs to contact you regarding your order.\n\nWe will notify you again when your order moves to Out for Delivery.",cta:["✉️ Track via Email",`mailto:${f}`]},delivered:{pill:["Delivered",p],icon:"🎁",title:"Your order has been delivered!",body:"We are delighted to confirm that your Daisy Gadgets Co. order has been successfully delivered.\n\nThank you for trusting Daisy Gadgets Co. with your purchase. We hope you are completely satisfied with your order. If you experience any issue with the product or require assistance after delivery, please contact our customer support team and we will be happy to assist.\n\nWe would also appreciate your feedback about your shopping experience with us.\n\nThank you for choosing Daisy Gadgets Co. — Smart Tech. Better Living.",cta:["⭐ Leave a Review",`${x}/reviews`]}};async function R(e){let t=U[e.status];if(!t)return;let o=e.notes?`<div style="background:${c};border-left:3px solid ${p};border-radius:0 10px 10px 0;padding:14px 18px;margin:20px 0">
+  `);await y({to:e.email,subject:`⚠️ Action Required — ${e.ref} | Daisy Gadgets Co.`,html:l,attachments:o})}let C={approved:{pill:["Payment Approved","#22c55e"],icon:"🎊",title:"Your payment is confirmed!",body:"Great news — your payment has been verified and your order is now being packed and prepared for dispatch. We will notify you as soon as it ships.",cta:["✉️ Email Us",`mailto:${f}`]},shipped:{pill:["Shipped","#3b82f6"],icon:"📦",title:"Your order has been shipped!",body:"We are pleased to inform you that your order has been successfully packed, processed and shipped.\n\nYour parcel is now in transit to the selected delivery destination. Please keep your contact number available in case our delivery team needs to contact you regarding your order.\n\nWe will notify you again when your order moves to Out for Delivery.",cta:["✉️ Track via Email",`mailto:${f}`]},delivered:{pill:["Delivered",p],icon:"🎁",title:"Your order has been delivered!",body:"We are delighted to confirm that your Daisy Gadgets Co. order has been successfully delivered.\n\nThank you for trusting Daisy Gadgets Co. with your purchase. We hope you are completely satisfied with your order. If you experience any issue with the product or require assistance after delivery, please contact our customer support team and we will be happy to assist.\n\nWe would also appreciate your feedback about your shopping experience with us.\n\nThank you for choosing Daisy Gadgets Co. — Smart Tech. Better Living.",cta:["⭐ Leave a Review",`${x}/reviews`]}};async function U(e){let t=C[e.status];if(!t)return;let o=e.notes?`<div style="background:${c};border-left:3px solid ${p};border-radius:0 10px 10px 0;padding:14px 18px;margin:20px 0">
         <p style="margin:0 0 4px;color:${m};font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em">Note from our team</p>
         <p style="margin:0;color:#d1d5db;font-size:14px;font-style:italic;line-height:1.6">"${e.notes}"</p>
        </div>`:"",i="shipped"===e.status&&e.tracking_number?`<div style="background:${c};border:1px solid #3b82f644;border-left:3px solid #3b82f6;border-radius:0 12px 12px 0;padding:16px 20px;margin:4px 0 20px">
@@ -259,7 +244,7 @@ module.exports=[67010,33464,e=>{"use strict";var t=e.i(84423),o=e.i(14747),i=e.i
     ${t.body.split("\n\n").map(e=>`<p style="margin:0 0 14px;color:#9ca3af;font-size:15px;line-height:1.7">${e}</p>`).join("")}
     ${o}
     ${t.cta?`<div style="margin-top:24px">${w(t.cta[0],t.cta[1])}&nbsp;&nbsp;${w("✉️ Email Us",`mailto:${f}?subject=Order%20${e.ref}`,p,d)}</div>`:""}
-  `);await y({to:e.email,subject:n[e.status]??`Order Update — ${e.ref}`,html:a})}let j={processing:{icon:"⚙️",pillText:"Being Prepared",pillColor:"#8b5cf6",title:"Your order is being prepared",subject:"Your Order Is Being Prepared – Daisy Gadgets Co.",defaultMessage:"We are pleased to confirm that your order has been successfully confirmed and is now being prepared by our fulfilment team.\n\nOur team is carefully preparing your order to ensure everything is correct before it moves to the next stage.\n\nWe will notify you as soon as your order is ready for packing.",stage:2},packed:{icon:"📦",pillText:"Being Packed",pillColor:"#3b82f6",title:"Your order is being packed",subject:"Your Order Is Being Packed – Daisy Gadgets Co.",defaultMessage:"Your order has successfully moved to the packing stage.\n\nOur fulfilment team is currently checking and securely packaging your order to ensure that it is properly prepared for transportation.\n\nOnce packing and final quality checks are completed, your order will proceed to shipping. You will receive another notification when your order has been dispatched.",stage:3},out_for_delivery:{icon:"🏠",pillText:"Out for Delivery",pillColor:"#10b981",title:"Your order is out for delivery today!",subject:"Your Order Is Out for Delivery Today",defaultMessage:"Great news. Your Daisy Gadgets Co. order is now out for delivery.\n\nYour assigned delivery driver is currently completing the delivery route and will contact you directly when they are approaching your location.\n\nKindly keep your phone available and ensure that someone is available to receive the order.\n\nPlease note: Delivery times may vary depending on the driver's route, traffic and other scheduled deliveries.\n\nWe appreciate your patience and look forward to completing your delivery successfully.",stage:5},delayed:{icon:"⏳",pillText:"Slight Delay",pillColor:"#f59e0b",title:"A small update on your order",subject:"Update on Your Order – Daisy Gadgets Co.",defaultMessage:"We would like to inform you that there has been a slight delay with your order. We sincerely apologise for any inconvenience this may cause.\n\nOur team is working to resolve this as quickly as possible and your order will be on its way shortly. We will keep you updated with any further changes.",stage:-1},custom:{icon:"📬",pillText:"Update",pillColor:p,title:"An update on your order",subject:"Update on Your Order – Daisy Gadgets Co.",defaultMessage:"",stage:-1}};async function P(e){var t;let o,i,r,n=j[e.templateId]??j.custom,a=e.message?e.message.split("\n\n").map(e=>`<p style="margin:0 0 14px;color:#9ca3af;font-size:15px;line-height:1.7">${e}</p>`).join(""):"",l=e.tracking_number?`<div style="background:${c};border:1px solid #3b82f644;border-left:3px solid #3b82f6;border-radius:0 12px 12px 0;padding:16px 20px;margin:16px 0 20px">
+  `);await y({to:e.email,subject:n[e.status]??`Order Update — ${e.ref}`,html:a})}let j={processing:{icon:"⚙️",pillText:"Being Prepared",pillColor:"#8b5cf6",title:"Your order is being prepared",subject:"Your Order Is Being Prepared – Daisy Gadgets Co.",defaultMessage:"We are pleased to confirm that your order has been successfully confirmed and is now being prepared by our fulfilment team.\n\nOur team is carefully preparing your order to ensure everything is correct before it moves to the next stage.\n\nWe will notify you as soon as your order is ready for packing.",stage:2},packed:{icon:"📦",pillText:"Being Packed",pillColor:"#3b82f6",title:"Your order is being packed",subject:"Your Order Is Being Packed – Daisy Gadgets Co.",defaultMessage:"Your order has successfully moved to the packing stage.\n\nOur fulfilment team is currently checking and securely packaging your order to ensure that it is properly prepared for transportation.\n\nOnce packing and final quality checks are completed, your order will proceed to shipping. You will receive another notification when your order has been dispatched.",stage:3},out_for_delivery:{icon:"🏠",pillText:"Out for Delivery",pillColor:"#10b981",title:"Your order is out for delivery today!",subject:"Your Order Is Out for Delivery Today",defaultMessage:"Great news. Your Daisy Gadgets Co. order is now out for delivery.\n\nYour assigned delivery driver is currently completing the delivery route and will contact you directly when they are approaching your location.\n\nKindly keep your phone available and ensure that someone is available to receive the order.\n\nPlease note: Delivery times may vary depending on the driver's route, traffic and other scheduled deliveries.\n\nWe appreciate your patience and look forward to completing your delivery successfully.",stage:5},delayed:{icon:"⏳",pillText:"Slight Delay",pillColor:"#f59e0b",title:"A small update on your order",subject:"Update on Your Order – Daisy Gadgets Co.",defaultMessage:"We would like to inform you that there has been a slight delay with your order. We sincerely apologise for any inconvenience this may cause.\n\nOur team is working to resolve this as quickly as possible and your order will be on its way shortly. We will keep you updated with any further changes.",stage:-1},custom:{icon:"📬",pillText:"Update",pillColor:p,title:"An update on your order",subject:"Update on Your Order – Daisy Gadgets Co.",defaultMessage:"",stage:-1}};async function R(e){var t;let o,i,r,n=j[e.templateId]??j.custom,a=e.message?e.message.split("\n\n").map(e=>`<p style="margin:0 0 14px;color:#9ca3af;font-size:15px;line-height:1.7">${e}</p>`).join(""):"",l=e.tracking_number?`<div style="background:${c};border:1px solid #3b82f644;border-left:3px solid #3b82f6;border-radius:0 12px 12px 0;padding:16px 20px;margin:16px 0 20px">
         <p style="margin:0 0 4px;color:${m};font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em">Your Tracking Number</p>
         <p style="margin:0;color:#93c5fd;font-size:20px;font-weight:700;font-family:monospace;letter-spacing:0.08em">${e.tracking_number}</p>
        </div>`:"",s=b(`
@@ -275,7 +260,7 @@ module.exports=[67010,33464,e=>{"use strict";var t=e.i(84423),o=e.i(14747),i=e.i
     <div style="margin-top:8px">
       ${w("✉️ Email Us",`mailto:${f}?subject=Order%20${e.ref}`,p,d)}
     </div>
-  `);await y({to:e.email,subject:n.subject,html:s})}async function S(e){let t=b(`
+  `);await y({to:e.email,subject:n.subject,html:s})}async function P(e){let t=b(`
     ${$("Your Quote is Ready")}
     <h1 style="margin:6px 0 6px;color:#f9fafb;font-size:28px;font-weight:900">Hi ${e.name.split(" ")[0]}, here is your quote</h1>
     <p style="margin:0 0 28px;color:${m};font-size:13px">Reference: <strong style="color:#e5e7eb">${e.ref}</strong></p>
@@ -299,7 +284,7 @@ module.exports=[67010,33464,e=>{"use strict";var t=e.i(84423),o=e.i(14747),i=e.i
     ${w("Accept Quote",`mailto:${f}?subject=Accept%20quote%20${e.ref}`,p,d)}
     &nbsp;&nbsp;
     ${w("Ask a Question",`mailto:${f}?subject=Question%20about%20quote%20${e.ref}`,p,d)}
-  `);await y({to:e.email,subject:`Your Quote — ${e.ref} | Daisy Gadgets Co.`,html:t})}async function I(e){let t=b(`
+  `);await y({to:e.email,subject:`Your Quote — ${e.ref} | Daisy Gadgets Co.`,html:t})}async function S(e){let t=b(`
     ${$("Welcome to the family")}
     <h1 style="margin:6px 0 10px;color:#f9fafb;font-size:28px;font-weight:900">
       ✨ You are in${e.name?`, ${e.name.split(" ")[0]}`:""}!
@@ -318,7 +303,7 @@ module.exports=[67010,33464,e=>{"use strict";var t=e.i(84423),o=e.i(14747),i=e.i
     ${w("🛍️ Shop Now",`${x}/shop`)}
     &nbsp;&nbsp;
     ${w("✉️ Claim via Email",`mailto:${f}?subject=Discount%20code%20DAISY25`,p,d)}
-  `);await y({to:e.email,subject:"✨ Your 25% Discount Code — Daisy Gadgets Co.",html:t})}async function T(e){let t=e=>`R ${e.toLocaleString("en-ZA",{minimumFractionDigits:2})}`,o=encodeURIComponent(`Hi, I received approval for my installment application ${e.ref} for the ${e.product_name}. I'm ready to pay my deposit of ${t(e.deposit)}.`),i=`
+  `);await y({to:e.email,subject:"✨ Your 25% Discount Code — Daisy Gadgets Co.",html:t})}async function I(e){let t=e=>`R ${e.toLocaleString("en-ZA",{minimumFractionDigits:2})}`,o=encodeURIComponent(`Hi, I received approval for my installment application ${e.ref} for the ${e.product_name}. I'm ready to pay my deposit of ${t(e.deposit)}.`),i=`
     <tr>
       <td colspan="2" style="padding:10px 0 4px;color:${m};font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;border-top:1px solid ${g}">TymeBank / GoTymeBank</td>
     </tr>
@@ -380,20 +365,20 @@ module.exports=[67010,33464,e=>{"use strict";var t=e.i(84423),o=e.i(14747),i=e.i
       ${w("✉️ Send Proof of Payment by Email",`mailto:${f}?subject=${o}`,p,d)}
     </div>
     <p style="margin:12px 0 0;color:${m};font-size:12px;text-align:center">Always use <strong style="color:#fff">${e.ref}</strong> as your payment reference.</p>
-  `);await y({to:e.email,subject:`✅ Installment Approved — ${e.ref} | Daisy Gadgets Co.`,html:r})}function _(e,t,o){return`
+  `);await y({to:e.email,subject:`✅ Installment Approved — ${e.ref} | Daisy Gadgets Co.`,html:r})}function T(e,t,o){return`
     <div style="text-align:center;margin-bottom:28px">
       <div style="display:inline-block;background:#ffffff0f;border-radius:50%;width:64px;height:64px;line-height:64px;font-size:28px;margin-bottom:12px">${e}</div>
       <h1 style="margin:0 0 8px;color:#fff;font-size:22px;font-weight:900">${t}</h1>
       <p style="margin:0;color:#9ca3af;font-size:14px">${o}</p>
-    </div>`}function Y(e,t){return`
+    </div>`}function _(e,t){return`
     <div style="background:${d};border:1px solid ${p}44;border-radius:12px;padding:16px 20px;margin-bottom:24px">
       ${$("Application Reference")}
       <p style="margin:4px 0 12px;color:${p};font-size:24px;font-weight:900;font-family:monospace;letter-spacing:0.1em">${e}</p>
       ${$("Product")}
       <p style="margin:4px 0 0;color:#fff;font-size:15px;font-weight:700">${t}</p>
-    </div>`}async function E(e){let t=encodeURIComponent(`Hi, I am following up on my installment application ${e.ref} for the ${e.product_name}.`),o=b(`
-    ${_("🔍","Application Under Review",`Hi ${e.name.split(" ")[0]}, we are looking into your application.`)}
-    ${Y(e.ref,e.product_name)}
+    </div>`}async function Y(e){let t=encodeURIComponent(`Hi, I am following up on my installment application ${e.ref} for the ${e.product_name}.`),o=b(`
+    ${T("🔍","Application Under Review",`Hi ${e.name.split(" ")[0]}, we are looking into your application.`)}
+    ${_(e.ref,e.product_name)}
 
     <p style="color:#9ca3af;font-size:14px;line-height:1.7;margin:0 0 20px">
       Our team is currently reviewing your installment application. We will verify your details and get back to you as soon as possible — usually within <strong style="color:#fff">24 hours</strong>.
@@ -417,9 +402,9 @@ module.exports=[67010,33464,e=>{"use strict";var t=e.i(84423),o=e.i(14747),i=e.i
     <div style="text-align:center">
       ${w("Email Us",`mailto:${f}?subject=${t}`,p,d)}
     </div>
-  `);await y({to:e.email,subject:`Application Under Review — ${e.ref} | Daisy Gadgets Co.`,html:o})}async function G(e){var t,o,i,r,n;let a,l,s=encodeURIComponent(`Hi, I am sending proof of payment for my installment deposit. Application: ${e.ref} — ${e.product_name}.`),c=b(`
-    ${_("💳","Deposit Payment Required",`Hi ${e.name.split(" ")[0]}, one step away from activating your plan!`)}
-    ${Y(e.ref,e.product_name)}
+  `);await y({to:e.email,subject:`Application Under Review — ${e.ref} | Daisy Gadgets Co.`,html:o})}async function E(e){var t,o,i,r,n;let a,l,s=encodeURIComponent(`Hi, I am sending proof of payment for my installment deposit. Application: ${e.ref} — ${e.product_name}.`),c=b(`
+    ${T("💳","Deposit Payment Required",`Hi ${e.name.split(" ")[0]}, one step away from activating your plan!`)}
+    ${_(e.ref,e.product_name)}
 
     <p style="color:#9ca3af;font-size:14px;line-height:1.7;margin:0 0 20px">
       Your application has been processed. To activate your installment plan, please pay the deposit of <strong style="color:#f59e0b;font-size:16px">${(a=e.deposit,`R ${a.toLocaleString("en-ZA",{minimumFractionDigits:2})}`)}</strong> to one of our accounts below.
@@ -462,9 +447,9 @@ module.exports=[67010,33464,e=>{"use strict";var t=e.i(84423),o=e.i(14747),i=e.i
       ${w("Send Proof of Payment",`mailto:${f}?subject=${s}`,p,d)}
     </div>
     <p style="margin:12px 0 0;color:${m};font-size:12px;text-align:center">After we confirm receipt, your plan will be activated immediately.</p>
-  `);await y({to:e.email,subject:`Deposit Required — ${e.ref} | Daisy Gadgets Co.`,html:c})}async function O(e){let t=e=>`R ${e.toLocaleString("en-ZA",{minimumFractionDigits:2})}`,o=encodeURIComponent(`Hi, I would like to check on my active installment plan ${e.ref} for the ${e.product_name}.`),i=b(`
-    ${_("🟢","Your Plan is Now Active!",`Hi ${e.name.split(" ")[0]}, welcome to your installment plan.`)}
-    ${Y(e.ref,e.product_name)}
+  `);await y({to:e.email,subject:`Deposit Required — ${e.ref} | Daisy Gadgets Co.`,html:c})}async function G(e){let t=e=>`R ${e.toLocaleString("en-ZA",{minimumFractionDigits:2})}`,o=encodeURIComponent(`Hi, I would like to check on my active installment plan ${e.ref} for the ${e.product_name}.`),i=b(`
+    ${T("🟢","Your Plan is Now Active!",`Hi ${e.name.split(" ")[0]}, welcome to your installment plan.`)}
+    ${_(e.ref,e.product_name)}
 
     <p style="color:#9ca3af;font-size:14px;line-height:1.7;margin:0 0 20px">
       Your deposit has been received and your installment plan is now <strong style="color:#10b981">active</strong>. Here is your monthly payment schedule:
@@ -491,9 +476,9 @@ module.exports=[67010,33464,e=>{"use strict";var t=e.i(84423),o=e.i(14747),i=e.i
     <div style="text-align:center">
       ${w("Contact Us by Email",`mailto:${f}?subject=${o}`,p,d)}
     </div>
-  `);await y({to:e.email,subject:`Plan Activated — ${e.ref} | Daisy Gadgets Co.`,html:i})}async function B(e){let t,o=encodeURIComponent(`Hi, I would like to enquire about another product on installments. My previous plan was ${e.ref}.`),i=b(`
-    ${_("🏆","Fully Paid — Congratulations!",`Hi ${e.name.split(" ")[0]}, you have completed your installment plan!`)}
-    ${Y(e.ref,e.product_name)}
+  `);await y({to:e.email,subject:`Plan Activated — ${e.ref} | Daisy Gadgets Co.`,html:i})}async function O(e){let t,o=encodeURIComponent(`Hi, I would like to enquire about another product on installments. My previous plan was ${e.ref}.`),i=b(`
+    ${T("🏆","Fully Paid — Congratulations!",`Hi ${e.name.split(" ")[0]}, you have completed your installment plan!`)}
+    ${_(e.ref,e.product_name)}
 
     <p style="color:#9ca3af;font-size:14px;line-height:1.7;margin:0 0 20px">
       You have successfully completed all payments on your installment plan. Thank you for trusting Daisy Gadgets Co. — we truly appreciate your commitment.
@@ -515,8 +500,8 @@ module.exports=[67010,33464,e=>{"use strict";var t=e.i(84423),o=e.i(14747),i=e.i
       &nbsp;&nbsp;
       ${w("Email Us",`mailto:${f}?subject=${o}`,p,d)}
     </div>
-  `);await y({to:e.email,subject:`Plan Complete — ${e.ref} | Daisy Gadgets Co.`,html:i})}async function H(e){let t=encodeURIComponent(`Hi, I would like to discuss my declined installment application ${e.ref} for the ${e.product_name} and explore other options.`),o=b(`
-    ${_("📋","Application Update",`Hi ${e.name.split(" ")[0]}, regarding your application ${e.ref}.`)}
+  `);await y({to:e.email,subject:`Plan Complete — ${e.ref} | Daisy Gadgets Co.`,html:i})}async function B(e){let t=encodeURIComponent(`Hi, I would like to discuss my declined installment application ${e.ref} for the ${e.product_name} and explore other options.`),o=b(`
+    ${T("📋","Application Update",`Hi ${e.name.split(" ")[0]}, regarding your application ${e.ref}.`)}
 
     <p style="color:#9ca3af;font-size:14px;line-height:1.7;margin:0 0 20px">
       Thank you for applying for an installment plan on the <strong style="color:#fff">${e.product_name}</strong>. After reviewing your application, we are unfortunately unable to approve it at this time.
@@ -547,7 +532,7 @@ module.exports=[67010,33464,e=>{"use strict";var t=e.i(84423),o=e.i(14747),i=e.i
       <br><br>
       ${w("Browse Other Products",`${x}/shop`)}
     </div>
-  `);await y({to:e.email,subject:`Application Update — ${e.ref} | Daisy Gadgets Co.`,html:o})}async function W(e){let{attachments:t,cidMap:o}=await h(e.items),i=e.items.map(e=>{let t=e.imageUrl?o.get(e.imageUrl)??(e.imageUrl.startsWith("http")?e.imageUrl:x+e.imageUrl):null,i=t?`<img src="${t}" alt="${e.name}" width="64" height="64" style="width:64px;height:64px;object-fit:cover;border-radius:10px;display:block;border:1px solid ${g}" />`:`<div style="width:64px;height:64px;background:${c};border:1px solid ${g};border-radius:10px"></div>`;return`
+  `);await y({to:e.email,subject:`Application Update — ${e.ref} | Daisy Gadgets Co.`,html:o})}async function H(e){let{attachments:t,cidMap:o}=await h(e.items),i=e.items.map(e=>{let t=e.imageUrl?o.get(e.imageUrl)??(e.imageUrl.startsWith("http")?e.imageUrl:x+e.imageUrl):null,i=t?`<img src="${t}" alt="${e.name}" width="64" height="64" style="width:64px;height:64px;object-fit:cover;border-radius:10px;display:block;border:1px solid ${g}" />`:`<div style="width:64px;height:64px;background:${c};border:1px solid ${g};border-radius:10px"></div>`;return`
     <tr>
       <td style="padding:10px 0;border-bottom:1px solid ${g};width:76px;vertical-align:middle">${i}</td>
       <td style="padding:10px 12px;border-bottom:1px solid ${g};vertical-align:middle">
@@ -583,7 +568,7 @@ module.exports=[67010,33464,e=>{"use strict";var t=e.i(84423),o=e.i(14747),i=e.i
     <p style="margin:0;color:${m};font-size:13px;text-align:center">
       Questions? ${w("Email Us",`mailto:${f}?subject=Order%20${encodeURIComponent(e.ref)}`,c,p)}
     </p>
-  `;await y({to:e.email,subject:`Order ${e.ref} received — clear your cart | Daisy Gadgets Co.`,html:b(r),attachments:t})}async function F(e){let t=e.ctaUrl&&e.trackingId?`${x}/api/track/email?id=${e.trackingId}&e=click&url=${encodeURIComponent(e.ctaUrl)}`:e.ctaUrl,o=e.ctaText&&t?`<div style="text-align:center;margin:28px 0">${w(e.ctaText,t)}</div>`:"",i=e.trackingId?`<img src="${x}/api/track/email?id=${e.trackingId}&e=open" width="1" height="1" style="display:none;width:1px;height:1px;border:0" alt="" />`:"",r="",n=[];if(e.orderItems?.length){let{attachments:t,cidMap:o}=await h(e.orderItems.map(e=>({name:e.name,imageUrl:e.imageUrl})));n=t;let i=e.orderItems.map(e=>{let t=e.imageUrl?o.get(e.imageUrl)??(e.imageUrl.startsWith("http")?e.imageUrl:x+e.imageUrl):null,i=t?`<img src="${t}" alt="${e.name}" width="64" height="64" style="width:64px;height:64px;object-fit:cover;border-radius:10px;display:block;border:1px solid ${g}" />`:`<div style="width:64px;height:64px;background:${c};border:1px solid ${g};border-radius:10px"></div>`,r=e.id?`${x}/shop/${e.id}`:`${x}/shop`;return`
+  `;await y({to:e.email,subject:`Order ${e.ref} received — clear your cart | Daisy Gadgets Co.`,html:b(r),attachments:t})}async function W(e){let t=e.ctaUrl&&e.trackingId?`${x}/api/track/email?id=${e.trackingId}&e=click&url=${encodeURIComponent(e.ctaUrl)}`:e.ctaUrl,o=e.ctaText&&t?`<div style="text-align:center;margin:28px 0">${w(e.ctaText,t)}</div>`:"",i=e.trackingId?`<img src="${x}/api/track/email?id=${e.trackingId}&e=open" width="1" height="1" style="display:none;width:1px;height:1px;border:0" alt="" />`:"",r="",n=[];if(e.orderItems?.length){let{attachments:t,cidMap:o}=await h(e.orderItems.map(e=>({name:e.name,imageUrl:e.imageUrl})));n=t;let i=e.orderItems.map(e=>{let t=e.imageUrl?o.get(e.imageUrl)??(e.imageUrl.startsWith("http")?e.imageUrl:x+e.imageUrl):null,i=t?`<img src="${t}" alt="${e.name}" width="64" height="64" style="width:64px;height:64px;object-fit:cover;border-radius:10px;display:block;border:1px solid ${g}" />`:`<div style="width:64px;height:64px;background:${c};border:1px solid ${g};border-radius:10px"></div>`,r=e.id?`${x}/shop/${e.id}`:`${x}/shop`;return`
       <tr>
         <td style="padding:10px 0;border-bottom:1px solid ${g};width:76px;vertical-align:middle">
           <a href="${r}">${i}</a>
@@ -626,6 +611,6 @@ module.exports=[67010,33464,e=>{"use strict";var t=e.i(84423),o=e.i(14747),i=e.i
       You received this because you placed an order with Daisy Gadgets Co.
     </p>
     ${i}
-  `;await y({to:e.to,subject:e.subject,html:b(a),attachments:n.length?n:void 0})}e.s(["TRACKING_TEMPLATES",0,j,"sendCampaignEmail",0,F,"sendClearCartReminder",0,W,"sendInstallmentActive",0,O,"sendInstallmentApproval",0,T,"sendInstallmentAwaitingPayment",0,G,"sendInstallmentCompleted",0,B,"sendInstallmentDeclined",0,H,"sendInstallmentReviewing",0,E,"sendMail",0,y,"sendOrderConfirmation",0,A,"sendProofAcknowledgement",0,D,"sendQuoteReply",0,S,"sendRejectionEmail",0,C,"sendStatusUpdate",0,R,"sendTrackingUpdate",0,P,"sendWelcomeEmail",0,I],67010)}];
+  `;await y({to:e.to,subject:e.subject,html:b(a),attachments:n.length?n:void 0})}e.s(["TRACKING_TEMPLATES",0,j,"sendCampaignEmail",0,W,"sendClearCartReminder",0,H,"sendInstallmentActive",0,G,"sendInstallmentApproval",0,I,"sendInstallmentAwaitingPayment",0,E,"sendInstallmentCompleted",0,O,"sendInstallmentDeclined",0,B,"sendInstallmentReviewing",0,Y,"sendMail",0,y,"sendOrderConfirmation",0,A,"sendQuoteReply",0,P,"sendRejectionEmail",0,D,"sendStatusUpdate",0,U,"sendTrackingUpdate",0,R,"sendWelcomeEmail",0,S],67010)}];
 
 //# sourceMappingURL=lib_mailer_ts_0qdwzgv._.js.map

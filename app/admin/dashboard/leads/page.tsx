@@ -65,7 +65,7 @@ const QUICK_REPLIES = {
   discountPush: (name: string) =>
     `Hi ${name || "there"}, Daisy Gadgets Co. here! Your 25% discount code is DAISY25 — just mention it when you order. Valid on everything in our store. Shop now: https://daisygadgetsco.com`,
   orderReady: (name: string) =>
-    `Hi ${name || "there"}, good news from Daisy Gadgets Co.! Your order is ready. Please make your EFT payment and send us your proof of payment to confirm. Any questions? Reply here!`,
+    `Hi ${name || "there"}, good news from Daisy Gadgets Co.! Your order is ready — just complete payment via the secure PayFast link at checkout and it'll confirm instantly. Any questions? Reply here!`,
 };
 
 export default async function LeadsPage() {
