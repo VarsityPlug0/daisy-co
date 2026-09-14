@@ -48,7 +48,7 @@ export default function AboutPage() {
         <div>
           <h2 className="text-2xl font-bold text-white mb-4">Who We Are</h2>
           <p className="text-gray-400 leading-relaxed mb-4">
-            Bevanssons was founded with a simple vision: to offer South Africans access to the best gadgets at fair prices, backed by reliable service and genuine after-sales support.
+            Bevanssons is where we bring premium electronics and everyday tech within reach — fair prices, reliable service, and genuine after-sales support.
           </p>
           <p className="text-gray-400 leading-relaxed mb-4">
             Based in Johannesburg, we serve customers across all 9 South African provinces and ship internationally. Whether you&apos;re buying an iPhone, a PS5, a solar inverter, or a new fridge — we have you covered.
