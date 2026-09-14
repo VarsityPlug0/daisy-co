@@ -24,7 +24,7 @@ export default function Footer() {
   return (
     <>
       {/* Desktop Footer */}
-      <footer className="hidden lg:block" style={{ background: "#0d0d0d", borderTop: "1px solid rgba(255,255,255,0.06)" }}>
+      <footer className="hidden lg:block" style={{ background: "#111111", borderTop: "1px solid #1D1D1D" }}>
         <div className="max-w-7xl mx-auto px-8 py-14">
           <div className="grid grid-cols-12 gap-10">
 
@@ -44,7 +44,7 @@ export default function Footer() {
               <p className="text-gray-500 text-sm leading-relaxed mt-4 max-w-xs">
                 Premium gadgets for everyday convenience. Worldwide shipping available. Same-day delivery in South Africa.
               </p>
-              <div className="mt-5 p-4 rounded-xl border border-[#2A2A2A] bg-[#1D1D1D]">
+              <div className="mt-5 p-4 border border-[#1D1D1D] bg-[#0A0A0A]">
                 <p className="text-[10px] text-gray-600 uppercase tracking-wide mb-2 font-semibold">Bank Details</p>
                 <div className="space-y-1">
                   {[
@@ -160,7 +160,7 @@ export default function Footer() {
                   // link than two pointing at Daisy's old accounts.
                 ].map((s) => (
                   <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.label}
-                    className="w-9 h-9 rounded-full border border-[#2a2a2a] flex items-center justify-center text-gray-400 hover:text-white hover:border-[#C8B993]/50 transition-all">
+                    className="w-9 h-9 border border-[#1D1D1D] flex items-center justify-center text-[#A7A7AA] hover:text-white hover:border-[#C8B993]/50 transition-all">
                     {s.icon}
                   </a>
                 ))}
@@ -168,7 +168,7 @@ export default function Footer() {
 
               <div className="flex flex-wrap gap-2">
                 {["SSL Secure", "POPIA Compliant", "Secure Payments", "Worldwide Shipping"].map((b) => (
-                  <span key={b} className="text-[9px] font-semibold text-gray-600 border border-[#222] rounded-full px-2 py-1">{b}</span>
+                  <span key={b} className="text-[9px] font-semibold text-[#A7A7AA] border border-[#1D1D1D] px-2 py-1">{b}</span>
                 ))}
               </div>
             </div>

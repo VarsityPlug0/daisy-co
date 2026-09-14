@@ -27,9 +27,17 @@ const clothingLinks = [
   { label: "Caps & Accessories",  href: "/shop?cat=Caps%20%26%20Accessories",         desc: "Snapbacks, beanies & bags" },
 ];
 
-function DaisyLogo() {
+// Same light, sharp-edged, uppercase-tracked nav language as the real
+// Bevans Sons client Navbar (client/src/components/layout/Navbar.tsx) —
+// white bar, border-brand-mid, brand-black/brand-gold text, no rounded
+// glow buttons. Adapted here to Daisy's own nav structure (mega-menu,
+// promo ticker, cart) rather than Bevans' account/wishlist system, which
+// doesn't exist on this platform.
+function BevansLogo() {
   return (
-    <Image src="/logo.jpg" alt="Bevanssons" width={44} height={44} className="rounded-lg" />
+    <div className="bg-[#111111] rounded-md p-1 shrink-0">
+      <Image src="/logo.jpg" alt="Bevanssons" width={40} height={40} className="rounded-sm" />
+    </div>
   );
 }
 
@@ -86,15 +94,15 @@ export default function Header() {
     <header className="fixed top-0 left-0 right-0 z-50">
       {/* Announcement Bar — JS-driven ticker */}
       <div style={{ overflow: "hidden", display: "flex", alignItems: "center",
-        background: "linear-gradient(90deg, #9C8F72, #C8B993, #DDD2B7, #C8B993, #9C8F72)",
-        color: "#111111", height: 44 }}>
+        background: "#111111",
+        color: "#C8B993", height: 36 }}>
         <div ref={tickerRef} style={{ display: "flex", flexShrink: 0, whiteSpace: "nowrap", willChange: "transform" }}>
           {[0, 1].map((copy) => (
             <span key={copy} style={{ display: "inline-flex", alignItems: "center" }}>
               {tickerItems.map((item, i) => (
                 <span key={i} style={{ display: "inline-flex", alignItems: "center", gap: 6, paddingRight: 48,
-                  fontFamily: "var(--font-outfit)", fontWeight: 700, fontSize: 11, letterSpacing: "0.03em" }}>
-                  <Tag size={10} strokeWidth={2.5} style={{ flexShrink: 0 }} />
+                  fontFamily: "var(--font-outfit)", fontWeight: 700, fontSize: 10, letterSpacing: "0.08em", textTransform: "uppercase" }}>
+                  <Tag size={9} strokeWidth={2.5} style={{ flexShrink: 0 }} />
                   {item}
                 </span>
               ))}
@@ -103,76 +111,76 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Main Nav */}
-      <div style={{ background: "rgba(10,10,10,0.97)", backdropFilter: "blur(16px)", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
-        <div className="max-w-7xl mx-auto px-5 sm:px-8 h-[72px] flex items-center justify-between gap-4">
+      {/* Main Nav — light, sharp, matches the real Bevans Sons Navbar */}
+      <div className="bg-white border-b border-[#DADADA]">
+        <div className="max-w-7xl mx-auto px-5 sm:px-8 h-16 flex items-center justify-between gap-4">
 
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2.5 shrink-0" onClick={() => setMobileOpen(false)}>
-            <DaisyLogo />
+            <BevansLogo />
             <div>
-              <p style={{ fontFamily: "var(--font-outfit)", fontWeight: 700, fontSize: 15, color: "#C8B993", lineHeight: 1.2 }}>
+              <p style={{ fontFamily: "var(--font-outfit)", fontWeight: 700, fontSize: 15, color: "#111111", lineHeight: 1.2 }}>
                 Bevanssons
               </p>
-              <p style={{ fontSize: 9, color: "#6B7280", letterSpacing: "0.1em", textTransform: "uppercase" }}>Premium Gadgets</p>
+              <p style={{ fontSize: 9, color: "#A7A7AA", letterSpacing: "0.1em", textTransform: "uppercase" }}>Premium Gadgets</p>
             </div>
           </Link>
 
-          {/* Desktop Nav */}
-          <nav className="hidden lg:flex items-center gap-0.5">
-            <Link href="/" className={`nav-link px-3 py-2 rounded-lg${isActive("/") ? " active" : ""}`}>Home</Link>
+          {/* Desktop Nav — uppercase, wide-tracked, like the real Bevans nav */}
+          <nav className="hidden lg:flex items-center gap-6 text-[11px] font-semibold tracking-[0.12em] uppercase">
+            <Link href="/" className={isActive("/") ? "text-[#C8B993]" : "text-[#111111] hover:text-[#C8B993] transition-colors"}>Home</Link>
 
             <div className="relative" ref={shopRef}>
               <button onClick={() => setShopOpen((v) => !v)}
-                className={`nav-link px-3 py-2 rounded-lg flex items-center gap-1.5${isActive("/shop") ? " active" : ""}`}>
+                className={`flex items-center gap-1.5 ${isActive("/shop") ? "text-[#C8B993]" : "text-[#111111] hover:text-[#C8B993] transition-colors"}`}>
                 Shop
-                <ChevronDown size={12} strokeWidth={2.5}
+                <ChevronDown size={11} strokeWidth={2.5}
                   style={{ transition: "transform 0.2s", transform: shopOpen ? "rotate(180deg)" : "rotate(0deg)" }} />
               </button>
               {shopOpen && (
-                <div className="absolute top-full left-0 mt-2 w-[420px] rounded-3xl overflow-hidden shadow-2xl"
-                  style={{ background: "#141414", border: "1px solid rgba(255,255,255,0.08)", boxShadow: "0 20px 60px rgba(0,0,0,0.6)" }}>
-                  <div className="p-3 max-h-[80vh] overflow-y-auto space-y-3">
+                <div className="absolute top-full left-0 mt-3 w-[420px] shadow-lg"
+                  style={{ background: "#FFFFFF", border: "1px solid #DADADA" }}>
+                  <div className="p-3 max-h-[80vh] overflow-y-auto space-y-3 normal-case tracking-normal">
                     {/* Section 1: Devices */}
                     <div>
-                      <div className="px-3 py-1.5 flex items-center justify-between text-[11px] font-bold text-[#C8B993] uppercase tracking-wider border-b border-[#222]">
-                        <span>📱 Devices & Gadgets</span>
-                        <Link href="/shop" onClick={() => setShopOpen(false)} className="text-[10px] text-gray-400 hover:text-white normal-case">
-                          View All →
+                      <div className="px-3 py-1.5 flex items-center justify-between text-[11px] font-bold text-[#111111] uppercase tracking-wider border-b border-[#DADADA]">
+                        <span>Devices & Gadgets</span>
+                        <Link href="/shop" onClick={() => setShopOpen(false)} className="text-[10px] text-[#A7A7AA] hover:text-[#111111] normal-case">
+                          View All &rarr;
                         </Link>
                       </div>
                       <div className="grid grid-cols-2 gap-1 pt-1.5">
                         {deviceLinks.map((item) => (
                           <Link key={item.label} href={item.href} onClick={() => setShopOpen(false)}
-                            className="flex flex-col px-3 py-2 rounded-xl hover:bg-white/5 transition-colors group">
-                            <span style={{ fontFamily: "var(--font-outfit)", fontWeight: 600, fontSize: 12, color: "#F0F0F0" }}
+                            className="flex flex-col px-3 py-2 hover:bg-[#F5F5F5] transition-colors group">
+                            <span style={{ fontFamily: "var(--font-outfit)", fontWeight: 600, fontSize: 12, color: "#111111" }}
                               className="group-hover:text-[#C8B993] transition-colors">{item.label}</span>
-                            <span style={{ fontSize: 10, color: "#6B7280" }}>{item.desc}</span>
+                            <span style={{ fontSize: 10, color: "#A7A7AA" }}>{item.desc}</span>
                           </Link>
                         ))}
                       </div>
                     </div>
 
                     {/* Section 2: Clothing */}
-                    <div className="pt-2 border-t border-[#222]">
-                      <div className="px-3 py-1.5 flex items-center justify-between text-[11px] font-bold text-white uppercase tracking-wider border-b border-[#222]">
+                    <div className="pt-2 border-t border-[#DADADA]">
+                      <div className="px-3 py-1.5 flex items-center justify-between text-[11px] font-bold text-[#111111] uppercase tracking-wider border-b border-[#DADADA]">
                         <span className="flex items-center gap-1.5">
-                          👕 Clothing & Drops
-                          <span className="text-[9px] font-black uppercase px-1.5 py-0.2 rounded bg-[#C8B993] text-black">
+                          Clothing & Drops
+                          <span className="text-[9px] font-black uppercase px-1.5 py-0.2 bg-[#C8B993] text-[#111111]">
                             SOON
                           </span>
                         </span>
-                        <Link href="/clothing" onClick={() => setShopOpen(false)} className="text-[10px] text-[#C8B993] hover:underline normal-case">
-                          Hub →
+                        <Link href="/clothing" onClick={() => setShopOpen(false)} className="text-[10px] text-[#9C8F72] hover:underline normal-case">
+                          Hub &rarr;
                         </Link>
                       </div>
                       <div className="grid grid-cols-2 gap-1 pt-1.5">
                         {clothingLinks.map((item) => (
                           <Link key={item.label} href={item.href} onClick={() => setShopOpen(false)}
-                            className="flex flex-col px-3 py-2 rounded-xl hover:bg-white/5 transition-colors group">
-                            <span style={{ fontFamily: "var(--font-outfit)", fontWeight: 600, fontSize: 12, color: "#F0F0F0" }}
+                            className="flex flex-col px-3 py-2 hover:bg-[#F5F5F5] transition-colors group">
+                            <span style={{ fontFamily: "var(--font-outfit)", fontWeight: 600, fontSize: 12, color: "#111111" }}
                               className="group-hover:text-[#C8B993] transition-colors">{item.label}</span>
-                            <span style={{ fontSize: 10, color: "#6B7280" }}>{item.desc}</span>
+                            <span style={{ fontSize: 10, color: "#A7A7AA" }}>{item.desc}</span>
                           </Link>
                         ))}
                       </div>
@@ -182,22 +190,23 @@ export default function Header() {
               )}
             </div>
 
-            <Link href="/clothing" className={`nav-link px-3 py-2 rounded-lg flex items-center gap-1${isActive("/clothing") ? " active" : ""}`}>
-              Clothing <span className="text-[9px] font-bold text-[#111111] bg-[#C8B993] rounded-full px-1.5 py-0.5 leading-none">Soon</span>
+            <Link href="/clothing" className={`flex items-center gap-1 ${isActive("/clothing") ? "text-[#C8B993]" : "text-[#111111] hover:text-[#C8B993] transition-colors"}`}>
+              Clothing <span className="text-[9px] font-bold text-[#111111] bg-[#C8B993] px-1.5 py-0.5 leading-none normal-case">Soon</span>
             </Link>
-            <Link href="/special-offers" className={`nav-link px-3 py-2 rounded-lg flex items-center gap-1${isActive("/special-offers") ? " active" : ""}`}>
-              Offers <span className="text-[9px] font-bold text-[#111111] bg-[#C8B993] rounded-full px-1.5 py-0.5 leading-none">30%</span>
+            <Link href="/special-offers" className={`flex items-center gap-1 ${isActive("/special-offers") ? "text-[#C8B993]" : "text-[#111111] hover:text-[#C8B993] transition-colors"}`}>
+              Offers <span className="text-[9px] font-bold text-[#111111] bg-[#C8B993] px-1.5 py-0.5 leading-none normal-case">30%</span>
             </Link>
-            <Link href="/new-arrivals" className={`nav-link px-3 py-2 rounded-lg${isActive("/new-arrivals") ? " active" : ""}`}>New</Link>
-            <Link href="/faq"          className={`nav-link px-3 py-2 rounded-lg${isActive("/faq") ? " active" : ""}`}>FAQ</Link>
-            <Link href="/about"        className={`nav-link px-3 py-2 rounded-lg${isActive("/about") ? " active" : ""}`}>About</Link>
-            <Link href="/contact"      className={`nav-link px-3 py-2 rounded-lg${isActive("/contact") ? " active" : ""}`}>Contact</Link>
+            <Link href="/new-arrivals" className={isActive("/new-arrivals") ? "text-[#C8B993]" : "text-[#111111] hover:text-[#C8B993] transition-colors"}>New</Link>
+            <Link href="/faq"          className={isActive("/faq") ? "text-[#C8B993]" : "text-[#111111] hover:text-[#C8B993] transition-colors"}>FAQ</Link>
+            <Link href="/about"        className={isActive("/about") ? "text-[#C8B993]" : "text-[#111111] hover:text-[#C8B993] transition-colors"}>About</Link>
+            <Link href="/contact"      className={isActive("/contact") ? "text-[#C8B993]" : "text-[#111111] hover:text-[#C8B993] transition-colors"}>Contact</Link>
           </nav>
 
           {/* Desktop CTAs */}
-          <div className="hidden lg:flex items-center gap-2">
+          <div className="hidden lg:flex items-center gap-3">
             <CartButton />
-            <Link href="/track-order" className="btn-outline rounded-xl" style={{ fontSize: 12, padding: "9px 14px" }}>
+            <Link href="/track-order"
+              className="text-[11px] font-semibold tracking-[0.1em] uppercase text-[#111111] border border-[#111111] px-4 py-2.5 hover:bg-[#111111] hover:text-white transition-colors">
               Track Order
             </Link>
           </div>
@@ -206,7 +215,7 @@ export default function Header() {
           <div className="lg:hidden flex items-center gap-2">
             <CartButton />
             <button onClick={() => setMobileOpen((v) => !v)}
-              className="w-10 h-10 flex items-center justify-center rounded-xl text-gray-300 hover:text-white hover:bg-white/6 transition-all"
+              className="w-10 h-10 flex items-center justify-center text-[#111111]"
               aria-label="Menu">
               {mobileOpen ? <X size={20} strokeWidth={2.2} /> : <Menu size={20} strokeWidth={2.2} />}
             </button>
@@ -216,8 +225,8 @@ export default function Header() {
 
       {/* Mobile menu */}
       {mobileOpen && (
-        <div className="lg:hidden" style={{ background: "#0f0f0f", borderTop: "1px solid rgba(255,255,255,0.06)" }}>
-          <div className="max-w-7xl mx-auto px-5 py-4 flex flex-col gap-1">
+        <div className="lg:hidden bg-white border-t border-[#DADADA]">
+          <div className="max-w-7xl mx-auto px-5 py-4 flex flex-col gap-0.5">
             {[
               { label: "Home",             href: "/" },
               { label: "Clothing & Apparel", href: "/clothing" },
@@ -234,17 +243,17 @@ export default function Header() {
               const active = item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
               return (
                 <Link key={item.href} href={item.href} onClick={() => setMobileOpen(false)}
-                  className="flex items-center justify-between px-4 py-3 rounded-xl transition-colors"
-                  style={{ fontFamily: "var(--font-outfit)", fontWeight: 500, fontSize: 14,
-                    color: active ? "#C8B993" : "#D1D5DB", background: active ? "rgba(200,185,147,0.06)" : "transparent" }}>
+                  className="flex items-center justify-between px-4 py-3 border-b border-[#F0F0F0] transition-colors"
+                  style={{ fontFamily: "var(--font-outfit)", fontWeight: 700, fontSize: 12, letterSpacing: "0.1em", textTransform: "uppercase",
+                    color: active ? "#C8B993" : "#111111" }}>
                   {item.label}
                   {active && <ChevronDown size={15} color="#C8B993" style={{ transform: "rotate(-90deg)" }} />}
                 </Link>
               );
             })}
-            <div className="pt-3 pb-1 flex flex-col gap-2.5">
+            <div className="pt-4 pb-1 flex flex-col gap-2.5">
               <Link href="/special-offers" onClick={() => setMobileOpen(false)}
-                className="btn-outline w-full py-3 rounded-xl text-sm flex items-center justify-center gap-1.5">
+                className="w-full py-3 text-[11px] font-semibold tracking-[0.1em] uppercase text-[#111111] border border-[#111111] flex items-center justify-center gap-1.5">
                 <Sparkles size={14} /> View Special Offers
               </Link>
             </div>
