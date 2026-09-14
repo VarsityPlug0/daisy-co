@@ -46,6 +46,7 @@
   "/admin/page": "/admin",
   "/api/admin/chat/reply/route": "/api/admin/chat/reply",
   "/api/admin/chat/sessions/route": "/api/admin/chat/sessions",
+  "/api/admin/historical-export/route": "/api/admin/historical-export",
   "/api/admin/installments/[id]/route": "/api/admin/installments/[id]",
   "/api/admin/installments/route": "/api/admin/installments",
   "/api/admin/installments/settings/[productId]/route": "/api/admin/installments/settings/[productId]",

@@ -251,6 +251,12 @@
       "namedRegex": "^/api/admin/chat/sessions(?:/)?$"
     },
     {
+      "page": "/api/admin/historical-export",
+      "regex": "^/api/admin/historical\\-export(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/admin/historical\\-export(?:/)?$"
+    },
+    {
       "page": "/api/admin/installments",
       "regex": "^/api/admin/installments(?:/)?$",
       "routeKeys": {},

@@ -46,6 +46,7 @@
   "/admin/page": "app/admin/page.js",
   "/api/admin/chat/reply/route": "app/api/admin/chat/reply/route.js",
   "/api/admin/chat/sessions/route": "app/api/admin/chat/sessions/route.js",
+  "/api/admin/historical-export/route": "app/api/admin/historical-export/route.js",
   "/api/admin/installments/[id]/route": "app/api/admin/installments/[id]/route.js",
   "/api/admin/installments/route": "app/api/admin/installments/route.js",
   "/api/admin/installments/settings/[productId]/route": "app/api/admin/installments/settings/[productId]/route.js",

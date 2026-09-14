@@ -1,0 +1,3 @@
+{
+  "/api/admin/historical-export/route": "app/api/admin/historical-export/route.js"
+}
