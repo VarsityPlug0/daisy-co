@@ -11,7 +11,7 @@ import {
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Clothing & Streetwear — Premium Fashion | Daisy & Co.",
+  title: "Clothing & Streetwear — Premium Fashion | Bevanssons",
   description: "Shop premium urban clothing, heavyweight hoodies, streetwear, sneakers, caps and designer fashion. Fast delivery across South Africa.",
 };
 
@@ -83,7 +83,7 @@ export default function ClothingPage() {
 
               <div className="flex flex-wrap gap-4 justify-center lg:justify-start pt-2">
                 <a
-                  href="mailto:daisygadgetsco@gmail.com?subject=Notify%20me%20when%20Clothing%20%26%20Streetwear%20drops"
+                  href="mailto:support@bevanssons.store?subject=Notify%20me%20when%20Clothing%20%26%20Streetwear%20drops"
                   className="btn-gold px-8 py-4 rounded-xl font-extrabold text-sm flex items-center gap-2 shadow-xl shadow-[#D4AF37]/20"
                 >
                   <Sparkles size={16} /> Notify Me on Drop
@@ -121,7 +121,7 @@ export default function ClothingPage() {
               <div className="relative mx-auto max-w-md aspect-[4/5] rounded-3xl overflow-hidden border border-[#D4AF37]/40 shadow-2xl shadow-black/80">
                 <Image
                   src="https://images.unsplash.com/photo-1509967419530-da38b4704bc6?w=900&auto=format&fit=crop&q=90"
-                  alt="Daisy Streetwear Model Coming Soon"
+                  alt="Bevanssons Streetwear Model Coming Soon"
                   fill
                   priority
                   className="object-cover"

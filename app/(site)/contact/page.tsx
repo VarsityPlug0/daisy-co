@@ -48,12 +48,12 @@ export default function ContactPage() {
           {[
             {
               icon: Mail, label: "Email",
-              content: <a href="mailto:daisygadgetsco@gmail.com" className="text-white font-semibold hover:text-[#D4AF37] transition-colors text-sm">daisygadgetsco@gmail.com</a>,
+              content: <a href="mailto:support@bevanssons.store" className="text-white font-semibold hover:text-[#D4AF37] transition-colors text-sm">support@bevanssons.store</a>,
               sub: "We reply within 24 hours",
             },
             {
               icon: MapPin, label: "Address",
-              content: <span className="text-white font-semibold">Unit 7, Eagle Street, Okavango Park, Bellville, Cape Town</span>,
+              content: <span className="text-white font-semibold">36 Houer Road, City Deep, Johannesburg, 2197</span>,
               sub: "Walk-ins by appointment",
             },
             {
@@ -79,7 +79,7 @@ export default function ContactPage() {
             <p className="text-gray-400 text-sm leading-relaxed mb-4">
               For the quickest help, email us directly. We typically reply within a few hours.
             </p>
-            <a href="mailto:daisygadgetsco@gmail.com"
+            <a href="mailto:support@bevanssons.store"
               className="btn-gold w-full py-3 rounded-xl text-sm font-bold flex items-center justify-center gap-2">
               <Mail size={14} />
               Email Us

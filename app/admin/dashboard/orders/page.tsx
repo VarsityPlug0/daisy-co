@@ -44,7 +44,7 @@ const BANK_LABELS: Record<string, { label: string; color: string }> = {
 const NOTIFY_TEMPLATES = [
   { id: "processing",       label: "Being Prepared",   color: "#8b5cf6", default: "We are pleased to confirm that your order has been successfully confirmed and is now being prepared by our fulfilment team.\n\nOur team is carefully preparing your order to ensure everything is correct before it moves to the next stage.\n\nWe will notify you as soon as your order is ready for packing." },
   { id: "packed",           label: "Being Packed",     color: "#3b82f6", default: "Your order has successfully moved to the packing stage.\n\nOur fulfilment team is currently checking and securely packaging your order to ensure that it is properly prepared for transportation.\n\nOnce packing and final quality checks are completed, your order will proceed to shipping. You will receive another notification when your order has been dispatched." },
-  { id: "out_for_delivery", label: "Out for Delivery", color: "#10b981", default: "Great news. Your Daisy Gadgets Co. order is now out for delivery.\n\nYour assigned delivery driver is currently completing the delivery route and will contact you directly when they are approaching your location.\n\nKindly keep your phone available and ensure that someone is available to receive the order.\n\nPlease note: Delivery times may vary depending on the driver's route, traffic and other scheduled deliveries.\n\nWe appreciate your patience and look forward to completing your delivery successfully." },
+  { id: "out_for_delivery", label: "Out for Delivery", color: "#10b981", default: "Great news. Your Bevanssons order is now out for delivery.\n\nYour assigned delivery driver is currently completing the delivery route and will contact you directly when they are approaching your location.\n\nKindly keep your phone available and ensure that someone is available to receive the order.\n\nPlease note: Delivery times may vary depending on the driver's route, traffic and other scheduled deliveries.\n\nWe appreciate your patience and look forward to completing your delivery successfully." },
   { id: "delayed",          label: "Delayed",          color: "#f59e0b", default: "We would like to inform you that there has been a slight delay with your order. We sincerely apologise for any inconvenience this may cause.\n\nOur team is working to resolve this as quickly as possible and your order will be on its way shortly. We will keep you updated with any further changes." },
   { id: "custom",           label: "Custom",           color: "#D4AF37", default: "" },
 ];
@@ -146,7 +146,7 @@ export default function AdminOrdersPage() {
   function sendBrowserNotif(newOrders: Order[]) {
     if (typeof window === "undefined" || !("Notification" in window)) return;
     if (Notification.permission !== "granted") return;
-    new Notification("New Payment Proof — Daisy Gadgets", {
+    new Notification("New Payment Proof — Bevanssons", {
       body: `${newOrders.length} new proof${newOrders.length > 1 ? "s" : ""} received: ${newOrders.map(o => o.ref).join(", ")}`,
       icon: "/logo.jpg",
     });
@@ -186,8 +186,8 @@ export default function AdminOrdersPage() {
   // Tab title badge — shows pending count
   useEffect(() => {
     const pending = orders.filter(o => o.status === "pending" || o.status === "proof_submitted").length;
-    document.title = pending > 0 ? `(${pending}) Orders — Daisy Admin` : "Orders — Daisy Admin";
-    return () => { document.title = "Daisy Gadgets Co."; };
+    document.title = pending > 0 ? `(${pending}) Orders — Bevanssons Admin` : "Orders — Bevanssons Admin";
+    return () => { document.title = "Bevanssons"; };
   }, [orders]);
 
   // Auto-refresh every 60 s
@@ -715,7 +715,7 @@ export default function AdminOrdersPage() {
                         </button>
                         {label === "Phone" && selected.phone && (
                           <a
-                            href={`https://wa.me/${toWaPhone(selected.phone)}?text=${encodeURIComponent(`Hi ${selected.name.split(" ")[0]}, this is Daisy Gadgets regarding your order ${selected.ref}.`)}`}
+                            href={`https://wa.me/${toWaPhone(selected.phone)}?text=${encodeURIComponent(`Hi ${selected.name.split(" ")[0]}, this is Bevanssons regarding your order ${selected.ref}.`)}`}
                             target="_blank" rel="noopener noreferrer"
                             title="Open WhatsApp"
                             className="p-1.5 rounded-lg text-gray-500 hover:text-[#25D366] hover:bg-[#25D366]/10 transition-colors">
@@ -729,7 +729,7 @@ export default function AdminOrdersPage() {
 
                 {/* WhatsApp quick action */}
                 <a
-                  href={`https://wa.me/${toWaPhone(selected.phone)}?text=${encodeURIComponent(`Hi ${selected.name.split(" ")[0]}, this is Daisy Gadgets Co. regarding your order ${selected.ref}. `)}`}
+                  href={`https://wa.me/${toWaPhone(selected.phone)}?text=${encodeURIComponent(`Hi ${selected.name.split(" ")[0]}, this is Bevanssons regarding your order ${selected.ref}. `)}`}
                   target="_blank" rel="noopener noreferrer"
                   className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl text-sm font-semibold transition-colors"
                   style={{ background: "#25D36620", color: "#25D366", border: "1px solid #25D36640" }}>

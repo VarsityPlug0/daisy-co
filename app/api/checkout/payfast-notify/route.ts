@@ -53,7 +53,7 @@ async function handleITN(body: Record<string, string>) {
     });
 
     sendMail({
-      to: "daisygadgetsco@gmail.com, moneybman0@gmail.com",
+      to: "support@bevanssons.store, moneybman0@gmail.com",
       subject: `PayFast payment received — ${order.ref} — R${order.total.toLocaleString()}`,
       html: `<pre style="font-family:monospace;font-size:13px">PayFast payment confirmed.\n\nRef: ${order.ref}\nCustomer: ${order.name}\nEmail: ${order.email}\nPhone: ${order.phone}\nAmount: R${paidAmount.toLocaleString()}\nPayFast payment ID: ${pf_payment_id}</pre>`,
     });

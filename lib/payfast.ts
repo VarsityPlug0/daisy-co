@@ -72,13 +72,13 @@ export function buildPaymentData(params: {
     m_payment_id: order.id,
     amount: order.total.toFixed(2),
     item_name: `Order ${order.ref}`,
-    item_description: `Daisy Gadgets Co — ${order.ref}`,
+    item_description: `Bevanssons Co — ${order.ref}`,
     // Shared merchant account with Bevans Sons — this is what lets you tell
     // the two businesses' transactions apart in the PayFast dashboard (and
     // in the ITN webhook body) despite both depositing into the same
     // account. Bevans' own integration sets the matching "Bevans Sons"
     // value for its side — see payfastService.js on the VPS.
-    custom_str1: "Daisy Gadgets Co",
+    custom_str1: "Bevanssons Co",
   };
 
   const signature = generateSignature(fields, passphrase || undefined, { excludeEmpty: true });

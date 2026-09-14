@@ -12,20 +12,20 @@ import { getSettings } from "@/lib/installments";
 
 export const dynamic = "force-dynamic";
 
-const BASE = "https://daisygadgetsco.com";
+const BASE = "https://gadgets.bevanssons.store";
 
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
   const { id } = await params;
   const p = getProduct(id);
   if (!p) return { title: "Product Not Found" };
   const desc = p.description || `Buy the ${p.name} at ${p.price}. 100% authentic with full warranty. Fast delivery across South Africa and worldwide.`;
-  const images = p.imageUrl ? [{ url: p.imageUrl, alt: p.name }] : [{ url: "/logo.jpg", alt: "Daisy Gadgets Co." }];
+  const images = p.imageUrl ? [{ url: p.imageUrl, alt: p.name }] : [{ url: "/logo.jpg", alt: "Bevanssons" }];
   return {
     title: `${p.name} — ${p.price}`,
     description: desc,
     alternates: { canonical: `${BASE}/shop/${p.id}` },
     openGraph: {
-      title: `${p.name} — ${p.price} | Daisy Gadgets Co.`,
+      title: `${p.name} — ${p.price} | Bevanssons`,
       description: desc,
       url: `${BASE}/shop/${p.id}`,
       type: "website",
@@ -66,10 +66,10 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
     "@context": "https://schema.org",
     "@type": "Product",
     name: product.name,
-    description: product.description || `${product.name} available at Daisy Gadgets Co.`,
+    description: product.description || `${product.name} available at Bevanssons`,
     image: product.imageUrl ? [product.imageUrl] : [],
     sku: product.id,
-    brand: { "@type": "Brand", name: "Daisy Gadgets Co." },
+    brand: { "@type": "Brand", name: "Bevanssons" },
     offers: {
       "@type": "Offer",
       url: `${BASE}/shop/${product.id}`,
@@ -78,7 +78,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
       availability: product.inStock
         ? "https://schema.org/InStock"
         : "https://schema.org/OutOfStock",
-      seller: { "@type": "Organization", name: "Daisy Gadgets Co." },
+      seller: { "@type": "Organization", name: "Bevanssons" },
     },
   };
 

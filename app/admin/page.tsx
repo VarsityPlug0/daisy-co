@@ -41,7 +41,7 @@ export default function AdminLogin() {
             <circle cx="50" cy="50" r="8" fill="#0A0A0A" />
           </svg>
           <h1 style={{ fontFamily: "var(--font-outfit)", fontWeight: 700, fontSize: 22, color: "#D4AF37" }}>
-            Daisy & Co.
+            Bevanssons
           </h1>
           <p className="text-gray-500 text-sm mt-1">Staff Portal</p>
         </div>
@@ -70,7 +70,7 @@ export default function AdminLogin() {
         </form>
 
         <p className="text-center text-gray-600 text-xs mt-6">
-          Daisy & Co. internal use only
+          Bevanssons internal use only
         </p>
       </div>
     </div>

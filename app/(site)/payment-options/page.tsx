@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Payment Options | Daisy Gadgets Co.",
+  title: "Payment Options | Bevanssons",
   description: "We accept secure instant payments via PayFast — card, Instant EFT, and more. No manual bank transfers or proof of payment needed.",
 };
 

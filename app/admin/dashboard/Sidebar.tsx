@@ -91,7 +91,7 @@ export default function Sidebar() {
           <circle cx="50" cy="50" r="8" fill="#0A0A0A" />
         </svg>
         <div>
-          <p className="text-[#D4AF37] font-bold text-sm leading-none">Daisy &amp; Co.</p>
+          <p className="text-[#D4AF37] font-bold text-sm leading-none">Bevanssons</p>
           <p className="text-gray-600 text-[10px] mt-0.5">Admin Dashboard</p>
         </div>
       </div>
@@ -148,7 +148,7 @@ export default function Sidebar() {
             <circle cx="50" cy="50" r="14" fill="#D4AF37" />
             <circle cx="50" cy="50" r="8" fill="#0D0D0D" />
           </svg>
-          <p className="text-[#D4AF37] font-bold text-sm">Daisy &amp; Co.</p>
+          <p className="text-[#D4AF37] font-bold text-sm">Bevanssons</p>
         </div>
         <button
           onClick={() => setOpen(true)}

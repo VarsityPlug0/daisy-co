@@ -270,7 +270,7 @@ export default function InstallmentModal({ product, settings, onClose }: Props) 
                   {consent && <Check size={11} color="black" strokeWidth={3} />}
                 </div>
                 <p className="text-gray-500 text-xs leading-relaxed">
-                  I consent to Daisy Gadgets Co. collecting and using my personal information to process this installment application and contact me by phone or email.
+                  I consent to Bevanssons collecting and using my personal information to process this installment application and contact me by phone or email.
                 </p>
               </label>
             </div>
@@ -327,10 +327,10 @@ export default function InstallmentModal({ product, settings, onClose }: Props) 
                 <p className="text-[#D4AF37] text-xl font-mono font-black">{result.ref}</p>
               </div>
               <a
-                href={`mailto:daisygadgetsco@gmail.com?subject=${encodeURIComponent(
+                href={`mailto:support@bevanssons.store?subject=${encodeURIComponent(
                   `Installment application — ${result.ref}`
                 )}&body=${encodeURIComponent(
-                  `Hi Daisy Gadgets Co, I submitted an installment application for the ${product.name} (${term} months, R${monthly.toLocaleString("en-ZA")}/mo). Application Ref: ${result.ref}`
+                  `Hi Bevanssons Co, I submitted an installment application for the ${product.name} (${term} months, R${monthly.toLocaleString("en-ZA")}/mo). Application Ref: ${result.ref}`
                 )}`}
                 onClick={() => track("whatsapp_clicked", { product_id: product.id, ref: result.ref })}
                 className="w-full flex items-center justify-center gap-3 py-4 rounded-xl font-bold text-white text-base shadow-lg transition-transform active:scale-95"

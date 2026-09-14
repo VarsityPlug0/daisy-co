@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "FAQ — Frequently Asked Questions | Daisy Gadgets Co.",
-  description: "Answers to common questions about ordering, delivery, payment, warranties, returns and more at Daisy Gadgets Co.",
+  title: "FAQ — Frequently Asked Questions | Bevanssons",
+  description: "Answers to common questions about ordering, delivery, payment, warranties, returns and more at Bevanssons",
 };
 
 const sections = [

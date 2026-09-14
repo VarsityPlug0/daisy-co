@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Warranty Policy | Daisy Gadgets Co.",
-  description: "Our warranty policy — what is covered and how to claim warranty on products purchased from Daisy Gadgets Co.",
+  title: "Warranty Policy | Bevanssons",
+  description: "Our warranty policy — what is covered and how to claim warranty on products purchased from Bevanssons",
 };
 
 export default function WarrantyPage() {
@@ -19,7 +19,7 @@ export default function WarrantyPage() {
         {[
           {
             title: "1. Warranty Coverage",
-            body: "All products sold by Daisy Gadgets Co. come with the standard manufacturer warranty. Most products carry a 12–24 month warranty. Specific warranty periods are listed on each product page.",
+            body: "All products sold by Bevanssons come with the standard manufacturer warranty. Most products carry a 12–24 month warranty. Specific warranty periods are listed on each product page.",
           },
           {
             title: "2. What Is Covered",
@@ -47,7 +47,7 @@ export default function WarrantyPage() {
           },
           {
             title: "8. Contact",
-            body: "Warranty claims: daisygadgetsco@gmail.com",
+            body: "Warranty claims: support@bevanssons.store",
           },
         ].map(({ title, body }) => (
           <div key={title}>

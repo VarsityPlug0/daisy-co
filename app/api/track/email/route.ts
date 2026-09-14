@@ -33,7 +33,7 @@ export async function GET(req: NextRequest) {
     try {
       return NextResponse.redirect(decodeURIComponent(url));
     } catch {
-      return NextResponse.redirect("https://daisygadgetsco.com");
+      return NextResponse.redirect("https://gadgets.bevanssons.store");
     }
   }
 

@@ -54,17 +54,17 @@ export async function POST(req: NextRequest) {
 
     // Notify admin
     sendMail({
-      to: "daisygadgetsco@gmail.com, moneybman0@gmail.com",
+      to: "support@bevanssons.store, moneybman0@gmail.com",
       subject: `New Installment Application ${application.ref} — ${product.name} — ${name}`,
-      html: `<pre style="font-family:monospace;font-size:13px">New installment application received.\n\nRef: ${application.ref}\nProduct: ${product.name}\nPrice: R${price.toLocaleString("en-ZA")}\nTerm: ${term_months} months\nMonthly: R${monthly.toLocaleString("en-ZA")}\nDeposit: R${deposit.toLocaleString("en-ZA")}\n\nCustomer: ${name}\nPhone: ${phone}\nEmail: ${email}\nID: ${id_number}\nAddress: ${address}\n\nReview: https://daisygadgetsco.com/admin/dashboard/installments</pre>`,
+      html: `<pre style="font-family:monospace;font-size:13px">New installment application received.\n\nRef: ${application.ref}\nProduct: ${product.name}\nPrice: R${price.toLocaleString("en-ZA")}\nTerm: ${term_months} months\nMonthly: R${monthly.toLocaleString("en-ZA")}\nDeposit: R${deposit.toLocaleString("en-ZA")}\n\nCustomer: ${name}\nPhone: ${phone}\nEmail: ${email}\nID: ${id_number}\nAddress: ${address}\n\nReview: https://gadgets.bevanssons.store/admin/dashboard/installments</pre>`,
     });
 
     // Confirmation to customer
     sendMail({
       to: email,
-      subject: `Installment Application Received — ${application.ref} | Daisy Gadgets Co.`,
+      subject: `Installment Application Received — ${application.ref} | Bevanssons`,
       html: `<div style="font-family:sans-serif;background:#0A0A0A;color:#e5e7eb;padding:32px;border-radius:12px;max-width:520px">
-        <p style="color:#D4AF37;font-weight:700;margin:0 0 8px">Daisy Gadgets Co.</p>
+        <p style="color:#D4AF37;font-weight:700;margin:0 0 8px">Bevanssons</p>
         <h2 style="margin:0 0 16px;color:#fff">Application Received!</h2>
         <p style="color:#9ca3af;margin:0 0 20px">Hi ${name.split(" ")[0]}, your installment application for the <strong style="color:#fff">${product.name}</strong> has been submitted successfully.</p>
         <div style="background:#111;border:1px solid #1F1F1F;border-radius:10px;padding:16px 20px;margin-bottom:20px">
@@ -72,7 +72,7 @@ export async function POST(req: NextRequest) {
           <p style="margin:0;color:#D4AF37;font-size:22px;font-weight:900;font-family:monospace">${application.ref}</p>
         </div>
         <p style="color:#9ca3af;margin:0 0 20px">We'll contact you at <strong style="color:#fff">${phone}</strong> to complete the process.</p>
-        <p style="color:#6b7280;font-size:12px;margin:0">© ${new Date().getFullYear()} Daisy Gadgets Co.</p>
+        <p style="color:#6b7280;font-size:12px;margin:0">© ${new Date().getFullYear()} Bevanssons</p>
       </div>`,
     });
 

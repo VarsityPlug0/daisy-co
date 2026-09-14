@@ -36,7 +36,7 @@ export async function generateMetadata({ searchParams }: { searchParams: Promise
   if (q) {
     return {
       title: `Search: "${q}"`,
-      description: `Search results for "${q}" at Daisy Gadgets Co. Find smartphones, TVs, gaming, laptops, solar and more.`,
+      description: `Search results for "${q}" at Bevanssons Find smartphones, TVs, gaming, laptops, solar and more.`,
     };
   }
   if (cat && CAT_META[cat]) {
@@ -44,15 +44,15 @@ export async function generateMetadata({ searchParams }: { searchParams: Promise
     return {
       title: m.title,
       description: m.description,
-      alternates: { canonical: `https://daisygadgetsco.com/shop?cat=${encodeURIComponent(cat)}` },
-      openGraph: { title: `${m.title} | Daisy Gadgets Co.`, description: m.description },
+      alternates: { canonical: `https://gadgets.bevanssons.store/shop?cat=${encodeURIComponent(cat)}` },
+      openGraph: { title: `${m.title} | Bevanssons`, description: m.description },
       twitter: { card: "summary_large_image", title: m.title, description: m.description },
     };
   }
   return {
     title: "Shop — Premium Gadgets",
     description: "Browse our full range of smartphones, smart TVs, gaming consoles, laptops, MacBooks, home appliances, solar & more. Worldwide shipping available.",
-    alternates: { canonical: "https://daisygadgetsco.com/shop" },
+    alternates: { canonical: "https://gadgets.bevanssons.store/shop" },
   };
 }
 

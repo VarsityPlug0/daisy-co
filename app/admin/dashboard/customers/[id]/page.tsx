@@ -113,7 +113,7 @@ export default async function CustomerProfilePage({ params }: { params: Promise<
           <p className="text-gray-600 text-xs mt-0.5">{customer.phone}</p>
         </div>
         <div className="flex gap-2 shrink-0">
-          <a href={`https://wa.me/${toWaPhone(customer.phone)}?text=${encodeURIComponent(`Hi ${customer.name.split(" ")[0]}, this is Daisy Gadgets Co. `)}`}
+          <a href={`https://wa.me/${toWaPhone(customer.phone)}?text=${encodeURIComponent(`Hi ${customer.name.split(" ")[0]}, this is Bevanssons `)}`}
             target="_blank" rel="noopener noreferrer"
             className="p-2.5 rounded-xl border border-[#1F1F1F] text-gray-500 hover:text-[#25D366] hover:border-[#25D366]/30 transition-colors">
             <MessageCircle size={16} />

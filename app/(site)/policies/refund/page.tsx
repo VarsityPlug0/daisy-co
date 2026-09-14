@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Refund Policy | Daisy Gadgets Co.",
-  description: "Our refund policy — when and how we issue refunds for orders at Daisy Gadgets Co.",
+  title: "Refund Policy | Bevanssons",
+  description: "Our refund policy — when and how we issue refunds for orders at Bevanssons",
 };
 
 export default function RefundPage() {
@@ -31,7 +31,7 @@ export default function RefundPage() {
           },
           {
             title: "4. How to Request a Refund",
-            body: "Contact us via email (daisygadgetsco@gmail.com) with your order reference, reason for the refund, and photos if the product is damaged.",
+            body: "Contact us via email (support@bevanssons.store) with your order reference, reason for the refund, and photos if the product is damaged.",
           },
           {
             title: "5. Refund Processing",
@@ -43,7 +43,7 @@ export default function RefundPage() {
           },
           {
             title: "7. Contact Us",
-            body: "For refund enquiries: daisygadgetsco@gmail.com",
+            body: "For refund enquiries: support@bevanssons.store",
           },
         ].map(({ title, body }) => (
           <div key={title}>

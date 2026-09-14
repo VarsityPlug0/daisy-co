@@ -12,7 +12,7 @@ export const BANKS: BankDetails[] = [
   {
     id: "tymebank",
     bank: "TymeBank / GoTymeBank",
-    accountHolder: "Daisy Gadgets Co.",
+    accountHolder: "Bevanssons",
     accountType: "Business Account",
     accountNumber: "51072673949",
     branchCode: "678910",

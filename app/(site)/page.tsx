@@ -12,13 +12,13 @@ import {
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Daisy Gadgets Co. | Premium Gadgets — Worldwide Shipping",
+  title: "Bevanssons | Premium Gadgets — Worldwide Shipping",
   description: "Shop iPhones, Smart TVs, PS5, Xbox, Gaming PCs, MacBooks, Laptops, Solar Inverters, Home Appliances & more. Same-day delivery in South Africa. Free worldwide shipping.",
-  alternates: { canonical: "https://daisygadgetsco.com" },
+  alternates: { canonical: "https://gadgets.bevanssons.store" },
   openGraph: {
-    title: "Daisy Gadgets Co. | Premium Gadgets — Worldwide Shipping",
+    title: "Bevanssons | Premium Gadgets — Worldwide Shipping",
     description: "Shop iPhones, Smart TVs, PS5, Xbox, Gaming PCs, MacBooks, Laptops, Solar & more. 30% OFF August to December. Same-day delivery in South Africa.",
-    url: "https://daisygadgetsco.com",
+    url: "https://gadgets.bevanssons.store",
     type: "website",
   },
 };
@@ -51,13 +51,13 @@ const TRUST = [
 const websiteJsonLd = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  name: "Daisy Gadgets Co.",
-  url: "https://daisygadgetsco.com",
+  name: "Bevanssons",
+  url: "https://gadgets.bevanssons.store",
   potentialAction: {
     "@type": "SearchAction",
     target: {
       "@type": "EntryPoint",
-      urlTemplate: "https://daisygadgetsco.com/shop?q={search_term_string}",
+      urlTemplate: "https://gadgets.bevanssons.store/shop?q={search_term_string}",
     },
     "query-input": "required name=search_term_string",
   },
@@ -199,7 +199,7 @@ export default async function HomePage() {
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#D4AF37]/15 border border-[#D4AF37]/40 text-[#D4AF37] text-xs font-bold uppercase tracking-wider mb-2">
                 <Sparkles size={13} /> Official Drop Preview
               </div>
-              <h2 className="text-3xl font-extrabold text-white">Daisy Streetwear <span className="gold-text">Collection</span></h2>
+              <h2 className="text-3xl font-extrabold text-white">Bevanssons Streetwear <span className="gold-text">Collection</span></h2>
               <p className="text-gray-400 text-sm mt-1">Preview upcoming heavyweight hoodies, jackets, retro kicks and urban essentials.</p>
             </div>
             <Link href="/clothing" className="btn-gold px-6 py-3 rounded-xl text-xs font-bold shrink-0 inline-flex items-center gap-1.5 self-start sm:self-auto">
@@ -234,7 +234,7 @@ export default async function HomePage() {
       <section style={{ background: "#111111", borderTop: "1px solid rgba(255,255,255,0.05)", borderBottom: "1px solid rgba(255,255,255,0.05)" }}>
         <div className="max-w-7xl mx-auto px-5 sm:px-8 py-20">
           <div className="text-center mb-14">
-            <p className="section-label mb-3">Why Daisy Gadgets Co.</p>
+            <p className="section-label mb-3">Why Bevanssons</p>
             <h2 className="text-3xl md:text-4xl font-extrabold text-white">Your Trusted <span className="gold-text">Gadget Partner</span></h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">

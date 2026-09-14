@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Returns Policy | Daisy Gadgets Co.",
-  description: "Our returns policy — how to return a product and what to expect at Daisy Gadgets Co.",
+  title: "Returns Policy | Bevanssons",
+  description: "Our returns policy — how to return a product and what to expect at Bevanssons",
 };
 
 export default function ReturnsPage() {
@@ -47,7 +47,7 @@ export default function ReturnsPage() {
           },
           {
             title: "8. Contact",
-            body: "Returns enquiries: daisygadgetsco@gmail.com",
+            body: "Returns enquiries: support@bevanssons.store",
           },
         ].map(({ title, body }) => (
           <div key={title}>

@@ -3,8 +3,8 @@ import Link from "next/link";
 import { ShieldCheck, Truck, BadgeCheck, Headphones, MapPin, Mail } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "About Us | Daisy Gadgets Co. — Premium Gadgets Worldwide",
-  description: "Daisy Gadgets Co. is a proudly South African gadget retailer offering premium electronics, appliances, gaming, solar & more with worldwide shipping.",
+  title: "About Us | Bevanssons — Premium Gadgets Worldwide",
+  description: "Bevanssons is a proudly South African gadget retailer offering premium electronics, appliances, gaming, solar & more with worldwide shipping.",
 };
 
 const values = [
@@ -28,7 +28,7 @@ export default function AboutPage() {
       <div className="mb-16 text-center">
         <p className="section-label mb-3">Our Story</p>
         <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-6">
-          About <span className="gold-text">Daisy Gadgets Co.</span>
+          About <span className="gold-text">Bevanssons</span>
         </h1>
         <p className="text-gray-400 text-lg leading-relaxed max-w-2xl mx-auto">
           We&apos;re a proudly South African gadget retailer on a mission to make premium technology accessible to everyone — locally and worldwide.
@@ -48,10 +48,10 @@ export default function AboutPage() {
         <div>
           <h2 className="text-2xl font-bold text-white mb-4">Who We Are</h2>
           <p className="text-gray-400 leading-relaxed mb-4">
-            Daisy Gadgets Co. was founded with a simple vision: to offer South Africans access to the best gadgets at fair prices, backed by reliable service and genuine after-sales support.
+            Bevanssons was founded with a simple vision: to offer South Africans access to the best gadgets at fair prices, backed by reliable service and genuine after-sales support.
           </p>
           <p className="text-gray-400 leading-relaxed mb-4">
-            Based in Bellville, Cape Town, we serve customers across all 9 South African provinces and ship internationally. Whether you&apos;re buying an iPhone, a PS5, a solar inverter, or a new fridge — we have you covered.
+            Based in Johannesburg, we serve customers across all 9 South African provinces and ship internationally. Whether you&apos;re buying an iPhone, a PS5, a solar inverter, or a new fridge — we have you covered.
           </p>
           <p className="text-gray-400 leading-relaxed">
             Our team is available by email every day to help you choose the right product, track your order, or resolve any issue.
@@ -63,14 +63,14 @@ export default function AboutPage() {
             <div className="flex items-start gap-3">
               <MapPin size={16} color="#D4AF37" className="shrink-0 mt-0.5" />
               <div>
-                <p className="text-white font-medium">Unit 7, Eagle Street</p>
-                <p className="text-gray-500">Okavango Park, Bellville, Cape Town</p>
+                <p className="text-white font-medium">36 Houer Road</p>
+                <p className="text-gray-500">City Deep, Johannesburg, 2197</p>
                 <p className="text-gray-500">South Africa</p>
               </div>
             </div>
             <div className="flex items-center gap-3">
               <Mail size={16} color="#D4AF37" className="shrink-0" />
-              <a href="mailto:daisygadgetsco@gmail.com" className="text-white hover:text-[#D4AF37] transition-colors">daisygadgetsco@gmail.com</a>
+              <a href="mailto:support@bevanssons.store" className="text-white hover:text-[#D4AF37] transition-colors">support@bevanssons.store</a>
             </div>
           </div>
         </div>

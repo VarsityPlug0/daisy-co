@@ -46,7 +46,7 @@ async function lookupOrder(ref: string): Promise<Message> {
       content: `**Order ${order.ref}**\n\nStatus: ${status}\n\n${items ? `Items:\n${items}\n\n` : ""}Total: R ${Number(order.total).toLocaleString()}`,
       actions: [
         { label: "Full tracking page", href: "/track-order" },
-        { label: "Email us for help", href: `mailto:daisygadgetsco@gmail.com?subject=Order%20${encodeURIComponent(order.ref)}`, external: true },
+        { label: "Email us for help", href: `mailto:support@bevanssons.store?subject=Order%20${encodeURIComponent(order.ref)}`, external: true },
       ],
     };
   } catch {
@@ -104,7 +104,7 @@ const GUIDED: Record<string, Message> = {
   },
   "contact support": {
     role: "assistant",
-    content: "Here's how to reach us:\n\n• **Email** — daisygadgetsco@gmail.com\n• **Address** — Unit 7 Eagle Street, Okavango Park, Bellville, Cape Town\n\nWe're available Mon–Sat 8am–6pm, Sun 9am–3pm.",
+    content: "Here's how to reach us:\n\n• **Email** — support@bevanssons.store\n• **Address** — 36 Houer Road, City Deep, Johannesburg, 2197\n\nWe're available Mon–Sat 8am–6pm, Sun 9am–3pm.",
     actions: [
       { label: "Send us a message", href: "/contact" },
     ],
@@ -142,7 +142,7 @@ export default function AIAssistant() {
   const [messages, setMessages] = useState<Message[]>([
     {
       role: "assistant",
-      content: "Hi! 👋 I'm the **Daisy Gadgets** support assistant. What can I help you with today?",
+      content: "Hi! 👋 I'm the **Bevanssons** support assistant. What can I help you with today?",
       actions: MENU_ITEMS.map(m => ({ label: m.label, action: m.key })),
     },
   ]);
@@ -342,7 +342,7 @@ export default function AIAssistant() {
               </div>
               <div>
                 <p style={{ fontFamily: "var(--font-outfit)", fontWeight: 800, fontSize: 14, color: "#0A0A0A" }}>
-                  Daisy Support
+                  Bevanssons Support
                 </p>
                 <div className="flex items-center gap-1.5 mt-0.5">
                   <div className="w-1.5 h-1.5 rounded-full bg-green-800 animate-pulse" />

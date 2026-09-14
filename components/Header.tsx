@@ -29,7 +29,7 @@ const clothingLinks = [
 
 function DaisyLogo() {
   return (
-    <Image src="/logo.jpg" alt="Daisy Gadgets Co." width={44} height={44} className="rounded-lg" />
+    <Image src="/logo.jpg" alt="Bevanssons" width={44} height={44} className="rounded-lg" />
   );
 }
 
@@ -112,7 +112,7 @@ export default function Header() {
             <DaisyLogo />
             <div>
               <p style={{ fontFamily: "var(--font-outfit)", fontWeight: 700, fontSize: 15, color: "#D4AF37", lineHeight: 1.2 }}>
-                Daisy Gadgets Co.
+                Bevanssons
               </p>
               <p style={{ fontSize: 9, color: "#6B7280", letterSpacing: "0.1em", textTransform: "uppercase" }}>Premium Gadgets</p>
             </div>

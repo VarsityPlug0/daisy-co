@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | Daisy Gadgets Co.",
+  title: "Privacy Policy | Bevanssons",
   description: "Our Privacy Policy explains how we collect, use, and protect your personal information in compliance with POPIA.",
 };
 
@@ -19,7 +19,7 @@ export default function PrivacyPage() {
         {[
           {
             title: "1. Introduction",
-            body: "Daisy Gadgets Co. is committed to protecting your privacy. This policy explains what personal information we collect, how we use it, and your rights under the Protection of Personal Information Act (POPIA).",
+            body: "Bevanssons is committed to protecting your privacy. This policy explains what personal information we collect, how we use it, and your rights under the Protection of Personal Information Act (POPIA).",
           },
           {
             title: "2. Information We Collect",
@@ -51,7 +51,7 @@ export default function PrivacyPage() {
           },
           {
             title: "9. Contact",
-            body: "To exercise your rights or for privacy questions, contact: daisygadgetsco@gmail.com.",
+            body: "To exercise your rights or for privacy questions, contact: support@bevanssons.store.",
           },
         ].map(({ title, body }) => (
           <div key={title}>

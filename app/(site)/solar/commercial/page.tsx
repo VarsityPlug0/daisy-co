@@ -7,7 +7,7 @@ import { getSiteImages } from "@/lib/siteImages";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Commercial Solar Systems — Offices, Retail & Factories | Daisy & Co.",
+  title: "Commercial Solar Systems — Offices, Retail & Factories | Bevanssons",
   description: "Commercial solar solutions for offices, shops, restaurants and factories. Eliminate load-shedding and reduce electricity costs by up to 90%. Custom quotes available.",
 };
 

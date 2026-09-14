@@ -3,9 +3,9 @@ import { useState } from "react";
 import { Send } from "lucide-react";
 
 const TEMPLATES = [
-  { label: "Follow-up",     subject: "Following up on your order — Daisy Gadgets Co.", body: "Hi {name},\n\nWe just wanted to check in and see how everything is going with your recent order.\n\nIf you have any questions or need support, we're always here to help!" },
-  { label: "Sale",          subject: "Exclusive offer just for you — Daisy Gadgets Co.", body: "Hi {name},\n\nWe have an exclusive sale running and thought of you!\n\nShop now and enjoy great savings on our latest products." },
-  { label: "Cart reminder", subject: "You left items in your cart — Daisy Gadgets Co.", body: "Hi {name},\n\nYou still have items waiting in your cart. Don't let them slip away — complete your purchase before they sell out!" },
+  { label: "Follow-up",     subject: "Following up on your order — Bevanssons", body: "Hi {name},\n\nWe just wanted to check in and see how everything is going with your recent order.\n\nIf you have any questions or need support, we're always here to help!" },
+  { label: "Sale",          subject: "Exclusive offer just for you — Bevanssons", body: "Hi {name},\n\nWe have an exclusive sale running and thought of you!\n\nShop now and enjoy great savings on our latest products." },
+  { label: "Cart reminder", subject: "You left items in your cart — Bevanssons", body: "Hi {name},\n\nYou still have items waiting in your cart. Don't let them slip away — complete your purchase before they sell out!" },
   { label: "Custom",        subject: "", body: "" },
 ];
 
@@ -23,7 +23,7 @@ export default function CustomerEmailSender({
   const [subject, setSubject] = useState(TEMPLATES[0].subject.replace("{name}", name.split(" ")[0]));
   const [body, setBody] = useState(TEMPLATES[0].body.replace("{name}", name.split(" ")[0]));
   const [ctaText, setCtaText] = useState("Shop Now");
-  const [ctaUrl, setCtaUrl] = useState("https://daisygadgetsco.com/shop");
+  const [ctaUrl, setCtaUrl] = useState("https://gadgets.bevanssons.store/shop");
   const [includeOrderItems, setIncludeOrderItems] = useState(false);
   const [includeCartItems, setIncludeCartItems] = useState(false);
   const [sending, setSending] = useState(false);

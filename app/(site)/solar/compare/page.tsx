@@ -4,8 +4,8 @@ import { Check, X } from "lucide-react";
 import ChatButton from "@/components/ChatButton";
 
 export const metadata: Metadata = {
-  title: "Compare Solar Packages — Essential, Premium & Business Pro | Daisy & Co.",
-  description: "Compare all Daisy & Co. solar packages side by side. See prices, inverter size, battery capacity, panel count, backup hours and warranty for every package.",
+  title: "Compare Solar Packages — Essential, Premium & Business Pro | Bevanssons",
+  description: "Compare all Bevanssons solar packages side by side. See prices, inverter size, battery capacity, panel count, backup hours and warranty for every package.",
 };
 
 const packages = [

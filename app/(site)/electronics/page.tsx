@@ -7,7 +7,7 @@ import ChatButton from "@/components/ChatButton";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Electronics Store — Smart TVs, Gaming & More | Daisy & Co.",
+  title: "Electronics Store — Smart TVs, Gaming & More | Bevanssons",
   description: "Shop smart TVs, PlayStation 5, Xbox, laptops, Bluetooth speakers and accessories at competitive prices. Fast delivery across South Africa.",
 };
 

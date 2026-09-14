@@ -7,7 +7,7 @@ import ChatButton from "@/components/ChatButton";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Residential Solar Packages — From R67,500 | Daisy & Co.",
+  title: "Residential Solar Packages — From R67,500 | Bevanssons",
   description: "Premium residential solar systems for South African homes. Essential, Premium and Business Home Pro packages with full installation, lithium batteries and monitoring.",
 };
 

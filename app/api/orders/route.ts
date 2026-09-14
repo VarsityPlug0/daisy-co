@@ -70,7 +70,7 @@ export async function POST(req: NextRequest) {
   const itemLines = order.items.map(i => `${i.name} × ${i.qty} — R ${parsePrice(i.price).toLocaleString()}`).join("\n");
   const discountLine = bulkDiscount > 0 ? `\nSubtotal: R${computedTotal.toLocaleString()}\nBulk Discount (25%): -R${Math.round(bulkDiscount).toLocaleString()}` : "";
   sendMail({
-    to: "daisygadgetsco@gmail.com, moneybman0@gmail.com",
+    to: "support@bevanssons.store, moneybman0@gmail.com",
     subject: `New Order ${order.ref} — R${finalTotal.toLocaleString()} — ${name}`,
     html: `<pre style="font-family:monospace;font-size:13px">New order received (awaiting PayFast payment).\n\nRef: ${order.ref}\nCustomer: ${name}\nEmail: ${email}\nPhone: ${phone}\nAddress: ${address || "—"}\n\nItems:\n${itemLines}${discountLine}\n\nTotal to collect: R${finalTotal.toLocaleString()}</pre>`,
   });

@@ -6,7 +6,7 @@ import { getSiteImages } from "@/lib/siteImages";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Inverters & Lithium Batteries — Backup Power | Daisy & Co.",
+  title: "Inverters & Lithium Batteries — Backup Power | Bevanssons",
   description: "Premium hybrid inverters (3kVA–8kVA) and lithium batteries (100Ah–200Ah+). Stay powered through load-shedding. Nationwide delivery across South Africa.",
 };
 

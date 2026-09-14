@@ -41,7 +41,7 @@ export async function POST(req: NextRequest) {
     const name = String(session.name || "Anonymous");
     const phone = String(session.phone || "—");
     sendMail({
-      to: "daisygadgetsco@gmail.com, moneybman0@gmail.com",
+      to: "support@bevanssons.store, moneybman0@gmail.com",
       subject: `💬 New Chat — ${name}`,
       html: `
         <div style="font-family:sans-serif;max-width:500px;margin:0 auto;background:#0A0A0A;border-radius:10px;padding:28px;color:#e5e7eb">
@@ -49,7 +49,7 @@ export async function POST(req: NextRequest) {
           <p style="margin:0 0 8px;color:#9ca3af">From: <strong style="color:#fff">${name}</strong></p>
           <p style="margin:0 0 8px;color:#9ca3af">Phone: <strong style="color:#fff">${phone}</strong></p>
           <p style="margin:0 0 20px;color:#9ca3af">Message: <strong style="color:#fff">${body.slice(0, 300)}</strong></p>
-          <a href="https://daisygadgetsco.com/admin/dashboard/chat" style="display:inline-block;background:#D4AF37;color:#000;font-weight:bold;text-decoration:none;padding:12px 24px;border-radius:8px">Reply in Admin</a>
+          <a href="https://gadgets.bevanssons.store/admin/dashboard/chat" style="display:inline-block;background:#D4AF37;color:#000;font-weight:bold;text-decoration:none;padding:12px 24px;border-radius:8px">Reply in Admin</a>
         </div>
       `,
     });

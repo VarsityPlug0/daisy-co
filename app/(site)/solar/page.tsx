@@ -6,7 +6,7 @@ import { getSiteImages } from "@/lib/siteImages";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Solar Solutions for Homes & Businesses | Daisy & Co.",
+  title: "Solar Solutions for Homes & Businesses | Bevanssons",
   description: "Residential solar, commercial solar, inverters and lithium batteries. Premium solar systems delivered and installed across all 9 provinces of South Africa.",
 };
 

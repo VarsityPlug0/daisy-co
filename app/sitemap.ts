@@ -3,7 +3,7 @@ import { getProducts } from "@/lib/products";
 
 export const dynamic = "force-dynamic";
 
-const BASE = "https://daisygadgetsco.com";
+const BASE = "https://gadgets.bevanssons.store";
 
 const STATIC_PAGES: MetadataRoute.Sitemap = [
   { url: BASE,                                lastModified: new Date(), changeFrequency: "weekly",  priority: 1.0 },

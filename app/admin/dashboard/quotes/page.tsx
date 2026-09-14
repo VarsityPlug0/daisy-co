@@ -65,7 +65,7 @@ export default async function AdminQuotesPage() {
 
               const waPhone = q.phone.replace(/[^0-9]/g, "");
               const waMsg = encodeURIComponent(
-                `Hi ${q.name}, this is Daisy & Co. regarding your quote request #${q.ref} for the ${q.recommendedPackage || "solar system"}. `
+                `Hi ${q.name}, this is Bevanssons regarding your quote request #${q.ref} for the ${q.recommendedPackage || "solar system"}. `
               );
 
               return (

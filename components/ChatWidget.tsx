@@ -189,7 +189,7 @@ export default function ChatWidget() {
                 <MessageCircle size={15} color={GOLD} />
               </div>
               <div>
-                <p className="text-white text-sm font-bold leading-none">Daisy Gadgets Co.</p>
+                <p className="text-white text-sm font-bold leading-none">Bevanssons</p>
                 <p className="text-green-400 text-[10px] mt-0.5">Online — we reply fast</p>
               </div>
             </div>
@@ -275,7 +275,7 @@ export default function ChatWidget() {
                       }
                     >
                       {msg.sender === "admin" && (
-                        <p className="text-[10px] font-bold mb-1" style={{ color: GOLD }}>Daisy Support</p>
+                        <p className="text-[10px] font-bold mb-1" style={{ color: GOLD }}>Bevanssons Support</p>
                       )}
                       <p>{msg.body}</p>
                       <p className="text-[10px] mt-1 opacity-60 text-right">{formatTime(msg.createdAt)}</p>

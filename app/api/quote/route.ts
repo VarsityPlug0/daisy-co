@@ -34,12 +34,12 @@ export async function POST(req: NextRequest) {
     try {
       const waNum = String(phone).replace(/[^0-9]/g, "");
       await transporter.sendMail({
-        from: "Daisy Gadgets Co. <noreply@daisygadgetsco.com>",
-        to: "daisygadgetsco@gmail.com, moneybman0@gmail.com",
+        from: "Bevanssons <noreply@bevanssons.store>",
+        to: "support@bevanssons.store, moneybman0@gmail.com",
         subject: `New Quote Request — ${esc(type)} — ${esc(name)}`,
         html: `
           <div style="font-family:sans-serif;max-width:600px;margin:0 auto;">
-            <h2 style="color:#D4AF37;">New Quote Request — Daisy Gadgets Co.</h2>
+            <h2 style="color:#D4AF37;">New Quote Request — Bevanssons</h2>
             <table style="width:100%;border-collapse:collapse;">
               <tr><td style="padding:8px 0;color:#666;width:120px">Name</td><td style="padding:8px 0;font-weight:600">${esc(name)}</td></tr>
               <tr><td style="padding:8px 0;color:#666">Phone</td><td style="padding:8px 0;font-weight:600">${esc(phone)}</td></tr>

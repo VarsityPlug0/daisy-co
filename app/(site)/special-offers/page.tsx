@@ -8,7 +8,7 @@ import AddToEnquiry from "@/app/(site)/shop/AddToEnquiry";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Special Offers — 30% OFF | Daisy Gadgets Co.",
+  title: "Special Offers — 30% OFF | Bevanssons",
   description: "Shop our August to December special — 30% OFF Home Appliances, Tablets & Watches. Free worldwide delivery. Orders over R10,000 get an extra 25% discount.",
 };
 

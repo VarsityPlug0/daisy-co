@@ -139,7 +139,7 @@ export default function TrackOrderPage() {
 
           <div className="bg-[#111111] border border-[#1F1F1F] rounded-2xl p-5 text-center">
             <p className="text-gray-400 text-sm mb-3">Need help with your order? Email us with your reference number.</p>
-            <a href={`mailto:daisygadgetsco@gmail.com?subject=Order%20${encodeURIComponent(order.ref)}`}
+            <a href={`mailto:support@bevanssons.store?subject=Order%20${encodeURIComponent(order.ref)}`}
               className="btn-gold px-8 py-3 rounded-xl font-bold text-sm">
               Email Us
             </a>
@@ -151,7 +151,7 @@ export default function TrackOrderPage() {
         <div className="bg-[#111111] border border-[#1F1F1F] rounded-2xl p-8 text-center">
           <Package size={40} color="#2a2a2a" strokeWidth={1} className="mx-auto mb-3" />
           <p className="text-gray-500 text-sm mb-4">Your order reference is in your confirmation email.</p>
-          <a href="mailto:daisygadgetsco@gmail.com"
+          <a href="mailto:support@bevanssons.store"
             className="text-[#D4AF37] text-sm font-semibold hover:underline">
             Can&apos;t find your reference? Email us
           </a>

@@ -8,7 +8,7 @@ import AddToEnquiry from "@/app/(site)/shop/AddToEnquiry";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "New Arrivals | Daisy Gadgets Co.",
+  title: "New Arrivals | Bevanssons",
   description: "Shop the latest gadgets just added to our store. New smartphones, TVs, gaming consoles, laptops and more.",
 };
 

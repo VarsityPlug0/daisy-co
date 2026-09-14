@@ -13,8 +13,8 @@ const DARK        = "#111111";
 const DARK2       = "#161616";
 const BORDER      = "#1F1F1F";
 const MUTED       = "#6b7280";
-const SITE        = "https://daisygadgetsco.com";
-const SUPPORT_EMAIL = "daisygadgetsco@gmail.com";
+const SITE        = "https://gadgets.bevanssons.store";
+const SUPPORT_EMAIL = "support@bevanssons.store";
 
 
 function createTransporter() {
@@ -37,8 +37,8 @@ function createTransporter() {
 
 function fromAddress() {
   return process.env.RESEND_API_KEY
-    ? `"Daisy Gadgets Co." <noreply@daisygadgetsco.com>`
-    : `"Daisy Gadgets Co." <${process.env.MAIL_USER ?? "noreply@daisygadgetsco.com"}>`;
+    ? `"Bevanssons" <noreply@bevanssons.store>`
+    : `"Bevanssons" <${process.env.MAIL_USER ?? "noreply@bevanssons.store"}>`;
 }
 
 type MailAttachment =
@@ -105,7 +105,7 @@ function layout(content: string, accentBar = ""): string {
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Daisy Gadgets Co.</title>
+  <title>Bevanssons</title>
 </head>
 <body style="margin:0;padding:0;background:${BLACK};font-family:'Helvetica Neue',Helvetica,Arial,sans-serif">
   <table width="100%" cellpadding="0" cellspacing="0" style="background:${BLACK};padding:28px 16px">
@@ -121,10 +121,10 @@ function layout(content: string, accentBar = ""): string {
             <table width="100%" cellpadding="0" cellspacing="0">
               <tr>
                 <td>
-                  <img src="cid:${LOGO_CID}" alt="Daisy Gadgets Co." height="44" style="height:44px;width:auto;display:block;border:0" />
+                  <img src="cid:${LOGO_CID}" alt="Bevanssons" height="44" style="height:44px;width:auto;display:block;border:0" />
                 </td>
                 <td align="right">
-                  <a href="${SITE}" style="color:${MUTED};font-size:12px;text-decoration:none">daisygadgetsco.com</a>
+                  <a href="${SITE}" style="color:${MUTED};font-size:12px;text-decoration:none">gadgets.bevanssons.store</a>
                 </td>
               </tr>
             </table>
@@ -145,12 +145,12 @@ function layout(content: string, accentBar = ""): string {
           <td style="background:${BLACK};padding:24px 36px;border-top:1px solid ${BORDER}">
             <p style="margin:0 0 8px;color:${MUTED};font-size:12px;text-align:center">
               Questions? &nbsp;
-              <a href="mailto:daisygadgetsco@gmail.com" style="color:${GOLD};text-decoration:none;font-weight:600">daisygadgetsco@gmail.com</a>
+              <a href="mailto:support@bevanssons.store" style="color:${GOLD};text-decoration:none;font-weight:600">support@bevanssons.store</a>
               &nbsp;·&nbsp;
-              <a href="${SITE}" style="color:${GOLD};text-decoration:none;font-weight:600">daisygadgetsco.com</a>
+              <a href="${SITE}" style="color:${GOLD};text-decoration:none;font-weight:600">gadgets.bevanssons.store</a>
             </p>
             <p style="margin:0;color:#333;font-size:11px;text-align:center">
-              © ${new Date().getFullYear()} Daisy Gadgets Co. · All rights reserved.
+              © ${new Date().getFullYear()} Bevanssons · All rights reserved.
             </p>
           </td>
         </tr>
@@ -294,7 +294,7 @@ export async function sendOrderConfirmation(data: OrderEmailData) {
     </div>
   `);
 
-  await sendMail({ to: data.email, subject: `Order Confirmed ✨ — ${data.ref} | Daisy Gadgets Co.`, html, attachments: imgAttachments });
+  await sendMail({ to: data.email, subject: `Order Confirmed ✨ — ${data.ref} | Bevanssons`, html, attachments: imgAttachments });
 }
 
 // ─── 2. Proof Acknowledgement ─────────────────────────────────────────────────
@@ -315,7 +315,7 @@ export async function sendProofAcknowledgement(data: { name: string; email: stri
     <p style="color:#9ca3af;font-size:14px;margin:0 0 20px">Need help or want to check in?</p>
     ${btn("Email Us", `mailto:${SUPPORT_EMAIL}?subject=Order%20${data.ref}`, GOLD, BLACK)}
   `);
-  await sendMail({ to: data.email, subject: `Payment Proof Received — ${data.ref} | Daisy Gadgets Co.`, html });
+  await sendMail({ to: data.email, subject: `Payment Proof Received — ${data.ref} | Bevanssons`, html });
 }
 
 // ─── 3. Rejection Email ──────────────────────────────────────────────────────
@@ -422,7 +422,7 @@ export async function sendRejectionEmail(data: RejectionEmailData) {
     </div>
   `);
 
-  await sendMail({ to: data.email, subject: `⚠️ Action Required — ${data.ref} | Daisy Gadgets Co.`, html, attachments: imgAttachments });
+  await sendMail({ to: data.email, subject: `⚠️ Action Required — ${data.ref} | Bevanssons`, html, attachments: imgAttachments });
 }
 
 // ─── 4. Order Status Updates ──────────────────────────────────────────────────
@@ -445,7 +445,7 @@ const STATUS_CONTENT: Record<string, { pill: [string, string]; title: string; bo
     pill: ["Delivered", GOLD],
     icon: "🎁",
     title: "Your order has been delivered!",
-    body: "We are delighted to confirm that your Daisy Gadgets Co. order has been successfully delivered.\n\nThank you for trusting Daisy Gadgets Co. with your purchase. We hope you are completely satisfied with your order. If you experience any issue with the product or require assistance after delivery, please contact our customer support team and we will be happy to assist.\n\nWe would also appreciate your feedback about your shopping experience with us.\n\nThank you for choosing Daisy Gadgets Co. — Smart Tech. Better Living.",
+    body: "We are delighted to confirm that your Bevanssons order has been successfully delivered.\n\nThank you for trusting Bevanssons with your purchase. We hope you are completely satisfied with your order. If you experience any issue with the product or require assistance after delivery, please contact our customer support team and we will be happy to assist.\n\nWe would also appreciate your feedback about your shopping experience with us.\n\nThank you for choosing Bevanssons — Smart Tech. Better Living.",
     cta: ["⭐ Leave a Review", `${SITE}/reviews`],
   },
 };
@@ -490,8 +490,8 @@ export async function sendStatusUpdate(data: { name: string; email: string; ref:
     : "";
 
   const subjects: Record<string, string> = {
-    approved:  `Payment Approved — ${data.ref} | Daisy Gadgets Co.`,
-    rejected:  `Action Required — ${data.ref} | Daisy Gadgets Co.`,
+    approved:  `Payment Approved — ${data.ref} | Bevanssons`,
+    rejected:  `Action Required — ${data.ref} | Bevanssons`,
     shipped:   `Your Order Has Been Shipped – #${data.ref}`,
     delivered: `Order Successfully Delivered – #${data.ref}`,
   };
@@ -521,14 +521,14 @@ export const TRACKING_TEMPLATES: Record<string, {
   processing: {
     icon: "⚙️", pillText: "Being Prepared", pillColor: "#8b5cf6",
     title: "Your order is being prepared",
-    subject: "Your Order Is Being Prepared – Daisy Gadgets Co.",
+    subject: "Your Order Is Being Prepared – Bevanssons",
     defaultMessage: "We are pleased to confirm that your order has been successfully confirmed and is now being prepared by our fulfilment team.\n\nOur team is carefully preparing your order to ensure everything is correct before it moves to the next stage.\n\nWe will notify you as soon as your order is ready for packing.",
     stage: 2,
   },
   packed: {
     icon: "📦", pillText: "Being Packed", pillColor: "#3b82f6",
     title: "Your order is being packed",
-    subject: "Your Order Is Being Packed – Daisy Gadgets Co.",
+    subject: "Your Order Is Being Packed – Bevanssons",
     defaultMessage: "Your order has successfully moved to the packing stage.\n\nOur fulfilment team is currently checking and securely packaging your order to ensure that it is properly prepared for transportation.\n\nOnce packing and final quality checks are completed, your order will proceed to shipping. You will receive another notification when your order has been dispatched.",
     stage: 3,
   },
@@ -536,20 +536,20 @@ export const TRACKING_TEMPLATES: Record<string, {
     icon: "🏠", pillText: "Out for Delivery", pillColor: "#10b981",
     title: "Your order is out for delivery today!",
     subject: "Your Order Is Out for Delivery Today",
-    defaultMessage: "Great news. Your Daisy Gadgets Co. order is now out for delivery.\n\nYour assigned delivery driver is currently completing the delivery route and will contact you directly when they are approaching your location.\n\nKindly keep your phone available and ensure that someone is available to receive the order.\n\nPlease note: Delivery times may vary depending on the driver's route, traffic and other scheduled deliveries.\n\nWe appreciate your patience and look forward to completing your delivery successfully.",
+    defaultMessage: "Great news. Your Bevanssons order is now out for delivery.\n\nYour assigned delivery driver is currently completing the delivery route and will contact you directly when they are approaching your location.\n\nKindly keep your phone available and ensure that someone is available to receive the order.\n\nPlease note: Delivery times may vary depending on the driver's route, traffic and other scheduled deliveries.\n\nWe appreciate your patience and look forward to completing your delivery successfully.",
     stage: 5,
   },
   delayed: {
     icon: "⏳", pillText: "Slight Delay", pillColor: "#f59e0b",
     title: "A small update on your order",
-    subject: "Update on Your Order – Daisy Gadgets Co.",
+    subject: "Update on Your Order – Bevanssons",
     defaultMessage: "We would like to inform you that there has been a slight delay with your order. We sincerely apologise for any inconvenience this may cause.\n\nOur team is working to resolve this as quickly as possible and your order will be on its way shortly. We will keep you updated with any further changes.",
     stage: -1,
   },
   custom: {
     icon: "📬", pillText: "Update", pillColor: GOLD,
     title: "An update on your order",
-    subject: "Update on Your Order – Daisy Gadgets Co.",
+    subject: "Update on Your Order – Bevanssons",
     defaultMessage: "",
     stage: -1,
   },
@@ -652,7 +652,7 @@ export async function sendQuoteReply(data: { name: string; email: string; ref: s
     ${btn("Ask a Question", `mailto:${SUPPORT_EMAIL}?subject=Question%20about%20quote%20${data.ref}`, GOLD, BLACK)}
   `);
 
-  await sendMail({ to: data.email, subject: `Your Quote — ${data.ref} | Daisy Gadgets Co.`, html });
+  await sendMail({ to: data.email, subject: `Your Quote — ${data.ref} | Bevanssons`, html });
 }
 
 // ─── Credit Emails ───────────────────────────────────────────────────────────
@@ -672,7 +672,7 @@ export async function sendCreditOtp(data: { email: string; otp: string; purpose:
     </div>
     <p style="margin:0;color:#4b5563;font-size:13px">If you did not request this code, please ignore this email.</p>
   `);
-  await sendMail({ to: data.email, subject: `Your OTP: ${data.otp} — Daisy Gadgets Co.`, html });
+  await sendMail({ to: data.email, subject: `Your OTP: ${data.otp} — Bevanssons`, html });
 }
 
 export async function sendCreditApplicationReceived(data: { name: string; email: string; ref: string; amount: number; term: number }) {
@@ -694,7 +694,7 @@ export async function sendCreditApplicationReceived(data: { name: string; email:
     <p style="color:#9ca3af;font-size:14px;margin:0 0 20px">Questions? Contact us by email.</p>
     ${btn("Email Us", `mailto:${SUPPORT_EMAIL}?subject=Credit%20application%20${data.ref}`, GOLD, BLACK)}
   `);
-  await sendMail({ to: data.email, subject: `Credit Application Received — ${data.ref} | Daisy Gadgets Co.`, html });
+  await sendMail({ to: data.email, subject: `Credit Application Received — ${data.ref} | Bevanssons`, html });
 }
 
 export async function sendCreditApproved(data: { name: string; email: string; ref: string; creditLimit: number }) {
@@ -720,7 +720,7 @@ export async function sendCreditApproved(data: { name: string; email: string; re
       ${btn("Shop Now", `${SITE}/shop`, "#161616", GOLD)}
     </div>
   `);
-  await sendMail({ to: data.email, subject: `Your Credit is Approved — R${data.creditLimit.toLocaleString("en-ZA")} | Daisy Gadgets Co.`, html });
+  await sendMail({ to: data.email, subject: `Your Credit is Approved — R${data.creditLimit.toLocaleString("en-ZA")} | Bevanssons`, html });
 }
 
 export async function sendCreditRejected(data: { name: string; email: string; ref: string; reason?: string }) {
@@ -744,7 +744,7 @@ export async function sendCreditRejected(data: { name: string; email: string; re
     &nbsp;&nbsp;
     ${btn("Email Us", `mailto:${SUPPORT_EMAIL}`, GOLD, BLACK)}
   `);
-  await sendMail({ to: data.email, subject: `Credit Application Update — ${data.ref} | Daisy Gadgets Co.`, html });
+  await sendMail({ to: data.email, subject: `Credit Application Update — ${data.ref} | Bevanssons`, html });
 }
 
 export async function sendCreditOrderConfirmed(data: {
@@ -794,7 +794,7 @@ export async function sendCreditOrderConfirmed(data: {
     </div>
     ${btn("View My Account", `${SITE}/credit/account`, GOLD, BLACK)}
   `);
-  await sendMail({ to: data.email, subject: `Credit Order Confirmed — ${data.orderRef} | Daisy Gadgets Co.`, html });
+  await sendMail({ to: data.email, subject: `Credit Order Confirmed — ${data.orderRef} | Bevanssons`, html });
 }
 
 // ─── 5. Welcome / Discount Code ──────────────────────────────────────────────
@@ -804,12 +804,12 @@ export async function sendWelcomeEmail(data: { name: string; email: string }) {
     <h1 style="margin:6px 0 10px;color:#f9fafb;font-size:28px;font-weight:900">
       ✨ You are in${data.name ? `, ${data.name.split(" ")[0]}` : ""}!
     </h1>
-    <p style="margin:0 0 28px;color:#9ca3af;font-size:15px;line-height:1.6">Thank you for joining the Daisy Gadgets Co. family. Here is your exclusive first-order discount code:</p>
+    <p style="margin:0 0 28px;color:#9ca3af;font-size:15px;line-height:1.6">Thank you for joining the Bevanssons family. Here is your exclusive first-order discount code:</p>
 
     <!-- Code card -->
     <div style="background:${BLACK};border:1px solid ${GOLD}55;border-radius:14px;padding:32px;text-align:center;margin-bottom:28px">
       ${label("Your Exclusive Discount Code")}
-      <p style="margin:12px 0;color:${GOLD};font-size:40px;font-weight:900;letter-spacing:0.15em;font-family:monospace">DAISY25</p>
+      <p style="margin:12px 0;color:${GOLD};font-size:40px;font-weight:900;letter-spacing:0.15em;font-family:monospace">BEVANS25</p>
       <div style="height:1px;background:${BORDER};margin:16px 0"></div>
       <p style="margin:0;color:${MUTED};font-size:13px;line-height:1.6">💎 25% off your first order — mention this code by email<br>when placing your order. Valid for all products.</p>
     </div>
@@ -817,10 +817,10 @@ export async function sendWelcomeEmail(data: { name: string; email: string }) {
     <p style="color:#9ca3af;font-size:14px;margin:0 0 20px">Browse our full range of gadgets, appliances, solar solutions and more:</p>
     ${btn("🛍️ Shop Now", `${SITE}/shop`)}
     &nbsp;&nbsp;
-    ${btn("✉️ Claim via Email", `mailto:${SUPPORT_EMAIL}?subject=Discount%20code%20DAISY25`, GOLD, BLACK)}
+    ${btn("✉️ Claim via Email", `mailto:${SUPPORT_EMAIL}?subject=Discount%20code%20BEVANS25`, GOLD, BLACK)}
   `);
 
-  await sendMail({ to: data.email, subject: "✨ Your 25% Discount Code — Daisy Gadgets Co.", html });
+  await sendMail({ to: data.email, subject: "✨ Your 25% Discount Code — Bevanssons", html });
 }
 
 // ─── Installment: Approval + Invoice ─────────────────────────────────────────
@@ -845,7 +845,7 @@ export async function sendInstallmentApproval(data: {
     <tr>
       <td colspan="2" style="padding:10px 0 4px;color:${MUTED};font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;border-top:1px solid ${BORDER}">TymeBank / GoTymeBank</td>
     </tr>
-    ${infoRow("Account Holder", "Daisy Gadgets Co.")}
+    ${infoRow("Account Holder", "Bevanssons")}
     ${infoRow("Account Type", "Business Account")}
     ${infoRow("Account Number", "51072673949")}
     ${infoRow("Branch Code", "678910")}
@@ -909,7 +909,7 @@ export async function sendInstallmentApproval(data: {
 
   await sendMail({
     to: data.email,
-    subject: `✅ Installment Approved — ${data.ref} | Daisy Gadgets Co.`,
+    subject: `✅ Installment Approved — ${data.ref} | Bevanssons`,
     html,
   });
 }
@@ -974,7 +974,7 @@ function bankDetailsBlock(ref: string) {
       <p style="margin:0 0 12px;color:#d1d5db;font-size:13px;line-height:1.6">Use <strong style="color:#fff">${ref}</strong> as your payment reference.</p>
       <table width="100%" cellpadding="0" cellspacing="0">
         <tr><td colspan="2" style="padding:6px 0 2px;color:${MUTED};font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em">TymeBank / GoTymeBank</td></tr>
-        ${infoRow("Account", "Daisy Gadgets Co.")}
+        ${infoRow("Account", "Bevanssons")}
         ${infoRow("Account No.", "51072673949")}
         ${infoRow("Branch", "678910")}
       </table>
@@ -1014,7 +1014,7 @@ export async function sendInstallmentReviewing(data: InstallmentUpdateBase) {
 
   await sendMail({
     to: data.email,
-    subject: `Application Under Review — ${data.ref} | Daisy Gadgets Co.`,
+    subject: `Application Under Review — ${data.ref} | Bevanssons`,
     html,
   });
 }
@@ -1048,7 +1048,7 @@ export async function sendInstallmentAwaitingPayment(data: InstallmentUpdateBase
 
   await sendMail({
     to: data.email,
-    subject: `Deposit Required — ${data.ref} | Daisy Gadgets Co.`,
+    subject: `Deposit Required — ${data.ref} | Bevanssons`,
     html,
   });
 }
@@ -1090,7 +1090,7 @@ export async function sendInstallmentActive(data: InstallmentUpdateBase) {
 
   await sendMail({
     to: data.email,
-    subject: `Plan Activated — ${data.ref} | Daisy Gadgets Co.`,
+    subject: `Plan Activated — ${data.ref} | Bevanssons`,
     html,
   });
 }
@@ -1104,7 +1104,7 @@ export async function sendInstallmentCompleted(data: InstallmentUpdateBase) {
     ${installmentRefCard(data.ref, data.product_name)}
 
     <p style="color:#9ca3af;font-size:14px;line-height:1.7;margin:0 0 20px">
-      You have successfully completed all payments on your installment plan. Thank you for trusting Daisy Gadgets Co. — we truly appreciate your commitment.
+      You have successfully completed all payments on your installment plan. Thank you for trusting Bevanssons — we truly appreciate your commitment.
     </p>
 
     <div style="background:#D4AF3711;border:1px solid #D4AF3744;border-radius:12px;padding:20px;margin-bottom:24px;text-align:center">
@@ -1127,7 +1127,7 @@ export async function sendInstallmentCompleted(data: InstallmentUpdateBase) {
 
   await sendMail({
     to: data.email,
-    subject: `Plan Complete — ${data.ref} | Daisy Gadgets Co.`,
+    subject: `Plan Complete — ${data.ref} | Bevanssons`,
     html,
   });
 }
@@ -1171,7 +1171,7 @@ export async function sendInstallmentDeclined(data: InstallmentUpdateBase) {
 
   await sendMail({
     to: data.email,
-    subject: `Application Update — ${data.ref} | Daisy Gadgets Co.`,
+    subject: `Application Update — ${data.ref} | Bevanssons`,
     html,
   });
 }
@@ -1235,7 +1235,7 @@ export async function sendClearCartReminder(data: {
 
   await sendMail({
     to: data.email,
-    subject: `Order ${data.ref} received — clear your cart | Daisy Gadgets Co.`,
+    subject: `Order ${data.ref} received — clear your cart | Bevanssons`,
     html: layout(content),
     attachments: imgAttachments,
   });
@@ -1362,7 +1362,7 @@ export async function sendCampaignEmail(data: {
     ${productSection}
     ${divider()}
     <p style="margin:0;color:${MUTED};font-size:12px;text-align:center">
-      You received this because you placed an order with Daisy Gadgets Co.
+      You received this because you placed an order with Bevanssons
     </p>
     ${pixel}
   `;

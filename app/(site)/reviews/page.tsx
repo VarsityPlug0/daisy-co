@@ -3,8 +3,8 @@ import Link from "next/link";
 import { Star } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Customer Reviews | Daisy Gadgets Co.",
-  description: "Read real customer reviews and testimonials for Daisy Gadgets Co. Trusted by hundreds of happy customers across South Africa.",
+  title: "Customer Reviews | Bevanssons",
+  description: "Read real customer reviews and testimonials for Bevanssons Trusted by hundreds of happy customers across South Africa.",
 };
 
 const reviews = [
@@ -15,7 +15,7 @@ const reviews = [
   { name: "Naledi B.",   location: "Bloemfontein",   product: "MacBook Pro M3",          stars: 5, date: "Nov 2024", text: "Bought a MacBook Pro for design work. Arrived sealed with full warranty. Price was unbeatable with the 30% discount. Will recommend to everyone." },
   { name: "James T.",    location: "Port Elizabeth", product: "Xbox Series X",           stars: 5, date: "Oct 2024", text: "Smooth transaction from start to finish. Got an Xbox Series X at a great price. EFT payment was straightforward and they confirmed within 2 hours. Fast delivery too!" },
   { name: "Priya N.",    location: "Sandton",        product: "Samsung Galaxy S24 Ultra", stars: 5, date: "Dec 2024", text: "Legitimate sealed Samsung phone. Paid via EFT and uploaded proof — confirmed within the hour. Delivered the next morning. Absolutely brilliant service." },
-  { name: "Calvin O.",   location: "Soweto",         product: "LG 55\" OLED TV",         stars: 5, date: "Aug 2024", text: "First time ordering from Daisy Gadgets. Was nervous but they kept me updated every step of the way via WhatsApp. TV arrived perfect. 10/10 experience." },
+  { name: "Calvin O.",   location: "Soweto",         product: "LG 55\" OLED TV",         stars: 5, date: "Aug 2024", text: "First time ordering from Bevanssons. Was nervous but they kept me updated every step of the way via WhatsApp. TV arrived perfect. 10/10 experience." },
   { name: "Fatima A.",   location: "Cape Town",      product: "iPhone 14",               stars: 5, date: "Sep 2024", text: "Got an iPhone 14 for my mom as a gift. It arrived gift-wrapped in the original box. She was thrilled! Fast delivery and great prices." },
   { name: "Derek H.",    location: "Polokwane",      product: "Hisense 75\" TV",         stars: 5, date: "Jul 2024", text: "Great experience! Big screen TV delivered to Limpopo without any issues. Well-packaged and arrived in perfect condition. Customer service was top notch." },
   { name: "Zanele M.",   location: "East London",    product: "Dell Gaming Laptop",      stars: 5, date: "Dec 2024", text: "Ordered a gaming laptop for my son as a Christmas gift. Arrived ahead of schedule. Great quality product at a fantastic price with the discount applied." },

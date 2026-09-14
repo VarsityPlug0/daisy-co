@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Truck, MapPin, Clock, Globe, Package } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Delivery Information | Daisy Gadgets Co.",
+  title: "Delivery Information | Bevanssons",
   description: "Learn about our delivery options, timeframes, and shipping coverage. Same-day delivery in South Africa. Worldwide shipping available.",
 };
 

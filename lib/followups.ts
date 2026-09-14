@@ -2,7 +2,7 @@ import { randomUUID } from "crypto";
 import { getDb } from "./db";
 import { sendCampaignEmail } from "./mailer";
 
-const SITE = "https://daisygadgetsco.com";
+const SITE = "https://gadgets.bevanssons.store";
 
 type OrderItem = { id: string; name: string; price: string; qty: number; imageUrl?: string };
 
@@ -74,7 +74,7 @@ export async function runFollowUps(): Promise<{ sent: number; skipped: number }>
 
     const sendId = randomUUID();
     const firstName = (row.name ?? "there").split(" ")[0];
-    const subject = `${firstName}, you left something behind — Daisy Gadgets Co.`;
+    const subject = `${firstName}, you left something behind — Bevanssons`;
     const encoded = Buffer.from(JSON.stringify(items)).toString("base64");
     const restoreUrl = `${SITE}/restore-cart?items=${encoded}`;
 
@@ -111,7 +111,7 @@ export async function runFollowUps(): Promise<{ sent: number; skipped: number }>
 
     const sendId = randomUUID();
     const firstName = order.name.split(" ")[0];
-    const subject = `How was your order, ${firstName}? — Daisy Gadgets Co.`;
+    const subject = `How was your order, ${firstName}? — Bevanssons`;
 
     try {
       await sendCampaignEmail({
@@ -146,7 +146,7 @@ export async function runFollowUps(): Promise<{ sent: number; skipped: number }>
 
     const sendId = randomUUID();
     const firstName = customer.name.split(" ")[0];
-    const subject = `We miss you, ${firstName}! — Daisy Gadgets Co.`;
+    const subject = `We miss you, ${firstName}! — Bevanssons`;
 
     try {
       await sendCampaignEmail({

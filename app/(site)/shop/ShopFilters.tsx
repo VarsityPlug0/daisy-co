@@ -175,7 +175,7 @@ export default function ShopFilters({ total }: { total: number }) {
             </div>
           </div>
           <a
-            href="mailto:daisygadgetsco@gmail.com?subject=Clothing%20drop%20enquiry"
+            href="mailto:support@bevanssons.store?subject=Clothing%20drop%20enquiry"
             className="btn-gold px-4 py-2 rounded-xl text-xs font-bold shrink-0"
           >
             Pre-Order Enquiry

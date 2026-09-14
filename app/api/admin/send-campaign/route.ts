@@ -65,7 +65,7 @@ export async function POST(req: NextRequest) {
       if (cartItems?.length) {
         orderItems = cartItems as OrderItem[];
         const encoded = Buffer.from(JSON.stringify(orderItems)).toString("base64");
-        restoreCartUrl = `https://daisygadgetsco.com/restore-cart?items=${encoded}`;
+        restoreCartUrl = `https://gadgets.bevanssons.store/restore-cart?items=${encoded}`;
       } else if (includeOrderItems) {
         const row = lastOrderStmt.get(t.email.toLowerCase()) as
           { items: string; ref: string; createdAt: string } | undefined;
@@ -73,7 +73,7 @@ export async function POST(req: NextRequest) {
           orderItems = JSON.parse(row.items) as OrderItem[];
           orderRef = row.ref;
           const encoded = Buffer.from(JSON.stringify(orderItems)).toString("base64");
-          restoreCartUrl = `https://daisygadgetsco.com/restore-cart?items=${encoded}`;
+          restoreCartUrl = `https://gadgets.bevanssons.store/restore-cart?items=${encoded}`;
         }
       }
 

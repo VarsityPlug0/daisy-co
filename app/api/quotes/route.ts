@@ -50,8 +50,8 @@ export async function POST(req: NextRequest) {
         : "—";
 
       await transporter.sendMail({
-        from: "Daisy Gadgets Co. <noreply@daisygadgetsco.com>",
-        to: "daisygadgetsco@gmail.com, moneybman0@gmail.com",
+        from: "Bevanssons <noreply@bevanssons.store>",
+        to: "support@bevanssons.store, moneybman0@gmail.com",
         subject: `New Quote #${quote.ref} — ${esc(recommendedPackage) || "Solar Enquiry"} — ${esc(name)}`,
         html: `
           <div style="font-family:sans-serif;max-width:620px;margin:0 auto;color:#333">

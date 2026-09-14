@@ -14,7 +14,7 @@ const navItems = [
 
 function DaisyLogo() {
   return (
-    <Image src="/logo.jpg" alt="Daisy Gadgets Co." width={44} height={44} className="rounded-lg" />
+    <Image src="/logo.jpg" alt="Bevanssons" width={44} height={44} className="rounded-lg" />
   );
 }
 
@@ -34,7 +34,7 @@ export default function Footer() {
                 <DaisyLogo />
                 <div>
                   <p style={{ fontFamily: "var(--font-outfit)", fontWeight: 700, fontSize: 15, color: "#D4AF37", lineHeight: 1.2 }}>
-                    Daisy Gadgets Co.
+                    Bevanssons
                   </p>
                   <p style={{ fontSize: 9, color: "#6B7280", letterSpacing: "0.08em", textTransform: "uppercase" }}>
                     Premium Gadgets
@@ -49,7 +49,7 @@ export default function Footer() {
                 <div className="space-y-1">
                   {[
                     ["Bank", "TymeBank / GoTymeBank"],
-                    ["Account Holder", "Daisy Gadgets Co."],
+                    ["Account Holder", "Bevanssons"],
                     ["Account Type", "Business Account"],
                     ["Account No.", "51072673949"],
                     ["Branch Code", "678910"],
@@ -134,8 +134,8 @@ export default function Footer() {
                     <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
                     <polyline points="22,6 12,13 2,6"/>
                   </svg>
-                  <a href="mailto:daisygadgetsco@gmail.com" className="text-white font-medium hover:text-[#D4AF37] transition-colors">
-                    daisygadgetsco@gmail.com
+                  <a href="mailto:support@bevanssons.store" className="text-white font-medium hover:text-[#D4AF37] transition-colors">
+                    support@bevanssons.store
                   </a>
                 </li>
                 <li className="flex items-start gap-2.5">
@@ -144,8 +144,8 @@ export default function Footer() {
                     <circle cx="12" cy="10" r="3"/>
                   </svg>
                   <div>
-                    <p className="text-white font-medium">Bellville, Cape Town</p>
-                    <p>Unit 7, Eagle Street, Okavango Park</p>
+                    <p className="text-white font-medium">City Deep, Johannesburg</p>
+                    <p>36 Houer Road</p>
                   </div>
                 </li>
               </ul>
@@ -177,8 +177,8 @@ export default function Footer() {
 
           <div className="gold-divider mt-10 mb-5" />
           <p className="text-center text-gray-600 text-xs">
-            &copy; {new Date().getFullYear()} Daisy Gadgets Co. All Rights Reserved. &nbsp;|&nbsp;
-            Unit 7, Eagle Street, Okavango Park, Bellville, Cape Town, South Africa
+            &copy; {new Date().getFullYear()} Bevanssons. All Rights Reserved. &nbsp;|&nbsp; Reg: 2023/116995/07 &nbsp;|&nbsp;
+            36 Houer Road, City Deep, Johannesburg, 2197, South Africa
           </p>
         </div>
       </footer>

@@ -220,7 +220,7 @@ export default function CustomersPage() {
                         <User size={15} />
                       </Link>
                       <a
-                        href={`https://wa.me/${toWaPhone(customer.phone)}?text=${encodeURIComponent(`Hi ${customer.name.split(" ")[0]}, this is Daisy Gadgets Co. `)}`}
+                        href={`https://wa.me/${toWaPhone(customer.phone)}?text=${encodeURIComponent(`Hi ${customer.name.split(" ")[0]}, this is Bevanssons `)}`}
                         target="_blank" rel="noopener noreferrer"
                         className="p-2 rounded-lg text-gray-500 hover:text-[#25D366] hover:bg-[#25D366]/10 transition-colors">
                         <MessageCircle size={15} />
