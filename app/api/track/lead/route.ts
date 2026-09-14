@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getDb } from "@/lib/db";
+import { createLeadOutboxEvent } from "@/lib/outbox";
 import { sendMail, sendWelcomeEmail } from "@/lib/mailer";
 
 export async function POST(req: NextRequest) {
@@ -13,33 +14,41 @@ export async function POST(req: NextRequest) {
   const db = getDb();
   const now = new Date().toISOString();
 
-  db.prepare(`
-    INSERT INTO visitors (id, name, phone, email, createdAt)
-    VALUES (?, ?, ?, ?, ?)
-    ON CONFLICT(id) DO UPDATE SET
-      name  = excluded.name,
-      phone = excluded.phone,
-      email = excluded.email
-  `).run(
-    String(visitorId).slice(0, 64),
-    String(name ?? "").slice(0, 200),
-    String(phone ?? "").slice(0, 50),
-    String(email ?? "").slice(0, 200),
-    now,
-  );
+  const lead = {
+    id: String(visitorId).slice(0, 64),
+    name: String(name ?? "").slice(0, 200),
+    email: String(email ?? "").slice(0, 200),
+    phone: String(phone ?? "").slice(0, 50),
+    message: "Lead captured via 20% off popup",
+    productInterest: "General",
+    createdAt: now,
+  };
 
-  db.prepare(`
-    INSERT OR IGNORE INTO leads (id, name, email, phone, message, productInterest, createdAt)
-    VALUES (?, ?, ?, ?, ?, ?, ?)
-  `).run(
-    visitorId,
-    String(name ?? "").slice(0, 200),
-    String(email ?? "").slice(0, 200),
-    String(phone ?? "").slice(0, 50),
-    "Lead captured via 20% off popup",
-    "General",
-    now,
-  );
+  // Visitor upsert + conditional lead insert + outbox event, all in one
+  // transaction. INSERT OR IGNORE preserves existing behavior (same
+  // visitorId submitting twice is not a new lead) — result.changes tells
+  // us whether a row was actually inserted, so we never emit an outbox
+  // event for a no-op: "if the event exists, it must correspond to an
+  // actual committed local lead."
+  db.transaction(() => {
+    db.prepare(`
+      INSERT INTO visitors (id, name, phone, email, createdAt)
+      VALUES (?, ?, ?, ?, ?)
+      ON CONFLICT(id) DO UPDATE SET
+        name  = excluded.name,
+        phone = excluded.phone,
+        email = excluded.email
+    `).run(lead.id, lead.name, lead.phone, lead.email, now);
+
+    const result = db.prepare(`
+      INSERT OR IGNORE INTO leads (id, name, email, phone, message, productInterest, createdAt)
+      VALUES (?, ?, ?, ?, ?, ?, ?)
+    `).run(lead.id, lead.name, lead.email, lead.phone, lead.message, lead.productInterest, lead.createdAt);
+
+    if (result.changes > 0) {
+      createLeadOutboxEvent(db, lead);
+    }
+  })();
 
   const waNum = String(phone ?? "").replace(/[^0-9]/g, "");
 

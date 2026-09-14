@@ -1,4 +1,4 @@
-module.exports=[94689,e=>{"use strict";var t=e.i(54799),a=e.i(85148),i=e.i(14747),r=e.i(22734);let o=process.env.DATA_DIR??i.default.join(process.cwd(),"data"),s=i.default.join(o,"daisy.db"),n=[i.default.join(o,"products-backup.json"),i.default.join(process.cwd(),"data","products.json")],c=null;var d=e.i(84423);let p=i.default.join(process.cwd(),"public","logo.jpg"),l="logo@daisygadgets",m="#D4AF37",T="#f5d76e",g="#0A0A0A",h="#161616",u="#1F1F1F",E="#6b7280",L="https://daisygadgetsco.com";async function f(e){let t=process.env.RESEND_API_KEY?d.default.createTransport({host:"smtp.resend.com",port:587,secure:!1,auth:{user:"resend",pass:process.env.RESEND_API_KEY}}):process.env.MAIL_USER&&process.env.MAIL_PASS?d.default.createTransport({service:"gmail",auth:{user:process.env.MAIL_USER,pass:process.env.MAIL_PASS}}):null;if(!t)return void console.error("mailer: env vars missing");try{let a=e.attachments??[];(0,r.existsSync)(p)&&a.unshift({filename:"logo.jpg",path:p,cid:l}),await t.sendMail({from:process.env.RESEND_API_KEY?'"Daisy Gadgets Co." <noreply@daisygadgetsco.com>':`"Daisy Gadgets Co." <${process.env.MAIL_USER??"noreply@daisygadgetsco.com"}>`,to:e.to,subject:e.subject,html:e.html,attachments:a})}catch(e){console.error("mailer send error:",e)}}async function y(e){try{let t=await fetch(e,{signal:AbortSignal.timeout(5e3)});if(!t.ok)return null;return Buffer.from(await t.arrayBuffer())}catch{return null}}async function N(e){let t=[],a=new Map;return await Promise.all(e.map(async(e,i)=>{if(!e.imageUrl)return;let r=await y(e.imageUrl.startsWith("http")?e.imageUrl:L+e.imageUrl);if(!r)return;let o=`product-${i}@daisy`,s=e.imageUrl.split(".").pop()?.split("?")[0]??"jpg";t.push({filename:`product-${i}.${s}`,content:r,cid:o}),a.set(e.imageUrl,`cid:${o}`)})),{attachments:t,cidMap:a}}function A(){return`<div style="height:1px;background:${u};margin:24px 0"></div>`}function U(e,t,a=m,i=g){return`<a href="${t}" style="display:inline-block;background:${a};color:${i};font-weight:800;text-decoration:none;padding:13px 26px;border-radius:10px;font-size:14px;letter-spacing:0.02em">${e}</a>`}async function S(e){let t=e.ctaUrl&&e.trackingId?`${L}/api/track/email?id=${e.trackingId}&e=click&url=${encodeURIComponent(e.ctaUrl)}`:e.ctaUrl,a=e.ctaText&&t?`<div style="text-align:center;margin:28px 0">${U(e.ctaText,t)}</div>`:"",i=e.trackingId?`<img src="${L}/api/track/email?id=${e.trackingId}&e=open" width="1" height="1" style="display:none;width:1px;height:1px;border:0" alt="" />`:"",r="",o=[];if(e.orderItems?.length){let{attachments:t,cidMap:a}=await N(e.orderItems.map(e=>({name:e.name,imageUrl:e.imageUrl})));o=t;let i=e.orderItems.map(e=>{let t=e.imageUrl?a.get(e.imageUrl)??(e.imageUrl.startsWith("http")?e.imageUrl:L+e.imageUrl):null,i=t?`<img src="${t}" alt="${e.name}" width="64" height="64" style="width:64px;height:64px;object-fit:cover;border-radius:10px;display:block;border:1px solid ${u}" />`:`<div style="width:64px;height:64px;background:${h};border:1px solid ${u};border-radius:10px"></div>`,r=e.id?`${L}/shop/${e.id}`:`${L}/shop`;return`
+module.exports=[94689,e=>{"use strict";var t=e.i(54799),a=e.i(85148),i=e.i(14747),r=e.i(22734);let o=process.env.DATA_DIR??i.default.join(process.cwd(),"data"),s=i.default.join(o,"daisy.db"),n=[i.default.join(o,"products-backup.json"),i.default.join(process.cwd(),"data","products.json")],c=null;var d=e.i(84423);let p=i.default.join(process.cwd(),"public","logo.jpg"),l="logo@daisygadgets",m="#D4AF37",T="#f5d76e",g="#0A0A0A",h="#161616",u="#1F1F1F",E="#6b7280",L="https://daisygadgetsco.com";async function f(e){let t=process.env.RESEND_API_KEY?d.default.createTransport({host:"smtp.resend.com",port:587,secure:!1,auth:{user:"resend",pass:process.env.RESEND_API_KEY}}):process.env.MAIL_USER&&process.env.MAIL_PASS?d.default.createTransport({service:"gmail",auth:{user:process.env.MAIL_USER,pass:process.env.MAIL_PASS}}):null;if(!t)return void console.error("mailer: env vars missing");try{let a=e.attachments??[];(0,r.existsSync)(p)&&a.unshift({filename:"logo.jpg",path:p,cid:l}),await t.sendMail({from:process.env.RESEND_API_KEY?'"Daisy Gadgets Co." <noreply@daisygadgetsco.com>':`"Daisy Gadgets Co." <${process.env.MAIL_USER??"noreply@daisygadgetsco.com"}>`,to:e.to,subject:e.subject,html:e.html,attachments:a})}catch(e){console.error("mailer send error:",e)}}async function N(e){try{let t=await fetch(e,{signal:AbortSignal.timeout(5e3)});if(!t.ok)return null;return Buffer.from(await t.arrayBuffer())}catch{return null}}async function y(e){let t=[],a=new Map;return await Promise.all(e.map(async(e,i)=>{if(!e.imageUrl)return;let r=await N(e.imageUrl.startsWith("http")?e.imageUrl:L+e.imageUrl);if(!r)return;let o=`product-${i}@daisy`,s=e.imageUrl.split(".").pop()?.split("?")[0]??"jpg";t.push({filename:`product-${i}.${s}`,content:r,cid:o}),a.set(e.imageUrl,`cid:${o}`)})),{attachments:t,cidMap:a}}function U(){return`<div style="height:1px;background:${u};margin:24px 0"></div>`}function A(e,t,a=m,i=g){return`<a href="${t}" style="display:inline-block;background:${a};color:${i};font-weight:800;text-decoration:none;padding:13px 26px;border-radius:10px;font-size:14px;letter-spacing:0.02em">${e}</a>`}async function S(e){let t=e.ctaUrl&&e.trackingId?`${L}/api/track/email?id=${e.trackingId}&e=click&url=${encodeURIComponent(e.ctaUrl)}`:e.ctaUrl,a=e.ctaText&&t?`<div style="text-align:center;margin:28px 0">${A(e.ctaText,t)}</div>`:"",i=e.trackingId?`<img src="${L}/api/track/email?id=${e.trackingId}&e=open" width="1" height="1" style="display:none;width:1px;height:1px;border:0" alt="" />`:"",r="",o=[];if(e.orderItems?.length){let{attachments:t,cidMap:a}=await y(e.orderItems.map(e=>({name:e.name,imageUrl:e.imageUrl})));o=t;let i=e.orderItems.map(e=>{let t=e.imageUrl?a.get(e.imageUrl)??(e.imageUrl.startsWith("http")?e.imageUrl:L+e.imageUrl):null,i=t?`<img src="${t}" alt="${e.name}" width="64" height="64" style="width:64px;height:64px;object-fit:cover;border-radius:10px;display:block;border:1px solid ${u}" />`:`<div style="width:64px;height:64px;background:${h};border:1px solid ${u};border-radius:10px"></div>`,r=e.id?`${L}/shop/${e.id}`:`${L}/shop`;return`
       <tr>
         <td style="padding:10px 0;border-bottom:1px solid ${u};width:76px;vertical-align:middle">
           <a href="${r}">${i}</a>
@@ -12,14 +12,14 @@ module.exports=[94689,e=>{"use strict";var t=e.i(54799),a=e.i(85148),i=e.i(14747
         <td style="padding:10px 0;border-bottom:1px solid ${u};text-align:right;vertical-align:middle">
           <span style="color:${m};font-size:13px;font-weight:700">${e.price}</span>
         </td>
-      </tr>`}).join(""),s=e.orderRef?`<p style="margin:0 0 14px;color:${E};font-size:12px">Order ref: <span style="color:${m};font-weight:700;font-family:monospace">${e.orderRef}</span></p>`:"",n=e.restoreCartUrl?`<div style="text-align:center;margin-top:20px">${U("Complete Your Order →",e.restoreCartUrl)}</div>`:"";r=`
-      ${A()}
+      </tr>`}).join(""),s=e.orderRef?`<p style="margin:0 0 14px;color:${E};font-size:12px">Order ref: <span style="color:${m};font-weight:700;font-family:monospace">${e.orderRef}</span></p>`:"",n=e.restoreCartUrl?`<div style="text-align:center;margin-top:20px">${A("Complete Your Order →",e.restoreCartUrl)}</div>`:"";r=`
+      ${U()}
       <p style="margin:0 0 4px;color:#e5e7eb;font-size:14px;font-weight:700">Your last order</p>
       ${s}
       <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:8px">
         ${i}
       </table>
-      ${n}`}else if(e.featuredProducts?.length){let{attachments:t,cidMap:a}=await N(e.featuredProducts.map(e=>({name:e.name,imageUrl:e.imageUrl})));o=t;let i=e.featuredProducts.map(e=>{let t=e.imageUrl?a.get(e.imageUrl)??(e.imageUrl.startsWith("http")?e.imageUrl:L+e.imageUrl):null,i=t?`<img src="${t}" alt="${e.name}" width="200" style="width:100%;max-width:200px;height:140px;object-fit:cover;border-radius:10px;display:block;border:1px solid ${u}" />`:`<div style="width:100%;height:140px;background:${h};border:1px solid ${u};border-radius:10px"></div>`;return`
+      ${n}`}else if(e.featuredProducts?.length){let{attachments:t,cidMap:a}=await y(e.featuredProducts.map(e=>({name:e.name,imageUrl:e.imageUrl})));o=t;let i=e.featuredProducts.map(e=>{let t=e.imageUrl?a.get(e.imageUrl)??(e.imageUrl.startsWith("http")?e.imageUrl:L+e.imageUrl):null,i=t?`<img src="${t}" alt="${e.name}" width="200" style="width:100%;max-width:200px;height:140px;object-fit:cover;border-radius:10px;display:block;border:1px solid ${u}" />`:`<div style="width:100%;height:140px;background:${h};border:1px solid ${u};border-radius:10px"></div>`;return`
         <td style="width:48%;vertical-align:top;padding:6px">
           <a href="${L}/shop/${e.id}" style="text-decoration:none;display:block">
             ${i}
@@ -27,7 +27,7 @@ module.exports=[94689,e=>{"use strict";var t=e.i(54799),a=e.i(85148),i=e.i(14747
             <p style="margin:0;color:${m};font-size:14px;font-weight:800">${e.price}</p>
           </a>
         </td>`}),s=[];for(let e=0;e<i.length;e+=2)s.push(`<tr>${i.slice(e,e+2).join("")}</tr>`);r=`
-      ${A()}
+      ${U()}
       <p style="margin:0 0 16px;color:#e5e7eb;font-size:14px;font-weight:700">Featured Products</p>
       <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:8px">
         ${s.join("")}
@@ -36,7 +36,7 @@ module.exports=[94689,e=>{"use strict";var t=e.i(54799),a=e.i(85148),i=e.i(14747
     <div style="color:#d1d5db;font-size:14px;line-height:1.75;white-space:pre-wrap">${e.body}</div>
     ${a}
     ${r}
-    ${A()}
+    ${U()}
     <p style="margin:0;color:${E};font-size:12px;text-align:center">
       You received this because you placed an order with Daisy Gadgets Co.
     </p>
@@ -103,7 +103,7 @@ module.exports=[94689,e=>{"use strict";var t=e.i(54799),a=e.i(85148),i=e.i(14747
     </td></tr>
   </table>
 </body>
-</html>`}(s),attachments:o.length?o:void 0})}let R="https://daisygadgetsco.com";function b(e,t,a,i){if(i)return!!e.prepare("SELECT id FROM email_sends WHERE LOWER(email) = ? AND type = ? AND ref = ?").get(t.toLowerCase(),a,i);let r=new Date(Date.now()-3024e6).toISOString();return!!e.prepare("SELECT id FROM email_sends WHERE LOWER(email) = ? AND type = ? AND createdAt > ?").get(t.toLowerCase(),a,r)}function O(e,t){e.prepare(`
+</html>`}(s),attachments:o.length?o:void 0})}let R="https://daisygadgetsco.com";function O(e,t,a,i){if(i)return!!e.prepare("SELECT id FROM email_sends WHERE LOWER(email) = ? AND type = ? AND ref = ?").get(t.toLowerCase(),a,i);let r=new Date(Date.now()-3024e6).toISOString();return!!e.prepare("SELECT id FROM email_sends WHERE LOWER(email) = ? AND type = ? AND createdAt > ?").get(t.toLowerCase(),a,r)}function b(e,t){e.prepare(`
     INSERT OR IGNORE INTO email_sends (id, email, type, ref, subject, createdAt)
     VALUES (?, ?, ?, ?, ?, ?)
   `).run(t.id,t.email.toLowerCase(),t.type,t.ref??null,t.subject,new Date().toISOString())}async function w(){let e=function e(){return c||((0,r.existsSync)(o)||(0,r.mkdirSync)(o,{recursive:!0}),(c=new a.default(s)).pragma("journal_mode = WAL"),c.pragma("foreign_keys = ON"),function(e){e.exec(`
@@ -220,6 +220,31 @@ module.exports=[94689,e=>{"use strict";var t=e.i(54799),a=e.i(85148),i=e.i(14747
       name TEXT PRIMARY KEY
     );
 
+    -- Phase 4 (2026-09-14): local outbox for the Gadgets -> Bevans OS event
+    -- pilot (LEAD_CREATED only). A row here is only ever written inside the
+    -- same db.transaction() as the business write it describes — see
+    -- lib/outbox.ts and the two lead-creation routes. A relay process
+    -- (running on the Bevans VPS, not this app) polls status='pending' via
+    -- /api/admin/outbox/pending and reports outcomes via
+    -- /api/admin/outbox/report; this app never calls out to Bevans OS
+    -- itself, so its own availability never depends on Bevans OS.
+    CREATE TABLE IF NOT EXISTS outbox_events (
+      id                TEXT PRIMARY KEY,
+      event_id          TEXT UNIQUE NOT NULL,
+      event_type        TEXT NOT NULL,
+      event_version     INTEGER NOT NULL,
+      occurred_at       TEXT NOT NULL,
+      source_platform   TEXT NOT NULL DEFAULT 'gadgets',
+      source_entity_id  TEXT NOT NULL,
+      payload           TEXT NOT NULL,
+      status            TEXT NOT NULL DEFAULT 'pending',
+      attempts          INTEGER NOT NULL DEFAULT 0,
+      last_attempt_at   TEXT,
+      last_error        TEXT,
+      delivered_at      TEXT,
+      createdAt         TEXT NOT NULL
+    );
+
     CREATE TABLE IF NOT EXISTS installment_settings (
       id               TEXT PRIMARY KEY,
       product_id       TEXT UNIQUE NOT NULL,
@@ -315,7 +340,7 @@ module.exports=[94689,e=>{"use strict";var t=e.i(54799),a=e.i(85148),i=e.i(14747
       WHERE LOWER(o.email) = LOWER(cs.email)
         AND o.createdAt > cs.lastAdded
     )
-  `).all()){let i=a.lastAdded.slice(0,10);if(b(e,a.email,"cart_abandon_1d",i)){p++;continue}let r=e.prepare(`
+  `).all()){let i=a.lastAdded.slice(0,10);if(O(e,a.email,"cart_abandon_1d",i)){p++;continue}let r=e.prepare(`
       SELECT DISTINCT ce.productId AS id, ce.productName AS name, ce.price, 1 AS qty
       FROM cart_events ce
       JOIN visitors v ON v.id = ce.visitorId
@@ -324,26 +349,26 @@ module.exports=[94689,e=>{"use strict";var t=e.i(54799),a=e.i(85148),i=e.i(14747
       LIMIT 6
     `).all(a.email.toLowerCase()),o=(0,t.randomUUID)(),s=(a.name??"there").split(" ")[0],n=`${s}, you left something behind — Daisy Gadgets Co.`,c=Buffer.from(JSON.stringify(r)).toString("base64"),l=`${R}/restore-cart?items=${c}`;try{await S({to:a.email,name:a.name??"there",subject:n,heading:"Your cart is waiting for you",body:`Hi ${s},
 
-You browsed some great products but didn't complete your order. Your items are still available — grab them before they sell out!`,ctaText:"Complete Your Order",ctaUrl:l,orderItems:r,restoreCartUrl:l,trackingId:o}),O(e,{id:o,email:a.email,type:"cart_abandon_1d",ref:i,subject:n}),d++}catch(e){console.error("[followups] cart_abandon_1d error:",e)}}for(let a of e.prepare(`
+You browsed some great products but didn't complete your order. Your items are still available — grab them before they sell out!`,ctaText:"Complete Your Order",ctaUrl:l,orderItems:r,restoreCartUrl:l,trackingId:o}),b(e,{id:o,email:a.email,type:"cart_abandon_1d",ref:i,subject:n}),d++}catch(e){console.error("[followups] cart_abandon_1d error:",e)}}for(let a of e.prepare(`
     SELECT id, ref, email, name FROM orders
     WHERE status = 'delivered'
       AND updatedAt < datetime('now', '-3 days')
       AND updatedAt > datetime('now', '-14 days')
-  `).all()){if(b(e,a.email,"delivery_followup",a.ref)){p++;continue}let i=(0,t.randomUUID)(),r=a.name.split(" ")[0],o=`How was your order, ${r}? — Daisy Gadgets Co.`;try{await S({to:a.email,name:a.name,subject:o,heading:"How was your experience?",body:`Hi ${r},
+  `).all()){if(O(e,a.email,"delivery_followup",a.ref)){p++;continue}let i=(0,t.randomUUID)(),r=a.name.split(" ")[0],o=`How was your order, ${r}? — Daisy Gadgets Co.`;try{await S({to:a.email,name:a.name,subject:o,heading:"How was your experience?",body:`Hi ${r},
 
 Your order ${a.ref} was delivered recently and we hope you're loving it! 🎉
 
-We'd love to hear your feedback — it takes less than a minute and helps us serve you better.`,ctaText:"Leave a Review",ctaUrl:`${R}/reviews`,trackingId:i}),O(e,{id:i,email:a.email,type:"delivery_followup",ref:a.ref,subject:o}),d++}catch(e){console.error("[followups] delivery_followup error:",e)}}for(let a of e.prepare(`
+We'd love to hear your feedback — it takes less than a minute and helps us serve you better.`,ctaText:"Leave a Review",ctaUrl:`${R}/reviews`,trackingId:i}),b(e,{id:i,email:a.email,type:"delivery_followup",ref:a.ref,subject:o}),d++}catch(e){console.error("[followups] delivery_followup error:",e)}}for(let a of e.prepare(`
     SELECT email, name, MAX(createdAt) AS lastOrder
     FROM orders
     WHERE status IN ('approved', 'shipped', 'delivered')
     GROUP BY LOWER(email)
     HAVING lastOrder < datetime('now', '-30 days')
       AND lastOrder > datetime('now', '-60 days')
-  `).all()){if(b(e,a.email,"reengagement_30d")){p++;continue}let i=(0,t.randomUUID)(),r=a.name.split(" ")[0],o=`We miss you, ${r}! — Daisy Gadgets Co.`;try{await S({to:a.email,name:a.name,subject:o,heading:`We miss you, ${r}!`,body:`Hi ${r},
+  `).all()){if(O(e,a.email,"reengagement_30d")){p++;continue}let i=(0,t.randomUUID)(),r=a.name.split(" ")[0],o=`We miss you, ${r}! — Daisy Gadgets Co.`;try{await S({to:a.email,name:a.name,subject:o,heading:`We miss you, ${r}!`,body:`Hi ${r},
 
 It's been a while since your last order and we wanted to check in.
 
-We have amazing new arrivals and deals that we think you'll love. Come back and see what's new!`,ctaText:"Shop New Arrivals",ctaUrl:`${R}/new-arrivals`,trackingId:i}),O(e,{id:i,email:a.email,type:"reengagement_30d",subject:o}),d++}catch(e){console.error("[followups] reengagement_30d error:",e)}}return console.log(`[followups] sent=${d} skipped=${p}`),{sent:d,skipped:p}}e.s(["runFollowUps",0,w],94689)}];
+We have amazing new arrivals and deals that we think you'll love. Come back and see what's new!`,ctaText:"Shop New Arrivals",ctaUrl:`${R}/new-arrivals`,trackingId:i}),b(e,{id:i,email:a.email,type:"reengagement_30d",subject:o}),d++}catch(e){console.error("[followups] reengagement_30d error:",e)}}return console.log(`[followups] sent=${d} skipped=${p}`),{sent:d,skipped:p}}e.s(["runFollowUps",0,w],94689)}];
 
 //# sourceMappingURL=lib_followups_ts_1u3wnoc._.js.map

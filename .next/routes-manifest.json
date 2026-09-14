@@ -275,6 +275,24 @@
       "namedRegex": "^/api/admin/logout(?:/)?$"
     },
     {
+      "page": "/api/admin/outbox/pending",
+      "regex": "^/api/admin/outbox/pending(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/admin/outbox/pending(?:/)?$"
+    },
+    {
+      "page": "/api/admin/outbox/report",
+      "regex": "^/api/admin/outbox/report(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/admin/outbox/report(?:/)?$"
+    },
+    {
+      "page": "/api/admin/outbox/status",
+      "regex": "^/api/admin/outbox/status(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/admin/outbox/status(?:/)?$"
+    },
+    {
       "page": "/api/admin/products",
       "regex": "^/api/admin/products(?:/)?$",
       "routeKeys": {},

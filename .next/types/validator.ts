@@ -524,6 +524,33 @@ type RouteHandlerConfig<Route extends AppRouteHandlerRoutes = AppRouteHandlerRou
   type __Unused = __Check
 }
 
+// Validate ../../app/api/admin/outbox/pending/route.ts
+{
+  type __IsExpected<Specific extends RouteHandlerConfig<"/api/admin/outbox/pending">> = Specific
+  const handler = {} as typeof import("../../app/api/admin/outbox/pending/route.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../app/api/admin/outbox/report/route.ts
+{
+  type __IsExpected<Specific extends RouteHandlerConfig<"/api/admin/outbox/report">> = Specific
+  const handler = {} as typeof import("../../app/api/admin/outbox/report/route.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../app/api/admin/outbox/status/route.ts
+{
+  type __IsExpected<Specific extends RouteHandlerConfig<"/api/admin/outbox/status">> = Specific
+  const handler = {} as typeof import("../../app/api/admin/outbox/status/route.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
 // Validate ../../app/api/admin/products/[id]/route.ts
 {
   type __IsExpected<Specific extends RouteHandlerConfig<"/api/admin/products/[id]">> = Specific

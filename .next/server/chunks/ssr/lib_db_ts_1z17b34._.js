@@ -112,6 +112,31 @@ module.exports=[66879,a=>{"use strict";var b=a.i(85148),c=a.i(14747),d=a.i(22734
       name TEXT PRIMARY KEY
     );
 
+    -- Phase 4 (2026-09-14): local outbox for the Gadgets -> Bevans OS event
+    -- pilot (LEAD_CREATED only). A row here is only ever written inside the
+    -- same db.transaction() as the business write it describes — see
+    -- lib/outbox.ts and the two lead-creation routes. A relay process
+    -- (running on the Bevans VPS, not this app) polls status='pending' via
+    -- /api/admin/outbox/pending and reports outcomes via
+    -- /api/admin/outbox/report; this app never calls out to Bevans OS
+    -- itself, so its own availability never depends on Bevans OS.
+    CREATE TABLE IF NOT EXISTS outbox_events (
+      id                TEXT PRIMARY KEY,
+      event_id          TEXT UNIQUE NOT NULL,
+      event_type        TEXT NOT NULL,
+      event_version     INTEGER NOT NULL,
+      occurred_at       TEXT NOT NULL,
+      source_platform   TEXT NOT NULL DEFAULT 'gadgets',
+      source_entity_id  TEXT NOT NULL,
+      payload           TEXT NOT NULL,
+      status            TEXT NOT NULL DEFAULT 'pending',
+      attempts          INTEGER NOT NULL DEFAULT 0,
+      last_attempt_at   TEXT,
+      last_error        TEXT,
+      delivered_at      TEXT,
+      createdAt         TEXT NOT NULL
+    );
+
     CREATE TABLE IF NOT EXISTS installment_settings (
       id               TEXT PRIMARY KEY,
       product_id       TEXT UNIQUE NOT NULL,

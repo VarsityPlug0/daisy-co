@@ -1,0 +1,3 @@
+{
+  "/api/admin/outbox/pending/route": "app/api/admin/outbox/pending/route.js"
+}

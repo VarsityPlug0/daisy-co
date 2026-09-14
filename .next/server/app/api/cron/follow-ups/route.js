@@ -1,5 +1,5 @@
 var R=require("../../../../chunks/[turbopack]_runtime.js")("server/app/api/cron/follow-ups/route.js")
-R.c("server/chunks/[externals]__10vi3r1._.js")
+R.c("server/chunks/[externals]__1iocukl._.js")
 R.c("server/chunks/_14ra4y5._.js")
 R.c("server/chunks/_1ma3pfo._.js")
 R.c("server/chunks/lib_mailer_ts_0qdwzgv._.js")
