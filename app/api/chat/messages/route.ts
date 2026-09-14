@@ -44,12 +44,12 @@ export async function POST(req: NextRequest) {
       to: "support@bevanssons.store, moneybman0@gmail.com",
       subject: `💬 New Chat — ${name}`,
       html: `
-        <div style="font-family:sans-serif;max-width:500px;margin:0 auto;background:#0A0A0A;border-radius:10px;padding:28px;color:#e5e7eb">
-          <h2 style="color:#D4AF37;margin:0 0 16px">New Chat Started</h2>
+        <div style="font-family:sans-serif;max-width:500px;margin:0 auto;background:#111111;border-radius:10px;padding:28px;color:#e5e7eb">
+          <h2 style="color:#C8B993;margin:0 0 16px">New Chat Started</h2>
           <p style="margin:0 0 8px;color:#9ca3af">From: <strong style="color:#fff">${name}</strong></p>
           <p style="margin:0 0 8px;color:#9ca3af">Phone: <strong style="color:#fff">${phone}</strong></p>
           <p style="margin:0 0 20px;color:#9ca3af">Message: <strong style="color:#fff">${body.slice(0, 300)}</strong></p>
-          <a href="https://gadgets.bevanssons.store/admin/dashboard/chat" style="display:inline-block;background:#D4AF37;color:#000;font-weight:bold;text-decoration:none;padding:12px 24px;border-radius:8px">Reply in Admin</a>
+          <a href="https://gadgets.bevanssons.store/admin/dashboard/chat" style="display:inline-block;background:#C8B993;color:#000;font-weight:bold;text-decoration:none;padding:12px 24px;border-radius:8px">Reply in Admin</a>
         </div>
       `,
     });

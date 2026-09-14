@@ -79,10 +79,10 @@ export default function ResidentialSolar() {
 
       {/* Header */}
       <div className="text-center mb-8">
-        <Link href="/solar" className="text-[#D4AF37] text-sm hover:underline mb-4 inline-block">
+        <Link href="/solar" className="text-[#C8B993] text-sm hover:underline mb-4 inline-block">
           &larr; Solar Solutions
         </Link>
-        <p className="text-[#D4AF37] text-sm uppercase tracking-widest mb-3">For Your Home</p>
+        <p className="text-[#C8B993] text-sm uppercase tracking-widest mb-3">For Your Home</p>
         <h1 className="text-3xl md:text-4xl font-extrabold text-white mb-3">
           Residential <span className="gold-text">Solar Packages</span>
         </h1>
@@ -95,13 +95,13 @@ export default function ResidentialSolar() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
         {packages.map((pkg, i) => (
           <div key={pkg.name}
-            className={`relative bg-[#111111] border rounded-2xl overflow-hidden flex flex-col card-hover ${i === 1 ? "border-[#D4AF37]" : "border-[#1F1F1F]"}`}>
+            className={`relative bg-[#1D1D1D] border rounded-2xl overflow-hidden flex flex-col card-hover ${i === 1 ? "border-[#C8B993]" : "border-[#2A2A2A]"}`}>
 
             {/* Hero image */}
             <div className="relative h-52">
               <Image src={pkg.img} alt={pkg.name} fill className="object-cover"
                 sizes="(max-width: 768px) 100vw, 33vw" />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#111111] via-black/20 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#1D1D1D] via-black/20 to-transparent" />
               {pkg.tag && (
                 <span className="absolute top-4 right-4 btn-gold text-xs px-4 py-1.5 rounded-full font-bold">
                   {pkg.tag}
@@ -111,14 +111,14 @@ export default function ResidentialSolar() {
 
             <div className="p-5 flex flex-col flex-1">
               <h2 className="text-xl font-semibold text-white mb-1">{pkg.name}</h2>
-              <p className="text-2xl font-bold text-[#D4AF37] mb-4">{pkg.price}</p>
+              <p className="text-2xl font-bold text-[#C8B993] mb-4">{pkg.price}</p>
 
               <div className="mb-4">
                 <p className="text-xs text-gray-500 uppercase tracking-widest mb-3">Specifications</p>
                 <ul className="space-y-2">
                   {pkg.specs.map((s) => (
                     <li key={s} className="flex items-start gap-3 text-sm text-gray-300 leading-relaxed">
-                      <span className="text-[#D4AF37] mt-0.5 shrink-0 text-base">&#10003;</span> {s}
+                      <span className="text-[#C8B993] mt-0.5 shrink-0 text-base">&#10003;</span> {s}
                     </li>
                   ))}
                 </ul>
@@ -147,7 +147,7 @@ export default function ResidentialSolar() {
       </div>
 
       {/* Custom quote CTA */}
-      <div className="bg-[#111111] border border-[#1F1F1F] rounded-2xl p-6 text-center">
+      <div className="bg-[#1D1D1D] border border-[#2A2A2A] rounded-2xl p-6 text-center">
         <h3 className="text-xl font-bold text-white mb-2">Need a custom size?</h3>
         <p className="text-gray-400 text-base mb-5 max-w-lg mx-auto leading-relaxed">
           We design custom solar systems for any home size and budget. Contact us for a tailored quote.

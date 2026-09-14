@@ -23,7 +23,7 @@ const STATUS_STYLE: Record<string, string> = {
   reviewing:        "bg-yellow-500/10 text-yellow-400 border-yellow-500/30",
   approved:         "bg-green-500/10 text-green-400 border-green-500/30",
   awaiting_payment: "bg-orange-500/10 text-orange-400 border-orange-500/30",
-  active:           "bg-[#D4AF37]/10 text-[#D4AF37] border-[#D4AF37]/30",
+  active:           "bg-[#C8B993]/10 text-[#C8B993] border-[#C8B993]/30",
   completed:        "bg-emerald-500/10 text-emerald-400 border-emerald-500/30",
   declined:         "bg-red-500/10 text-red-400 border-red-500/30",
 };
@@ -162,7 +162,7 @@ export default function AdminInstallmentsPage() {
 
   const filtered = statusFilter === "all" ? applications : applications.filter(a => a.status === statusFilter);
 
-  const inputClass = "bg-[#0A0A0A] border border-[#2a2a2a] rounded-xl px-4 py-2.5 text-white text-sm focus:outline-none focus:border-[#D4AF37] w-full";
+  const inputClass = "bg-[#111111] border border-[#2a2a2a] rounded-xl px-4 py-2.5 text-white text-sm focus:outline-none focus:border-[#C8B993] w-full";
 
   return (
     <div className="min-h-screen p-4 sm:p-6">
@@ -187,8 +187,8 @@ export default function AdminInstallmentsPage() {
             { label: "WhatsApp Clicks", value: stats.whatsapp_clicked ?? 0 },
             { label: "Abandoned", value: stats.abandoned ?? 0 },
           ].map(({ label, value }) => (
-            <div key={label} className="bg-[#111111] border border-[#1F1F1F] rounded-xl p-4 text-center">
-              <p className="text-[#D4AF37] text-xl font-black">{value}</p>
+            <div key={label} className="bg-[#1D1D1D] border border-[#2A2A2A] rounded-xl p-4 text-center">
+              <p className="text-[#C8B993] text-xl font-black">{value}</p>
               <p className="text-gray-500 text-xs mt-0.5">{label}</p>
             </div>
           ))}
@@ -199,14 +199,14 @@ export default function AdminInstallmentsPage() {
           {(["applications", "settings"] as const).map(t => (
             <button key={t} onClick={() => setTab(t)}
               className={`px-5 py-2.5 rounded-xl text-sm font-semibold transition-colors capitalize ${
-                tab === t ? "bg-[#D4AF37] text-black" : "bg-[#111111] border border-[#1F1F1F] text-gray-400 hover:text-white"
+                tab === t ? "bg-[#C8B993] text-black" : "bg-[#1D1D1D] border border-[#2A2A2A] text-gray-400 hover:text-white"
               }`}>
               {t === "settings" ? "Product Settings" : "Applications"}
             </button>
           ))}
           {tab === "applications" && (
             <button onClick={fetchApplications}
-              className="ml-auto flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#111111] border border-[#1F1F1F] text-gray-400 hover:text-white text-sm">
+              className="ml-auto flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#1D1D1D] border border-[#2A2A2A] text-gray-400 hover:text-white text-sm">
               <RefreshCw size={14} className={loading ? "animate-spin" : ""} /> Refresh
             </button>
           )}
@@ -221,8 +221,8 @@ export default function AdminInstallmentsPage() {
                 <button key={s} onClick={() => setStatusFilter(s)}
                   className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors ${
                     statusFilter === s
-                      ? "bg-[#D4AF37] text-black"
-                      : "bg-[#111111] border border-[#1F1F1F] text-gray-400 hover:text-white"
+                      ? "bg-[#C8B993] text-black"
+                      : "bg-[#1D1D1D] border border-[#2A2A2A] text-gray-400 hover:text-white"
                   }`}>
                   {s === "all" ? "All" : STATUS_LABEL[s]}
                   {s !== "all" && (
@@ -236,12 +236,12 @@ export default function AdminInstallmentsPage() {
 
             <div className="space-y-3">
               {filtered.length === 0 && !loading && (
-                <div className="bg-[#111111] border border-[#1F1F1F] rounded-2xl p-10 text-center text-gray-500">
+                <div className="bg-[#1D1D1D] border border-[#2A2A2A] rounded-2xl p-10 text-center text-gray-500">
                   No applications yet.
                 </div>
               )}
               {filtered.map(app => (
-                <div key={app.id} className="bg-[#111111] border border-[#1F1F1F] rounded-2xl overflow-hidden">
+                <div key={app.id} className="bg-[#1D1D1D] border border-[#2A2A2A] rounded-2xl overflow-hidden">
                   {/* Row */}
                   <div className="p-5 flex flex-wrap gap-4 justify-between items-start">
                     <div className="flex-1 min-w-0">
@@ -259,7 +259,7 @@ export default function AdminInstallmentsPage() {
                       <p className="text-gray-500 text-xs font-mono">{app.ref} · {new Date(app.createdAt).toLocaleDateString("en-ZA")}</p>
                     </div>
                     <div className="text-right shrink-0">
-                      <p className="text-[#D4AF37] font-bold">R {Number(app.monthly_payment).toLocaleString("en-ZA")}/mo</p>
+                      <p className="text-[#C8B993] font-bold">R {Number(app.monthly_payment).toLocaleString("en-ZA")}/mo</p>
                       <p className="text-gray-500 text-xs">{app.term_months} months · R{Number(app.product_price).toLocaleString("en-ZA")}</p>
                     </div>
                     <button onClick={() => setExpanded(e => e === app.id ? null : app.id)}
@@ -270,19 +270,19 @@ export default function AdminInstallmentsPage() {
 
                   {/* Expanded detail */}
                   {expanded === app.id && (
-                    <div className="border-t border-[#1F1F1F] p-5 space-y-4">
+                    <div className="border-t border-[#2A2A2A] p-5 space-y-4">
 
                       {/* Product image + summary */}
                       {app.product_imageUrl && (
-                        <div className="flex items-center gap-4 bg-[#0A0A0A] border border-[#1F1F1F] rounded-xl p-3">
+                        <div className="flex items-center gap-4 bg-[#111111] border border-[#2A2A2A] rounded-xl p-3">
                           <img
                             src={app.product_imageUrl}
                             alt={app.product_name}
-                            className="w-16 h-16 rounded-lg object-cover shrink-0 border border-[#1F1F1F]"
+                            className="w-16 h-16 rounded-lg object-cover shrink-0 border border-[#2A2A2A]"
                           />
                           <div className="min-w-0">
                             <p className="text-white font-semibold text-sm leading-snug truncate">{app.product_name}</p>
-                            <p className="text-[#D4AF37] font-bold text-sm mt-0.5">R {Number(app.product_price).toLocaleString("en-ZA")}</p>
+                            <p className="text-[#C8B993] font-bold text-sm mt-0.5">R {Number(app.product_price).toLocaleString("en-ZA")}</p>
                             <p className="text-gray-500 text-xs mt-0.5">{app.term_months} months · R {Number(app.monthly_payment).toLocaleString("en-ZA")}/mo</p>
                           </div>
                         </div>
@@ -307,14 +307,14 @@ export default function AdminInstallmentsPage() {
                       </div>
 
                       {app.admin_notes && (
-                        <div className="bg-[#0A0A0A] border border-[#1F1F1F] rounded-xl px-4 py-3">
+                        <div className="bg-[#111111] border border-[#2A2A2A] rounded-xl px-4 py-3">
                           <p className="text-gray-500 text-xs mb-0.5">Notes</p>
                           <p className="text-gray-300 text-sm">{app.admin_notes}</p>
                         </div>
                       )}
 
                       {/* ── Status pipeline stepper ── */}
-                      <div className="bg-[#0A0A0A] border border-[#1F1F1F] rounded-2xl p-4">
+                      <div className="bg-[#111111] border border-[#2A2A2A] rounded-2xl p-4">
                         <p className="text-gray-500 text-[10px] uppercase tracking-widest font-semibold mb-4">Application Progress</p>
 
                         {app.status === "declined" ? (
@@ -349,7 +349,7 @@ export default function AdminInstallmentsPage() {
                                         onClick={() => updateStatus(app.id, step)}
                                         disabled={!!updating}
                                         title={`Advance to ${STATUS_LABEL[step]}`}
-                                        className="w-9 h-9 rounded-full border-2 border-[#D4AF37] bg-[#D4AF37]/10 text-[#D4AF37] flex items-center justify-center font-bold text-xs hover:bg-[#D4AF37]/25 transition-all disabled:opacity-50 ring-2 ring-[#D4AF37]/20 ring-offset-1 ring-offset-[#0A0A0A]"
+                                        className="w-9 h-9 rounded-full border-2 border-[#C8B993] bg-[#C8B993]/10 text-[#C8B993] flex items-center justify-center font-bold text-xs hover:bg-[#C8B993]/25 transition-all disabled:opacity-50 ring-2 ring-[#C8B993]/20 ring-offset-1 ring-offset-[#111111]"
                                       >
                                         {updating === app.id ? (
                                           <svg className="animate-spin" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" opacity=".2"/><path d="M21 12a9 9 0 00-9-9"/></svg>
@@ -360,7 +360,7 @@ export default function AdminInstallmentsPage() {
                                     ) : (
                                       <div className={`w-9 h-9 rounded-full flex items-center justify-center font-bold text-xs
                                         ${isPast    ? "bg-green-500 text-white" :
-                                          isCurrent ? "bg-[#D4AF37] text-black" :
+                                          isCurrent ? "bg-[#C8B993] text-black" :
                                                       "bg-[#1A1A1A] border border-[#2a2a2a] text-gray-600"}`}>
                                         {isPast ? (
                                           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20,6 9,17 4,12"/></svg>
@@ -372,13 +372,13 @@ export default function AdminInstallmentsPage() {
 
                                     {/* Label */}
                                     <span className={`text-[9px] text-center leading-tight max-w-[52px] font-medium
-                                      ${isPast ? "text-green-400" : isCurrent ? "text-[#D4AF37]" : isNext ? "text-gray-300" : "text-gray-600"}`}>
+                                      ${isPast ? "text-green-400" : isCurrent ? "text-[#C8B993]" : isNext ? "text-gray-300" : "text-gray-600"}`}>
                                       {PIPELINE_LABEL[step]}
                                     </span>
 
                                     {/* Next step indicator */}
                                     {isNext && (
-                                      <span className="text-[8px] text-[#D4AF37]/70 font-bold tracking-wide">NEXT</span>
+                                      <span className="text-[8px] text-[#C8B993]/70 font-bold tracking-wide">NEXT</span>
                                     )}
                                   </div>
                                 </div>
@@ -389,7 +389,7 @@ export default function AdminInstallmentsPage() {
 
                         {/* Decline button — only when not terminal */}
                         {app.status !== "completed" && app.status !== "declined" && (
-                          <div className="mt-4 pt-3 border-t border-[#1F1F1F]">
+                          <div className="mt-4 pt-3 border-t border-[#2A2A2A]">
                             <button
                               onClick={() => updateStatus(app.id, "declined")}
                               disabled={!!updating}
@@ -413,7 +413,7 @@ export default function AdminInstallmentsPage() {
                           <button
                             onClick={() => resendInvoice(app.id)}
                             disabled={updating === app.id + "_email"}
-                            className="flex items-center gap-1.5 text-xs font-semibold px-4 py-2 rounded-lg border border-[#D4AF37]/30 bg-[#D4AF37]/10 text-[#D4AF37] hover:bg-[#D4AF37]/20 transition-colors disabled:opacity-50">
+                            className="flex items-center gap-1.5 text-xs font-semibold px-4 py-2 rounded-lg border border-[#C8B993]/30 bg-[#C8B993]/10 text-[#C8B993] hover:bg-[#C8B993]/20 transition-colors disabled:opacity-50">
                             <Mail size={13} />
                             {updating === app.id + "_email" ? "Sending…" : "Resend Invoice Email"}
                           </button>
@@ -438,11 +438,11 @@ export default function AdminInstallmentsPage() {
                   <button key={p.id} onClick={() => loadSettings(p)}
                     className={`w-full text-left px-4 py-3 rounded-xl border text-sm transition-colors ${
                       selectedProduct?.id === p.id
-                        ? "border-[#D4AF37] bg-[#D4AF37]/5 text-white"
-                        : "border-[#1F1F1F] bg-[#111111] text-gray-400 hover:text-white hover:border-[#2a2a2a]"
+                        ? "border-[#C8B993] bg-[#C8B993]/5 text-white"
+                        : "border-[#2A2A2A] bg-[#1D1D1D] text-gray-400 hover:text-white hover:border-[#2a2a2a]"
                     }`}>
                     <p className="font-medium truncate">{p.name}</p>
-                    <p className="text-xs text-[#D4AF37]">{p.price}</p>
+                    <p className="text-xs text-[#C8B993]">{p.price}</p>
                   </button>
                 ))}
               </div>
@@ -451,15 +451,15 @@ export default function AdminInstallmentsPage() {
             {/* Config form */}
             <div>
               {!selectedProduct ? (
-                <div className="bg-[#111111] border border-[#1F1F1F] rounded-2xl p-10 text-center text-gray-500 flex flex-col items-center gap-3">
+                <div className="bg-[#1D1D1D] border border-[#2A2A2A] rounded-2xl p-10 text-center text-gray-500 flex flex-col items-center gap-3">
                   <Plus size={24} className="text-gray-700" />
                   <p className="text-sm">Select a product to enable installments</p>
                 </div>
               ) : (
-                <div className="bg-[#111111] border border-[#1F1F1F] rounded-2xl p-5 space-y-5">
+                <div className="bg-[#1D1D1D] border border-[#2A2A2A] rounded-2xl p-5 space-y-5">
                   <div>
                     <p className="text-white font-semibold mb-0.5">{selectedProduct.name}</p>
-                    <p className="text-[#D4AF37] text-sm">{selectedProduct.price}</p>
+                    <p className="text-[#C8B993] text-sm">{selectedProduct.price}</p>
                   </div>
 
                   {/* Enable toggle */}
@@ -469,12 +469,12 @@ export default function AdminInstallmentsPage() {
                       <p className="text-gray-500 text-xs">Show installment option on this product</p>
                     </div>
                     <button onClick={() => setSettingsForm(f => ({ ...f, active: !f.active }))}
-                      className={`w-12 h-6 rounded-full transition-colors relative ${settingsForm.active ? "bg-[#D4AF37]" : "bg-[#2a2a2a]"}`}>
+                      className={`w-12 h-6 rounded-full transition-colors relative ${settingsForm.active ? "bg-[#C8B993]" : "bg-[#2a2a2a]"}`}>
                       <span className={`absolute top-1 w-4 h-4 rounded-full bg-white transition-all ${settingsForm.active ? "left-7" : "left-1"}`} />
                     </button>
                   </div>
 
-                  <div className="h-px bg-[#1F1F1F]" />
+                  <div className="h-px bg-[#2A2A2A]" />
 
                   {/* Eligible terms */}
                   <div>
@@ -484,8 +484,8 @@ export default function AdminInstallmentsPage() {
                         <button key={t} onClick={() => toggleTerm(t)}
                           className={`flex-1 py-2.5 rounded-xl border text-sm font-semibold transition-colors ${
                             settingsForm.eligible_terms.includes(t)
-                              ? "border-[#D4AF37] bg-[#D4AF37]/10 text-[#D4AF37]"
-                              : "border-[#2a2a2a] text-gray-500 hover:border-[#D4AF37]/30"
+                              ? "border-[#C8B993] bg-[#C8B993]/10 text-[#C8B993]"
+                              : "border-[#2a2a2a] text-gray-500 hover:border-[#C8B993]/30"
                           }`}>
                           {t}mo
                         </button>

@@ -114,16 +114,16 @@ function CheckoutPageContent() {
           {["details", "payment"].map((s, i) => (
             <div key={s} className="flex items-center gap-3">
               <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold transition-colors ${
-                step === s ? "bg-[#D4AF37] text-black" :
-                (["details","payment"].indexOf(step) > i) ? "bg-[#D4AF37]/30 text-[#D4AF37]" :
-                "bg-[#1F1F1F] text-gray-500"
+                step === s ? "bg-[#C8B993] text-black" :
+                (["details","payment"].indexOf(step) > i) ? "bg-[#C8B993]/30 text-[#C8B993]" :
+                "bg-[#2A2A2A] text-gray-500"
               }`}>
                 {i + 1}
               </div>
               <span className={`hidden sm:inline text-sm font-medium ${step === s ? "text-white" : "text-gray-500"}`}>
                 {s === "details" ? "Your Details" : "Payment"}
               </span>
-              {i < 1 && <div className="w-8 sm:w-12 h-px bg-[#1F1F1F]" />}
+              {i < 1 && <div className="w-8 sm:w-12 h-px bg-[#2A2A2A]" />}
             </div>
           ))}
         </div>
@@ -131,7 +131,7 @@ function CheckoutPageContent() {
         {/* ── Step 1: Customer Details ─────────────────────────── */}
         {step === "details" && (
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
-            <div className="lg:col-span-3 bg-[#111111] border border-[#1F1F1F] rounded-2xl p-7">
+            <div className="lg:col-span-3 bg-[#1D1D1D] border border-[#2A2A2A] rounded-2xl p-7">
               <h2 className="text-xl font-bold text-white mb-6">Your Details</h2>
 
               {wasCancelled && (
@@ -153,7 +153,7 @@ function CheckoutPageContent() {
                       value={form[key as keyof typeof form]}
                       onChange={e => setForm(f => ({ ...f, [key]: e.target.value }))}
                       placeholder={placeholder}
-                      className="w-full bg-[#0A0A0A] border border-[#2a2a2a] rounded-xl px-4 py-3 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-[#D4AF37] transition-colors"
+                      className="w-full bg-[#111111] border border-[#2a2a2a] rounded-xl px-4 py-3 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-[#C8B993] transition-colors"
                     />
                   </div>
                 ))}
@@ -164,27 +164,27 @@ function CheckoutPageContent() {
                   <div className="space-y-2">
                     <input type="text" placeholder="Street address or PO Box *" value={addr.line1}
                       onChange={e => setAddr(a => ({ ...a, line1: e.target.value }))}
-                      className="w-full bg-[#0A0A0A] border border-[#2a2a2a] rounded-xl px-4 py-3 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-[#D4AF37] transition-colors" />
+                      className="w-full bg-[#111111] border border-[#2a2a2a] rounded-xl px-4 py-3 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-[#C8B993] transition-colors" />
                     <input type="text" placeholder="Apartment, unit, complex (optional)" value={addr.line2}
                       onChange={e => setAddr(a => ({ ...a, line2: e.target.value }))}
-                      className="w-full bg-[#0A0A0A] border border-[#2a2a2a] rounded-xl px-4 py-3 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-[#D4AF37] transition-colors" />
+                      className="w-full bg-[#111111] border border-[#2a2a2a] rounded-xl px-4 py-3 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-[#C8B993] transition-colors" />
                     <input type="text" placeholder="Suburb" value={addr.suburb}
                       onChange={e => setAddr(a => ({ ...a, suburb: e.target.value }))}
-                      className="w-full bg-[#0A0A0A] border border-[#2a2a2a] rounded-xl px-4 py-3 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-[#D4AF37] transition-colors" />
+                      className="w-full bg-[#111111] border border-[#2a2a2a] rounded-xl px-4 py-3 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-[#C8B993] transition-colors" />
                     <div className="grid grid-cols-2 gap-2">
                       <input type="text" placeholder="City / Town" value={addr.city}
                         onChange={e => setAddr(a => ({ ...a, city: e.target.value }))}
-                        className="w-full bg-[#0A0A0A] border border-[#2a2a2a] rounded-xl px-4 py-3 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-[#D4AF37] transition-colors" />
+                        className="w-full bg-[#111111] border border-[#2a2a2a] rounded-xl px-4 py-3 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-[#C8B993] transition-colors" />
                       <input type="text" placeholder="Postal code" value={addr.postal}
                         onChange={e => setAddr(a => ({ ...a, postal: e.target.value }))}
-                        className="w-full bg-[#0A0A0A] border border-[#2a2a2a] rounded-xl px-4 py-3 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-[#D4AF37] transition-colors" />
+                        className="w-full bg-[#111111] border border-[#2a2a2a] rounded-xl px-4 py-3 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-[#C8B993] transition-colors" />
                     </div>
                     <select value={addr.province} onChange={e => setAddr(a => ({ ...a, province: e.target.value }))}
-                      className="w-full bg-[#0A0A0A] border border-[#2a2a2a] rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#D4AF37] transition-colors appearance-none"
+                      className="w-full bg-[#111111] border border-[#2a2a2a] rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#C8B993] transition-colors appearance-none"
                       style={{ color: addr.province ? "#fff" : "#4b5563" }}>
                       <option value="" disabled>Province</option>
                       {["Eastern Cape","Free State","Gauteng","KwaZulu-Natal","Limpopo","Mpumalanga","Northern Cape","North West","Western Cape"].map(p => (
-                        <option key={p} value={p} style={{ color: "#fff", background: "#0A0A0A" }}>{p}</option>
+                        <option key={p} value={p} style={{ color: "#fff", background: "#111111" }}>{p}</option>
                       ))}
                     </select>
                   </div>
@@ -202,7 +202,7 @@ function CheckoutPageContent() {
 
             {/* Order summary */}
             <div className="lg:col-span-2">
-              <div className="bg-[#111111] border border-[#1F1F1F] rounded-2xl p-6 sticky top-[124px]">
+              <div className="bg-[#1D1D1D] border border-[#2A2A2A] rounded-2xl p-6 sticky top-[124px]">
                 <h3 className="text-base font-semibold text-white mb-5">Order Summary</h3>
                 <div className="space-y-4 mb-5">
                   {items.map(item => (
@@ -216,13 +216,13 @@ function CheckoutPageContent() {
                         <p className="text-sm text-white font-medium truncate">{item.name}</p>
                         <p className="text-xs text-gray-500">Qty: {item.qty}</p>
                       </div>
-                      <p className="text-sm text-[#D4AF37] font-semibold shrink-0">
+                      <p className="text-sm text-[#C8B993] font-semibold shrink-0">
                         R {(parsePrice(item.price) * item.qty).toLocaleString()}
                       </p>
                     </div>
                   ))}
                 </div>
-                <div className="border-t border-[#1F1F1F] pt-4 space-y-2">
+                <div className="border-t border-[#2A2A2A] pt-4 space-y-2">
                   <div className="flex justify-between items-center">
                     <span className="text-gray-400 text-sm">Subtotal</span>
                     <span className="text-white text-sm">R {cartTotal.toLocaleString()}</span>
@@ -247,7 +247,7 @@ function CheckoutPageContent() {
         {step === "payment" && order && (
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
             <div className="lg:col-span-3 space-y-6">
-              <div className="bg-[#111111] border border-[#D4AF37]/40 rounded-2xl p-7">
+              <div className="bg-[#1D1D1D] border border-[#C8B993]/40 rounded-2xl p-7">
                 <p className="section-label mb-2">Pay Securely with PayFast</p>
                 <p className="text-gray-400 text-sm mb-5 leading-relaxed">
                   Pay by card, Instant EFT, or any other PayFast-supported method. Your order is confirmed automatically the moment payment clears.
@@ -261,14 +261,14 @@ function CheckoutPageContent() {
             </div>
 
             <div className="lg:col-span-2">
-              <div className="bg-[#111111] border border-[#1F1F1F] rounded-2xl p-6 sticky top-[124px] space-y-4">
+              <div className="bg-[#1D1D1D] border border-[#2A2A2A] rounded-2xl p-6 sticky top-[124px] space-y-4">
                 <h3 className="text-base font-semibold text-white">Order Placed</h3>
-                <div className="bg-[#0A0A0A] rounded-xl p-4 text-center">
+                <div className="bg-[#111111] rounded-xl p-4 text-center">
                   <p className="text-xs text-gray-500 mb-1">Your Order Reference</p>
-                  <p className="text-2xl font-extrabold text-[#D4AF37]">{order.ref}</p>
+                  <p className="text-2xl font-extrabold text-[#C8B993]">{order.ref}</p>
                   <p className="text-xs text-gray-600 mt-1">Save this for your records</p>
                 </div>
-                <div className="border-t border-[#1F1F1F] pt-4 flex justify-between">
+                <div className="border-t border-[#2A2A2A] pt-4 flex justify-between">
                   <span className="text-gray-400 text-sm">Total to pay</span>
                   <span className="text-white font-bold">R {order.total.toLocaleString()}</span>
                 </div>

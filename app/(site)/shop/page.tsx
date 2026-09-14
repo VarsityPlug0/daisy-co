@@ -125,7 +125,7 @@ export default async function Shop({
         <ProductGrid products={products} cat={cat} isDefaultSort={sort === "featured"} />
       )}
 
-      <div className="mt-12 bg-[#111111] border border-[#D4AF37]/25 rounded-2xl p-7 text-center">
+      <div className="mt-12 bg-[#1D1D1D] border border-[#C8B993]/25 rounded-2xl p-7 text-center">
         <h3 className="text-xl font-bold text-white mb-2">Can&apos;t find what you&apos;re looking for?</h3>
         <p className="text-gray-400 text-sm mb-5 max-w-lg mx-auto leading-relaxed">
           We source a wide range of gadgets. Contact us and we&apos;ll find it for you.
@@ -182,8 +182,8 @@ function ProductGrid({
       {/* ── 1. DEVICES & TECH DEPARTMENT ────────────────────────── */}
       {Object.keys(deviceGroups).length > 0 && (
         <section className="space-y-10">
-          <div className="flex items-center gap-3.5 pb-4 border-b border-[#D4AF37]/30">
-            <div className="w-10 h-10 rounded-2xl bg-[#D4AF37]/15 border border-[#D4AF37]/30 text-[#D4AF37] flex items-center justify-center font-bold shrink-0">
+          <div className="flex items-center gap-3.5 pb-4 border-b border-[#C8B993]/30">
+            <div className="w-10 h-10 rounded-2xl bg-[#C8B993]/15 border border-[#C8B993]/30 text-[#C8B993] flex items-center justify-center font-bold shrink-0">
               <Smartphone size={20} />
             </div>
             <div>
@@ -198,12 +198,12 @@ function ProductGrid({
                 <div className="flex items-center justify-between gap-4 mb-4">
                   <div className="flex items-center gap-4 min-w-0 flex-1">
                     <h3 className="text-base font-bold text-white whitespace-nowrap">{category}</h3>
-                    <div className="flex-1 h-px bg-[#1F1F1F]" />
+                    <div className="flex-1 h-px bg-[#2A2A2A]" />
                   </div>
                   {items.length > SECTION_LIMIT && (
                     <Link
                       href={`/shop?cat=${encodeURIComponent(category)}`}
-                      className="text-xs text-[#D4AF37] hover:underline whitespace-nowrap shrink-0"
+                      className="text-xs text-[#C8B993] hover:underline whitespace-nowrap shrink-0"
                     >
                       See all {items.length} →
                     </Link>
@@ -223,15 +223,15 @@ function ProductGrid({
       {/* ── 2. CLOTHING & STREETWEAR DEPARTMENT (COMING SOON) ────── */}
       {Object.keys(clothingGroups).length > 0 && (
         <section className="space-y-8 pt-4">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-5 rounded-3xl bg-gradient-to-r from-[#D4AF37]/15 via-[#141414] to-[#141414] border border-[#D4AF37]/40 shadow-xl shadow-[#D4AF37]/5">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-5 rounded-3xl bg-gradient-to-r from-[#C8B993]/15 via-[#141414] to-[#141414] border border-[#C8B993]/40 shadow-xl shadow-[#C8B993]/5">
             <div className="flex items-center gap-3.5">
-              <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#D4AF37] to-[#AA771C] text-black flex items-center justify-center font-bold shrink-0 shadow-lg shadow-[#D4AF37]/20">
+              <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#C8B993] to-[#AA771C] text-black flex items-center justify-center font-bold shrink-0 shadow-lg shadow-[#C8B993]/20">
                 <Shirt size={22} />
               </div>
               <div>
                 <div className="flex items-center gap-2.5">
                   <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight">Clothing & Apparel Department</h2>
-                  <span className="text-[10px] font-black uppercase tracking-wider bg-[#D4AF37] text-black px-2.5 py-0.5 rounded-full shadow">
+                  <span className="text-[10px] font-black uppercase tracking-wider bg-[#C8B993] text-black px-2.5 py-0.5 rounded-full shadow">
                     COMING SOON
                   </span>
                 </div>
@@ -253,16 +253,16 @@ function ProductGrid({
                   <div className="flex items-center gap-4 min-w-0 flex-1">
                     <div className="flex items-center gap-2">
                       <h3 className="text-base font-bold text-white whitespace-nowrap">{category}</h3>
-                      <span className="text-[9px] font-extrabold uppercase px-1.5 py-0.5 rounded bg-[#D4AF37]/20 text-[#D4AF37] border border-[#D4AF37]/30">
+                      <span className="text-[9px] font-extrabold uppercase px-1.5 py-0.5 rounded bg-[#C8B993]/20 text-[#C8B993] border border-[#C8B993]/30">
                         Soon
                       </span>
                     </div>
-                    <div className="flex-1 h-px bg-[#1F1F1F]" />
+                    <div className="flex-1 h-px bg-[#2A2A2A]" />
                   </div>
                   {items.length > SECTION_LIMIT && (
                     <Link
                       href={`/shop?cat=${encodeURIComponent(category)}`}
-                      className="text-xs text-[#D4AF37] hover:underline whitespace-nowrap shrink-0"
+                      className="text-xs text-[#C8B993] hover:underline whitespace-nowrap shrink-0"
                     >
                       See all {items.length} →
                     </Link>
@@ -288,7 +288,7 @@ function ProductCard({ product }: { product: ReturnType<typeof getProducts>[0] }
   return (
     <Link
       href={`/shop/${product.id}`}
-      className="bg-[#111111] border border-[#1F1F1F] rounded-xl overflow-hidden card-hover flex flex-col group"
+      className="bg-[#1D1D1D] border border-[#2A2A2A] rounded-xl overflow-hidden card-hover flex flex-col group"
     >
       <div className="relative h-40 bg-[#0f0f0f] overflow-hidden">
         {product.imageUrl ? (
@@ -305,7 +305,7 @@ function ProductCard({ product }: { product: ReturnType<typeof getProducts>[0] }
           </div>
         )}
         {isClothing ? (
-          <span className="absolute top-2 right-2 bg-[#D4AF37] text-black text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded shadow">
+          <span className="absolute top-2 right-2 bg-[#C8B993] text-black text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded shadow">
             COMING SOON
           </span>
         ) : product.featured ? (
@@ -319,7 +319,7 @@ function ProductCard({ product }: { product: ReturnType<typeof getProducts>[0] }
           {product.name}
         </p>
         <div className="flex items-center gap-1.5 mb-2">
-          <p className="text-[#D4AF37] font-bold text-sm">{product.price}</p>
+          <p className="text-[#C8B993] font-bold text-sm">{product.price}</p>
           {product.originalPrice && (
             <p className="text-gray-600 text-xs line-through">{product.originalPrice}</p>
           )}

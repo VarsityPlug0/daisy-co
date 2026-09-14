@@ -30,7 +30,7 @@ const STATUS_COLORS: Record<string, string> = {
   approved:        "#10b981",
   rejected:        "#ef4444",
   shipped:         "#3b82f6",
-  delivered:       "#D4AF37",
+  delivered:       "#C8B993",
 };
 
 const BANK_LABELS: Record<string, { label: string; color: string }> = {
@@ -113,7 +113,7 @@ export default function CustomersPage() {
   const repeatBuyers   = customers.filter(c => c.orders.length > 1).length;
 
   return (
-    <div className="min-h-screen bg-[#0A0A0A]">
+    <div className="min-h-screen bg-[#111111]">
       <header className="bg-[#0f0f0f] border-b border-[#1A1A1A] px-4 sm:px-6 py-3 flex items-center gap-3">
         <Link href="/admin/dashboard" className="text-gray-500 hover:text-white transition-colors shrink-0">
           <ArrowLeft size={18} />
@@ -130,10 +130,10 @@ export default function CustomersPage() {
         <div className="grid grid-cols-3 gap-3 mb-5">
           {[
             { label: "Total Customers", value: totalCustomers,          color: "#9ca3af" },
-            { label: "Repeat Buyers",   value: repeatBuyers,            color: "#D4AF37" },
+            { label: "Repeat Buyers",   value: repeatBuyers,            color: "#C8B993" },
             { label: "Total Revenue",   value: `R ${totalRevenue.toLocaleString()}`, color: "#10b981" },
           ].map(s => (
-            <div key={s.label} className="bg-[#111] border border-[#1F1F1F] rounded-xl p-3 text-center">
+            <div key={s.label} className="bg-[#111] border border-[#2A2A2A] rounded-xl p-3 text-center">
               <p className="font-bold text-lg sm:text-xl mb-0.5 truncate" style={{ color: s.color }}>{s.value}</p>
               <p className="text-gray-500 text-[10px] sm:text-xs">{s.label}</p>
             </div>
@@ -149,13 +149,13 @@ export default function CustomersPage() {
               value={search}
               onChange={e => setSearch(e.target.value)}
               placeholder="Search by name, email or phone…"
-              className="w-full bg-[#111] border border-[#1F1F1F] rounded-xl pl-9 pr-4 py-2.5 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-[#D4AF37]/50 transition-colors"
+              className="w-full bg-[#111] border border-[#2A2A2A] rounded-xl pl-9 pr-4 py-2.5 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-[#C8B993]/50 transition-colors"
             />
           </div>
           <select
             value={sort}
             onChange={e => setSort(e.target.value as typeof sort)}
-            className="bg-[#111] border border-[#1F1F1F] rounded-xl px-3 py-2.5 text-sm text-gray-300 focus:outline-none focus:border-[#D4AF37]/50 transition-colors appearance-none">
+            className="bg-[#111] border border-[#2A2A2A] rounded-xl px-3 py-2.5 text-sm text-gray-300 focus:outline-none focus:border-[#C8B993]/50 transition-colors appearance-none">
             <option value="recent">Most Recent</option>
             <option value="spent">Most Spent</option>
             <option value="orders">Most Orders</option>
@@ -174,13 +174,13 @@ export default function CustomersPage() {
               const orderWord = customer.orders.length === 1 ? "order" : "orders";
 
               return (
-                <div key={customer.email} className="bg-[#111111] border border-[#1F1F1F] rounded-2xl overflow-hidden transition-colors hover:border-[#2a2a2a]">
+                <div key={customer.email} className="bg-[#1D1D1D] border border-[#2A2A2A] rounded-2xl overflow-hidden transition-colors hover:border-[#2a2a2a]">
 
                   {/* Customer row */}
                   <div className="flex items-center gap-4 px-5 py-4">
 
                     {/* Avatar */}
-                    <div className="w-10 h-10 rounded-full bg-[#1F1F1F] flex items-center justify-center shrink-0">
+                    <div className="w-10 h-10 rounded-full bg-[#2A2A2A] flex items-center justify-center shrink-0">
                       <span className="text-sm font-bold text-gray-400">{customer.name.charAt(0).toUpperCase()}</span>
                     </div>
 
@@ -195,7 +195,7 @@ export default function CustomersPage() {
                           </span>
                         )}
                         {customer.orders.length > 1 && (
-                          <span className="text-[10px] font-bold px-2 py-0.5 rounded-full text-[#D4AF37] bg-[#D4AF37]/10 border border-[#D4AF37]/30 shrink-0">
+                          <span className="text-[10px] font-bold px-2 py-0.5 rounded-full text-[#C8B993] bg-[#C8B993]/10 border border-[#C8B993]/30 shrink-0">
                             Repeat
                           </span>
                         )}
@@ -227,7 +227,7 @@ export default function CustomersPage() {
                       </a>
                       <a
                         href={`mailto:${customer.email}`}
-                        className="p-2 rounded-lg text-gray-500 hover:text-[#D4AF37] hover:bg-[#D4AF37]/10 transition-colors">
+                        className="p-2 rounded-lg text-gray-500 hover:text-[#C8B993] hover:bg-[#C8B993]/10 transition-colors">
                         <Mail size={15} />
                       </a>
                       <button
@@ -247,12 +247,12 @@ export default function CustomersPage() {
 
                   {/* Order history */}
                   {isOpen && (
-                    <div className="border-t border-[#1F1F1F] divide-y divide-[#1A1A1A]">
+                    <div className="border-t border-[#2A2A2A] divide-y divide-[#1A1A1A]">
                       {[...customer.orders].sort((a, b) => b.createdAt.localeCompare(a.createdAt)).map(order => (
                         <div key={order.id} className="flex items-center gap-3 px-5 py-3">
                           <div className="flex-1 min-w-0">
                             <div className="flex items-center gap-2">
-                              <span className="text-[#D4AF37] text-xs font-bold">{order.ref}</span>
+                              <span className="text-[#C8B993] text-xs font-bold">{order.ref}</span>
                               <span className="text-[10px] font-bold px-2 py-0.5 rounded-full capitalize"
                                 style={{ color: STATUS_COLORS[order.status] ?? "#9ca3af", background: (STATUS_COLORS[order.status] ?? "#9ca3af") + "18" }}>
                                 {order.status.replace(/_/g, " ")}

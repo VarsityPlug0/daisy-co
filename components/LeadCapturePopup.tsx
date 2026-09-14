@@ -74,32 +74,32 @@ export default function LeadCapturePopup() {
       <div
         className="relative w-full max-w-lg rounded-3xl overflow-hidden"
         style={{
-          background: "linear-gradient(160deg, #111 0%, #0a0a0a 100%)",
-          border: "1px solid rgba(212,175,55,0.35)",
-          boxShadow: "0 0 0 1px rgba(212,175,55,0.08), 0 40px 80px rgba(0,0,0,0.9)",
+          background: "linear-gradient(160deg, #111 0%, #111111 100%)",
+          border: "1px solid rgba(200,185,147,0.35)",
+          boxShadow: "0 0 0 1px rgba(200,185,147,0.08), 0 40px 80px rgba(0,0,0,0.9)",
         }}
       >
-        <div style={{ height: 3, background: "linear-gradient(90deg, transparent, #D4AF37, #f5d76e, #D4AF37, transparent)" }} />
+        <div style={{ height: 3, background: "linear-gradient(90deg, transparent, #C8B993, #f5d76e, #C8B993, transparent)" }} />
 
         {step === "offer" && (
           <div className="px-8 py-10 text-center">
             <div
               className="w-16 h-16 rounded-2xl mx-auto mb-6 flex items-center justify-center"
-              style={{ background: "rgba(212,175,55,0.12)", border: "1px solid rgba(212,175,55,0.3)" }}
+              style={{ background: "rgba(200,185,147,0.12)", border: "1px solid rgba(200,185,147,0.3)" }}
             >
-              <Tag size={28} color="#D4AF37" />
+              <Tag size={28} color="#C8B993" />
             </div>
-            <p className="text-xs font-bold tracking-[0.2em] text-[#D4AF37] uppercase mb-3">Limited Offer</p>
+            <p className="text-xs font-bold tracking-[0.2em] text-[#C8B993] uppercase mb-3">Limited Offer</p>
             <h2 className="text-white font-black text-3xl leading-tight mb-3">
-              Claim <span style={{ color: "#D4AF37" }}>25% OFF</span><br />your first order
+              Claim <span style={{ color: "#C8B993" }}>25% OFF</span><br />your first order
             </h2>
             <p className="text-gray-400 text-sm leading-relaxed mb-8 max-w-xs mx-auto">
               Enter your details and we will send you an exclusive discount code right now.
             </p>
             <button
               onClick={() => setStep("form")}
-              className="w-full py-4 rounded-2xl font-black text-base text-[#0A0A0A] mb-3 transition-all hover:scale-[1.02] active:scale-[0.98]"
-              style={{ background: "linear-gradient(135deg, #D4AF37 0%, #f5d76e 50%, #D4AF37 100%)", boxShadow: "0 8px 24px rgba(212,175,55,0.35)" }}
+              className="w-full py-4 rounded-2xl font-black text-base text-[#111111] mb-3 transition-all hover:scale-[1.02] active:scale-[0.98]"
+              style={{ background: "linear-gradient(135deg, #C8B993 0%, #f5d76e 50%, #C8B993 100%)", boxShadow: "0 8px 24px rgba(200,185,147,0.35)" }}
             >
               <Zap size={16} className="inline mr-2 mb-0.5" />
               Yes! Claim my 25% off
@@ -113,7 +113,7 @@ export default function LeadCapturePopup() {
         {step === "form" && (
           <div className="px-8 py-9">
             <div className="text-center mb-6">
-              <p className="text-xs font-bold tracking-[0.2em] text-[#D4AF37] uppercase mb-2">Almost there</p>
+              <p className="text-xs font-bold tracking-[0.2em] text-[#C8B993] uppercase mb-2">Almost there</p>
               <h2 className="text-white font-black text-2xl">Where do we send your code?</h2>
               <p className="text-gray-500 text-sm mt-2">Your 25% discount will be sent straight to you.</p>
             </div>
@@ -123,7 +123,7 @@ export default function LeadCapturePopup() {
                 placeholder="Your name (optional)"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                className="w-full bg-[#161616] border border-[#2a2a2a] rounded-xl px-4 py-3.5 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-[#D4AF37] transition-colors"
+                className="w-full bg-[#1A1A1A] border border-[#2a2a2a] rounded-xl px-4 py-3.5 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-[#C8B993] transition-colors"
               />
               <input
                 type="tel"
@@ -132,20 +132,20 @@ export default function LeadCapturePopup() {
                 onChange={(e) => setPhone(e.target.value)}
                 required
                 autoFocus
-                className="w-full bg-[#161616] border border-[#2a2a2a] rounded-xl px-4 py-3.5 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-[#D4AF37] transition-colors"
+                className="w-full bg-[#1A1A1A] border border-[#2a2a2a] rounded-xl px-4 py-3.5 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-[#C8B993] transition-colors"
               />
               <input
                 type="email"
                 placeholder="Email address (optional)"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full bg-[#161616] border border-[#2a2a2a] rounded-xl px-4 py-3.5 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-[#D4AF37] transition-colors"
+                className="w-full bg-[#1A1A1A] border border-[#2a2a2a] rounded-xl px-4 py-3.5 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-[#C8B993] transition-colors"
               />
               <button
                 type="submit"
                 disabled={loading || !phone}
-                className="w-full py-4 rounded-2xl font-black text-base text-[#0A0A0A] disabled:opacity-40 transition-all hover:scale-[1.02] active:scale-[0.98] mt-1"
-                style={{ background: "linear-gradient(135deg, #D4AF37 0%, #f5d76e 50%, #D4AF37 100%)", boxShadow: "0 8px 24px rgba(212,175,55,0.3)" }}
+                className="w-full py-4 rounded-2xl font-black text-base text-[#111111] disabled:opacity-40 transition-all hover:scale-[1.02] active:scale-[0.98] mt-1"
+                style={{ background: "linear-gradient(135deg, #C8B993 0%, #f5d76e 50%, #C8B993 100%)", boxShadow: "0 8px 24px rgba(200,185,147,0.3)" }}
               >
                 {loading ? "Sending..." : "Send my 25% discount code"}
               </button>

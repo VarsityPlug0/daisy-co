@@ -72,7 +72,7 @@ export default function TrackOrderPage() {
           value={ref}
           onChange={e => setRef(e.target.value)}
           placeholder="e.g. DGC-2025-0001"
-          className="flex-1 bg-[#111111] border border-[#2a2a2a] rounded-xl px-5 py-4 text-white placeholder-gray-600 text-sm"
+          className="flex-1 bg-[#1D1D1D] border border-[#2a2a2a] rounded-xl px-5 py-4 text-white placeholder-gray-600 text-sm"
         />
         <button type="submit" disabled={loading || !ref.trim()}
           className="btn-gold px-6 py-4 rounded-xl font-bold flex items-center gap-2 disabled:opacity-50">
@@ -88,13 +88,13 @@ export default function TrackOrderPage() {
       {order && (
         <div className="space-y-5">
           {/* Status */}
-          <div className="bg-[#111111] border border-[#1F1F1F] rounded-2xl p-6">
+          <div className="bg-[#1D1D1D] border border-[#2A2A2A] rounded-2xl p-6">
             <div className="flex items-center justify-between mb-6">
               <div>
                 <p className="text-xs text-gray-500 uppercase tracking-wide mb-1">Order Reference</p>
-                <p className="text-[#D4AF37] font-mono font-bold text-xl">{order.ref}</p>
+                <p className="text-[#C8B993] font-mono font-bold text-xl">{order.ref}</p>
               </div>
-              <span className="text-xs font-bold px-3 py-1.5 rounded-full bg-[#D4AF37]/10 text-[#D4AF37] border border-[#D4AF37]/20">
+              <span className="text-xs font-bold px-3 py-1.5 rounded-full bg-[#C8B993]/10 text-[#C8B993] border border-[#C8B993]/20">
                 {STATUS_LABELS[order.status] ?? order.status}
               </span>
             </div>
@@ -105,20 +105,20 @@ export default function TrackOrderPage() {
                 <div key={label} className="flex items-center flex-1 last:flex-none">
                   <div className="flex flex-col items-center">
                     <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-colors ${
-                      i <= step ? "bg-[#D4AF37] text-black" : "bg-[#1F1F1F] text-gray-600"
+                      i <= step ? "bg-[#C8B993] text-black" : "bg-[#2A2A2A] text-gray-600"
                     }`}>
                       {i < step ? <CheckCircle size={14} /> : i + 1}
                     </div>
                     <p className="text-[9px] text-gray-600 mt-1 text-center leading-tight max-w-12">{label}</p>
                   </div>
-                  {i < 4 && <div className={`flex-1 h-0.5 mb-5 ${i < step ? "bg-[#D4AF37]" : "bg-[#1F1F1F]"}`} />}
+                  {i < 4 && <div className={`flex-1 h-0.5 mb-5 ${i < step ? "bg-[#C8B993]" : "bg-[#2A2A2A]"}`} />}
                 </div>
               ))}
             </div>
           </div>
 
           {/* Order details */}
-          <div className="bg-[#111111] border border-[#1F1F1F] rounded-2xl p-6">
+          <div className="bg-[#1D1D1D] border border-[#2A2A2A] rounded-2xl p-6">
             <h3 className="text-base font-semibold text-white mb-4">Order Details</h3>
             <div className="space-y-3 mb-4">
               {order.items?.map((item, i) => (
@@ -127,17 +127,17 @@ export default function TrackOrderPage() {
                     <p className="text-sm text-white font-medium">{item.name}</p>
                     <p className="text-xs text-gray-500">Qty: {item.qty}</p>
                   </div>
-                  <p className="text-sm text-[#D4AF37] font-semibold">{item.price}</p>
+                  <p className="text-sm text-[#C8B993] font-semibold">{item.price}</p>
                 </div>
               ))}
             </div>
-            <div className="border-t border-[#1F1F1F] pt-3 flex justify-between">
+            <div className="border-t border-[#2A2A2A] pt-3 flex justify-between">
               <span className="text-gray-400 text-sm">Total</span>
               <span className="text-white font-bold">R {order.total?.toLocaleString()}</span>
             </div>
           </div>
 
-          <div className="bg-[#111111] border border-[#1F1F1F] rounded-2xl p-5 text-center">
+          <div className="bg-[#1D1D1D] border border-[#2A2A2A] rounded-2xl p-5 text-center">
             <p className="text-gray-400 text-sm mb-3">Need help with your order? Email us with your reference number.</p>
             <a href={`mailto:support@bevanssons.store?subject=Order%20${encodeURIComponent(order.ref)}`}
               className="btn-gold px-8 py-3 rounded-xl font-bold text-sm">
@@ -148,11 +148,11 @@ export default function TrackOrderPage() {
       )}
 
       {!order && !error && (
-        <div className="bg-[#111111] border border-[#1F1F1F] rounded-2xl p-8 text-center">
+        <div className="bg-[#1D1D1D] border border-[#2A2A2A] rounded-2xl p-8 text-center">
           <Package size={40} color="#2a2a2a" strokeWidth={1} className="mx-auto mb-3" />
           <p className="text-gray-500 text-sm mb-4">Your order reference is in your confirmation email.</p>
           <a href="mailto:support@bevanssons.store"
-            className="text-[#D4AF37] text-sm font-semibold hover:underline">
+            className="text-[#C8B993] text-sm font-semibold hover:underline">
             Can&apos;t find your reference? Email us
           </a>
         </div>

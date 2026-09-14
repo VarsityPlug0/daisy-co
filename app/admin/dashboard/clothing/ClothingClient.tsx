@@ -140,8 +140,8 @@ export default function ClothingClient({ initialProducts }: { initialProducts: P
           onClick={() => setSelectedCat("All")}
           className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all ${
             selectedCat === "All"
-              ? "bg-[#D4AF37] text-black shadow-lg shadow-[#D4AF37]/20"
-              : "bg-[#111111] border border-[#1F1F1F] text-gray-400 hover:text-white hover:border-[#D4AF37]/40"
+              ? "bg-[#C8B993] text-black shadow-lg shadow-[#C8B993]/20"
+              : "bg-[#1D1D1D] border border-[#2A2A2A] text-gray-400 hover:text-white hover:border-[#C8B993]/40"
           }`}
         >
           <span>All Clothing</span>
@@ -162,11 +162,11 @@ export default function ClothingClient({ initialProducts }: { initialProducts: P
               onClick={() => setSelectedCat(c)}
               className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all ${
                 active
-                  ? "bg-[#D4AF37] text-black shadow-lg shadow-[#D4AF37]/20"
-                  : "bg-[#111111] border border-[#1F1F1F] text-gray-400 hover:text-white hover:border-[#D4AF37]/40"
+                  ? "bg-[#C8B993] text-black shadow-lg shadow-[#C8B993]/20"
+                  : "bg-[#1D1D1D] border border-[#2A2A2A] text-gray-400 hover:text-white hover:border-[#C8B993]/40"
               }`}
             >
-              <Icon size={14} className={active ? "text-black" : "text-[#D4AF37]"} />
+              <Icon size={14} className={active ? "text-black" : "text-[#C8B993]"} />
               <span>{c}</span>
               <span className={`text-[10px] px-1.5 py-0.2 rounded-full font-bold ${
                 active ? "bg-black/20 text-black" : "bg-white/10 text-gray-400"
@@ -185,13 +185,13 @@ export default function ClothingClient({ initialProducts }: { initialProducts: P
           placeholder="Search streetwear, hoodies, shoes…"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="flex-1 bg-[#111111] border border-[#1F1F1F] rounded-xl px-4 py-2.5 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-[#D4AF37]/40"
+          className="flex-1 bg-[#1D1D1D] border border-[#2A2A2A] rounded-xl px-4 py-2.5 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-[#C8B993]/40"
         />
 
         <select
           value={stockFilter}
           onChange={(e) => setStockFilter(e.target.value)}
-          className="bg-[#111111] border border-[#1F1F1F] rounded-xl px-4 py-2.5 text-sm text-gray-300 focus:outline-none focus:border-[#D4AF37]/40"
+          className="bg-[#1D1D1D] border border-[#2A2A2A] rounded-xl px-4 py-2.5 text-sm text-gray-300 focus:outline-none focus:border-[#C8B993]/40"
         >
           {["All", "In Stock", "Out of Stock", "Featured"].map((s) => (
             <option key={s} value={s}>{s}</option>
@@ -210,7 +210,7 @@ export default function ClothingClient({ initialProducts }: { initialProducts: P
       {/* Count */}
       <div className="flex items-center justify-between mb-3 text-xs text-gray-500">
         <p>Showing {filtered.length} item{filtered.length !== 1 ? "s" : ""}</p>
-        <Link href="/clothing" target="_blank" className="flex items-center gap-1 text-[#D4AF37] hover:underline">
+        <Link href="/clothing" target="_blank" className="flex items-center gap-1 text-[#C8B993] hover:underline">
           <Eye size={13} />
           <span>View Public Clothing Store</span>
         </Link>
@@ -218,7 +218,7 @@ export default function ClothingClient({ initialProducts }: { initialProducts: P
 
       {/* Table / Grid */}
       {filtered.length === 0 ? (
-        <div className="bg-[#111111] border border-[#1F1F1F] rounded-2xl p-12 text-center">
+        <div className="bg-[#1D1D1D] border border-[#2A2A2A] rounded-2xl p-12 text-center">
           <Shirt size={36} className="mx-auto text-gray-600 mb-3" />
           <p className="text-gray-400 font-semibold mb-1">No clothing items match your search or filter.</p>
           <p className="text-gray-600 text-xs mb-5">Try changing the category or adding a new clothing product.</p>
@@ -233,8 +233,8 @@ export default function ClothingClient({ initialProducts }: { initialProducts: P
       ) : (
         <>
           {/* Desktop table */}
-          <div className="hidden md:block bg-[#111111] border border-[#1F1F1F] rounded-2xl overflow-hidden shadow-xl">
-            <div className="grid grid-cols-[60px_1fr_130px_160px_150px_130px] gap-3 px-5 py-3.5 border-b border-[#1F1F1F] bg-[#141414]">
+          <div className="hidden md:block bg-[#1D1D1D] border border-[#2A2A2A] rounded-2xl overflow-hidden shadow-xl">
+            <div className="grid grid-cols-[60px_1fr_130px_160px_150px_130px] gap-3 px-5 py-3.5 border-b border-[#2A2A2A] bg-[#141414]">
               {["Image", "Item Name", "Price", "Category", "Availability", "Actions"].map((h) => (
                 <p key={h} className="text-[11px] text-gray-400 uppercase tracking-wider font-semibold">{h}</p>
               ))}
@@ -251,7 +251,7 @@ export default function ClothingClient({ initialProducts }: { initialProducts: P
                     className="grid grid-cols-[60px_1fr_130px_160px_150px_130px] gap-3 items-center px-5 py-3.5 hover:bg-white/[0.02] transition-colors"
                   >
                     {/* Image */}
-                    <div className="w-12 h-14 rounded-lg overflow-hidden bg-[#0A0A0A] border border-[#1F1F1F] shrink-0 relative group/img">
+                    <div className="w-12 h-14 rounded-lg overflow-hidden bg-[#111111] border border-[#2A2A2A] shrink-0 relative group/img">
                       {p.imageUrl ? (
                         <img src={p.imageUrl} alt={p.name} className="w-full h-full object-cover" />
                       ) : (
@@ -271,7 +271,7 @@ export default function ClothingClient({ initialProducts }: { initialProducts: P
 
                     {/* Price */}
                     <div>
-                      <p className="text-[#D4AF37] font-extrabold text-sm">{p.price}</p>
+                      <p className="text-[#C8B993] font-extrabold text-sm">{p.price}</p>
                       {p.originalPrice && (
                         <p className="text-gray-600 text-xs line-through">{p.originalPrice}</p>
                       )}
@@ -280,7 +280,7 @@ export default function ClothingClient({ initialProducts }: { initialProducts: P
                     {/* Category Pill */}
                     <div>
                       <span className="inline-flex items-center gap-1.5 text-xs bg-white/5 border border-white/10 text-gray-300 rounded-lg px-2.5 py-1">
-                        <Icon size={12} className="text-[#D4AF37]" />
+                        <Icon size={12} className="text-[#C8B993]" />
                         <span className="truncate max-w-[120px]">{p.category}</span>
                       </span>
                     </div>
@@ -305,7 +305,7 @@ export default function ClothingClient({ initialProducts }: { initialProducts: P
                         disabled={isUpdating}
                         className={`text-[10px] px-2.5 py-1 rounded-full font-bold transition-all ${
                           p.featured
-                            ? "bg-[#D4AF37]/20 text-[#D4AF37] border border-[#D4AF37]/40"
+                            ? "bg-[#C8B993]/20 text-[#C8B993] border border-[#C8B993]/40"
                             : "bg-white/5 text-gray-500 border border-white/5 hover:text-gray-300"
                         }`}
                         title="Click to toggle Featured"
@@ -320,7 +320,7 @@ export default function ClothingClient({ initialProducts }: { initialProducts: P
                         <button
                           onClick={() => setCropProduct(p)}
                           title="Crop image"
-                          className="w-7 h-7 rounded-lg flex items-center justify-center text-xs text-[#D4AF37] bg-[#D4AF37]/10 hover:bg-[#D4AF37]/20 transition-colors"
+                          className="w-7 h-7 rounded-lg flex items-center justify-center text-xs text-[#C8B993] bg-[#C8B993]/10 hover:bg-[#C8B993]/20 transition-colors"
                         >
                           <Scissors size={13} />
                         </button>
@@ -346,9 +346,9 @@ export default function ClothingClient({ initialProducts }: { initialProducts: P
               const isUpdating = updatingId === p.id;
 
               return (
-                <div key={p.id} className="bg-[#111111] border border-[#1F1F1F] rounded-2xl p-4 shadow-lg">
+                <div key={p.id} className="bg-[#1D1D1D] border border-[#2A2A2A] rounded-2xl p-4 shadow-lg">
                   <div className="flex gap-3">
-                    <div className="w-16 h-20 rounded-xl overflow-hidden bg-[#0A0A0A] border border-[#1F1F1F] shrink-0">
+                    <div className="w-16 h-20 rounded-xl overflow-hidden bg-[#111111] border border-[#2A2A2A] shrink-0">
                       {p.imageUrl ? (
                         <img src={p.imageUrl} alt={p.name} className="w-full h-full object-cover" />
                       ) : (
@@ -360,14 +360,14 @@ export default function ClothingClient({ initialProducts }: { initialProducts: P
                     <div className="flex-1 min-w-0">
                       <p className="text-white font-semibold text-sm leading-snug truncate">{p.name}</p>
                       <div className="flex items-baseline gap-2 mt-1">
-                        <span className="text-[#D4AF37] font-extrabold text-sm">{p.price}</span>
+                        <span className="text-[#C8B993] font-extrabold text-sm">{p.price}</span>
                         {p.originalPrice && (
                           <span className="text-gray-600 text-xs line-through">{p.originalPrice}</span>
                         )}
                       </div>
                       <div className="mt-2">
                         <span className="inline-flex items-center gap-1 text-[10px] bg-white/5 border border-white/10 text-gray-300 rounded-md px-2 py-0.5">
-                          <Icon size={11} className="text-[#D4AF37]" />
+                          <Icon size={11} className="text-[#C8B993]" />
                           <span>{p.category}</span>
                         </span>
                       </div>
@@ -387,7 +387,7 @@ export default function ClothingClient({ initialProducts }: { initialProducts: P
                       </button>
 
                       {p.featured && (
-                        <span className="text-[10px] px-2 py-1 rounded-full font-bold bg-[#D4AF37]/15 text-[#D4AF37]">
+                        <span className="text-[10px] px-2 py-1 rounded-full font-bold bg-[#C8B993]/15 text-[#C8B993]">
                           Featured
                         </span>
                       )}
@@ -397,7 +397,7 @@ export default function ClothingClient({ initialProducts }: { initialProducts: P
                       {p.imageUrl && (
                         <button
                           onClick={() => setCropProduct(p)}
-                          className="w-7 h-7 rounded-lg flex items-center justify-center text-xs text-[#D4AF37] bg-[#D4AF37]/10"
+                          className="w-7 h-7 rounded-lg flex items-center justify-center text-xs text-[#C8B993] bg-[#C8B993]/10"
                         >
                           <Scissors size={13} />
                         </button>
@@ -429,7 +429,7 @@ export default function ClothingClient({ initialProducts }: { initialProducts: P
       {cropSaving && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80">
           <div className="flex flex-col items-center gap-3">
-            <div className="w-10 h-10 border-2 border-[#D4AF37] border-t-transparent rounded-full animate-spin" />
+            <div className="w-10 h-10 border-2 border-[#C8B993] border-t-transparent rounded-full animate-spin" />
             <p className="text-white text-sm">Saving cropped image…</p>
           </div>
         </div>

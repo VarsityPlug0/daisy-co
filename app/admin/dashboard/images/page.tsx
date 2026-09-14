@@ -6,7 +6,7 @@ export const dynamic = "force-dynamic";
 export default function ImagesPage() {
   const images = getAllSiteImages();
   return (
-    <div className="min-h-screen bg-[#0A0A0A] p-6">
+    <div className="min-h-screen bg-[#111111] p-6">
       <div className="max-w-7xl mx-auto">
         <div className="mb-8">
           <h1 className="text-2xl font-bold text-white">Site Images</h1>

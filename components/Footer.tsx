@@ -33,7 +33,7 @@ export default function Footer() {
               <div className="flex items-center gap-3 mb-3">
                 <DaisyLogo />
                 <div>
-                  <p style={{ fontFamily: "var(--font-outfit)", fontWeight: 700, fontSize: 15, color: "#D4AF37", lineHeight: 1.2 }}>
+                  <p style={{ fontFamily: "var(--font-outfit)", fontWeight: 700, fontSize: 15, color: "#C8B993", lineHeight: 1.2 }}>
                     Bevanssons
                   </p>
                   <p style={{ fontSize: 9, color: "#6B7280", letterSpacing: "0.08em", textTransform: "uppercase" }}>
@@ -44,7 +44,7 @@ export default function Footer() {
               <p className="text-gray-500 text-sm leading-relaxed mt-4 max-w-xs">
                 Premium gadgets for everyday convenience. Worldwide shipping available. Same-day delivery in South Africa.
               </p>
-              <div className="mt-5 p-4 rounded-xl border border-[#1F1F1F] bg-[#111111]">
+              <div className="mt-5 p-4 rounded-xl border border-[#2A2A2A] bg-[#1D1D1D]">
                 <p className="text-[10px] text-gray-600 uppercase tracking-wide mb-2 font-semibold">Bank Details</p>
                 <div className="space-y-1">
                   {[
@@ -57,7 +57,7 @@ export default function Footer() {
                   ].map(([k, v]) => (
                     <div key={k} className="flex justify-between gap-2">
                       <span className="text-[10px] text-gray-600">{k}</span>
-                      <span className={`text-[10px] font-semibold ${k === "Account No." ? "text-[#D4AF37] font-mono" : "text-gray-300"}`}>{v}</span>
+                      <span className={`text-[10px] font-semibold ${k === "Account No." ? "text-[#C8B993] font-mono" : "text-gray-300"}`}>{v}</span>
                     </div>
                   ))}
                 </div>
@@ -82,7 +82,7 @@ export default function Footer() {
                   ["New Arrivals",       "/new-arrivals"],
                 ].map(([l, h]) => (
                   <li key={l}>
-                    <Link href={h} className="text-gray-500 hover:text-[#D4AF37] transition-colors text-xs"
+                    <Link href={h} className="text-gray-500 hover:text-[#C8B993] transition-colors text-xs"
                       style={{ fontFamily: "var(--font-outfit)", fontWeight: 500 }}>{l}</Link>
                   </li>
                 ))}
@@ -103,7 +103,7 @@ export default function Footer() {
                   ["About Us",          "/about"],
                 ].map(([l, h]) => (
                   <li key={l}>
-                    <Link href={h} className="text-gray-500 hover:text-[#D4AF37] transition-colors text-xs"
+                    <Link href={h} className="text-gray-500 hover:text-[#C8B993] transition-colors text-xs"
                       style={{ fontFamily: "var(--font-outfit)", fontWeight: 500 }}>{l}</Link>
                   </li>
                 ))}
@@ -118,7 +118,7 @@ export default function Footer() {
                   ["Warranty Policy",    "/policies/warranty"],
                 ].map(([l, h]) => (
                   <li key={l}>
-                    <Link href={h} className="text-gray-500 hover:text-[#D4AF37] transition-colors text-xs"
+                    <Link href={h} className="text-gray-500 hover:text-[#C8B993] transition-colors text-xs"
                       style={{ fontFamily: "var(--font-outfit)", fontWeight: 500 }}>{l}</Link>
                   </li>
                 ))}
@@ -130,16 +130,16 @@ export default function Footer() {
               <p className="section-label mb-5">Contact Us</p>
               <ul className="space-y-3 text-xs text-gray-500 mb-6">
                 <li className="flex items-start gap-2.5">
-                  <svg className="mt-0.5 shrink-0" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" strokeWidth="2">
+                  <svg className="mt-0.5 shrink-0" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#C8B993" strokeWidth="2">
                     <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
                     <polyline points="22,6 12,13 2,6"/>
                   </svg>
-                  <a href="mailto:support@bevanssons.store" className="text-white font-medium hover:text-[#D4AF37] transition-colors">
+                  <a href="mailto:support@bevanssons.store" className="text-white font-medium hover:text-[#C8B993] transition-colors">
                     support@bevanssons.store
                   </a>
                 </li>
                 <li className="flex items-start gap-2.5">
-                  <svg className="mt-0.5 shrink-0" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" strokeWidth="2">
+                  <svg className="mt-0.5 shrink-0" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#C8B993" strokeWidth="2">
                     <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
                     <circle cx="12" cy="10" r="3"/>
                   </svg>
@@ -161,7 +161,7 @@ export default function Footer() {
                     icon: <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg> },
                 ].map((s) => (
                   <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.label}
-                    className="w-9 h-9 rounded-full border border-[#2a2a2a] flex items-center justify-center text-gray-400 hover:text-white hover:border-[#D4AF37]/50 transition-all">
+                    className="w-9 h-9 rounded-full border border-[#2a2a2a] flex items-center justify-center text-gray-400 hover:text-white hover:border-[#C8B993]/50 transition-all">
                     {s.icon}
                   </a>
                 ))}
@@ -193,8 +193,8 @@ export default function Footer() {
             return (
               <Link key={item.href} href={item.href}
                 className="flex flex-col items-center justify-center gap-1 transition-colors"
-                style={{ color: active ? "#D4AF37" : "#6B7280", fontFamily: "var(--font-outfit)", fontSize: 9, fontWeight: active ? 700 : 500 }}>
-                <IconComponent size={21} strokeWidth={active ? 2.2 : 1.8} color={active ? "#D4AF37" : "#6B7280"} />
+                style={{ color: active ? "#C8B993" : "#6B7280", fontFamily: "var(--font-outfit)", fontSize: 9, fontWeight: active ? 700 : 500 }}>
+                <IconComponent size={21} strokeWidth={active ? 2.2 : 1.8} color={active ? "#C8B993" : "#6B7280"} />
                 {item.label}
               </Link>
             );

@@ -55,7 +55,7 @@ export default function RefundPage() {
 
       <div className="mt-12 flex flex-wrap gap-3">
         {[["Terms & Conditions", "/policies/terms"], ["Privacy Policy", "/policies/privacy"], ["Returns Policy", "/policies/returns"], ["Warranty Policy", "/policies/warranty"]].map(([l, h]) => (
-          <Link key={l} href={h} className="text-[#D4AF37] text-sm hover:underline">{l}</Link>
+          <Link key={l} href={h} className="text-[#C8B993] text-sm hover:underline">{l}</Link>
         ))}
       </div>
     </div>

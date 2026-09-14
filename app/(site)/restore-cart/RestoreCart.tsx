@@ -42,7 +42,7 @@ export default function RestoreCart() {
   return (
     <div className="min-h-screen flex items-center justify-center">
       <div className="text-center">
-        <div className="w-10 h-10 border-2 border-[#D4AF37] border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+        <div className="w-10 h-10 border-2 border-[#C8B993] border-t-transparent rounded-full animate-spin mx-auto mb-4" />
         <p className="text-gray-400 text-sm">Restoring your cart…</p>
       </div>
     </div>

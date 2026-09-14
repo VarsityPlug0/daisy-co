@@ -11,7 +11,7 @@ type Session = {
 
 type Msg = { id: string; sender: "customer" | "admin"; body: string; createdAt: string };
 
-const GOLD = "#D4AF37";
+const GOLD = "#C8B993";
 
 function timeAgo(iso: string) {
   const diff = Date.now() - new Date(iso).getTime();
@@ -121,12 +121,12 @@ export default function AdminChatPage() {
   const totalUnread = openSessions.reduce((s, x) => s + x.unreadAdmin, 0);
 
   return (
-    <div className="h-full flex flex-col bg-[#0A0A0A]">
+    <div className="h-full flex flex-col bg-[#111111]">
       {/* Top bar */}
       <header className="bg-[#0f0f0f] border-b border-[#1A1A1A] px-4 py-3 flex items-center justify-between gap-3 shrink-0">
         <div className="flex items-center gap-3">
           <Link href="/admin/dashboard" className="text-gray-500 hover:text-white text-sm transition-colors">&larr; Dashboard</Link>
-          <span className="text-[#1F1F1F]">/</span>
+          <span className="text-[#2A2A2A]">/</span>
           <span className="text-white text-sm font-semibold">Live Chat</span>
           {totalUnread > 0 && (
             <span className="text-xs font-bold px-2 py-0.5 rounded-full" style={{ background: "#ef4444", color: "#fff" }}>
@@ -149,7 +149,7 @@ export default function AdminChatPage() {
                 key={s.id}
                 onClick={() => setActive(s)}
                 className="w-full text-left px-4 py-3.5 border-b border-[#1A1A1A] transition-colors hover:bg-white/[0.03]"
-                style={{ background: active?.id === s.id ? "rgba(212,175,55,0.06)" : undefined }}
+                style={{ background: active?.id === s.id ? "rgba(200,185,147,0.06)" : undefined }}
               >
                 <div className="flex items-center justify-between mb-1">
                   <span className="text-white text-sm font-semibold truncate">{s.name || "Anonymous"}</span>
@@ -247,7 +247,7 @@ export default function AdminChatPage() {
                       value={reply}
                       onChange={e => setReply(e.target.value)}
                       onKeyDown={e => e.key === "Enter" && !e.shiftKey && sendReply()}
-                      className="flex-1 bg-[#1a1a1a] border border-[#2a2a2a] rounded-xl px-4 py-2.5 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-[#D4AF37] transition-colors"
+                      className="flex-1 bg-[#1a1a1a] border border-[#2a2a2a] rounded-xl px-4 py-2.5 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-[#C8B993] transition-colors"
                     />
                     <button
                       onClick={sendReply}

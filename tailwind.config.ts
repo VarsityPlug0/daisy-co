@@ -9,20 +9,22 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        // Bevanssons brand palette (matches client/tailwind.config.js on
+        // the Bevans Sons platform) — was Daisy's own #D4AF37/#0A0A0A set.
         gold: {
-          DEFAULT: "#D4AF37",
-          light: "#F0CE6A",
-          dark: "#A88920",
+          DEFAULT: "#C8B993",
+          light: "#DDD2B7",
+          dark: "#9C8F72",
         },
         dark: {
-          DEFAULT: "#0A0A0A",
-          card: "#111111",
-          border: "#1F1F1F",
-          surface: "#161616",
+          DEFAULT: "#111111",
+          card: "#1D1D1D",
+          border: "#2A2A2A",
+          surface: "#1A1A1A",
         },
       },
       fontFamily: {
-        sans: ["Inter", "sans-serif"],
+        sans: ["Montserrat", "sans-serif"],
       },
     },
   },

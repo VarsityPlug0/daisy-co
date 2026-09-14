@@ -33,7 +33,7 @@ const packages = [
     id: "premium",
     name: "Premium Home",
     tag: "Most Popular",
-    tagColor: "#D4AF37",
+    tagColor: "#C8B993",
     price: "R98,000",
     href: "/solar/residential",
     inverter: "8kW Hybrid Inverter",
@@ -91,7 +91,7 @@ export default function ComparePage() {
     <div className="max-w-6xl mx-auto px-4 sm:px-6 py-10">
       {/* Header */}
       <div className="text-center mb-8">
-        <Link href="/solar" className="text-[#D4AF37] text-sm hover:underline mb-4 inline-block">&larr; Solar Solutions</Link>
+        <Link href="/solar" className="text-[#C8B993] text-sm hover:underline mb-4 inline-block">&larr; Solar Solutions</Link>
         <p className="section-label mb-3">Side-by-Side</p>
         <h1 className="text-3xl sm:text-4xl font-extrabold text-white mb-3">
           Compare <span className="gold-text">Solar Packages</span>
@@ -112,9 +112,9 @@ export default function ComparePage() {
           <div
             key={pkg.id}
             className="rounded-2xl border overflow-hidden"
-            style={{ borderColor: pkg.highlight ? pkg.tagColor : "#1F1F1F", background: "#111111" }}
+            style={{ borderColor: pkg.highlight ? pkg.tagColor : "#2A2A2A", background: "#1D1D1D" }}
           >
-            <div className="p-6 border-b" style={{ borderColor: "#1F1F1F" }}>
+            <div className="p-6 border-b" style={{ borderColor: "#2A2A2A" }}>
               <span className="text-xs font-bold px-3 py-1 rounded-full inline-block mb-3" style={{ background: `${pkg.tagColor}20`, color: pkg.tagColor }}>
                 {pkg.tag}
               </span>
@@ -128,14 +128,14 @@ export default function ComparePage() {
                   {row.type === "bool" ? (
                     pkg[row.key] ? <Check size={16} color="#22c55e" /> : <X size={16} color="#4B5563" />
                   ) : (
-                    <p className={`text-right font-medium ${row.key === "price" ? "text-[#D4AF37]" : "text-gray-200"}`}>
+                    <p className={`text-right font-medium ${row.key === "price" ? "text-[#C8B993]" : "text-gray-200"}`}>
                       {String(pkg[row.key])}
                     </p>
                   )}
                 </div>
               ))}
             </div>
-            <div className="p-6 border-t" style={{ borderColor: "#1F1F1F" }}>
+            <div className="p-6 border-t" style={{ borderColor: "#2A2A2A" }}>
               <ChatButton
                 message={`Hi, I'm interested in the ${pkg.name} solar package (${pkg.price}). Can you help me?`}
                 className="btn-gold w-full py-3.5 rounded-xl font-bold text-sm"
@@ -148,17 +148,17 @@ export default function ComparePage() {
       </div>
 
       {/* Desktop: comparison table */}
-      <div className="hidden lg:block overflow-hidden rounded-3xl border border-[#1F1F1F]">
+      <div className="hidden lg:block overflow-hidden rounded-3xl border border-[#2A2A2A]">
         {/* Package headers */}
-        <div className="grid grid-cols-4 bg-[#0f0f0f] border-b border-[#1F1F1F]">
-          <div className="p-4 border-r border-[#1F1F1F]">
+        <div className="grid grid-cols-4 bg-[#0f0f0f] border-b border-[#2A2A2A]">
+          <div className="p-4 border-r border-[#2A2A2A]">
             <p className="text-gray-600 text-sm">Compare packages</p>
           </div>
           {packages.map((pkg) => (
             <div
               key={pkg.id}
               className="p-4 text-center relative"
-              style={{ background: pkg.highlight ? "rgba(212,175,55,0.04)" : "transparent", borderRight: "1px solid #1F1F1F" }}
+              style={{ background: pkg.highlight ? "rgba(200,185,147,0.04)" : "transparent", borderRight: "1px solid #2A2A2A" }}
             >
               {pkg.highlight && (
                 <div className="absolute top-0 left-0 right-0 h-1 rounded-t-none" style={{ background: pkg.tagColor }} />
@@ -177,7 +177,7 @@ export default function ComparePage() {
           <div
             key={row.label}
             className="grid grid-cols-4"
-            style={{ background: i % 2 === 0 ? "#111111" : "#0f0f0f", borderBottom: "1px solid #1A1A1A" }}
+            style={{ background: i % 2 === 0 ? "#1D1D1D" : "#0f0f0f", borderBottom: "1px solid #1A1A1A" }}
           >
             <div className="px-4 py-3 border-r border-[#1A1A1A] flex items-center">
               <p className="text-gray-500 text-sm font-medium">{row.label}</p>
@@ -186,12 +186,12 @@ export default function ComparePage() {
               <div
                 key={pkg.id}
                 className="px-4 py-3 border-r border-[#1A1A1A] flex items-center justify-center text-center"
-                style={{ background: pkg.highlight ? "rgba(212,175,55,0.02)" : "transparent" }}
+                style={{ background: pkg.highlight ? "rgba(200,185,147,0.02)" : "transparent" }}
               >
                 {row.type === "bool" ? (
                   pkg[row.key] ? <Check size={18} color="#22c55e" /> : <X size={18} color="#374151" />
                 ) : (
-                  <p className={`text-sm font-medium ${row.key === "price" ? "text-[#D4AF37] font-bold text-base" : "text-gray-300"}`}>
+                  <p className={`text-sm font-medium ${row.key === "price" ? "text-[#C8B993] font-bold text-base" : "text-gray-300"}`}>
                     {String(pkg[row.key])}
                   </p>
                 )}
@@ -201,11 +201,11 @@ export default function ComparePage() {
         ))}
 
         {/* CTA row */}
-        <div className="grid grid-cols-4 bg-[#0f0f0f] border-t border-[#1F1F1F]">
-          <div className="p-4 border-r border-[#1F1F1F]" />
+        <div className="grid grid-cols-4 bg-[#0f0f0f] border-t border-[#2A2A2A]">
+          <div className="p-4 border-r border-[#2A2A2A]" />
           {packages.map((pkg) => (
-            <div key={pkg.id} className="p-4 border-r border-[#1F1F1F]"
-              style={{ background: pkg.highlight ? "rgba(212,175,55,0.03)" : "transparent" }}>
+            <div key={pkg.id} className="p-4 border-r border-[#2A2A2A]"
+              style={{ background: pkg.highlight ? "rgba(200,185,147,0.03)" : "transparent" }}>
               <ChatButton
                 message={`Hi, I'm interested in the ${pkg.name} solar package (${pkg.price}). Can you help me?`}
                 className={pkg.highlight ? "btn-gold w-full py-3.5 rounded-xl font-bold text-sm" : "btn-outline w-full py-3.5 rounded-xl font-bold text-sm"}
@@ -218,7 +218,7 @@ export default function ComparePage() {
       </div>
 
       {/* Commercial note */}
-      <div className="mt-6 bg-[#111111] border border-[#1F1F1F] rounded-xl p-5 flex flex-col sm:flex-row items-start sm:items-center gap-5 justify-between">
+      <div className="mt-6 bg-[#1D1D1D] border border-[#2A2A2A] rounded-xl p-5 flex flex-col sm:flex-row items-start sm:items-center gap-5 justify-between">
         <div>
           <h3 className="text-lg font-bold text-white mb-1">Need a commercial system?</h3>
           <p className="text-gray-400 text-sm leading-relaxed">

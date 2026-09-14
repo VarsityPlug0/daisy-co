@@ -31,7 +31,7 @@ export default function FollowUpRunner() {
       <button
         onClick={run}
         disabled={running}
-        className="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-lg bg-[#1F1F1F] text-gray-400 hover:text-white hover:bg-[#2a2a2a] transition-colors disabled:opacity-50"
+        className="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-lg bg-[#2A2A2A] text-gray-400 hover:text-white hover:bg-[#2a2a2a] transition-colors disabled:opacity-50"
       >
         {running ? <RefreshCw size={12} className="animate-spin" /> : <Play size={12} />}
         {running ? "Running…" : "Run Now"}

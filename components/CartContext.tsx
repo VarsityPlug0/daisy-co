@@ -126,10 +126,10 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         {/* Header */}
         <div className="flex items-center justify-between px-6 py-5 border-b border-[#1A1A1A]">
           <div className="flex items-center gap-3">
-            <ShoppingCart size={20} color="#D4AF37" />
+            <ShoppingCart size={20} color="#C8B993" />
             <h2 className="text-white font-bold">Enquiry List</h2>
             {count > 0 && (
-              <span className="text-xs font-bold text-[#0A0A0A] bg-[#D4AF37] rounded-full w-5 h-5 flex items-center justify-center">
+              <span className="text-xs font-bold text-[#111111] bg-[#C8B993] rounded-full w-5 h-5 flex items-center justify-center">
                 {count}
               </span>
             )}
@@ -153,9 +153,9 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
           ) : (
             <div className="px-4 py-4 space-y-3">
               {items.map((item) => (
-                <div key={item.id} className="flex gap-4 bg-[#111111] border border-[#1A1A1A] rounded-2xl p-4">
+                <div key={item.id} className="flex gap-4 bg-[#1D1D1D] border border-[#1A1A1A] rounded-2xl p-4">
                   {item.imageUrl && (
-                    <div className="w-16 h-16 rounded-xl overflow-hidden shrink-0 bg-[#0A0A0A]">
+                    <div className="w-16 h-16 rounded-xl overflow-hidden shrink-0 bg-[#111111]">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img src={item.imageUrl} alt={item.name} className="w-full h-full object-cover" />
                     </div>
@@ -164,7 +164,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
                     <p className="text-white text-sm font-medium leading-snug truncate">{item.name}</p>
                     <p className="text-gray-500 text-xs mb-2">{item.category}</p>
                     <div className="flex items-center gap-2">
-                      <p className="text-[#D4AF37] font-bold text-sm">{item.price}</p>
+                      <p className="text-[#C8B993] font-bold text-sm">{item.price}</p>
                       {item.originalPrice && (
                         <p className="text-gray-600 text-xs line-through">{item.originalPrice}</p>
                       )}
@@ -225,7 +225,7 @@ export function CartButton() {
     >
       <ShoppingCart size={19} strokeWidth={1.8} />
       {count > 0 && (
-        <span className="absolute -top-1 -right-1 w-4.5 h-4.5 min-w-[18px] min-h-[18px] text-[9px] font-bold text-[#0A0A0A] bg-[#D4AF37] rounded-full flex items-center justify-center leading-none px-0.5">
+        <span className="absolute -top-1 -right-1 w-4.5 h-4.5 min-w-[18px] min-h-[18px] text-[9px] font-bold text-[#111111] bg-[#C8B993] rounded-full flex items-center justify-center leading-none px-0.5">
           {count}
         </span>
       )}

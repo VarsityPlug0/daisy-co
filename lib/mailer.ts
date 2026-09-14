@@ -6,12 +6,12 @@ import { getBankById, type BankDetails } from "./bankDetails";
 const LOGO_PATH = path.join(process.cwd(), "public", "logo.jpg");
 const LOGO_CID  = "logo@daisygadgets";
 
-const GOLD        = "#D4AF37";
+const GOLD        = "#C8B993";
 const GOLD_LIGHT  = "#f5d76e";
-const BLACK       = "#0A0A0A";
-const DARK        = "#111111";
-const DARK2       = "#161616";
-const BORDER      = "#1F1F1F";
+const BLACK       = "#111111";
+const DARK        = "#1D1D1D";
+const DARK2       = "#1A1A1A";
+const BORDER      = "#2A2A2A";
 const MUTED       = "#6b7280";
 const SITE        = "https://gadgets.bevanssons.store";
 const SUPPORT_EMAIL = "support@bevanssons.store";
@@ -667,7 +667,7 @@ export async function sendCreditOtp(data: { email: string; otp: string; purpose:
     <p style="margin:0 0 24px;color:#9ca3af;font-size:15px;line-height:1.6">
       Use the code below to ${purposeText}. It expires in <strong style="color:#e5e7eb">10 minutes</strong>.
     </p>
-    <div style="background:#0A0A0A;border:1px solid ${GOLD}55;border-radius:14px;padding:32px;text-align:center;margin-bottom:28px">
+    <div style="background:#111111;border:1px solid ${GOLD}55;border-radius:14px;padding:32px;text-align:center;margin-bottom:28px">
       <p style="margin:0;color:${GOLD};font-size:48px;font-weight:900;letter-spacing:0.3em;font-family:monospace">${data.otp}</p>
     </div>
     <p style="margin:0;color:#4b5563;font-size:13px">If you did not request this code, please ignore this email.</p>
@@ -683,7 +683,7 @@ export async function sendCreditApplicationReceived(data: { name: string; email:
       Hi ${data.name.split(" ")[0]}, we have received your credit application <strong style="color:${GOLD}">${data.ref}</strong>.
       Our team will review your application and respond within <strong style="color:#e5e7eb">1–2 business days</strong>.
     </p>
-    <div style="background:#161616;border:1px solid #1F1F1F;border-radius:12px;padding:20px 24px;margin-bottom:28px">
+    <div style="background:#1A1A1A;border:1px solid #2A2A2A;border-radius:12px;padding:20px 24px;margin-bottom:28px">
       <table width="100%" cellpadding="0" cellspacing="0">
         ${infoRow("Reference", data.ref)}
         ${infoRow("Requested Amount", `R ${data.amount.toLocaleString("en-ZA")}`)}
@@ -704,11 +704,11 @@ export async function sendCreditApproved(data: { name: string; email: string; re
       <h1 style="margin:0 0 8px;color:#f9fafb;font-size:26px;font-weight:900">Credit Approved!</h1>
       <p style="margin:0;color:#9ca3af;font-size:14px">Hi ${data.name.split(" ")[0]}, your credit application has been approved.</p>
     </div>
-    <div style="background:#161616;border:1px solid ${GOLD}44;border-radius:14px;padding:28px;text-align:center;margin-bottom:28px">
+    <div style="background:#1A1A1A;border:1px solid ${GOLD}44;border-radius:14px;padding:28px;text-align:center;margin-bottom:28px">
       ${label("Your Credit Limit")}
       <p style="margin:8px 0 0;color:${GOLD};font-size:38px;font-weight:900">R ${data.creditLimit.toLocaleString("en-ZA")}</p>
     </div>
-    <div style="background:#161616;border:1px solid #1F1F1F;border-radius:12px;padding:20px 24px;margin-bottom:28px">
+    <div style="background:#1A1A1A;border:1px solid #2A2A2A;border-radius:12px;padding:20px 24px;margin-bottom:28px">
       <p style="margin:0 0 12px;color:#e5e7eb;font-size:14px;font-weight:700">How it works:</p>
       <p style="margin:0 0 8px;color:#9ca3af;font-size:14px;line-height:1.7">1. Shop as normal and select <strong style="color:#e5e7eb">Pay on Credit</strong> at checkout.</p>
       <p style="margin:0 0 8px;color:#9ca3af;font-size:14px;line-height:1.7">2. Choose your repayment term (3, 6 or 12 months).</p>
@@ -717,7 +717,7 @@ export async function sendCreditApproved(data: { name: string; email: string; re
     <div style="text-align:center">
       ${btn("View My Account", `${SITE}/credit/account`, GOLD, BLACK)}
       &nbsp;&nbsp;
-      ${btn("Shop Now", `${SITE}/shop`, "#161616", GOLD)}
+      ${btn("Shop Now", `${SITE}/shop`, "#1A1A1A", GOLD)}
     </div>
   `);
   await sendMail({ to: data.email, subject: `Your Credit is Approved — R${data.creditLimit.toLocaleString("en-ZA")} | Bevanssons`, html });
@@ -725,7 +725,7 @@ export async function sendCreditApproved(data: { name: string; email: string; re
 
 export async function sendCreditRejected(data: { name: string; email: string; ref: string; reason?: string }) {
   const reasonHtml = data.reason
-    ? `<div style="background:#161616;border-left:3px solid #ef4444;border-radius:0 10px 10px 0;padding:16px 20px;margin-bottom:24px">
+    ? `<div style="background:#1A1A1A;border-left:3px solid #ef4444;border-radius:0 10px 10px 0;padding:16px 20px;margin-bottom:24px">
         <p style="margin:0 0 4px;color:#ef4444;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em">Reason</p>
         <p style="margin:0;color:#fca5a5;font-size:14px;line-height:1.6">${data.reason}</p>
        </div>`
@@ -760,9 +760,9 @@ export async function sendCreditOrderConfirmed(data: {
 }) {
   const scheduleRows = data.instalments.map(p =>
     `<tr>
-      <td style="padding:8px 0;color:#6b7280;font-size:13px;border-bottom:1px solid #1F1F1F">Instalment ${p.instalment_number}</td>
-      <td style="padding:8px 0;color:#e5e7eb;font-size:13px;font-weight:600;border-bottom:1px solid #1F1F1F">${new Date(p.due_date).toLocaleDateString("en-ZA", { day: "numeric", month: "long", year: "numeric" })}</td>
-      <td style="padding:8px 0;color:${GOLD};font-size:13px;font-weight:700;text-align:right;border-bottom:1px solid #1F1F1F">R ${p.amount.toLocaleString("en-ZA")}</td>
+      <td style="padding:8px 0;color:#6b7280;font-size:13px;border-bottom:1px solid #2A2A2A">Instalment ${p.instalment_number}</td>
+      <td style="padding:8px 0;color:#e5e7eb;font-size:13px;font-weight:600;border-bottom:1px solid #2A2A2A">${new Date(p.due_date).toLocaleDateString("en-ZA", { day: "numeric", month: "long", year: "numeric" })}</td>
+      <td style="padding:8px 0;color:${GOLD};font-size:13px;font-weight:700;text-align:right;border-bottom:1px solid #2A2A2A">R ${p.amount.toLocaleString("en-ZA")}</td>
     </tr>`
   ).join("");
 
@@ -772,7 +772,7 @@ export async function sendCreditOrderConfirmed(data: {
       <h1 style="margin:0 0 8px;color:#f9fafb;font-size:26px;font-weight:900">Order on Credit Confirmed!</h1>
       <p style="margin:0;color:#9ca3af;font-size:14px">Hi ${data.name.split(" ")[0]}, your order has been placed on your credit account.</p>
     </div>
-    <div style="background:#161616;border:1px solid ${GOLD}44;border-radius:12px;padding:16px 20px;margin-bottom:24px">
+    <div style="background:#1A1A1A;border:1px solid ${GOLD}44;border-radius:12px;padding:16px 20px;margin-bottom:24px">
       <table width="100%" cellpadding="0" cellspacing="0">
         ${infoRow("Order Ref", data.orderRef)}
         ${infoRow("Credit Agreement", data.creditOrderRef)}
@@ -786,7 +786,7 @@ export async function sendCreditOrderConfirmed(data: {
     <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:24px">
       ${scheduleRows}
     </table>
-    <div style="background:#161616;border:1px solid #1F1F1F;border-radius:12px;padding:16px 20px;margin-bottom:28px">
+    <div style="background:#1A1A1A;border:1px solid #2A2A2A;border-radius:12px;padding:16px 20px;margin-bottom:28px">
       <p style="margin:0;color:#9ca3af;font-size:13px;line-height:1.7">
         Upload your monthly instalment proof of payment on your credit account portal by each due date.
         Late payments may affect your credit standing.
@@ -1107,7 +1107,7 @@ export async function sendInstallmentCompleted(data: InstallmentUpdateBase) {
       You have successfully completed all payments on your installment plan. Thank you for trusting Bevanssons — we truly appreciate your commitment.
     </p>
 
-    <div style="background:#D4AF3711;border:1px solid #D4AF3744;border-radius:12px;padding:20px;margin-bottom:24px;text-align:center">
+    <div style="background:#C8B99311;border:1px solid #C8B99344;border-radius:12px;padding:20px;margin-bottom:24px;text-align:center">
       ${label("Total Paid")}
       <p style="margin:8px 0 4px;color:${GOLD};font-size:36px;font-weight:900">${fmt(data.total_repayable)}</p>
       <p style="margin:0;color:#9ca3af;font-size:13px">${data.term_months} monthly payments &nbsp;&middot;&nbsp; Plan complete</p>

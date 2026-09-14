@@ -92,7 +92,7 @@ export default function ImageCropper({ src, onDone, onCancel }: Props) {
         .ReactCrop__drag-handle::after {
           width: 28px !important;
           height: 28px !important;
-          background: #D4AF37 !important;
+          background: #C8B993 !important;
           border-radius: 4px !important;
           opacity: 0.9 !important;
         }
@@ -101,7 +101,7 @@ export default function ImageCropper({ src, onDone, onCancel }: Props) {
           min-width: 20px !important;
         }
         .ReactCrop__crop-selection {
-          border: 2px solid #D4AF37 !important;
+          border: 2px solid #C8B993 !important;
           box-shadow: 0 0 0 9999px rgba(0,0,0,0.55) !important;
         }
       `}</style>
@@ -110,10 +110,10 @@ export default function ImageCropper({ src, onDone, onCancel }: Props) {
         className="fixed inset-0 z-50 flex flex-col sm:items-center sm:justify-center bg-black/90"
         style={{ touchAction: "none" }}
       >
-        <div className="bg-[#111111] border border-[#1F1F1F] sm:rounded-2xl w-full sm:max-w-2xl sm:mx-4 flex flex-col h-full sm:h-auto">
+        <div className="bg-[#1D1D1D] border border-[#2A2A2A] sm:rounded-2xl w-full sm:max-w-2xl sm:mx-4 flex flex-col h-full sm:h-auto">
 
           {/* Header */}
-          <div className="flex items-center justify-between px-5 py-4 border-b border-[#1F1F1F] shrink-0">
+          <div className="flex items-center justify-between px-5 py-4 border-b border-[#2A2A2A] shrink-0">
             <h2 className="text-white font-semibold text-sm">Crop Image</h2>
             <button
               onClick={onCancel}
@@ -147,7 +147,7 @@ export default function ImageCropper({ src, onDone, onCancel }: Props) {
                 />
               </ReactCrop>
             ) : (
-              <div className="w-8 h-8 border-2 border-[#D4AF37] border-t-transparent rounded-full animate-spin" />
+              <div className="w-8 h-8 border-2 border-[#C8B993] border-t-transparent rounded-full animate-spin" />
             )}
           </div>
 
@@ -158,7 +158,7 @@ export default function ImageCropper({ src, onDone, onCancel }: Props) {
           {error && <p className="text-red-400 text-xs text-center pb-2">{error}</p>}
 
           {/* Footer */}
-          <div className="flex gap-3 px-5 py-4 border-t border-[#1F1F1F] shrink-0">
+          <div className="flex gap-3 px-5 py-4 border-t border-[#2A2A2A] shrink-0">
             <button
               onClick={onCancel}
               className="flex-1 py-3 rounded-xl border border-[#2a2a2a] text-gray-400 hover:text-white text-sm transition-colors"
@@ -168,7 +168,7 @@ export default function ImageCropper({ src, onDone, onCancel }: Props) {
             <button
               onClick={handleApply}
               disabled={processing || !completedCrop?.width}
-              className="flex-1 py-3 rounded-xl bg-[#D4AF37] hover:bg-[#c4a030] text-black font-bold text-sm transition-colors disabled:opacity-50 flex items-center justify-center gap-2"
+              className="flex-1 py-3 rounded-xl bg-[#C8B993] hover:bg-[#c4a030] text-black font-bold text-sm transition-colors disabled:opacity-50 flex items-center justify-center gap-2"
             >
               <Check size={15} />
               {processing ? "Processing…" : "Apply Crop"}

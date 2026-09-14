@@ -65,14 +65,14 @@ export default function ImageManager({ images }: { images: SiteImage[] }) {
     <div className="space-y-10">
       {sections.map(section => (
         <div key={section}>
-          <h2 className="text-sm font-bold text-gray-400 uppercase tracking-widest mb-4 pb-2 border-b border-[#1F1F1F]">
+          <h2 className="text-sm font-bold text-gray-400 uppercase tracking-widest mb-4 pb-2 border-b border-[#2A2A2A]">
             {section}
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4">
             {data.filter(i => i.section === section).map(img => (
-              <div key={img.key} className="bg-[#111111] border border-[#1F1F1F] rounded-2xl overflow-hidden group">
+              <div key={img.key} className="bg-[#1D1D1D] border border-[#2A2A2A] rounded-2xl overflow-hidden group">
                 {/* Image preview */}
-                <div className="relative h-36 bg-[#0A0A0A]">
+                <div className="relative h-36 bg-[#111111]">
                   {img.url ? (
                     // eslint-disable-next-line @next/next/no-img-element
                     <img src={img.url} alt={img.label} className="w-full h-full object-cover" />
@@ -86,7 +86,7 @@ export default function ImageManager({ images }: { images: SiteImage[] }) {
                   )}
                   {(uploading === img.key || saving === img.key) && (
                     <div className="absolute inset-0 bg-black/60 flex items-center justify-center">
-                      <RefreshCw size={20} className="text-[#D4AF37] animate-spin" />
+                      <RefreshCw size={20} className="text-[#C8B993] animate-spin" />
                     </div>
                   )}
                 </div>
@@ -102,7 +102,7 @@ export default function ImageManager({ images }: { images: SiteImage[] }) {
                         value={urlInput}
                         onChange={e => setUrlInput(e.target.value)}
                         placeholder="https://..."
-                        className="w-full bg-[#0A0A0A] border border-[#2a2a2a] rounded-lg px-2.5 py-1.5 text-white text-xs placeholder-gray-600 focus:outline-none focus:border-[#D4AF37]/50"
+                        className="w-full bg-[#111111] border border-[#2a2a2a] rounded-lg px-2.5 py-1.5 text-white text-xs placeholder-gray-600 focus:outline-none focus:border-[#C8B993]/50"
                         onKeyDown={e => e.key === "Enter" && save(img.key, urlInput)}
                         autoFocus
                       />
@@ -110,7 +110,7 @@ export default function ImageManager({ images }: { images: SiteImage[] }) {
                         <button
                           onClick={() => save(img.key, urlInput)}
                           disabled={saving === img.key}
-                          className="flex-1 py-1.5 rounded-lg text-xs font-semibold bg-[#D4AF37] text-black disabled:opacity-50"
+                          className="flex-1 py-1.5 rounded-lg text-xs font-semibold bg-[#C8B993] text-black disabled:opacity-50"
                         >
                           Save
                         </button>
@@ -126,7 +126,7 @@ export default function ImageManager({ images }: { images: SiteImage[] }) {
                     <div className="flex gap-1.5">
                       {/* Upload button */}
                       <label className="flex-1 cursor-pointer">
-                        <div className="flex items-center justify-center gap-1 py-1.5 rounded-lg text-xs font-medium text-gray-400 hover:text-white border border-[#2a2a2a] hover:border-[#D4AF37]/40 transition-colors">
+                        <div className="flex items-center justify-center gap-1 py-1.5 rounded-lg text-xs font-medium text-gray-400 hover:text-white border border-[#2a2a2a] hover:border-[#C8B993]/40 transition-colors">
                           <Upload size={11} /> Upload
                         </div>
                         <input
@@ -143,7 +143,7 @@ export default function ImageManager({ images }: { images: SiteImage[] }) {
                       {/* URL button */}
                       <button
                         onClick={() => startEdit(img)}
-                        className="flex-1 flex items-center justify-center gap-1 py-1.5 rounded-lg text-xs font-medium text-gray-400 hover:text-white border border-[#2a2a2a] hover:border-[#D4AF37]/40 transition-colors"
+                        className="flex-1 flex items-center justify-center gap-1 py-1.5 rounded-lg text-xs font-medium text-gray-400 hover:text-white border border-[#2a2a2a] hover:border-[#C8B993]/40 transition-colors"
                       >
                         <LinkIcon size={11} /> URL
                       </button>

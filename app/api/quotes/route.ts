@@ -55,9 +55,9 @@ export async function POST(req: NextRequest) {
         subject: `New Quote #${quote.ref} — ${esc(recommendedPackage) || "Solar Enquiry"} — ${esc(name)}`,
         html: `
           <div style="font-family:sans-serif;max-width:620px;margin:0 auto;color:#333">
-            <div style="background:#0A0A0A;padding:24px 32px;border-radius:8px 8px 0 0">
-              <h2 style="color:#D4AF37;margin:0;font-size:22px">New Quote Request</h2>
-              <p style="color:#888;margin:4px 0 0;font-size:13px">Reference: <strong style="color:#D4AF37">${quote.ref}</strong></p>
+            <div style="background:#111111;padding:24px 32px;border-radius:8px 8px 0 0">
+              <h2 style="color:#C8B993;margin:0;font-size:22px">New Quote Request</h2>
+              <p style="color:#888;margin:4px 0 0;font-size:13px">Reference: <strong style="color:#C8B993">${quote.ref}</strong></p>
             </div>
             <div style="background:#f9f9f9;padding:32px;border-radius:0 0 8px 8px">
               <h3 style="margin:0 0 16px;font-size:16px;color:#111">Customer</h3>
@@ -79,7 +79,7 @@ export async function POST(req: NextRequest) {
 
               <h3 style="margin:0 0 16px;font-size:16px;color:#111">Recommendation</h3>
               <table style="width:100%;border-collapse:collapse;margin-bottom:24px">
-                <tr><td style="padding:6px 0;color:#666;width:160px;font-size:14px">Package</td><td style="padding:6px 0;font-weight:600;color:#D4AF37;font-size:14px">${esc(recommendedPackage) || "—"}</td></tr>
+                <tr><td style="padding:6px 0;color:#666;width:160px;font-size:14px">Package</td><td style="padding:6px 0;font-weight:600;color:#C8B993;font-size:14px">${esc(recommendedPackage) || "—"}</td></tr>
                 <tr><td style="padding:6px 0;color:#666;font-size:14px">Est. Price</td><td style="padding:6px 0;font-weight:600;font-size:14px">${esc(estimatedPrice) || "—"}</td></tr>
               </table>
 

@@ -79,9 +79,9 @@ export default function EmailsPage() {
             { label: "Sent (30d)",  value: totalAutoSent,   color: "text-white" },
             { label: "Open Rate",   value: `${openRate}%`,  color: openRate >= 30 ? "text-green-400" : "text-gray-400" },
             { label: "Click Rate",  value: `${clickRate}%`, color: clickRate >= 10 ? "text-green-400" : "text-gray-400" },
-            { label: "Sequences",   value: 3,               color: "text-[#D4AF37]" },
+            { label: "Sequences",   value: 3,               color: "text-[#C8B993]" },
           ].map((s) => (
-            <div key={s.label} className="bg-[#111111] border border-[#1F1F1F] rounded-xl p-4 text-center">
+            <div key={s.label} className="bg-[#1D1D1D] border border-[#2A2A2A] rounded-xl p-4 text-center">
               <p className={`text-xl font-bold mb-0.5 ${s.color}`}>{s.value}</p>
               <p className="text-gray-600 text-xs">{s.label}</p>
             </div>
@@ -93,11 +93,11 @@ export default function EmailsPage() {
           {[
             { type: "cart_abandon_1d",   icon: "🛒", desc: "24h after cart add, no order placed",         color: "#f59e0b" },
             { type: "delivery_followup", icon: "⭐", desc: "3 days after order marked delivered",          color: "#10b981" },
-            { type: "reengagement_30d",  icon: "💌", desc: "30 days since last paid order",               color: "#D4AF37" },
+            { type: "reengagement_30d",  icon: "💌", desc: "30 days since last paid order",               color: "#C8B993" },
           ].map((seq) => {
             const stat = autoSends.find((r) => r.type === seq.type);
             return (
-              <div key={seq.type} className="bg-[#111111] border border-[#1F1F1F] rounded-xl p-4">
+              <div key={seq.type} className="bg-[#1D1D1D] border border-[#2A2A2A] rounded-xl p-4">
                 <div className="flex items-center gap-2 mb-2">
                   <span className="text-lg">{seq.icon}</span>
                   <p className="text-white text-sm font-semibold">{TYPE_LABELS[seq.type]}</p>
@@ -108,7 +108,7 @@ export default function EmailsPage() {
                   <div className="flex gap-4 text-xs">
                     <span className="text-gray-400">{stat.total} sent</span>
                     <span className="text-blue-400">{stat.opens} opens</span>
-                    <span className="text-[#D4AF37]">{stat.clicks} clicks</span>
+                    <span className="text-[#C8B993]">{stat.clicks} clicks</span>
                   </div>
                 ) : (
                   <p className="text-gray-600 text-xs">No sends yet</p>
@@ -120,8 +120,8 @@ export default function EmailsPage() {
 
         {/* Recent automated sends */}
         {recentAuto.length > 0 && (
-          <div className="bg-[#111111] border border-[#1F1F1F] rounded-2xl overflow-hidden">
-            <div className="px-5 py-3 border-b border-[#1F1F1F]">
+          <div className="bg-[#1D1D1D] border border-[#2A2A2A] rounded-2xl overflow-hidden">
+            <div className="px-5 py-3 border-b border-[#2A2A2A]">
               <p className="text-xs text-gray-500 uppercase tracking-wider font-medium">Recent Automated Sends</p>
             </div>
             <div className="divide-y divide-[#1A1A1A]">
@@ -162,8 +162,8 @@ export default function EmailsPage() {
       {campaigns.length > 0 && (
         <div className="mt-6">
           <h2 className="text-sm font-semibold text-gray-400 uppercase tracking-widest mb-4">Campaign History</h2>
-          <div className="bg-[#111111] border border-[#1F1F1F] rounded-2xl overflow-hidden">
-            <div className="grid grid-cols-[1fr_120px_90px_130px] gap-3 px-5 py-3 border-b border-[#1F1F1F]">
+          <div className="bg-[#1D1D1D] border border-[#2A2A2A] rounded-2xl overflow-hidden">
+            <div className="grid grid-cols-[1fr_120px_90px_130px] gap-3 px-5 py-3 border-b border-[#2A2A2A]">
               {["Subject", "Recipients", "Sent", "Date"].map((h) => (
                 <p key={h} className="text-[11px] text-gray-500 uppercase tracking-wider font-medium">{h}</p>
               ))}
@@ -172,7 +172,7 @@ export default function EmailsPage() {
               <div key={c.id} className="grid grid-cols-[1fr_120px_90px_130px] gap-3 items-center px-5 py-3.5 border-b border-[#1A1A1A] last:border-0">
                 <p className="text-white text-sm truncate">{c.subject}</p>
                 <p className="text-gray-400 text-sm capitalize">{c.recipients}</p>
-                <p className="text-[#D4AF37] font-bold text-sm">{c.sent_to}</p>
+                <p className="text-[#C8B993] font-bold text-sm">{c.sent_to}</p>
                 <p className="text-gray-500 text-xs">
                   {new Date(c.createdAt).toLocaleDateString("en-ZA", { day: "numeric", month: "short", year: "numeric" })}
                 </p>

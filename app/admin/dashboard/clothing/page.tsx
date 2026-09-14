@@ -56,9 +56,9 @@ export default function AdminClothingPage() {
           { label: "Total Items",    value: total,    color: "text-white" },
           { label: "In Stock",       value: inStock,  color: "text-green-400" },
           { label: "Out of Stock",   value: outStock, color: outStock > 0 ? "text-red-400" : "text-gray-500" },
-          { label: "Featured Drops", value: featured, color: "text-[#D4AF37]" },
+          { label: "Featured Drops", value: featured, color: "text-[#C8B993]" },
         ].map((s) => (
-          <div key={s.label} className="bg-[#111111] border border-[#1F1F1F] rounded-xl p-4 text-center">
+          <div key={s.label} className="bg-[#1D1D1D] border border-[#2A2A2A] rounded-xl p-4 text-center">
             <p className={`text-2xl font-bold mb-0.5 ${s.color}`}>{s.value}</p>
             <p className="text-gray-500 text-xs">{s.label}</p>
           </div>

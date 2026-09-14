@@ -60,20 +60,20 @@ export default function BuyNowButton({ product }: Props) {
   return (
     <div className="space-y-5 w-full">
       {isClothing && (
-        <div className="space-y-4 pt-2 border-t border-[#1F1F1F]">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#D4AF37]/15 border border-[#D4AF37]/40 text-[#D4AF37] text-xs font-bold uppercase tracking-wider">
+        <div className="space-y-4 pt-2 border-t border-[#2A2A2A]">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#C8B993]/15 border border-[#C8B993]/40 text-[#C8B993] text-xs font-bold uppercase tracking-wider">
             ✨ Coming Soon — Apparel Drop
           </div>
           {/* Size picker */}
           <div>
             <div className="flex items-center justify-between mb-2">
               <span className="text-xs font-semibold text-gray-300 uppercase tracking-wider">
-                Select Size: <strong className="text-[#D4AF37] font-bold">{selectedSize}</strong>
+                Select Size: <strong className="text-[#C8B993] font-bold">{selectedSize}</strong>
               </span>
               <button
                 type="button"
                 onClick={() => setShowSizeGuide(true)}
-                className="text-xs text-gray-400 hover:text-[#D4AF37] flex items-center gap-1 transition-colors"
+                className="text-xs text-gray-400 hover:text-[#C8B993] flex items-center gap-1 transition-colors"
               >
                 <Ruler size={12} /> Size Guide
               </button>
@@ -86,7 +86,7 @@ export default function BuyNowButton({ product }: Props) {
                   onClick={() => setSelectedSize(size)}
                   className={`px-3.5 py-2 rounded-xl text-xs font-bold border transition-all ${
                     selectedSize === size
-                      ? "bg-[#D4AF37] text-black border-[#D4AF37] shadow-lg shadow-[#D4AF37]/20"
+                      ? "bg-[#C8B993] text-black border-[#C8B993] shadow-lg shadow-[#C8B993]/20"
                       : "bg-[#141414] text-gray-300 border-[#262626] hover:border-gray-500 hover:text-white"
                   }`}
                 >
@@ -110,7 +110,7 @@ export default function BuyNowButton({ product }: Props) {
                     title={c.name}
                     onClick={() => setSelectedColor(c.name)}
                     className={`w-7 h-7 rounded-full border-2 transition-all flex items-center justify-center ${
-                      selectedColor === c.name ? "border-[#D4AF37] scale-110 shadow-md shadow-[#D4AF37]/30" : "border-transparent hover:scale-105 opacity-80 hover:opacity-100"
+                      selectedColor === c.name ? "border-[#C8B993] scale-110 shadow-md shadow-[#C8B993]/30" : "border-transparent hover:scale-105 opacity-80 hover:opacity-100"
                     }`}
                     style={{ backgroundColor: c.hex }}
                   >
@@ -135,19 +135,19 @@ export default function BuyNowButton({ product }: Props) {
         </button>
         <button
           onClick={handleAddToCart}
-          className="w-14 h-14 rounded-xl border border-[#2a2a2a] flex items-center justify-center text-gray-400 hover:text-white hover:border-[#D4AF37]/50 transition-colors shrink-0"
+          className="w-14 h-14 rounded-xl border border-[#2a2a2a] flex items-center justify-center text-gray-400 hover:text-white hover:border-[#C8B993]/50 transition-colors shrink-0"
           title="Add to Cart"
         >
-          {added ? <Check size={20} className="text-[#D4AF37]" /> : <ShoppingCart size={20} />}
+          {added ? <Check size={20} className="text-[#C8B993]" /> : <ShoppingCart size={20} />}
         </button>
       </div>
 
       {/* Size Guide Modal */}
       {showSizeGuide && (
         <div className="fixed inset-0 bg-black/75 z-50 flex items-center justify-center p-4 backdrop-blur-sm" onClick={() => setShowSizeGuide(false)}>
-          <div className="bg-[#111111] border border-[#262626] rounded-2xl max-w-md w-full p-6 text-white space-y-4" onClick={(e) => e.stopPropagation()}>
+          <div className="bg-[#1D1D1D] border border-[#262626] rounded-2xl max-w-md w-full p-6 text-white space-y-4" onClick={(e) => e.stopPropagation()}>
             <div className="flex items-center justify-between border-b border-[#222] pb-3">
-              <h3 className="font-bold text-base text-[#D4AF37] flex items-center gap-2">
+              <h3 className="font-bold text-base text-[#C8B993] flex items-center gap-2">
                 <Ruler size={18} /> Standard Size Chart
               </h3>
               <button onClick={() => setShowSizeGuide(false)} className="text-gray-400 hover:text-white text-lg font-bold">×</button>
@@ -163,7 +163,7 @@ export default function BuyNowButton({ product }: Props) {
                     <th className="py-2">Length (cm)</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-[#1F1F1F] text-gray-300">
+                <tbody className="divide-y divide-[#2A2A2A] text-gray-300">
                   <tr><td className="py-2 font-bold text-white">XS</td><td>86–91</td><td>71–76</td><td>68</td></tr>
                   <tr><td className="py-2 font-bold text-white">S</td><td>91–96</td><td>76–81</td><td>70</td></tr>
                   <tr><td className="py-2 font-bold text-white">M</td><td>96–101</td><td>81–86</td><td>72</td></tr>

@@ -86,14 +86,14 @@ export default async function LeadsPage() {
   }));
 
   return (
-    <div className="min-h-screen bg-[#0A0A0A]">
+    <div className="min-h-screen bg-[#111111]">
       {/* Top bar */}
       <header className="bg-[#0f0f0f] border-b border-[#1A1A1A] px-4 sm:px-6 py-3 flex items-center justify-between gap-3">
         <div className="flex items-center gap-3">
           <Link href="/admin/dashboard" className="text-gray-500 hover:text-white text-sm transition-colors">
             &larr; Dashboard
           </Link>
-          <span className="text-[#1F1F1F]">/</span>
+          <span className="text-[#2A2A2A]">/</span>
           <span className="text-white text-sm font-semibold">Leads &amp; Cart Activity</span>
         </div>
         <div className="flex items-center gap-2 text-xs text-gray-600">
@@ -113,7 +113,7 @@ export default async function LeadsPage() {
           </div>
 
           {leads.length === 0 ? (
-            <div className="bg-[#111] border border-[#1F1F1F] rounded-2xl p-10 text-center text-gray-500 text-sm">
+            <div className="bg-[#111] border border-[#2A2A2A] rounded-2xl p-10 text-center text-gray-500 text-sm">
               No leads yet.
             </div>
           ) : (
@@ -127,8 +127,8 @@ export default async function LeadsPage() {
                 return (
                   <div
                     key={lead.id}
-                    className="bg-[#111] border border-[#1F1F1F] rounded-2xl p-4"
-                    style={{ borderLeft: urgency === "hot" ? "3px solid #22c55e" : urgency === "warm" ? "3px solid #f59e0b" : "3px solid #1F1F1F" }}
+                    className="bg-[#111] border border-[#2A2A2A] rounded-2xl p-4"
+                    style={{ borderLeft: urgency === "hot" ? "3px solid #22c55e" : urgency === "warm" ? "3px solid #f59e0b" : "3px solid #2A2A2A" }}
                   >
                     <div className="flex flex-wrap items-start justify-between gap-3">
                       {/* Left: identity */}
@@ -142,7 +142,7 @@ export default async function LeadsPage() {
                           {phone && <span>📱 {phone}</span>}
                           {lead.email && <span>✉ {lead.email}</span>}
                           {lead.productInterest && lead.productInterest !== "General" && (
-                            <span className="text-[#D4AF37]">Interest: {lead.productInterest}</span>
+                            <span className="text-[#C8B993]">Interest: {lead.productInterest}</span>
                           )}
                         </div>
                         {lead.message && lead.message !== "Lead captured via 20% off popup" && (
@@ -164,8 +164,8 @@ export default async function LeadsPage() {
                           <a
                             href={waLink(phone, QUICK_REPLIES.discountPush(name))}
                             target="_blank" rel="noopener noreferrer"
-                            className="px-3 py-1.5 rounded-lg text-xs font-bold text-[#0A0A0A]"
-                            style={{ background: "#D4AF37" }}
+                            className="px-3 py-1.5 rounded-lg text-xs font-bold text-[#111111]"
+                            style={{ background: "#C8B993" }}
                           >
                             Send Discount
                           </a>
@@ -194,7 +194,7 @@ export default async function LeadsPage() {
           </div>
 
           {uniqueCarts.length === 0 ? (
-            <div className="bg-[#111] border border-[#1F1F1F] rounded-2xl p-10 text-center text-gray-500 text-sm">
+            <div className="bg-[#111] border border-[#2A2A2A] rounded-2xl p-10 text-center text-gray-500 text-sm">
               No cart events yet.
             </div>
           ) : (
@@ -210,8 +210,8 @@ export default async function LeadsPage() {
                 return (
                   <div
                     key={latest.id}
-                    className="bg-[#111] border border-[#1F1F1F] rounded-2xl p-4"
-                    style={{ borderLeft: urgency === "hot" ? "3px solid #22c55e" : urgency === "warm" ? "3px solid #f59e0b" : "3px solid #1F1F1F" }}
+                    className="bg-[#111] border border-[#2A2A2A] rounded-2xl p-4"
+                    style={{ borderLeft: urgency === "hot" ? "3px solid #22c55e" : urgency === "warm" ? "3px solid #f59e0b" : "3px solid #2A2A2A" }}
                   >
                     <div className="flex flex-wrap items-start justify-between gap-3">
                       {/* Left: identity + products */}
@@ -252,8 +252,8 @@ export default async function LeadsPage() {
                           <a
                             href={waLink(phone, QUICK_REPLIES.discountPush(name))}
                             target="_blank" rel="noopener noreferrer"
-                            className="px-3 py-1.5 rounded-lg text-xs font-bold text-[#0A0A0A]"
-                            style={{ background: "#D4AF37" }}
+                            className="px-3 py-1.5 rounded-lg text-xs font-bold text-[#111111]"
+                            style={{ background: "#C8B993" }}
                           >
                             Send Discount
                           </a>

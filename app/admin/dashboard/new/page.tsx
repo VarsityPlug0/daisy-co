@@ -3,7 +3,7 @@ import ProductForm from "../ProductForm";
 
 export default function NewProduct() {
   return (
-    <div className="min-h-screen bg-[#0A0A0A]">
+    <div className="min-h-screen bg-[#111111]">
       <header className="bg-[#0f0f0f] border-b border-[#1A1A1A] px-4 sm:px-6 py-3 flex items-center gap-3">
         <Link href="/admin/dashboard"
           className="text-gray-500 hover:text-white text-sm transition-colors shrink-0">
@@ -19,7 +19,7 @@ export default function NewProduct() {
           <p className="text-gray-500 text-sm">Fill in the details below. The product will appear on the public shop page.</p>
         </div>
 
-        <div className="bg-[#111111] border border-[#1F1F1F] rounded-2xl p-4 sm:p-8">
+        <div className="bg-[#1D1D1D] border border-[#2A2A2A] rounded-2xl p-4 sm:p-8">
           <ProductForm />
         </div>
       </div>

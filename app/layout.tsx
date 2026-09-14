@@ -1,15 +1,18 @@
 import type { Metadata } from "next";
-import { Inter, Outfit } from "next/font/google";
+import { Bebas_Neue, Montserrat } from "next/font/google";
 import "./globals.css";
 import Script from "next/script";
 
-const outfit = Outfit({
+// Bevanssons brand fonts (matches the Bebas Neue + Montserrat pairing used
+// on the Bevans Sons platform) — was Outfit + Inter under Daisy. Kept the
+// same CSS variable names so globals.css needs no further changes.
+const outfit = Bebas_Neue({
   subsets: ["latin"],
   variable: "--font-outfit",
-  weight: ["400", "500", "600", "700", "800", "900"],
+  weight: ["400"],
 });
 
-const inter = Inter({
+const inter = Montserrat({
   subsets: ["latin"],
   variable: "--font-inter",
   weight: ["400", "500", "600"],

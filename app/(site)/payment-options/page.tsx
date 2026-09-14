@@ -27,10 +27,10 @@ export default function PaymentOptionsPage() {
           { title: "Instant EFT", desc: "Pay directly from your bank account via PayFast's Instant EFT — no need to manually enter our banking details.", badge: null },
           { title: "All Major SA Banks", desc: "PayFast supports Standard Bank, ABSA, Nedbank, Capitec, FNB and more, all from the same secure checkout.", badge: null },
         ].map(({ title, desc, badge }) => (
-          <div key={title} className="bg-[#111111] border border-[#1F1F1F] rounded-2xl p-6">
+          <div key={title} className="bg-[#1D1D1D] border border-[#2A2A2A] rounded-2xl p-6">
             <div className="flex items-center gap-3 mb-3">
               <h3 style={{ fontFamily: "var(--font-outfit)", fontWeight: 700, fontSize: 15, color: "#fff" }}>{title}</h3>
-              {badge && <span className="text-[9px] font-bold text-[#0A0A0A] bg-[#D4AF37] rounded-full px-2 py-0.5">{badge}</span>}
+              {badge && <span className="text-[9px] font-bold text-[#111111] bg-[#C8B993] rounded-full px-2 py-0.5">{badge}</span>}
             </div>
             <p className="text-gray-400 text-sm leading-relaxed">{desc}</p>
           </div>
@@ -48,8 +48,8 @@ export default function PaymentOptionsPage() {
             ["Instant Confirmation", "Your order is confirmed automatically the moment PayFast verifies your payment — no waiting, no proof to upload."],
           ].map(([step, desc], i) => (
             <div key={step as string} className="flex gap-4 items-start">
-              <div className="w-8 h-8 rounded-full bg-[#D4AF37] text-black font-extrabold text-sm flex items-center justify-center shrink-0">{i + 1}</div>
-              <div className="bg-[#111111] border border-[#1F1F1F] rounded-xl px-5 py-4 flex-1">
+              <div className="w-8 h-8 rounded-full bg-[#C8B993] text-black font-extrabold text-sm flex items-center justify-center shrink-0">{i + 1}</div>
+              <div className="bg-[#1D1D1D] border border-[#2A2A2A] rounded-xl px-5 py-4 flex-1">
                 <p style={{ fontFamily: "var(--font-outfit)", fontWeight: 700, fontSize: 14, color: "#fff", marginBottom: 4 }}>{step as string}</p>
                 <p className="text-gray-400 text-sm">{desc as string}</p>
               </div>
@@ -58,7 +58,7 @@ export default function PaymentOptionsPage() {
         </div>
       </div>
 
-      <div className="bg-[#111111] border border-[#1F1F1F] rounded-2xl p-8 text-center">
+      <div className="bg-[#1D1D1D] border border-[#2A2A2A] rounded-2xl p-8 text-center">
         <h3 className="text-xl font-bold text-white mb-3">Questions about payment?</h3>
         <p className="text-gray-400 text-sm mb-6">Our team is happy to help you through the payment process.</p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">

@@ -48,11 +48,11 @@ export default function InstallmentSection({ product, settings }: Props) {
   return (
     <>
       {/* Installment teaser block */}
-      <div className="rounded-2xl border border-[#D4AF37]/20 bg-[#D4AF37]/5 p-4 mt-1">
+      <div className="rounded-2xl border border-[#C8B993]/20 bg-[#C8B993]/5 p-4 mt-1">
         <p className="text-gray-400 text-xs mb-1">Available on installments</p>
         <p className="text-white font-bold text-lg">
           From{" "}
-          <span className="text-[#D4AF37]">R {monthly.toLocaleString("en-ZA")}/month</span>
+          <span className="text-[#C8B993]">R {monthly.toLocaleString("en-ZA")}/month</span>
           <span className="text-gray-500 text-sm font-normal"> × {maxTerm} months</span>
         </p>
 

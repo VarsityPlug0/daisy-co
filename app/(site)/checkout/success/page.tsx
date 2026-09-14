@@ -55,24 +55,24 @@ function CheckoutSuccessContent() {
   return (
     <div className="min-h-screen flex items-center justify-center px-6 py-16">
       <div className="max-w-lg w-full text-center">
-        <div className="w-20 h-20 rounded-full bg-[#D4AF37]/10 border border-[#D4AF37]/30 flex items-center justify-center mx-auto mb-6">
-          <CheckCircle size={36} className="text-[#D4AF37]" />
+        <div className="w-20 h-20 rounded-full bg-[#C8B993]/10 border border-[#C8B993]/30 flex items-center justify-center mx-auto mb-6">
+          <CheckCircle size={36} className="text-[#C8B993]" />
         </div>
         <h1 className="text-3xl font-extrabold text-white mb-3">Payment Received!</h1>
         <p className="text-gray-400 mb-8 leading-relaxed">
           Thank you{order?.name ? ` ${order.name.split(" ")[0]}` : ""}. Your PayFast payment went through
           {ref && (
             <>
-              {" "}for order <span className="text-[#D4AF37] font-semibold">{ref}</span>
+              {" "}for order <span className="text-[#C8B993] font-semibold">{ref}</span>
             </>
           )}
           . We&apos;re confirming it now — you&apos;ll get an email confirmation within a few minutes.
         </p>
 
-        {loading && <div className="h-32 bg-[#111111] rounded-2xl animate-pulse mb-8" />}
+        {loading && <div className="h-32 bg-[#1D1D1D] rounded-2xl animate-pulse mb-8" />}
 
         {!loading && order && (
-          <div className="bg-[#111111] border border-[#1F1F1F] rounded-2xl p-6 text-left mb-8">
+          <div className="bg-[#1D1D1D] border border-[#2A2A2A] rounded-2xl p-6 text-left mb-8">
             <p className="text-xs text-gray-500 uppercase tracking-wide mb-3">Order Summary</p>
             <div className="space-y-2 mb-4">
               {order.items.map((item, i) => (
@@ -82,7 +82,7 @@ function CheckoutSuccessContent() {
                 </div>
               ))}
             </div>
-            <div className="border-t border-[#1F1F1F] pt-3 flex justify-between">
+            <div className="border-t border-[#2A2A2A] pt-3 flex justify-between">
               <span className="text-gray-400 text-sm font-medium">Total Paid</span>
               <span className="text-white font-bold">R {order.total.toLocaleString()}</span>
             </div>

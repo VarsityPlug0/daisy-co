@@ -24,13 +24,13 @@ const batteryDefs = [
 
 function ProductCard({ item }: { item: typeof inverterDefs[0] & { img: string } }) {
   return (
-    <div className={`relative bg-[#111111] border rounded-2xl overflow-hidden card-hover flex flex-col group ${item.tag ? "border-[#D4AF37]" : "border-[#1F1F1F]"}`}>
+    <div className={`relative bg-[#1D1D1D] border rounded-2xl overflow-hidden card-hover flex flex-col group ${item.tag ? "border-[#C8B993]" : "border-[#2A2A2A]"}`}>
       {/* Image */}
-      <div className="relative h-44 bg-[#0a0a0a] overflow-hidden">
+      <div className="relative h-44 bg-[#111111] overflow-hidden">
         <Image src={item.img} alt={item.name} fill
           className="object-cover transition-transform duration-500 group-hover:scale-105"
           sizes="(max-width: 768px) 100vw, 33vw" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#111111] via-black/20 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#1D1D1D] via-black/20 to-transparent" />
         {item.tag && (
           <span className="absolute top-4 right-4 btn-gold text-xs px-4 py-1.5 rounded-full font-bold z-10">
             {item.tag}
@@ -41,11 +41,11 @@ function ProductCard({ item }: { item: typeof inverterDefs[0] & { img: string } 
       {/* Content */}
       <div className="p-5 flex flex-col flex-1">
         <h3 className="text-lg font-semibold text-white mb-1">{item.name}</h3>
-        <p className="text-xl font-bold text-[#D4AF37] mb-4">{item.price}</p>
+        <p className="text-xl font-bold text-[#C8B993] mb-4">{item.price}</p>
         <ul className="space-y-2 flex-1 mb-4">
           {item.specs.map((s) => (
             <li key={s} className="flex items-center gap-3 text-sm text-gray-300">
-              <span className="text-[#D4AF37] text-base">&#10003;</span> {s}
+              <span className="text-[#C8B993] text-base">&#10003;</span> {s}
             </li>
           ))}
         </ul>
@@ -66,10 +66,10 @@ export default function InvertersBatteries() {
 
       {/* Header */}
       <div className="text-center mb-8">
-        <Link href="/solar" className="text-[#D4AF37] text-sm hover:underline mb-4 inline-block">
+        <Link href="/solar" className="text-[#C8B993] text-sm hover:underline mb-4 inline-block">
           &larr; Solar Solutions
         </Link>
-        <p className="text-[#D4AF37] text-sm uppercase tracking-widest mb-3">Backup Power</p>
+        <p className="text-[#C8B993] text-sm uppercase tracking-widest mb-3">Backup Power</p>
         <h1 className="text-3xl md:text-4xl font-extrabold text-white mb-3">
           Inverters & <span className="gold-text">Batteries</span>
         </h1>
@@ -97,7 +97,7 @@ export default function InvertersBatteries() {
       </div>
 
       {/* CTA */}
-      <div className="bg-[#111111] border border-[#D4AF37]/30 rounded-2xl p-7 text-center">
+      <div className="bg-[#1D1D1D] border border-[#C8B993]/30 rounded-2xl p-7 text-center">
         <h3 className="text-xl font-bold text-white mb-2">Need help choosing the right system?</h3>
         <p className="text-gray-400 text-base mb-5 max-w-lg mx-auto leading-relaxed">
           Our team will assess your power needs and recommend the perfect inverter and battery combination.

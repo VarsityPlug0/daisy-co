@@ -33,7 +33,7 @@ const STATUS_CONFIG: Record<string, { label: string; color: string; icon: React.
   approved:        { label: "Approved",        color: "#10b981", icon: <CheckCircle size={13} /> },
   rejected:        { label: "Rejected",        color: "#ef4444", icon: <XCircle size={13} /> },
   shipped:         { label: "Shipped",         color: "#3b82f6", icon: <Truck size={13} /> },
-  delivered:       { label: "Delivered",       color: "#D4AF37", icon: <CheckCircle size={13} /> },
+  delivered:       { label: "Delivered",       color: "#C8B993", icon: <CheckCircle size={13} /> },
 };
 
 const BANK_LABELS: Record<string, { label: string; color: string }> = {
@@ -46,7 +46,7 @@ const NOTIFY_TEMPLATES = [
   { id: "packed",           label: "Being Packed",     color: "#3b82f6", default: "Your order has successfully moved to the packing stage.\n\nOur fulfilment team is currently checking and securely packaging your order to ensure that it is properly prepared for transportation.\n\nOnce packing and final quality checks are completed, your order will proceed to shipping. You will receive another notification when your order has been dispatched." },
   { id: "out_for_delivery", label: "Out for Delivery", color: "#10b981", default: "Great news. Your Bevanssons order is now out for delivery.\n\nYour assigned delivery driver is currently completing the delivery route and will contact you directly when they are approaching your location.\n\nKindly keep your phone available and ensure that someone is available to receive the order.\n\nPlease note: Delivery times may vary depending on the driver's route, traffic and other scheduled deliveries.\n\nWe appreciate your patience and look forward to completing your delivery successfully." },
   { id: "delayed",          label: "Delayed",          color: "#f59e0b", default: "We would like to inform you that there has been a slight delay with your order. We sincerely apologise for any inconvenience this may cause.\n\nOur team is working to resolve this as quickly as possible and your order will be on its way shortly. We will keep you updated with any further changes." },
-  { id: "custom",           label: "Custom",           color: "#D4AF37", default: "" },
+  { id: "custom",           label: "Custom",           color: "#C8B993", default: "" },
 ];
 
 const TEST_TEMPLATES = [
@@ -384,12 +384,12 @@ export default function AdminOrdersPage() {
     { label: "Pending",   value: orders.filter(o => o.status === "pending" || o.status === "proof_submitted").length,   color: "#f59e0b" },
     { label: "Approved",  value: orders.filter(o => o.status === "approved").length,                                    color: "#10b981" },
     { label: "Shipped",   value: orders.filter(o => o.status === "shipped").length,                                     color: "#3b82f6" },
-    { label: "Delivered", value: orders.filter(o => o.status === "delivered").length,                                   color: "#D4AF37" },
+    { label: "Delivered", value: orders.filter(o => o.status === "delivered").length,                                   color: "#C8B993" },
     { label: "Rejected",  value: orders.filter(o => o.status === "rejected").length,                                    color: "#ef4444" },
   ];
 
   return (
-    <div className="min-h-screen bg-[#0A0A0A]">
+    <div className="min-h-screen bg-[#111111]">
 
       {/* Lightbox modal */}
       {lightboxUrl && (
@@ -420,18 +420,18 @@ export default function AdminOrdersPage() {
         <span className="hidden sm:block text-gray-600 text-[10px]">Updated {timeSince(lastRefreshAt)}</span>
         <button
           onClick={() => exportCSV(visible, "orders")}
-          className="flex items-center gap-1.5 text-gray-400 hover:text-[#D4AF37] text-xs transition-colors">
+          className="flex items-center gap-1.5 text-gray-400 hover:text-[#C8B993] text-xs transition-colors">
           <Download size={13} /> Export
         </button>
         <button
           onClick={notifEnabled ? undefined : requestNotifications}
           title={notifEnabled ? "Browser notifications on" : "Enable browser notifications"}
           className="text-gray-400 hover:text-white transition-colors">
-          {notifEnabled ? <Bell size={15} className="text-[#D4AF37]" /> : <BellOff size={15} />}
+          {notifEnabled ? <Bell size={15} className="text-[#C8B993]" /> : <BellOff size={15} />}
         </button>
         <button
           onClick={() => setShowTestPanel(p => !p)}
-          className="flex items-center gap-1.5 text-gray-400 hover:text-[#D4AF37] text-xs transition-colors">
+          className="flex items-center gap-1.5 text-gray-400 hover:text-[#C8B993] text-xs transition-colors">
           Test Emails
         </button>
         <button onClick={fetchOrders}
@@ -442,16 +442,16 @@ export default function AdminOrdersPage() {
 
       {/* Test email panel */}
       {showTestPanel && (
-        <div className="bg-[#111] border-b border-[#1F1F1F] px-4 sm:px-6 py-4">
+        <div className="bg-[#111] border-b border-[#2A2A2A] px-4 sm:px-6 py-4">
           <div className="max-w-7xl mx-auto">
-            <p className="text-[#D4AF37] text-xs font-bold uppercase tracking-wider mb-3">Send Test Emails</p>
+            <p className="text-[#C8B993] text-xs font-bold uppercase tracking-wider mb-3">Send Test Emails</p>
             <div className="flex gap-2 mb-3 flex-wrap">
               <input
                 type="email"
                 value={testEmail}
                 onChange={e => setTestEmail(e.target.value)}
                 placeholder="Your email address…"
-                className="bg-[#0A0A0A] border border-[#2a2a2a] rounded-xl px-4 py-2 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-[#D4AF37]/50 transition-colors w-64"
+                className="bg-[#111111] border border-[#2a2a2a] rounded-xl px-4 py-2 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-[#C8B993]/50 transition-colors w-64"
               />
             </div>
             <div className="flex flex-wrap gap-2">
@@ -463,7 +463,7 @@ export default function AdminOrdersPage() {
                   className="px-3 py-1.5 rounded-lg text-xs font-semibold disabled:opacity-40 transition-all"
                   style={testSent === t.id
                     ? { background: "#10b98120", color: "#10b981", border: "1px solid #10b98140" }
-                    : { background: "#1F1F1F", color: "#9ca3af", border: "1px solid #2a2a2a" }}>
+                    : { background: "#2A2A2A", color: "#9ca3af", border: "1px solid #2a2a2a" }}>
                   {testingId === t.id ? "Sending…" : testSent === t.id ? `✓ ${t.label} Sent` : `Send: ${t.label}`}
                 </button>
               ))}
@@ -478,7 +478,7 @@ export default function AdminOrdersPage() {
         {/* Stats */}
         <div className="grid grid-cols-3 sm:grid-cols-6 gap-3 mb-4">
           {statCards.map(s => (
-            <div key={s.label} className="bg-[#111] border border-[#1F1F1F] rounded-xl p-3 text-center">
+            <div key={s.label} className="bg-[#111] border border-[#2A2A2A] rounded-xl p-3 text-center">
               <p className="text-xl sm:text-2xl font-bold mb-0.5" style={{ color: s.color }}>{s.value}</p>
               <p className="text-gray-500 text-[10px] sm:text-xs">{s.label}</p>
             </div>
@@ -486,9 +486,9 @@ export default function AdminOrdersPage() {
         </div>
 
         {/* Revenue */}
-        <div className="bg-[#111] border border-[#D4AF37]/20 rounded-xl px-4 sm:px-5 py-3.5 flex items-center justify-between mb-5">
+        <div className="bg-[#111] border border-[#C8B993]/20 rounded-xl px-4 sm:px-5 py-3.5 flex items-center justify-between mb-5">
           <p className="text-gray-400 text-xs sm:text-sm">Revenue (approved + shipped + delivered)</p>
-          <p className="text-[#D4AF37] font-bold text-lg sm:text-xl">R {revenue.toLocaleString()}</p>
+          <p className="text-[#C8B993] font-bold text-lg sm:text-xl">R {revenue.toLocaleString()}</p>
         </div>
 
         {/* Filter tabs */}
@@ -497,8 +497,8 @@ export default function AdminOrdersPage() {
             <button key={f} onClick={() => setFilter(f)}
               className="flex-shrink-0 px-3 py-1.5 rounded-full text-xs font-medium transition-colors"
               style={filter === f
-                ? { background: "#D4AF37", color: "#000" }
-                : { background: "#1F1F1F", color: "#9ca3af" }}>
+                ? { background: "#C8B993", color: "#000" }
+                : { background: "#2A2A2A", color: "#9ca3af" }}>
               {f === "all" ? "All" : STATUS_CONFIG[f]?.label ?? f}
               {" "}({f === "all" ? orders.length : orders.filter(o => o.status === f).length})
             </button>
@@ -513,7 +513,7 @@ export default function AdminOrdersPage() {
             value={search}
             onChange={e => setSearch(e.target.value)}
             placeholder="Search by ref, name, email or phone…"
-            className="w-full bg-[#111] border border-[#1F1F1F] rounded-xl pl-9 pr-4 py-2.5 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-[#D4AF37]/50 transition-colors"
+            className="w-full bg-[#111] border border-[#2A2A2A] rounded-xl pl-9 pr-4 py-2.5 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-[#C8B993]/50 transition-colors"
           />
         </div>
 
@@ -541,7 +541,7 @@ export default function AdminOrdersPage() {
 
         {/* Bulk action bar */}
         {selectedIds.size > 0 && (
-          <div className="bg-[#1a1a1a] border border-[#D4AF37]/30 rounded-xl px-4 py-3 mb-3 flex items-center gap-2 flex-wrap">
+          <div className="bg-[#1a1a1a] border border-[#C8B993]/30 rounded-xl px-4 py-3 mb-3 flex items-center gap-2 flex-wrap">
             <span className="text-white text-sm font-semibold mr-1">{selectedIds.size} selected</span>
             <button
               onClick={() => bulkUpdateStatus("shipped")}
@@ -554,7 +554,7 @@ export default function AdminOrdersPage() {
               onClick={() => bulkUpdateStatus("delivered")}
               disabled={bulkUpdating}
               className="px-3 py-1.5 rounded-lg text-xs font-semibold disabled:opacity-50 transition-opacity"
-              style={{ background: "#D4AF3720", color: "#D4AF37", border: "1px solid #D4AF3740" }}>
+              style={{ background: "#C8B99320", color: "#C8B993", border: "1px solid #C8B99340" }}>
               {bulkUpdating ? "…" : "Mark Delivered"}
             </button>
             <button
@@ -591,7 +591,7 @@ export default function AdminOrdersPage() {
                   type="checkbox"
                   checked={allVisibleSelected}
                   onChange={toggleSelectAll}
-                  className="w-4 h-4 accent-[#D4AF37] cursor-pointer"
+                  className="w-4 h-4 accent-[#C8B993] cursor-pointer"
                 />
                 <span className="text-gray-500 text-xs">Select all ({visible.length})</span>
               </div>
@@ -608,8 +608,8 @@ export default function AdminOrdersPage() {
                 <div
                   key={order.id}
                   onClick={() => selectOrder(order)}
-                  className="w-full text-left bg-[#111111] border rounded-xl p-4 transition-colors hover:border-[#2a2a2a] cursor-pointer"
-                  style={{ borderColor: selected?.id === order.id ? "#D4AF37" : isChecked ? "#D4AF3766" : "#1F1F1F" }}>
+                  className="w-full text-left bg-[#1D1D1D] border rounded-xl p-4 transition-colors hover:border-[#2a2a2a] cursor-pointer"
+                  style={{ borderColor: selected?.id === order.id ? "#C8B993" : isChecked ? "#C8B99366" : "#2A2A2A" }}>
                   <div className="flex items-start gap-3">
                     {/* Checkbox */}
                     <input
@@ -617,11 +617,11 @@ export default function AdminOrdersPage() {
                       checked={isChecked}
                       onClick={e => toggleSelect(order.id, e)}
                       onChange={() => {}}
-                      className="mt-0.5 w-4 h-4 accent-[#D4AF37] cursor-pointer shrink-0"
+                      className="mt-0.5 w-4 h-4 accent-[#C8B993] cursor-pointer shrink-0"
                     />
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center justify-between mb-1.5">
-                        <span className="text-[#D4AF37] font-bold text-sm">{order.ref}</span>
+                        <span className="text-[#C8B993] font-bold text-sm">{order.ref}</span>
                         <div className="flex items-center gap-1.5">
                           {/* Proof indicator */}
                           {order.proof_url && (
@@ -651,16 +651,16 @@ export default function AdminOrdersPage() {
           {/* Order detail */}
           <div className={`xl:col-span-2 ${showDetail && selected ? "block" : "hidden xl:block"}`}>
             {!selected ? (
-              <div className="bg-[#111111] border border-[#1F1F1F] rounded-2xl p-12 text-center">
+              <div className="bg-[#1D1D1D] border border-[#2A2A2A] rounded-2xl p-12 text-center">
                 <p className="text-gray-500">Select an order to view details</p>
               </div>
             ) : (
-              <div className="bg-[#111111] border border-[#1F1F1F] rounded-2xl p-4 sm:p-6 space-y-5">
+              <div className="bg-[#1D1D1D] border border-[#2A2A2A] rounded-2xl p-4 sm:p-6 space-y-5">
 
                 {/* Order header */}
                 <div className="flex items-start justify-between gap-3 flex-wrap">
                   <div>
-                    <p className="text-[#D4AF37] font-bold text-lg">{selected.ref}</p>
+                    <p className="text-[#C8B993] font-bold text-lg">{selected.ref}</p>
                     <p className="text-gray-500 text-xs mt-0.5">{new Date(selected.createdAt).toLocaleString("en-ZA")}</p>
                     {selected.payment_method && (
                       <p className="text-gray-600 text-xs mt-0.5 capitalize">
@@ -751,13 +751,13 @@ export default function AdminOrdersPage() {
                           <p className="text-sm text-white truncate">{item.name}</p>
                           <p className="text-xs text-gray-500">× {item.qty}</p>
                         </div>
-                        <p className="text-sm font-bold text-[#D4AF37] shrink-0">
+                        <p className="text-sm font-bold text-[#C8B993] shrink-0">
                           R {(parseFloat(String(item.price).replace(/[^0-9.]/g, "")) * item.qty).toLocaleString()}
                         </p>
                       </div>
                     ))}
                   </div>
-                  <div className="flex justify-between mt-4 pt-3 border-t border-[#1F1F1F]">
+                  <div className="flex justify-between mt-4 pt-3 border-t border-[#2A2A2A]">
                     <span className="text-gray-400 text-sm">Total</span>
                     <span className="text-white font-bold text-lg">R {selected.total.toLocaleString()}</span>
                   </div>
@@ -783,7 +783,7 @@ export default function AdminOrdersPage() {
                       onChange={e => setTracking(e.target.value)}
                       onKeyDown={e => e.key === "Enter" && saveTracking()}
                       placeholder="e.g. CL123456789ZA"
-                      className="flex-1 bg-[#0A0A0A] border border-[#2a2a2a] rounded-xl px-4 py-2.5 text-white text-sm placeholder-gray-600 font-mono focus:outline-none focus:border-[#D4AF37]/50 transition-colors"
+                      className="flex-1 bg-[#111111] border border-[#2a2a2a] rounded-xl px-4 py-2.5 text-white text-sm placeholder-gray-600 font-mono focus:outline-none focus:border-[#C8B993]/50 transition-colors"
                     />
                     <button
                       onClick={saveTracking}
@@ -807,7 +807,7 @@ export default function AdminOrdersPage() {
                       onClick={() => proofInputRef.current?.click()}
                       disabled={uploadingProof}
                       className="flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-lg disabled:opacity-50 transition-colors"
-                      style={{ background: "#1F1F1F", color: "#9ca3af" }}>
+                      style={{ background: "#2A2A2A", color: "#9ca3af" }}>
                       <Upload size={11} />
                       {uploadingProof ? "Uploading…" : selected.proof_url ? "Replace Proof" : "Upload Proof"}
                     </button>
@@ -824,14 +824,14 @@ export default function AdminOrdersPage() {
                     selected.proof_url.match(/\.pdf$/i) ? (
                       <button
                         onClick={() => setLightboxUrl(selected.proof_url!)}
-                        className="text-[#D4AF37] text-sm underline">
+                        className="text-[#C8B993] text-sm underline">
                         View PDF proof ↗
                       </button>
                     ) : (
                       <button
                         onClick={() => setLightboxUrl(selected.proof_url!)}
                         className="block w-full group">
-                        <div className="relative h-48 rounded-xl overflow-hidden border border-[#1F1F1F] group-hover:border-[#D4AF37]/40 transition-colors">
+                        <div className="relative h-48 rounded-xl overflow-hidden border border-[#2A2A2A] group-hover:border-[#C8B993]/40 transition-colors">
                           <Image src={selected.proof_url} alt="Proof" fill className="object-contain" />
                           <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 flex items-center justify-center transition-all">
                             <span className="opacity-0 group-hover:opacity-100 text-white text-xs font-semibold bg-black/60 px-3 py-1.5 rounded-full transition-opacity">
@@ -853,7 +853,7 @@ export default function AdminOrdersPage() {
                   <label className="text-[10px] text-gray-500 uppercase tracking-wider block mb-2">Admin Notes</label>
                   <textarea value={notes} onChange={e => setNotes(e.target.value)}
                     rows={2} placeholder="Add internal notes…"
-                    className="w-full bg-[#0A0A0A] border border-[#2a2a2a] rounded-xl px-4 py-3 text-white text-sm placeholder-gray-600 resize-none focus:outline-none focus:border-[#D4AF37]/50 transition-colors" />
+                    className="w-full bg-[#111111] border border-[#2a2a2a] rounded-xl px-4 py-3 text-white text-sm placeholder-gray-600 resize-none focus:outline-none focus:border-[#C8B993]/50 transition-colors" />
                 </div>
 
                 {/* Send customer update */}
@@ -882,16 +882,16 @@ export default function AdminOrdersPage() {
                         onChange={e => setNotifyMessage(e.target.value)}
                         rows={3}
                         placeholder="Message to customer…"
-                        className="w-full bg-[#0A0A0A] border border-[#2a2a2a] rounded-xl px-4 py-3 text-white text-sm placeholder-gray-600 resize-none focus:outline-none focus:border-[#D4AF37]/50 transition-colors"
+                        className="w-full bg-[#111111] border border-[#2a2a2a] rounded-xl px-4 py-3 text-white text-sm placeholder-gray-600 resize-none focus:outline-none focus:border-[#C8B993]/50 transition-colors"
                       />
                       <button
                         onClick={sendNotify}
                         disabled={sendingNotify || !notifyMessage.trim()}
                         className="w-full py-2.5 rounded-xl text-sm font-semibold disabled:opacity-40 transition-all"
                         style={{
-                          background: notifySent ? "#10b98120" : "#D4AF3720",
-                          color: notifySent ? "#10b981" : "#D4AF37",
-                          border: `1px solid ${notifySent ? "#10b98140" : "#D4AF3740"}`,
+                          background: notifySent ? "#10b98120" : "#C8B99320",
+                          color: notifySent ? "#10b981" : "#C8B993",
+                          border: `1px solid ${notifySent ? "#10b98140" : "#C8B99340"}`,
                         }}>
                         {sendingNotify ? "Sending…" : notifySent ? "✓ Email Sent!" : "Send Update Email"}
                       </button>
@@ -907,7 +907,7 @@ export default function AdminOrdersPage() {
                       { status: "approved",  label: "Approve",        color: "#10b981" },
                       { status: "rejected",  label: "Reject",         color: "#ef4444" },
                       { status: "shipped",   label: "Mark Shipped",   color: "#3b82f6" },
-                      { status: "delivered", label: "Mark Delivered", color: "#D4AF37" },
+                      { status: "delivered", label: "Mark Delivered", color: "#C8B993" },
                     ].map(({ status, label, color }) => (
                       <button key={status}
                         onClick={() => updateStatus(selected.id, status)}

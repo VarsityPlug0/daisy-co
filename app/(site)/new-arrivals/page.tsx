@@ -21,8 +21,8 @@ export default async function NewArrivalsPage() {
 
       <div className="mb-12">
         <div className="flex items-center gap-2 mb-3">
-          <Sparkles size={16} color="#D4AF37" />
-          <p className="text-[#D4AF37] text-sm uppercase tracking-widest font-bold">Just Landed</p>
+          <Sparkles size={16} color="#C8B993" />
+          <p className="text-[#C8B993] text-sm uppercase tracking-widest font-bold">Just Landed</p>
         </div>
         <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-4">
           New <span className="gold-text">Arrivals</span>
@@ -41,7 +41,7 @@ export default async function NewArrivalsPage() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {products.map((p) => (
             <Link key={p.id} href={`/shop/${p.id}`}
-              className="bg-[#111111] border border-[#1F1F1F] rounded-2xl overflow-hidden card-hover flex flex-col group">
+              className="bg-[#1D1D1D] border border-[#2A2A2A] rounded-2xl overflow-hidden card-hover flex flex-col group">
               <div className="relative h-64 bg-[#0f0f0f] overflow-hidden">
                 {p.imageUrl ? (
                   <Image src={p.imageUrl} alt={p.name} fill
@@ -52,13 +52,13 @@ export default async function NewArrivalsPage() {
                     <Package size={40} color="#2a2a2a" strokeWidth={1} />
                   </div>
                 )}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#111111]/60 to-transparent" />
-                <span className="absolute top-3 left-3 bg-[#111] border border-[#D4AF37]/40 text-[#D4AF37] text-[10px] font-bold px-2.5 py-1 rounded-full">New</span>
+                <div className="absolute inset-0 bg-gradient-to-t from-[#1D1D1D]/60 to-transparent" />
+                <span className="absolute top-3 left-3 bg-[#111] border border-[#C8B993]/40 text-[#C8B993] text-[10px] font-bold px-2.5 py-1 rounded-full">New</span>
               </div>
               <div className="p-5 flex flex-col flex-1">
-                <p className="text-[10px] text-[#D4AF37] uppercase tracking-wider mb-1.5">{p.category}</p>
+                <p className="text-[10px] text-[#C8B993] uppercase tracking-wider mb-1.5">{p.category}</p>
                 <p className="font-semibold text-white text-sm leading-snug mb-2 flex-1 line-clamp-2">{p.name}</p>
-                <p className="text-[#D4AF37] font-bold text-lg mb-3">{p.price}</p>
+                <p className="text-[#C8B993] font-bold text-lg mb-3">{p.price}</p>
                 <AddToEnquiry id={p.id} name={p.name} price={p.price} imageUrl={p.imageUrl} category={p.category} />
               </div>
             </Link>

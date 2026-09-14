@@ -39,7 +39,7 @@ export async function POST(req: NextRequest) {
         subject: `New Quote Request — ${esc(type)} — ${esc(name)}`,
         html: `
           <div style="font-family:sans-serif;max-width:600px;margin:0 auto;">
-            <h2 style="color:#D4AF37;">New Quote Request — Bevanssons</h2>
+            <h2 style="color:#C8B993;">New Quote Request — Bevanssons</h2>
             <table style="width:100%;border-collapse:collapse;">
               <tr><td style="padding:8px 0;color:#666;width:120px">Name</td><td style="padding:8px 0;font-weight:600">${esc(name)}</td></tr>
               <tr><td style="padding:8px 0;color:#666">Phone</td><td style="padding:8px 0;font-weight:600">${esc(phone)}</td></tr>

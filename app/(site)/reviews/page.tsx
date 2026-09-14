@@ -35,7 +35,7 @@ export default function ReviewsPage() {
         </h1>
         <div className="flex items-center justify-center gap-3 mt-4">
           <div className="flex gap-1">
-            {[1,2,3,4,5].map(i => <Star key={i} size={22} fill="#D4AF37" color="#D4AF37" />)}
+            {[1,2,3,4,5].map(i => <Star key={i} size={22} fill="#C8B993" color="#C8B993" />)}
           </div>
           <span className="text-2xl font-extrabold text-white">{avg}</span>
           <span className="text-gray-500 text-sm">({reviews.length} reviews)</span>
@@ -44,14 +44,14 @@ export default function ReviewsPage() {
 
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-14">
         {reviews.map((r) => (
-          <div key={r.name + r.product} className="bg-[#111111] border border-[#1F1F1F] rounded-2xl p-6">
+          <div key={r.name + r.product} className="bg-[#1D1D1D] border border-[#2A2A2A] rounded-2xl p-6">
             <div className="flex gap-0.5 mb-3">
               {Array.from({ length: r.stars }).map((_, i) => (
-                <Star key={i} size={13} fill="#D4AF37" color="#D4AF37" />
+                <Star key={i} size={13} fill="#C8B993" color="#C8B993" />
               ))}
             </div>
             <p className="text-gray-300 text-sm leading-relaxed mb-4">&ldquo;{r.text}&rdquo;</p>
-            <div className="border-t border-[#1F1F1F] pt-4 flex items-center justify-between">
+            <div className="border-t border-[#2A2A2A] pt-4 flex items-center justify-between">
               <div>
                 <p style={{ fontFamily: "var(--font-outfit)", fontWeight: 700, fontSize: 13, color: "#fff" }}>{r.name}</p>
                 <p className="text-xs text-gray-600">{r.location} &middot; {r.product}</p>
@@ -62,7 +62,7 @@ export default function ReviewsPage() {
         ))}
       </div>
 
-      <div className="bg-[#111111] border border-[#D4AF37]/20 rounded-2xl p-10 text-center">
+      <div className="bg-[#1D1D1D] border border-[#C8B993]/20 rounded-2xl p-10 text-center">
         <h3 className="text-2xl font-bold text-white mb-3">Join Our Happy Customers</h3>
         <p className="text-gray-400 mb-8 max-w-lg mx-auto">
           Shop with confidence. Premium gadgets, genuine products, and unbeatable prices — backed by real customer experiences.

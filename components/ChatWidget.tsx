@@ -13,7 +13,7 @@ function getVisitorId(): string {
 
 type Msg = { id: string; sender: "customer" | "admin"; body: string; createdAt: string };
 
-const GOLD = "#D4AF37";
+const GOLD = "#C8B993";
 
 export default function ChatWidget() {
   const [open, setOpen] = useState(false);
@@ -154,7 +154,7 @@ export default function ChatWidget() {
       <button
         onClick={() => setOpen(o => !o)}
         className="fixed bottom-5 right-5 z-50 w-14 h-14 rounded-full flex items-center justify-center shadow-lg transition-transform hover:scale-110"
-        style={{ background: GOLD, boxShadow: "0 4px 24px rgba(212,175,55,0.45)" }}
+        style={{ background: GOLD, boxShadow: "0 4px 24px rgba(200,185,147,0.45)" }}
         aria-label="Chat with us"
       >
         {open
@@ -178,12 +178,12 @@ export default function ChatWidget() {
             width: "min(380px, calc(100vw - 40px))",
             height: "min(520px, calc(100vh - 140px))",
             background: "#111",
-            border: "1px solid #1F1F1F",
+            border: "1px solid #2A2A2A",
             boxShadow: "0 20px 60px rgba(0,0,0,0.8)",
           }}
         >
           {/* Header */}
-          <div className="flex items-center justify-between px-4 py-3 shrink-0" style={{ background: "#0A0A0A", borderBottom: "1px solid #1F1F1F" }}>
+          <div className="flex items-center justify-between px-4 py-3 shrink-0" style={{ background: "#111111", borderBottom: "1px solid #2A2A2A" }}>
             <div className="flex items-center gap-2.5">
               <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{ background: `${GOLD}22`, border: `1px solid ${GOLD}44` }}>
                 <MessageCircle size={15} color={GOLD} />
@@ -230,7 +230,7 @@ export default function ChatWidget() {
                   placeholder="Your name"
                   value={name}
                   onChange={e => setName(e.target.value)}
-                  className="w-full bg-[#1a1a1a] border border-[#2a2a2a] rounded-xl px-4 py-3 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-[#D4AF37] transition-colors"
+                  className="w-full bg-[#1a1a1a] border border-[#2a2a2a] rounded-xl px-4 py-3 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-[#C8B993] transition-colors"
                 />
                 <input
                   type="tel"
@@ -238,7 +238,7 @@ export default function ChatWidget() {
                   value={phone}
                   onChange={e => setPhone(e.target.value)}
                   required
-                  className="w-full bg-[#1a1a1a] border border-[#2a2a2a] rounded-xl px-4 py-3 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-[#D4AF37] transition-colors"
+                  className="w-full bg-[#1a1a1a] border border-[#2a2a2a] rounded-xl px-4 py-3 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-[#C8B993] transition-colors"
                 />
                 {input && (
                   <div className="bg-[#1a1a1a] border border-[#2a2a2a] rounded-xl px-4 py-3">
@@ -289,7 +289,7 @@ export default function ChatWidget() {
 
           {/* Input */}
           {step === "chat" && (
-            <div className="px-3 py-3 shrink-0" style={{ borderTop: "1px solid #1F1F1F" }}>
+            <div className="px-3 py-3 shrink-0" style={{ borderTop: "1px solid #2A2A2A" }}>
               <div className="flex gap-2">
                 <input
                   type="text"
@@ -297,7 +297,7 @@ export default function ChatWidget() {
                   value={input}
                   onChange={e => setInput(e.target.value)}
                   onKeyDown={e => e.key === "Enter" && !e.shiftKey && sendMessage()}
-                  className="flex-1 bg-[#1a1a1a] border border-[#2a2a2a] rounded-xl px-4 py-2.5 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-[#D4AF37] transition-colors"
+                  className="flex-1 bg-[#1a1a1a] border border-[#2a2a2a] rounded-xl px-4 py-2.5 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-[#C8B993] transition-colors"
                 />
                 <button
                   onClick={() => sendMessage()}

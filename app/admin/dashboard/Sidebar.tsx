@@ -54,7 +54,7 @@ function NavLink({ href, icon: Icon, label, exact, onClick }: {
       onClick={onClick}
       className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all ${
         active
-          ? "bg-[#D4AF37]/15 text-[#D4AF37]"
+          ? "bg-[#C8B993]/15 text-[#C8B993]"
           : "text-gray-400 hover:text-white hover:bg-white/5"
       }`}
     >
@@ -85,13 +85,13 @@ export default function Sidebar() {
       <div className="flex items-center gap-2.5 px-4 py-5 border-b border-[#1A1A1A]">
         <svg width="26" height="26" viewBox="0 0 100 100" fill="none">
           {[0,45,90,135,180,225,270,315].map((deg) => (
-            <ellipse key={deg} cx="50" cy="22" rx="9" ry="18" fill="#D4AF37" transform={`rotate(${deg} 50 50)`} />
+            <ellipse key={deg} cx="50" cy="22" rx="9" ry="18" fill="#C8B993" transform={`rotate(${deg} 50 50)`} />
           ))}
-          <circle cx="50" cy="50" r="14" fill="#D4AF37" />
-          <circle cx="50" cy="50" r="8" fill="#0A0A0A" />
+          <circle cx="50" cy="50" r="14" fill="#C8B993" />
+          <circle cx="50" cy="50" r="8" fill="#111111" />
         </svg>
         <div>
-          <p className="text-[#D4AF37] font-bold text-sm leading-none">Bevanssons</p>
+          <p className="text-[#C8B993] font-bold text-sm leading-none">Bevanssons</p>
           <p className="text-gray-600 text-[10px] mt-0.5">Admin Dashboard</p>
         </div>
       </div>
@@ -143,12 +143,12 @@ export default function Sidebar() {
         <div className="flex items-center gap-2">
           <svg width="22" height="22" viewBox="0 0 100 100" fill="none">
             {[0,45,90,135,180,225,270,315].map((deg) => (
-              <ellipse key={deg} cx="50" cy="22" rx="9" ry="18" fill="#D4AF37" transform={`rotate(${deg} 50 50)`} />
+              <ellipse key={deg} cx="50" cy="22" rx="9" ry="18" fill="#C8B993" transform={`rotate(${deg} 50 50)`} />
             ))}
-            <circle cx="50" cy="50" r="14" fill="#D4AF37" />
+            <circle cx="50" cy="50" r="14" fill="#C8B993" />
             <circle cx="50" cy="50" r="8" fill="#0D0D0D" />
           </svg>
-          <p className="text-[#D4AF37] font-bold text-sm">Bevanssons</p>
+          <p className="text-[#C8B993] font-bold text-sm">Bevanssons</p>
         </div>
         <button
           onClick={() => setOpen(true)}

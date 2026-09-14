@@ -118,7 +118,7 @@ export default function InstallmentModal({ product, settings, onClose }: Props) 
     }
   }
 
-  const inputClass = "w-full bg-[#0A0A0A] border border-[#2a2a2a] rounded-xl px-4 py-3 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-[#D4AF37] transition-colors";
+  const inputClass = "w-full bg-[#111111] border border-[#2a2a2a] rounded-xl px-4 py-3 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-[#C8B993] transition-colors";
   const labelClass = "block text-xs text-gray-500 mb-1.5 font-medium uppercase tracking-wider";
 
   const canGoStep3 = form.name && form.phone && form.email && form.id_number && form.address && consent;
@@ -130,12 +130,12 @@ export default function InstallmentModal({ product, settings, onClose }: Props) 
       className="fixed inset-0 z-[60] flex items-end sm:items-center justify-center bg-black/80 backdrop-blur-sm p-0 sm:p-4"
       style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
     >
-      <div className="relative w-full sm:max-w-lg bg-[#111111] border border-[#1F1F1F] rounded-t-3xl sm:rounded-3xl shadow-2xl overflow-hidden max-h-[85dvh] flex flex-col">
+      <div className="relative w-full sm:max-w-lg bg-[#1D1D1D] border border-[#2A2A2A] rounded-t-3xl sm:rounded-3xl shadow-2xl overflow-hidden max-h-[85dvh] flex flex-col">
 
         {/* Header */}
-        <div className="flex items-center justify-between px-6 pt-6 pb-4 border-b border-[#1F1F1F] shrink-0">
+        <div className="flex items-center justify-between px-6 pt-6 pb-4 border-b border-[#2A2A2A] shrink-0">
           <div>
-            <p className="text-xs text-[#D4AF37] font-bold uppercase tracking-widest mb-0.5">Get It on Installments</p>
+            <p className="text-xs text-[#C8B993] font-bold uppercase tracking-widest mb-0.5">Get It on Installments</p>
             <p className="text-white font-bold text-sm truncate max-w-[260px]">{product.name}</p>
           </div>
           <button onClick={() => { track("abandoned", { product_id: product.id, step }); onClose(); }}
@@ -154,14 +154,14 @@ export default function InstallmentModal({ product, settings, onClose }: Props) 
               return (
                 <div key={s} className="flex items-center gap-2 flex-1">
                   <div className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold transition-colors shrink-0 ${
-                    done ? "bg-[#D4AF37]/30 text-[#D4AF37]" :
-                    active ? "bg-[#D4AF37] text-black" :
+                    done ? "bg-[#C8B993]/30 text-[#C8B993]" :
+                    active ? "bg-[#C8B993] text-black" :
                     "bg-[#1a1a1a] text-gray-600"
                   }`}>
                     {done ? <Check size={11} /> : s}
                   </div>
                   <span className={`text-xs hidden sm:block ${active ? "text-white font-medium" : "text-gray-600"}`}>{labels[i]}</span>
-                  {i < 2 && <div className="flex-1 h-px bg-[#1F1F1F] hidden sm:block" />}
+                  {i < 2 && <div className="flex-1 h-px bg-[#2A2A2A] hidden sm:block" />}
                 </div>
               );
             })}
@@ -175,7 +175,7 @@ export default function InstallmentModal({ product, settings, onClose }: Props) 
           {step === 1 && (
             <div className="space-y-5">
               {/* Product summary */}
-              <div className="bg-[#0A0A0A] border border-[#1F1F1F] rounded-2xl p-4">
+              <div className="bg-[#111111] border border-[#2A2A2A] rounded-2xl p-4">
                 <div className="flex justify-between items-start">
                   <div>
                     <p className="text-gray-500 text-xs mb-1">Product</p>
@@ -183,11 +183,11 @@ export default function InstallmentModal({ product, settings, onClose }: Props) 
                   </div>
                   <div className="text-right">
                     <p className="text-gray-500 text-xs mb-1">Cash Price</p>
-                    <p className="text-[#D4AF37] font-bold">{product.price}</p>
+                    <p className="text-[#C8B993] font-bold">{product.price}</p>
                   </div>
                 </div>
                 {deposit > 0 && (
-                  <div className="mt-3 pt-3 border-t border-[#1F1F1F]">
+                  <div className="mt-3 pt-3 border-t border-[#2A2A2A]">
                     <p className="text-gray-500 text-xs">Min. Deposit</p>
                     <p className="text-white font-semibold text-sm">R {deposit.toLocaleString("en-ZA")}</p>
                   </div>
@@ -205,11 +205,11 @@ export default function InstallmentModal({ product, settings, onClose }: Props) 
                       <button key={t} onClick={() => handleTermChange(t)}
                         className={`p-3 rounded-xl border text-center transition-all ${
                           active
-                            ? "border-[#D4AF37] bg-[#D4AF37]/10"
-                            : "border-[#2a2a2a] hover:border-[#D4AF37]/40 bg-[#0A0A0A]"
+                            ? "border-[#C8B993] bg-[#C8B993]/10"
+                            : "border-[#2a2a2a] hover:border-[#C8B993]/40 bg-[#111111]"
                         }`}>
-                        <p className={`text-sm font-bold ${active ? "text-[#D4AF37]" : "text-white"}`}>{t} mo</p>
-                        <p className={`text-xs mt-0.5 ${active ? "text-[#D4AF37]/70" : "text-gray-500"}`}>
+                        <p className={`text-sm font-bold ${active ? "text-[#C8B993]" : "text-white"}`}>{t} mo</p>
+                        <p className={`text-xs mt-0.5 ${active ? "text-[#C8B993]/70" : "text-gray-500"}`}>
                           R {m.toLocaleString("en-ZA")}
                         </p>
                       </button>
@@ -219,11 +219,11 @@ export default function InstallmentModal({ product, settings, onClose }: Props) 
               </div>
 
               {/* Monthly highlight */}
-              <div className="bg-[#0A0A0A] border border-[#D4AF37]/20 rounded-2xl p-5 text-center">
+              <div className="bg-[#111111] border border-[#C8B993]/20 rounded-2xl p-5 text-center">
                 <p className="text-gray-500 text-xs mb-1">Your monthly payment</p>
-                <p className="text-[#D4AF37] text-3xl sm:text-4xl font-black">R {monthly.toLocaleString("en-ZA")}</p>
+                <p className="text-[#C8B993] text-3xl sm:text-4xl font-black">R {monthly.toLocaleString("en-ZA")}</p>
                 <p className="text-gray-600 text-xs mt-1">× {term} months</p>
-                <div className="mt-3 pt-3 border-t border-[#1F1F1F] grid grid-cols-2 gap-3 text-center text-xs">
+                <div className="mt-3 pt-3 border-t border-[#2A2A2A] grid grid-cols-2 gap-3 text-center text-xs">
                   <div>
                     <p className="text-gray-600">Total repayable</p>
                     <p className="text-gray-300 font-semibold">R {total.toLocaleString("en-ZA")}</p>
@@ -265,7 +265,7 @@ export default function InstallmentModal({ product, settings, onClose }: Props) 
               <label className="flex items-start gap-3 cursor-pointer">
                 <div onClick={() => setConsent(c => !c)}
                   className={`w-5 h-5 rounded border mt-0.5 shrink-0 flex items-center justify-center transition-colors ${
-                    consent ? "bg-[#D4AF37] border-[#D4AF37]" : "border-[#2a2a2a] bg-[#0A0A0A]"
+                    consent ? "bg-[#C8B993] border-[#C8B993]" : "border-[#2a2a2a] bg-[#111111]"
                   }`}>
                   {consent && <Check size={11} color="black" strokeWidth={3} />}
                 </div>
@@ -279,7 +279,7 @@ export default function InstallmentModal({ product, settings, onClose }: Props) 
           {/* ── STEP 3: Confirm ── */}
           {step === 3 && (
             <div className="space-y-4">
-              <div className="bg-[#0A0A0A] border border-[#1F1F1F] rounded-2xl divide-y divide-[#1F1F1F]">
+              <div className="bg-[#111111] border border-[#2A2A2A] rounded-2xl divide-y divide-[#2A2A2A]">
                 {[
                   ["Product",    product.name],
                   ["Cash Price", product.price],
@@ -313,8 +313,8 @@ export default function InstallmentModal({ product, settings, onClose }: Props) 
           {/* ── SUCCESS ── */}
           {step === "success" && result && (
             <div className="text-center py-4 space-y-5">
-              <div className="w-16 h-16 rounded-full bg-[#D4AF37]/10 border border-[#D4AF37]/30 flex items-center justify-center mx-auto">
-                <Check size={28} className="text-[#D4AF37]" />
+              <div className="w-16 h-16 rounded-full bg-[#C8B993]/10 border border-[#C8B993]/30 flex items-center justify-center mx-auto">
+                <Check size={28} className="text-[#C8B993]" />
               </div>
               <div>
                 <h3 className="text-white text-xl font-black mb-2">Application Received!</h3>
@@ -322,9 +322,9 @@ export default function InstallmentModal({ product, settings, onClose }: Props) 
                   Your application has been submitted successfully. We&apos;ll contact you by phone or email to complete the process.
                 </p>
               </div>
-              <div className="bg-[#0A0A0A] border border-[#1F1F1F] rounded-xl p-4">
+              <div className="bg-[#111111] border border-[#2A2A2A] rounded-xl p-4">
                 <p className="text-gray-500 text-xs mb-1">Your Reference</p>
-                <p className="text-[#D4AF37] text-xl font-mono font-black">{result.ref}</p>
+                <p className="text-[#C8B993] text-xl font-mono font-black">{result.ref}</p>
               </div>
               <a
                 href={`mailto:support@bevanssons.store?subject=${encodeURIComponent(
@@ -334,7 +334,7 @@ export default function InstallmentModal({ product, settings, onClose }: Props) 
                 )}`}
                 onClick={() => track("whatsapp_clicked", { product_id: product.id, ref: result.ref })}
                 className="w-full flex items-center justify-center gap-3 py-4 rounded-xl font-bold text-white text-base shadow-lg transition-transform active:scale-95"
-                style={{ background: "#D4AF37", color: "#0A0A0A" }}
+                style={{ background: "#C8B993", color: "#111111" }}
               >
                 <MessageCircle size={20} />
                 EMAIL US TO CONTINUE
@@ -349,7 +349,7 @@ export default function InstallmentModal({ product, settings, onClose }: Props) 
 
         {/* Sticky footer — action buttons always visible */}
         {step !== "success" && (
-          <div className="shrink-0 px-6 pt-4 pb-5 border-t border-[#1F1F1F] bg-[#111111]">
+          <div className="shrink-0 px-6 pt-4 pb-5 border-t border-[#2A2A2A] bg-[#1D1D1D]">
             {step === 1 && (
               <button onClick={goStep2}
                 className="btn-gold w-full py-4 rounded-xl font-bold flex items-center justify-center gap-2">

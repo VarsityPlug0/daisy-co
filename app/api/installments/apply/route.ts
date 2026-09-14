@@ -63,13 +63,13 @@ export async function POST(req: NextRequest) {
     sendMail({
       to: email,
       subject: `Installment Application Received — ${application.ref} | Bevanssons`,
-      html: `<div style="font-family:sans-serif;background:#0A0A0A;color:#e5e7eb;padding:32px;border-radius:12px;max-width:520px">
-        <p style="color:#D4AF37;font-weight:700;margin:0 0 8px">Bevanssons</p>
+      html: `<div style="font-family:sans-serif;background:#111111;color:#e5e7eb;padding:32px;border-radius:12px;max-width:520px">
+        <p style="color:#C8B993;font-weight:700;margin:0 0 8px">Bevanssons</p>
         <h2 style="margin:0 0 16px;color:#fff">Application Received!</h2>
         <p style="color:#9ca3af;margin:0 0 20px">Hi ${name.split(" ")[0]}, your installment application for the <strong style="color:#fff">${product.name}</strong> has been submitted successfully.</p>
-        <div style="background:#111;border:1px solid #1F1F1F;border-radius:10px;padding:16px 20px;margin-bottom:20px">
+        <div style="background:#111;border:1px solid #2A2A2A;border-radius:10px;padding:16px 20px;margin-bottom:20px">
           <p style="margin:0 0 8px;color:#6b7280;font-size:12px">Application Reference</p>
-          <p style="margin:0;color:#D4AF37;font-size:22px;font-weight:900;font-family:monospace">${application.ref}</p>
+          <p style="margin:0;color:#C8B993;font-size:22px;font-weight:900;font-family:monospace">${application.ref}</p>
         </div>
         <p style="color:#9ca3af;margin:0 0 20px">We'll contact you at <strong style="color:#fff">${phone}</strong> to complete the process.</p>
         <p style="color:#6b7280;font-size:12px;margin:0">© ${new Date().getFullYear()} Bevanssons</p>

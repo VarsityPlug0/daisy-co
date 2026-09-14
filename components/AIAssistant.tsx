@@ -335,13 +335,13 @@ export default function AIAssistant() {
         >
           {/* Header */}
           <div className="flex items-center justify-between px-5 py-4 shrink-0"
-            style={{ background: "linear-gradient(135deg, #C9971C 0%, #D4AF37 60%, #F0CE6A 100%)" }}>
+            style={{ background: "linear-gradient(135deg, #9C8F72 0%, #C8B993 60%, #DDD2B7 100%)" }}>
             <div className="flex items-center gap-3">
               <div className="w-9 h-9 rounded-full bg-black/20 flex items-center justify-center">
-                <Headphones size={18} color="#0A0A0A" strokeWidth={2} />
+                <Headphones size={18} color="#111111" strokeWidth={2} />
               </div>
               <div>
-                <p style={{ fontFamily: "var(--font-outfit)", fontWeight: 800, fontSize: 14, color: "#0A0A0A" }}>
+                <p style={{ fontFamily: "var(--font-outfit)", fontWeight: 800, fontSize: 14, color: "#111111" }}>
                   Bevanssons Support
                 </p>
                 <div className="flex items-center gap-1.5 mt-0.5">
@@ -356,24 +356,24 @@ export default function AIAssistant() {
                 title="Main menu"
                 className="w-7 h-7 rounded-full bg-black/15 hover:bg-black/25 flex items-center justify-center transition-colors"
               >
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0A0A0A" strokeWidth="2.5">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#111111" strokeWidth="2.5">
                   <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
                 </svg>
               </button>
               <button onClick={() => setOpen(false)} className="w-7 h-7 rounded-full bg-black/15 hover:bg-black/25 flex items-center justify-center transition-colors">
-                <X size={14} color="#0A0A0A" />
+                <X size={14} color="#111111" />
               </button>
             </div>
           </div>
 
           {/* Menu overlay */}
           {showMenu && (
-            <div className="shrink-0 border-b border-[#1F1F1F] bg-[#111] p-3 space-y-1">
+            <div className="shrink-0 border-b border-[#2A2A2A] bg-[#111] p-3 space-y-1">
               {MENU_ITEMS.map(m => (
                 <button key={m.key} onClick={() => { setShowMenu(false); send(m.key); }}
-                  className="w-full text-left px-4 py-2.5 rounded-xl text-sm text-gray-300 hover:bg-white/5 hover:text-[#D4AF37] transition-colors flex items-center justify-between group">
+                  className="w-full text-left px-4 py-2.5 rounded-xl text-sm text-gray-300 hover:bg-white/5 hover:text-[#C8B993] transition-colors flex items-center justify-between group">
                   <span style={{ fontFamily: "var(--font-outfit)", fontWeight: 500 }}>{m.label}</span>
-                  <ChevronRight size={13} className="text-gray-600 group-hover:text-[#D4AF37] transition-colors" />
+                  <ChevronRight size={13} className="text-gray-600 group-hover:text-[#C8B993] transition-colors" />
                 </button>
               ))}
             </div>
@@ -385,15 +385,15 @@ export default function AIAssistant() {
               <div key={i} className={`flex gap-2 ${m.role === "user" ? "justify-end" : "justify-start"}`}>
                 {m.role === "assistant" && (
                   <div className="w-7 h-7 rounded-full shrink-0 mt-1 flex items-center justify-center"
-                    style={{ background: "linear-gradient(135deg, #C9971C, #D4AF37)" }}>
-                    <Headphones size={12} color="#0A0A0A" strokeWidth={2.2} />
+                    style={{ background: "linear-gradient(135deg, #9C8F72, #C8B993)" }}>
+                    <Headphones size={12} color="#111111" strokeWidth={2.2} />
                   </div>
                 )}
                 <div className="flex flex-col gap-2 max-w-[84%]">
                   {/* Bubble */}
                   <div className={`rounded-2xl px-4 py-3 text-sm leading-relaxed ${
                     m.role === "user"
-                      ? "bg-[#D4AF37] text-black font-medium rounded-br-sm self-end"
+                      ? "bg-[#C8B993] text-black font-medium rounded-br-sm self-end"
                       : "bg-[#1a1a1a] text-gray-300 rounded-bl-sm border border-[#222]"
                   }`}>
                     {m.role === "assistant" ? formatMessage(m.content) : m.content}
@@ -406,20 +406,20 @@ export default function AIAssistant() {
                         <button key={ai} onClick={() => handleAction(a)}
                           className="flex items-center justify-between gap-2 px-4 py-2.5 rounded-xl text-left transition-all group"
                           style={{
-                            background: "rgba(212,175,55,0.06)",
-                            border: "1px solid rgba(212,175,55,0.2)",
+                            background: "rgba(200,185,147,0.06)",
+                            border: "1px solid rgba(200,185,147,0.2)",
                           }}
-                          onMouseEnter={e => (e.currentTarget.style.background = "rgba(212,175,55,0.12)")}
-                          onMouseLeave={e => (e.currentTarget.style.background = "rgba(212,175,55,0.06)")}
+                          onMouseEnter={e => (e.currentTarget.style.background = "rgba(200,185,147,0.12)")}
+                          onMouseLeave={e => (e.currentTarget.style.background = "rgba(200,185,147,0.06)")}
                         >
-                          <span style={{ fontFamily: "var(--font-outfit)", fontWeight: 600, fontSize: 12, color: "#D4AF37" }}>
+                          <span style={{ fontFamily: "var(--font-outfit)", fontWeight: 600, fontSize: 12, color: "#C8B993" }}>
                             {a.label}
                           </span>
                           {a.external
-                            ? <ExternalLink size={11} color="#D4AF37" className="shrink-0 opacity-70" />
+                            ? <ExternalLink size={11} color="#C8B993" className="shrink-0 opacity-70" />
                             : a.action
-                              ? <ChevronRight size={12} color="#D4AF37" className="shrink-0 opacity-70" />
-                              : <ChevronRight size={12} color="#D4AF37" className="shrink-0 opacity-70" />
+                              ? <ChevronRight size={12} color="#C8B993" className="shrink-0 opacity-70" />
+                              : <ChevronRight size={12} color="#C8B993" className="shrink-0 opacity-70" />
                           }
                         </button>
                       ))}
@@ -432,8 +432,8 @@ export default function AIAssistant() {
             {loading && (
               <div className="flex gap-2 justify-start">
                 <div className="w-7 h-7 rounded-full shrink-0 flex items-center justify-center"
-                  style={{ background: "linear-gradient(135deg, #C9971C, #D4AF37)" }}>
-                  <Headphones size={12} color="#0A0A0A" strokeWidth={2.2} />
+                  style={{ background: "linear-gradient(135deg, #9C8F72, #C8B993)" }}>
+                  <Headphones size={12} color="#111111" strokeWidth={2.2} />
                 </div>
                 <div className="bg-[#1a1a1a] border border-[#222] rounded-2xl rounded-bl-sm px-4 py-3 flex items-center gap-1">
                   {[0, 1, 2].map(i => (
@@ -447,7 +447,7 @@ export default function AIAssistant() {
           </div>
 
           {/* Input */}
-          <div className="p-3 border-t border-[#1F1F1F] flex gap-2 shrink-0 bg-[#0f0f0f]">
+          <div className="p-3 border-t border-[#2A2A2A] flex gap-2 shrink-0 bg-[#0f0f0f]">
             <input
               ref={inputRef}
               type="text"
@@ -455,12 +455,12 @@ export default function AIAssistant() {
               onChange={e => setInput(e.target.value)}
               onKeyDown={e => e.key === "Enter" && send()}
               placeholder="Ask a question or paste order ref…"
-              className="flex-1 bg-[#1a1a1a] border border-[#2a2a2a] rounded-xl px-4 py-2.5 text-white text-xs placeholder-gray-600 focus:outline-none focus:border-[#D4AF37]/40 transition-colors"
+              className="flex-1 bg-[#1a1a1a] border border-[#2a2a2a] rounded-xl px-4 py-2.5 text-white text-xs placeholder-gray-600 focus:outline-none focus:border-[#C8B993]/40 transition-colors"
             />
             <button onClick={() => send()} disabled={!input.trim() || loading}
               className="w-10 h-10 rounded-xl flex items-center justify-center disabled:opacity-40 transition-all hover:scale-105 shrink-0"
-              style={{ background: "linear-gradient(135deg, #C9971C, #D4AF37)" }}>
-              <Send size={14} color="#0A0A0A" />
+              style={{ background: "linear-gradient(135deg, #9C8F72, #C8B993)" }}>
+              <Send size={14} color="#111111" />
             </button>
           </div>
         </div>

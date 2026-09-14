@@ -58,8 +58,8 @@ export async function POST(req: NextRequest) {
     subject: `✨ New Lead — ${name || phone || email}`,
     html: `
       <div style="font-family:sans-serif;max-width:500px;margin:0 auto;color:#333">
-        <div style="background:#0A0A0A;padding:20px 28px;border-radius:8px 8px 0 0">
-          <h2 style="color:#D4AF37;margin:0;font-size:18px">New Lead Captured</h2>
+        <div style="background:#111111;padding:20px 28px;border-radius:8px 8px 0 0">
+          <h2 style="color:#C8B993;margin:0;font-size:18px">New Lead Captured</h2>
           <p style="color:#888;margin:4px 0 0;font-size:12px">via 20% off popup</p>
         </div>
         <div style="background:#f9f9f9;padding:28px;border-radius:0 0 8px 8px">

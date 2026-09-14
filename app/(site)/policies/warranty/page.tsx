@@ -59,7 +59,7 @@ export default function WarrantyPage() {
 
       <div className="mt-12 flex flex-wrap gap-3">
         {[["Terms & Conditions", "/policies/terms"], ["Privacy Policy", "/policies/privacy"], ["Refund Policy", "/policies/refund"], ["Returns Policy", "/policies/returns"]].map(([l, h]) => (
-          <Link key={l} href={h} className="text-[#D4AF37] text-sm hover:underline">{l}</Link>
+          <Link key={l} href={h} className="text-[#C8B993] text-sm hover:underline">{l}</Link>
         ))}
       </div>
     </div>

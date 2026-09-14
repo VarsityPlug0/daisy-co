@@ -150,7 +150,7 @@ export default function EmailComposer({
       <div className="lg:col-span-3 space-y-4">
 
         {/* Template picker */}
-        <div className="bg-[#111111] border border-[#1F1F1F] rounded-2xl p-5">
+        <div className="bg-[#1D1D1D] border border-[#2A2A2A] rounded-2xl p-5">
           <p className="text-xs text-gray-500 uppercase tracking-wider font-semibold mb-3">Template</p>
           <div className="flex flex-wrap gap-2">
             {TEMPLATES.map((t) => (
@@ -159,7 +159,7 @@ export default function EmailComposer({
                 onClick={() => applyTemplate(t.id)}
                 className={`text-xs px-3 py-1.5 rounded-lg font-medium transition-colors ${
                   template.id === t.id
-                    ? "bg-[#D4AF37] text-black"
+                    ? "bg-[#C8B993] text-black"
                     : "bg-white/5 text-gray-400 hover:text-white"
                 }`}
               >
@@ -170,14 +170,14 @@ export default function EmailComposer({
         </div>
 
         {/* Fields */}
-        <div className="bg-[#111111] border border-[#1F1F1F] rounded-2xl p-5 space-y-4">
+        <div className="bg-[#1D1D1D] border border-[#2A2A2A] rounded-2xl p-5 space-y-4">
           <div>
             <label className="block text-xs text-gray-500 mb-1.5">Subject line</label>
             <input
               value={subject}
               onChange={(e) => setSubject(e.target.value)}
               placeholder="Email subject…"
-              className="w-full bg-[#0A0A0A] border border-[#2a2a2a] rounded-xl px-4 py-2.5 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-[#D4AF37]/50"
+              className="w-full bg-[#111111] border border-[#2a2a2a] rounded-xl px-4 py-2.5 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-[#C8B993]/50"
             />
           </div>
           <div>
@@ -186,7 +186,7 @@ export default function EmailComposer({
               value={heading}
               onChange={(e) => setHeading(e.target.value)}
               placeholder="Email heading…"
-              className="w-full bg-[#0A0A0A] border border-[#2a2a2a] rounded-xl px-4 py-2.5 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-[#D4AF37]/50"
+              className="w-full bg-[#111111] border border-[#2a2a2a] rounded-xl px-4 py-2.5 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-[#C8B993]/50"
             />
           </div>
           <div>
@@ -196,7 +196,7 @@ export default function EmailComposer({
               onChange={(e) => setBody(e.target.value)}
               rows={6}
               placeholder="Write your message…"
-              className="w-full bg-[#0A0A0A] border border-[#2a2a2a] rounded-xl px-4 py-3 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-[#D4AF37]/50 resize-none"
+              className="w-full bg-[#111111] border border-[#2a2a2a] rounded-xl px-4 py-3 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-[#C8B993]/50 resize-none"
             />
           </div>
           <div className="grid grid-cols-2 gap-3">
@@ -206,7 +206,7 @@ export default function EmailComposer({
                 value={ctaText}
                 onChange={(e) => setCtaText(e.target.value)}
                 placeholder="Shop Now"
-                className="w-full bg-[#0A0A0A] border border-[#2a2a2a] rounded-xl px-4 py-2.5 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-[#D4AF37]/50"
+                className="w-full bg-[#111111] border border-[#2a2a2a] rounded-xl px-4 py-2.5 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-[#C8B993]/50"
               />
             </div>
             <div>
@@ -215,14 +215,14 @@ export default function EmailComposer({
                 value={ctaUrl}
                 onChange={(e) => setCtaUrl(e.target.value)}
                 placeholder="https://…"
-                className="w-full bg-[#0A0A0A] border border-[#2a2a2a] rounded-xl px-4 py-2.5 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-[#D4AF37]/50"
+                className="w-full bg-[#111111] border border-[#2a2a2a] rounded-xl px-4 py-2.5 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-[#C8B993]/50"
               />
             </div>
           </div>
         </div>
 
         {/* Product section */}
-        <div className="bg-[#111111] border border-[#1F1F1F] rounded-2xl p-5">
+        <div className="bg-[#1D1D1D] border border-[#2A2A2A] rounded-2xl p-5">
           <p className="text-xs text-gray-500 uppercase tracking-wider font-semibold mb-3">Products in Email</p>
 
           {/* Toggle: order items vs manual pick */}
@@ -231,8 +231,8 @@ export default function EmailComposer({
               onClick={() => { setIncludeOrderItems(true); setSelectedProducts([]); setPickerOpen(false); }}
               className={`flex-1 py-2.5 rounded-xl text-xs font-semibold border transition-colors ${
                 includeOrderItems
-                  ? "bg-[#D4AF37]/10 border-[#D4AF37]/40 text-[#D4AF37]"
-                  : "bg-white/5 border-[#1F1F1F] text-gray-400 hover:text-white"
+                  ? "bg-[#C8B993]/10 border-[#C8B993]/40 text-[#C8B993]"
+                  : "bg-white/5 border-[#2A2A2A] text-gray-400 hover:text-white"
               }`}
             >
               Customer's last order
@@ -241,8 +241,8 @@ export default function EmailComposer({
               onClick={() => setIncludeOrderItems(false)}
               className={`flex-1 py-2.5 rounded-xl text-xs font-semibold border transition-colors ${
                 !includeOrderItems
-                  ? "bg-[#D4AF37]/10 border-[#D4AF37]/40 text-[#D4AF37]"
-                  : "bg-white/5 border-[#1F1F1F] text-gray-400 hover:text-white"
+                  ? "bg-[#C8B993]/10 border-[#C8B993]/40 text-[#C8B993]"
+                  : "bg-white/5 border-[#2A2A2A] text-gray-400 hover:text-white"
               }`}
             >
               Pick products manually
@@ -251,7 +251,7 @@ export default function EmailComposer({
 
           {/* Order items mode */}
           {includeOrderItems ? (
-            <div className="bg-[#0A0A0A] border border-[#D4AF37]/20 rounded-xl p-4">
+            <div className="bg-[#111111] border border-[#C8B993]/20 rounded-xl p-4">
               <p className="text-white text-xs font-semibold mb-1">Personalised per customer</p>
               <p className="text-gray-500 text-xs leading-relaxed">
                 Each customer will receive an email showing the exact items from their last order — with product images, names, quantities, and prices. Their order reference is included too.
@@ -275,15 +275,15 @@ export default function EmailComposer({
               {selectedProducts.length > 0 && (
                 <div className="grid grid-cols-2 gap-2 mb-3">
                   {selectedProducts.map((p) => (
-                    <div key={p.id} className="flex items-center gap-2 bg-[#0A0A0A] border border-[#2a2a2a] rounded-xl p-2">
+                    <div key={p.id} className="flex items-center gap-2 bg-[#111111] border border-[#2a2a2a] rounded-xl p-2">
                       {p.imageUrl ? (
                         <img src={p.imageUrl} alt={p.name} className="w-10 h-10 rounded-lg object-cover shrink-0" />
                       ) : (
-                        <div className="w-10 h-10 rounded-lg bg-[#1F1F1F] shrink-0" />
+                        <div className="w-10 h-10 rounded-lg bg-[#2A2A2A] shrink-0" />
                       )}
                       <div className="flex-1 min-w-0">
                         <p className="text-white text-xs font-medium truncate">{p.name}</p>
-                        <p className="text-[#D4AF37] text-xs">{p.price}</p>
+                        <p className="text-[#C8B993] text-xs">{p.price}</p>
                       </div>
                       <button onClick={() => removeProduct(p.id)} className="text-gray-600 hover:text-red-400 transition-colors shrink-0">
                         <X size={14} />
@@ -302,7 +302,7 @@ export default function EmailComposer({
                       value={productSearch}
                       onChange={(e) => setProductSearch(e.target.value)}
                       placeholder="Search products…"
-                      className="w-full bg-[#0A0A0A] border border-[#2a2a2a] rounded-xl pl-9 pr-4 py-2.5 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-[#D4AF37]/50"
+                      className="w-full bg-[#111111] border border-[#2a2a2a] rounded-xl pl-9 pr-4 py-2.5 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-[#C8B993]/50"
                     />
                   </div>
                   <div className="max-h-52 overflow-y-auto rounded-xl border border-[#2a2a2a] divide-y divide-[#1a1a1a]">
@@ -315,13 +315,13 @@ export default function EmailComposer({
                         {p.imageUrl ? (
                           <img src={p.imageUrl} alt={p.name} className="w-9 h-9 rounded-lg object-cover shrink-0" />
                         ) : (
-                          <div className="w-9 h-9 rounded-lg bg-[#1F1F1F] shrink-0" />
+                          <div className="w-9 h-9 rounded-lg bg-[#2A2A2A] shrink-0" />
                         )}
                         <div className="flex-1 min-w-0">
                           <p className="text-white text-xs font-medium truncate">{p.name}</p>
                           <p className="text-gray-500 text-xs">{p.category}</p>
                         </div>
-                        <p className="text-[#D4AF37] text-xs font-bold shrink-0">{p.price}</p>
+                        <p className="text-[#C8B993] text-xs font-bold shrink-0">{p.price}</p>
                       </button>
                     ))}
                     {filteredProducts.length === 0 && (
@@ -341,7 +341,7 @@ export default function EmailComposer({
 
       {/* Send panel */}
       <div className="lg:col-span-2 space-y-4">
-        <div className="bg-[#111111] border border-[#1F1F1F] rounded-2xl p-5 space-y-4">
+        <div className="bg-[#1D1D1D] border border-[#2A2A2A] rounded-2xl p-5 space-y-4">
           <p className="text-sm font-semibold text-white">Send to</p>
 
           <div className="space-y-2">
@@ -352,8 +352,8 @@ export default function EmailComposer({
             ].map((opt) => (
               <label key={opt.value} className={`flex items-start gap-3 p-3 rounded-xl cursor-pointer border transition-colors ${
                 recipients === opt.value
-                  ? "border-[#D4AF37]/40 bg-[#D4AF37]/5"
-                  : "border-[#1F1F1F] hover:border-[#2a2a2a]"
+                  ? "border-[#C8B993]/40 bg-[#C8B993]/5"
+                  : "border-[#2A2A2A] hover:border-[#2a2a2a]"
               }`}>
                 <input
                   type="radio"
@@ -361,7 +361,7 @@ export default function EmailComposer({
                   value={opt.value}
                   checked={recipients === opt.value}
                   onChange={() => setRecipients(opt.value)}
-                  className="mt-0.5 accent-[#D4AF37]"
+                  className="mt-0.5 accent-[#C8B993]"
                 />
                 <div>
                   <p className="text-white text-sm font-medium">{opt.label}</p>
@@ -377,7 +377,7 @@ export default function EmailComposer({
               onChange={(e) => setCustomEmail(e.target.value)}
               placeholder="recipient@email.com"
               type="email"
-              className="w-full bg-[#0A0A0A] border border-[#2a2a2a] rounded-xl px-4 py-2.5 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-[#D4AF37]/50"
+              className="w-full bg-[#111111] border border-[#2a2a2a] rounded-xl px-4 py-2.5 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-[#C8B993]/50"
             />
           )}
 
@@ -400,7 +400,7 @@ export default function EmailComposer({
           </button>
         </div>
 
-        <div className="bg-[#111111] border border-[#1F1F1F] rounded-2xl p-5">
+        <div className="bg-[#1D1D1D] border border-[#2A2A2A] rounded-2xl p-5">
           <p className="text-xs text-gray-500 font-semibold uppercase tracking-wider mb-3">Automatic emails</p>
           <div className="space-y-2 text-xs text-gray-400">
             {[

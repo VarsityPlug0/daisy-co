@@ -28,7 +28,7 @@ export default function ShareButton({ name, price, url }: { name: string; price:
     <button
       onClick={handleShare}
       title="Share this product"
-      className="flex items-center gap-2 px-3 py-2 rounded-xl border border-[#2a2a2a] text-gray-400 hover:text-white hover:border-[#D4AF37]/40 transition-all text-sm"
+      className="flex items-center gap-2 px-3 py-2 rounded-xl border border-[#2a2a2a] text-gray-400 hover:text-white hover:border-[#C8B993]/40 transition-all text-sm"
     >
       {copied ? <Check size={15} className="text-green-400" /> : <Share2 size={15} />}
       {copied ? <span className="text-green-400">Copied!</span> : <span>Share</span>}

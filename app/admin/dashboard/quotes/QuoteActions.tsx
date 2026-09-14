@@ -57,7 +57,7 @@ export default function QuoteActions({ id, quoteRef, currentStatus, hasEmail, re
         <select
           value={status}
           onChange={(e) => updateStatus(e.target.value)}
-          className="appearance-none bg-[#1a1a1a] border border-[#2a2a2a] text-gray-300 text-xs rounded-lg pl-3 pr-7 py-1.5 focus:outline-none focus:border-[#D4AF37] cursor-pointer"
+          className="appearance-none bg-[#1a1a1a] border border-[#2a2a2a] text-gray-300 text-xs rounded-lg pl-3 pr-7 py-1.5 focus:outline-none focus:border-[#C8B993] cursor-pointer"
         >
           {STATUSES.map(s => <option key={s} value={s}>{s}</option>)}
         </select>
@@ -68,7 +68,7 @@ export default function QuoteActions({ id, quoteRef, currentStatus, hasEmail, re
       {hasEmail && (
         <button
           onClick={() => setShowReply(v => !v)}
-          className="px-3 py-1.5 rounded-lg text-xs font-medium text-[#D4AF37] bg-[#D4AF37]/8 hover:bg-[#D4AF37]/15 transition-colors flex items-center gap-1.5"
+          className="px-3 py-1.5 rounded-lg text-xs font-medium text-[#C8B993] bg-[#C8B993]/8 hover:bg-[#C8B993]/15 transition-colors flex items-center gap-1.5"
         >
           <Send size={11} />
           {sent ? "Sent ✓" : "Send Quote"}
@@ -77,8 +77,8 @@ export default function QuoteActions({ id, quoteRef, currentStatus, hasEmail, re
 
       {/* Reply form — inline below */}
       {showReply && (
-        <div className="w-full mt-3 p-4 bg-[#0f0f0f] border border-[#D4AF37]/20 rounded-xl">
-          <p className="text-xs font-bold text-[#D4AF37] uppercase tracking-wider mb-3">
+        <div className="w-full mt-3 p-4 bg-[#0f0f0f] border border-[#C8B993]/20 rounded-xl">
+          <p className="text-xs font-bold text-[#C8B993] uppercase tracking-wider mb-3">
             Send Quote Email to Customer — {quoteRef}
           </p>
           <form onSubmit={sendReply} className="space-y-2">
@@ -88,7 +88,7 @@ export default function QuoteActions({ id, quoteRef, currentStatus, hasEmail, re
                 placeholder="Package name"
                 value={pkg}
                 onChange={e => setPkg(e.target.value)}
-                className="flex-1 bg-[#1a1a1a] border border-[#2a2a2a] rounded-lg px-3 py-2 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-[#D4AF37] transition-colors"
+                className="flex-1 bg-[#1a1a1a] border border-[#2a2a2a] rounded-lg px-3 py-2 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-[#C8B993] transition-colors"
               />
               <input
                 type="text"
@@ -96,7 +96,7 @@ export default function QuoteActions({ id, quoteRef, currentStatus, hasEmail, re
                 value={price}
                 onChange={e => setPrice(e.target.value)}
                 required
-                className="flex-1 bg-[#1a1a1a] border border-[#2a2a2a] rounded-lg px-3 py-2 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-[#D4AF37] transition-colors"
+                className="flex-1 bg-[#1a1a1a] border border-[#2a2a2a] rounded-lg px-3 py-2 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-[#C8B993] transition-colors"
               />
             </div>
             <textarea
@@ -104,14 +104,14 @@ export default function QuoteActions({ id, quoteRef, currentStatus, hasEmail, re
               value={message}
               onChange={e => setMessage(e.target.value)}
               rows={3}
-              className="w-full bg-[#1a1a1a] border border-[#2a2a2a] rounded-lg px-3 py-2 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-[#D4AF37] transition-colors resize-none"
+              className="w-full bg-[#1a1a1a] border border-[#2a2a2a] rounded-lg px-3 py-2 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-[#C8B993] transition-colors resize-none"
             />
             <div className="flex gap-2">
               <button
                 type="submit"
                 disabled={sending || !price}
-                className="px-5 py-2 rounded-lg text-sm font-bold text-[#0A0A0A] disabled:opacity-40 transition-opacity"
-                style={{ background: "linear-gradient(135deg,#D4AF37,#f5d76e)" }}
+                className="px-5 py-2 rounded-lg text-sm font-bold text-[#111111] disabled:opacity-40 transition-opacity"
+                style={{ background: "linear-gradient(135deg,#C8B993,#f5d76e)" }}
               >
                 {sending ? "Sending..." : "Send to Customer"}
               </button>

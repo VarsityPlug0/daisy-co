@@ -86,8 +86,8 @@ export default function Header() {
     <header className="fixed top-0 left-0 right-0 z-50">
       {/* Announcement Bar — JS-driven ticker */}
       <div style={{ overflow: "hidden", display: "flex", alignItems: "center",
-        background: "linear-gradient(90deg, #C9971C, #D4AF37, #F0CE6A, #D4AF37, #C9971C)",
-        color: "#0A0A0A", height: 44 }}>
+        background: "linear-gradient(90deg, #9C8F72, #C8B993, #DDD2B7, #C8B993, #9C8F72)",
+        color: "#111111", height: 44 }}>
         <div ref={tickerRef} style={{ display: "flex", flexShrink: 0, whiteSpace: "nowrap", willChange: "transform" }}>
           {[0, 1].map((copy) => (
             <span key={copy} style={{ display: "inline-flex", alignItems: "center" }}>
@@ -111,7 +111,7 @@ export default function Header() {
           <Link href="/" className="flex items-center gap-2.5 shrink-0" onClick={() => setMobileOpen(false)}>
             <DaisyLogo />
             <div>
-              <p style={{ fontFamily: "var(--font-outfit)", fontWeight: 700, fontSize: 15, color: "#D4AF37", lineHeight: 1.2 }}>
+              <p style={{ fontFamily: "var(--font-outfit)", fontWeight: 700, fontSize: 15, color: "#C8B993", lineHeight: 1.2 }}>
                 Bevanssons
               </p>
               <p style={{ fontSize: 9, color: "#6B7280", letterSpacing: "0.1em", textTransform: "uppercase" }}>Premium Gadgets</p>
@@ -135,7 +135,7 @@ export default function Header() {
                   <div className="p-3 max-h-[80vh] overflow-y-auto space-y-3">
                     {/* Section 1: Devices */}
                     <div>
-                      <div className="px-3 py-1.5 flex items-center justify-between text-[11px] font-bold text-[#D4AF37] uppercase tracking-wider border-b border-[#222]">
+                      <div className="px-3 py-1.5 flex items-center justify-between text-[11px] font-bold text-[#C8B993] uppercase tracking-wider border-b border-[#222]">
                         <span>📱 Devices & Gadgets</span>
                         <Link href="/shop" onClick={() => setShopOpen(false)} className="text-[10px] text-gray-400 hover:text-white normal-case">
                           View All →
@@ -146,7 +146,7 @@ export default function Header() {
                           <Link key={item.label} href={item.href} onClick={() => setShopOpen(false)}
                             className="flex flex-col px-3 py-2 rounded-xl hover:bg-white/5 transition-colors group">
                             <span style={{ fontFamily: "var(--font-outfit)", fontWeight: 600, fontSize: 12, color: "#F0F0F0" }}
-                              className="group-hover:text-[#D4AF37] transition-colors">{item.label}</span>
+                              className="group-hover:text-[#C8B993] transition-colors">{item.label}</span>
                             <span style={{ fontSize: 10, color: "#6B7280" }}>{item.desc}</span>
                           </Link>
                         ))}
@@ -158,11 +158,11 @@ export default function Header() {
                       <div className="px-3 py-1.5 flex items-center justify-between text-[11px] font-bold text-white uppercase tracking-wider border-b border-[#222]">
                         <span className="flex items-center gap-1.5">
                           👕 Clothing & Drops
-                          <span className="text-[9px] font-black uppercase px-1.5 py-0.2 rounded bg-[#D4AF37] text-black">
+                          <span className="text-[9px] font-black uppercase px-1.5 py-0.2 rounded bg-[#C8B993] text-black">
                             SOON
                           </span>
                         </span>
-                        <Link href="/clothing" onClick={() => setShopOpen(false)} className="text-[10px] text-[#D4AF37] hover:underline normal-case">
+                        <Link href="/clothing" onClick={() => setShopOpen(false)} className="text-[10px] text-[#C8B993] hover:underline normal-case">
                           Hub →
                         </Link>
                       </div>
@@ -171,7 +171,7 @@ export default function Header() {
                           <Link key={item.label} href={item.href} onClick={() => setShopOpen(false)}
                             className="flex flex-col px-3 py-2 rounded-xl hover:bg-white/5 transition-colors group">
                             <span style={{ fontFamily: "var(--font-outfit)", fontWeight: 600, fontSize: 12, color: "#F0F0F0" }}
-                              className="group-hover:text-[#D4AF37] transition-colors">{item.label}</span>
+                              className="group-hover:text-[#C8B993] transition-colors">{item.label}</span>
                             <span style={{ fontSize: 10, color: "#6B7280" }}>{item.desc}</span>
                           </Link>
                         ))}
@@ -183,10 +183,10 @@ export default function Header() {
             </div>
 
             <Link href="/clothing" className={`nav-link px-3 py-2 rounded-lg flex items-center gap-1${isActive("/clothing") ? " active" : ""}`}>
-              Clothing <span className="text-[9px] font-bold text-[#0A0A0A] bg-[#D4AF37] rounded-full px-1.5 py-0.5 leading-none">Soon</span>
+              Clothing <span className="text-[9px] font-bold text-[#111111] bg-[#C8B993] rounded-full px-1.5 py-0.5 leading-none">Soon</span>
             </Link>
             <Link href="/special-offers" className={`nav-link px-3 py-2 rounded-lg flex items-center gap-1${isActive("/special-offers") ? " active" : ""}`}>
-              Offers <span className="text-[9px] font-bold text-[#0A0A0A] bg-[#D4AF37] rounded-full px-1.5 py-0.5 leading-none">30%</span>
+              Offers <span className="text-[9px] font-bold text-[#111111] bg-[#C8B993] rounded-full px-1.5 py-0.5 leading-none">30%</span>
             </Link>
             <Link href="/new-arrivals" className={`nav-link px-3 py-2 rounded-lg${isActive("/new-arrivals") ? " active" : ""}`}>New</Link>
             <Link href="/faq"          className={`nav-link px-3 py-2 rounded-lg${isActive("/faq") ? " active" : ""}`}>FAQ</Link>
@@ -236,9 +236,9 @@ export default function Header() {
                 <Link key={item.href} href={item.href} onClick={() => setMobileOpen(false)}
                   className="flex items-center justify-between px-4 py-3 rounded-xl transition-colors"
                   style={{ fontFamily: "var(--font-outfit)", fontWeight: 500, fontSize: 14,
-                    color: active ? "#D4AF37" : "#D1D5DB", background: active ? "rgba(212,175,55,0.06)" : "transparent" }}>
+                    color: active ? "#C8B993" : "#D1D5DB", background: active ? "rgba(200,185,147,0.06)" : "transparent" }}>
                   {item.label}
-                  {active && <ChevronDown size={15} color="#D4AF37" style={{ transform: "rotate(-90deg)" }} />}
+                  {active && <ChevronDown size={15} color="#C8B993" style={{ transform: "rotate(-90deg)" }} />}
                 </Link>
               );
             })}

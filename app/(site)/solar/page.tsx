@@ -31,7 +31,7 @@ export default function SolarSolutions() {
 
       {/* Header */}
       <div className="text-center mb-8">
-        <p className="text-[#D4AF37] text-sm uppercase tracking-widest mb-3">Energy Independence</p>
+        <p className="text-[#C8B993] text-sm uppercase tracking-widest mb-3">Energy Independence</p>
         <h1 className="text-3xl md:text-4xl font-extrabold text-white mb-3">
           Solar Solutions for <span className="gold-text">Homes & Businesses</span>
         </h1>
@@ -43,8 +43,8 @@ export default function SolarSolutions() {
       {/* Stats bar */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
         {stats.map((s) => (
-          <div key={s.label} className="bg-[#111111] border border-[#1F1F1F] rounded-xl p-4 text-center">
-            <p className="text-3xl font-bold text-[#D4AF37] mb-1">{s.value}</p>
+          <div key={s.label} className="bg-[#1D1D1D] border border-[#2A2A2A] rounded-xl p-4 text-center">
+            <p className="text-3xl font-bold text-[#C8B993] mb-1">{s.value}</p>
             <p className="text-sm text-gray-400 leading-snug">{s.label}</p>
           </div>
         ))}
@@ -53,12 +53,12 @@ export default function SolarSolutions() {
       {/* Solutions grid */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
         {solutions.map((s) => (
-          <div key={s.title} className="bg-[#111111] border border-[#1F1F1F] rounded-2xl overflow-hidden card-hover flex flex-col">
+          <div key={s.title} className="bg-[#1D1D1D] border border-[#2A2A2A] rounded-2xl overflow-hidden card-hover flex flex-col">
             {/* Image */}
             <div className="relative h-56">
               <Image src={s.img ?? ""} alt={s.title} fill className="object-cover"
                 sizes="(max-width: 768px) 100vw, 33vw" />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#111111] via-black/30 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#1D1D1D] via-black/30 to-transparent" />
               <h2 className="absolute bottom-5 left-6 text-2xl font-bold text-white">{s.title}</h2>
             </div>
 
@@ -68,7 +68,7 @@ export default function SolarSolutions() {
               <ul className="space-y-2 mb-5 flex-1">
                 {s.packages.map((pkg) => (
                   <li key={pkg} className="flex items-center gap-3 text-sm text-gray-300">
-                    <span className="text-[#D4AF37] text-base">&#10003;</span> {pkg}
+                    <span className="text-[#C8B993] text-base">&#10003;</span> {pkg}
                   </li>
                 ))}
               </ul>
@@ -81,14 +81,14 @@ export default function SolarSolutions() {
       </div>
 
       {/* Info bar */}
-      <div className="bg-[#111111] border border-[#1F1F1F] rounded-xl p-6 grid grid-cols-1 md:grid-cols-3 gap-6 text-center mb-8">
+      <div className="bg-[#1D1D1D] border border-[#2A2A2A] rounded-xl p-6 grid grid-cols-1 md:grid-cols-3 gap-6 text-center mb-8">
         {[
           { label: "Delivery",  value: "Nationwide across South Africa" },
           { label: "Warranty",  value: "Full product warranty support" },
           { label: "Support",   value: "Email sales & after-sales" },
         ].map((item) => (
           <div key={item.label}>
-            <p className="text-[#D4AF37] text-xs uppercase tracking-widest mb-2">{item.label}</p>
+            <p className="text-[#C8B993] text-xs uppercase tracking-widest mb-2">{item.label}</p>
             <p className="text-white font-semibold text-base">{item.value}</p>
           </div>
         ))}

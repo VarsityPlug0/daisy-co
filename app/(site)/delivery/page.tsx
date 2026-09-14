@@ -28,10 +28,10 @@ export default function DeliveryPage() {
           { icon: Globe,   title: "International Shipping", desc: "We ship worldwide. Rates and timelines vary by country. Contact us for a quote." },
           { icon: Package, title: "Secure Packaging",      desc: "All products are carefully packaged to prevent damage in transit." },
         ].map(({ icon: Icon, title, desc, highlight }) => (
-          <div key={title} className={`rounded-2xl p-6 border ${highlight ? "bg-[#D4AF37]/5 border-[#D4AF37]/30" : "bg-[#111111] border-[#1F1F1F]"}`}>
+          <div key={title} className={`rounded-2xl p-6 border ${highlight ? "bg-[#C8B993]/5 border-[#C8B993]/30" : "bg-[#1D1D1D] border-[#2A2A2A]"}`}>
             <div className="flex items-start gap-4">
-              <div className="w-11 h-11 rounded-xl bg-[#D4AF37]/10 flex items-center justify-center shrink-0">
-                <Icon size={20} color="#D4AF37" strokeWidth={1.8} />
+              <div className="w-11 h-11 rounded-xl bg-[#C8B993]/10 flex items-center justify-center shrink-0">
+                <Icon size={20} color="#C8B993" strokeWidth={1.8} />
               </div>
               <div>
                 <h3 className="text-white font-bold text-sm mb-1.5">{title}</h3>
@@ -42,11 +42,11 @@ export default function DeliveryPage() {
         ))}
       </div>
 
-      <div className="bg-[#111111] border border-[#1F1F1F] rounded-2xl overflow-hidden mb-8">
-        <div className="p-6 border-b border-[#1F1F1F]">
+      <div className="bg-[#1D1D1D] border border-[#2A2A2A] rounded-2xl overflow-hidden mb-8">
+        <div className="p-6 border-b border-[#2A2A2A]">
           <h2 className="text-lg font-bold text-white">Delivery Timeframes</h2>
         </div>
-        <div className="divide-y divide-[#1F1F1F]">
+        <div className="divide-y divide-[#2A2A2A]">
           {[
             ["Cape Town Metro",              "Same-day (before 11am) / Next day"],
             ["Johannesburg / Gauteng",        "1–2 business days"],
@@ -62,7 +62,7 @@ export default function DeliveryPage() {
                 <MapPin size={14} color="#6B7280" />
                 <span className="text-gray-300 text-sm">{location as string}</span>
               </div>
-              <span className="text-[#D4AF37] text-sm font-semibold">{time as string}</span>
+              <span className="text-[#C8B993] text-sm font-semibold">{time as string}</span>
             </div>
           ))}
         </div>
@@ -76,17 +76,17 @@ export default function DeliveryPage() {
           ["Can I change my delivery address?", "Contact us as soon as possible after placing your order. We can update your address before dispatch."],
           ["What if my order arrives damaged?", "Contact us immediately via email with photos. We'll arrange a replacement or refund under our returns policy."],
         ].map(([q, a]) => (
-          <details key={q as string} className="group bg-[#111111] border border-[#1F1F1F] rounded-2xl overflow-hidden">
+          <details key={q as string} className="group bg-[#1D1D1D] border border-[#2A2A2A] rounded-2xl overflow-hidden">
             <summary className="flex items-center justify-between px-6 py-5 cursor-pointer select-none list-none">
               <span style={{ fontFamily: "var(--font-outfit)", fontWeight: 600, fontSize: 14, color: "#F0F0F0" }}>{q as string}</span>
-              <svg className="shrink-0 ml-3 transition-transform duration-200 group-open:rotate-180" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" strokeWidth="2.5"><path d="M6 9l6 6 6-6" /></svg>
+              <svg className="shrink-0 ml-3 transition-transform duration-200 group-open:rotate-180" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C8B993" strokeWidth="2.5"><path d="M6 9l6 6 6-6" /></svg>
             </summary>
-            <p className="px-6 pb-5 text-gray-400 text-sm leading-relaxed border-t border-[#1F1F1F] pt-4">{a as string}</p>
+            <p className="px-6 pb-5 text-gray-400 text-sm leading-relaxed border-t border-[#2A2A2A] pt-4">{a as string}</p>
           </details>
         ))}
       </div>
 
-      <div className="bg-[#111111] border border-[#D4AF37]/20 rounded-2xl p-8 text-center">
+      <div className="bg-[#1D1D1D] border border-[#C8B993]/20 rounded-2xl p-8 text-center">
         <h3 className="text-xl font-bold text-white mb-3">Need a delivery quote?</h3>
         <p className="text-gray-400 text-sm mb-6">Contact us for international shipping quotes and special delivery arrangements.</p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">

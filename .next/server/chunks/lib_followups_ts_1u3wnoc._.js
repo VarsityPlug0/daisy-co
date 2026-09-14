@@ -1,4 +1,4 @@
-module.exports=[94689,e=>{"use strict";var t=e.i(54799),a=e.i(85148),i=e.i(14747),r=e.i(22734);let o=process.env.DATA_DIR??i.default.join(process.cwd(),"data"),s=i.default.join(o,"daisy.db"),n=[i.default.join(o,"products-backup.json"),i.default.join(process.cwd(),"data","products.json")],c=null;var p=e.i(84423);let d=i.default.join(process.cwd(),"public","logo.jpg"),l="logo@daisygadgets",T="#D4AF37",m="#f5d76e",g="#0A0A0A",h="#161616",u="#1F1F1F",E="#6b7280",L="https://gadgets.bevanssons.store";async function f(e){let t=process.env.RESEND_API_KEY?p.default.createTransport({host:"smtp.resend.com",port:587,secure:!1,auth:{user:"resend",pass:process.env.RESEND_API_KEY}}):process.env.MAIL_USER&&process.env.MAIL_PASS?p.default.createTransport({service:"gmail",auth:{user:process.env.MAIL_USER,pass:process.env.MAIL_PASS}}):null;if(!t)return void console.error("mailer: env vars missing");try{let a=e.attachments??[];(0,r.existsSync)(d)&&a.unshift({filename:"logo.jpg",path:d,cid:l}),await t.sendMail({from:process.env.RESEND_API_KEY?'"Bevanssons" <noreply@bevanssons.store>':`"Bevanssons" <${process.env.MAIL_USER??"noreply@bevanssons.store"}>`,to:e.to,subject:e.subject,html:e.html,attachments:a})}catch(e){console.error("mailer send error:",e)}}async function N(e){try{let t=await fetch(e,{signal:AbortSignal.timeout(5e3)});if(!t.ok)return null;return Buffer.from(await t.arrayBuffer())}catch{return null}}async function U(e){let t=[],a=new Map;return await Promise.all(e.map(async(e,i)=>{if(!e.imageUrl)return;let r=await N(e.imageUrl.startsWith("http")?e.imageUrl:L+e.imageUrl);if(!r)return;let o=`product-${i}@daisy`,s=e.imageUrl.split(".").pop()?.split("?")[0]??"jpg";t.push({filename:`product-${i}.${s}`,content:r,cid:o}),a.set(e.imageUrl,`cid:${o}`)})),{attachments:t,cidMap:a}}function A(){return`<div style="height:1px;background:${u};margin:24px 0"></div>`}function y(e,t,a=T,i=g){return`<a href="${t}" style="display:inline-block;background:${a};color:${i};font-weight:800;text-decoration:none;padding:13px 26px;border-radius:10px;font-size:14px;letter-spacing:0.02em">${e}</a>`}async function S(e){let t=e.ctaUrl&&e.trackingId?`${L}/api/track/email?id=${e.trackingId}&e=click&url=${encodeURIComponent(e.ctaUrl)}`:e.ctaUrl,a=e.ctaText&&t?`<div style="text-align:center;margin:28px 0">${y(e.ctaText,t)}</div>`:"",i=e.trackingId?`<img src="${L}/api/track/email?id=${e.trackingId}&e=open" width="1" height="1" style="display:none;width:1px;height:1px;border:0" alt="" />`:"",r="",o=[];if(e.orderItems?.length){let{attachments:t,cidMap:a}=await U(e.orderItems.map(e=>({name:e.name,imageUrl:e.imageUrl})));o=t;let i=e.orderItems.map(e=>{let t=e.imageUrl?a.get(e.imageUrl)??(e.imageUrl.startsWith("http")?e.imageUrl:L+e.imageUrl):null,i=t?`<img src="${t}" alt="${e.name}" width="64" height="64" style="width:64px;height:64px;object-fit:cover;border-radius:10px;display:block;border:1px solid ${u}" />`:`<div style="width:64px;height:64px;background:${h};border:1px solid ${u};border-radius:10px"></div>`,r=e.id?`${L}/shop/${e.id}`:`${L}/shop`;return`
+module.exports=[94689,e=>{"use strict";var t=e.i(54799),a=e.i(85148),i=e.i(14747),r=e.i(22734);let o=process.env.DATA_DIR??i.default.join(process.cwd(),"data"),s=i.default.join(o,"daisy.db"),n=[i.default.join(o,"products-backup.json"),i.default.join(process.cwd(),"data","products.json")],c=null;var p=e.i(84423);let d=i.default.join(process.cwd(),"public","logo.jpg"),l="logo@daisygadgets",T="#C8B993",m="#f5d76e",g="#111111",h="#1A1A1A",u="#2A2A2A",E="#6b7280",L="https://gadgets.bevanssons.store";async function f(e){let t=process.env.RESEND_API_KEY?p.default.createTransport({host:"smtp.resend.com",port:587,secure:!1,auth:{user:"resend",pass:process.env.RESEND_API_KEY}}):process.env.MAIL_USER&&process.env.MAIL_PASS?p.default.createTransport({service:"gmail",auth:{user:process.env.MAIL_USER,pass:process.env.MAIL_PASS}}):null;if(!t)return void console.error("mailer: env vars missing");try{let a=e.attachments??[];(0,r.existsSync)(d)&&a.unshift({filename:"logo.jpg",path:d,cid:l}),await t.sendMail({from:process.env.RESEND_API_KEY?'"Bevanssons" <noreply@bevanssons.store>':`"Bevanssons" <${process.env.MAIL_USER??"noreply@bevanssons.store"}>`,to:e.to,subject:e.subject,html:e.html,attachments:a})}catch(e){console.error("mailer send error:",e)}}async function N(e){try{let t=await fetch(e,{signal:AbortSignal.timeout(5e3)});if(!t.ok)return null;return Buffer.from(await t.arrayBuffer())}catch{return null}}async function A(e){let t=[],a=new Map;return await Promise.all(e.map(async(e,i)=>{if(!e.imageUrl)return;let r=await N(e.imageUrl.startsWith("http")?e.imageUrl:L+e.imageUrl);if(!r)return;let o=`product-${i}@daisy`,s=e.imageUrl.split(".").pop()?.split("?")[0]??"jpg";t.push({filename:`product-${i}.${s}`,content:r,cid:o}),a.set(e.imageUrl,`cid:${o}`)})),{attachments:t,cidMap:a}}function U(){return`<div style="height:1px;background:${u};margin:24px 0"></div>`}function y(e,t,a=T,i=g){return`<a href="${t}" style="display:inline-block;background:${a};color:${i};font-weight:800;text-decoration:none;padding:13px 26px;border-radius:10px;font-size:14px;letter-spacing:0.02em">${e}</a>`}async function S(e){let t=e.ctaUrl&&e.trackingId?`${L}/api/track/email?id=${e.trackingId}&e=click&url=${encodeURIComponent(e.ctaUrl)}`:e.ctaUrl,a=e.ctaText&&t?`<div style="text-align:center;margin:28px 0">${y(e.ctaText,t)}</div>`:"",i=e.trackingId?`<img src="${L}/api/track/email?id=${e.trackingId}&e=open" width="1" height="1" style="display:none;width:1px;height:1px;border:0" alt="" />`:"",r="",o=[];if(e.orderItems?.length){let{attachments:t,cidMap:a}=await A(e.orderItems.map(e=>({name:e.name,imageUrl:e.imageUrl})));o=t;let i=e.orderItems.map(e=>{let t=e.imageUrl?a.get(e.imageUrl)??(e.imageUrl.startsWith("http")?e.imageUrl:L+e.imageUrl):null,i=t?`<img src="${t}" alt="${e.name}" width="64" height="64" style="width:64px;height:64px;object-fit:cover;border-radius:10px;display:block;border:1px solid ${u}" />`:`<div style="width:64px;height:64px;background:${h};border:1px solid ${u};border-radius:10px"></div>`,r=e.id?`${L}/shop/${e.id}`:`${L}/shop`;return`
       <tr>
         <td style="padding:10px 0;border-bottom:1px solid ${u};width:76px;vertical-align:middle">
           <a href="${r}">${i}</a>
@@ -13,13 +13,13 @@ module.exports=[94689,e=>{"use strict";var t=e.i(54799),a=e.i(85148),i=e.i(14747
           <span style="color:${T};font-size:13px;font-weight:700">${e.price}</span>
         </td>
       </tr>`}).join(""),s=e.orderRef?`<p style="margin:0 0 14px;color:${E};font-size:12px">Order ref: <span style="color:${T};font-weight:700;font-family:monospace">${e.orderRef}</span></p>`:"",n=e.restoreCartUrl?`<div style="text-align:center;margin-top:20px">${y("Complete Your Order →",e.restoreCartUrl)}</div>`:"";r=`
-      ${A()}
+      ${U()}
       <p style="margin:0 0 4px;color:#e5e7eb;font-size:14px;font-weight:700">Your last order</p>
       ${s}
       <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:8px">
         ${i}
       </table>
-      ${n}`}else if(e.featuredProducts?.length){let{attachments:t,cidMap:a}=await U(e.featuredProducts.map(e=>({name:e.name,imageUrl:e.imageUrl})));o=t;let i=e.featuredProducts.map(e=>{let t=e.imageUrl?a.get(e.imageUrl)??(e.imageUrl.startsWith("http")?e.imageUrl:L+e.imageUrl):null,i=t?`<img src="${t}" alt="${e.name}" width="200" style="width:100%;max-width:200px;height:140px;object-fit:cover;border-radius:10px;display:block;border:1px solid ${u}" />`:`<div style="width:100%;height:140px;background:${h};border:1px solid ${u};border-radius:10px"></div>`;return`
+      ${n}`}else if(e.featuredProducts?.length){let{attachments:t,cidMap:a}=await A(e.featuredProducts.map(e=>({name:e.name,imageUrl:e.imageUrl})));o=t;let i=e.featuredProducts.map(e=>{let t=e.imageUrl?a.get(e.imageUrl)??(e.imageUrl.startsWith("http")?e.imageUrl:L+e.imageUrl):null,i=t?`<img src="${t}" alt="${e.name}" width="200" style="width:100%;max-width:200px;height:140px;object-fit:cover;border-radius:10px;display:block;border:1px solid ${u}" />`:`<div style="width:100%;height:140px;background:${h};border:1px solid ${u};border-radius:10px"></div>`;return`
         <td style="width:48%;vertical-align:top;padding:6px">
           <a href="${L}/shop/${e.id}" style="text-decoration:none;display:block">
             ${i}
@@ -27,7 +27,7 @@ module.exports=[94689,e=>{"use strict";var t=e.i(54799),a=e.i(85148),i=e.i(14747
             <p style="margin:0;color:${T};font-size:14px;font-weight:800">${e.price}</p>
           </a>
         </td>`}),s=[];for(let e=0;e<i.length;e+=2)s.push(`<tr>${i.slice(e,e+2).join("")}</tr>`);r=`
-      ${A()}
+      ${U()}
       <p style="margin:0 0 16px;color:#e5e7eb;font-size:14px;font-weight:700">Featured Products</p>
       <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:8px">
         ${s.join("")}
@@ -36,7 +36,7 @@ module.exports=[94689,e=>{"use strict";var t=e.i(54799),a=e.i(85148),i=e.i(14747
     <div style="color:#d1d5db;font-size:14px;line-height:1.75;white-space:pre-wrap">${e.body}</div>
     ${a}
     ${r}
-    ${A()}
+    ${U()}
     <p style="margin:0;color:${E};font-size:12px;text-align:center">
       You received this because you placed an order with Bevanssons
     </p>
@@ -76,7 +76,7 @@ module.exports=[94689,e=>{"use strict";var t=e.i(54799),a=e.i(85148),i=e.i(14747
 
         <!-- Body -->
         <tr>
-          <td style="background:#111111;padding:36px 36px 32px;border-top:1px solid ${u}">
+          <td style="background:#1D1D1D;padding:36px 36px 32px;border-top:1px solid ${u}">
             ${e}
           </td>
         </tr>

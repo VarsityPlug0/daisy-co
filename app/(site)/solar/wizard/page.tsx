@@ -103,7 +103,7 @@ const PACKAGES = {
     badge: "Most Popular",
     price: "R98,000",
     priceNote: "Installed nationwide",
-    color: "#D4AF37",
+    color: "#C8B993",
     specs: ["8kW Hybrid Solar Inverter", "16 × 450W Solar Panels (7.2kWp)", "200Ah Lithium Battery", "Smart monitoring included"],
     included: ["8kW inverter", "16 solar panels", "200Ah lithium battery", "Mounting structure", "Full cabling", "Smart monitoring portal", "Warranty support"],
     notIncluded: ["Geyser solar diversion (add-on)", "Three-phase upgrade"],
@@ -186,9 +186,9 @@ function SelectCard({
       onClick={onClick}
       className="w-full text-left rounded-2xl border transition-all duration-150 p-4"
       style={{
-        background: selected ? "rgba(212,175,55,0.08)" : "#111111",
-        borderColor: selected ? "#D4AF37" : "#1F1F1F",
-        boxShadow: selected ? "0 0 0 1px #D4AF37, 0 4px 20px rgba(212,175,55,0.12)" : "none",
+        background: selected ? "rgba(200,185,147,0.08)" : "#1D1D1D",
+        borderColor: selected ? "#C8B993" : "#2A2A2A",
+        boxShadow: selected ? "0 0 0 1px #C8B993, 0 4px 20px rgba(200,185,147,0.12)" : "none",
       }}
     >
       {children}
@@ -206,7 +206,7 @@ function ProgressBar({ step, total }: { step: number; total: number }) {
       <div className="h-1 bg-[#1a1a1a] rounded-full overflow-hidden">
         <div
           className="h-full rounded-full transition-all duration-500"
-          style={{ width: `${(step / total) * 100}%`, background: "linear-gradient(90deg, #D4AF37, #F0CE6A)" }}
+          style={{ width: `${(step / total) * 100}%`, background: "linear-gradient(90deg, #C8B993, #DDD2B7)" }}
         />
       </div>
     </div>
@@ -325,8 +325,8 @@ export default function SolarWizard() {
           </div>
           <h1 className="text-2xl font-extrabold text-white mb-2">Quote Request Received</h1>
           <p className="text-gray-400 mb-4">Your reference number is:</p>
-          <div className="inline-block bg-[#111111] border border-[#D4AF37]/40 rounded-xl px-6 py-3 mb-6">
-            <p className="text-2xl font-bold text-[#D4AF37] tracking-wider">{submitted.ref}</p>
+          <div className="inline-block bg-[#1D1D1D] border border-[#C8B993]/40 rounded-xl px-6 py-3 mb-6">
+            <p className="text-2xl font-bold text-[#C8B993] tracking-wider">{submitted.ref}</p>
           </div>
           <p className="text-gray-400 mb-6 max-w-md mx-auto leading-relaxed text-sm">
             We have received your request for the <strong className="text-white">{pkg.name}</strong>. Our team will review it and contact you within 24 hours by email.
@@ -353,7 +353,7 @@ export default function SolarWizard() {
         </div>
 
         {/* Recommended package */}
-        <div className="bg-[#111111] border-2 rounded-2xl p-5 mb-5" style={{ borderColor: pkg.color }}>
+        <div className="bg-[#1D1D1D] border-2 rounded-2xl p-5 mb-5" style={{ borderColor: pkg.color }}>
           <div className="flex items-start justify-between flex-wrap gap-3 mb-5">
             <div>
               <span className="text-xs font-bold px-3 py-1 rounded-full mb-2 inline-block" style={{ background: `${pkg.color}20`, color: pkg.color }}>
@@ -390,7 +390,7 @@ export default function SolarWizard() {
 
           <p className="text-gray-400 text-sm leading-relaxed mb-4">{pkg.bestFor}</p>
 
-          <p className="text-xs text-gray-600 leading-relaxed border-t border-[#1F1F1F] pt-3">
+          <p className="text-xs text-gray-600 leading-relaxed border-t border-[#2A2A2A] pt-3">
             This is an estimated recommendation. Final system sizing and installation requirements must be confirmed by a qualified solar professional. Prices may vary based on site conditions.
           </p>
         </div>
@@ -406,7 +406,7 @@ export default function SolarWizard() {
               { label: "Monthly Bill", value: answers.monthlyBill || "Not specified" },
             ].filter((i) => i.value).map((item) => (
               <div key={item.label} className="flex items-start gap-3">
-                <Check size={14} color="#D4AF37" className="shrink-0 mt-0.5" />
+                <Check size={14} color="#C8B993" className="shrink-0 mt-0.5" />
                 <p className="text-sm text-gray-400"><span className="text-gray-300 font-medium">{item.label}:</span> {item.value}</p>
               </div>
             ))}
@@ -430,7 +430,7 @@ export default function SolarWizard() {
         </div>
 
         {/* Contact form */}
-        <div className="bg-[#111111] border border-[#1F1F1F] rounded-2xl p-5">
+        <div className="bg-[#1D1D1D] border border-[#2A2A2A] rounded-2xl p-5">
           <h3 className="text-lg font-bold text-white mb-2">Request This Package</h3>
           <p className="text-gray-400 text-sm mb-4">
             Submit your details and we will send you an official quote for the <strong className="text-white">{pkg.name}</strong>.
@@ -443,7 +443,7 @@ export default function SolarWizard() {
                 <input
                   value={form.name} onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))} required
                   placeholder="Your name"
-                  className="w-full bg-[#0A0A0A] border border-[#1F1F1F] rounded-xl px-4 py-3 text-white text-sm focus:outline-none"
+                  className="w-full bg-[#111111] border border-[#2A2A2A] rounded-xl px-4 py-3 text-white text-sm focus:outline-none"
                 />
               </div>
               <div>
@@ -451,7 +451,7 @@ export default function SolarWizard() {
                 <input
                   value={form.phone} onChange={(e) => setForm((f) => ({ ...f, phone: e.target.value }))} required type="tel"
                   placeholder="+27 xx xxx xxxx"
-                  className="w-full bg-[#0A0A0A] border border-[#1F1F1F] rounded-xl px-4 py-3 text-white text-sm focus:outline-none"
+                  className="w-full bg-[#111111] border border-[#2A2A2A] rounded-xl px-4 py-3 text-white text-sm focus:outline-none"
                 />
               </div>
             </div>
@@ -461,14 +461,14 @@ export default function SolarWizard() {
                 <input
                   value={form.email} onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))} type="email"
                   placeholder="your@email.com"
-                  className="w-full bg-[#0A0A0A] border border-[#1F1F1F] rounded-xl px-4 py-3 text-white text-sm focus:outline-none"
+                  className="w-full bg-[#111111] border border-[#2A2A2A] rounded-xl px-4 py-3 text-white text-sm focus:outline-none"
                 />
               </div>
               <div>
                 <label className="block text-xs text-gray-500 uppercase tracking-wide mb-1.5">Province</label>
                 <select
                   value={form.province} onChange={(e) => setForm((f) => ({ ...f, province: e.target.value }))}
-                  className="w-full bg-[#0A0A0A] border border-[#1F1F1F] rounded-xl px-4 py-3 text-white text-sm focus:outline-none"
+                  className="w-full bg-[#111111] border border-[#2A2A2A] rounded-xl px-4 py-3 text-white text-sm focus:outline-none"
                 >
                   <option value="">Select province</option>
                   {["Gauteng","Western Cape","KwaZulu-Natal","Eastern Cape","Limpopo","Mpumalanga","North West","Free State","Northern Cape"].map((p) => (
@@ -482,7 +482,7 @@ export default function SolarWizard() {
               <textarea
                 value={form.message} onChange={(e) => setForm((f) => ({ ...f, message: e.target.value }))}
                 rows={3} placeholder="Any specific requirements, questions, or information about your property..."
-                className="w-full bg-[#0A0A0A] border border-[#1F1F1F] rounded-xl px-4 py-3 text-white text-sm focus:outline-none resize-none"
+                className="w-full bg-[#111111] border border-[#2A2A2A] rounded-xl px-4 py-3 text-white text-sm focus:outline-none resize-none"
               />
             </div>
             {submitError && <p className="text-red-400 text-sm">{submitError}</p>}
@@ -495,7 +495,7 @@ export default function SolarWizard() {
               <button
                 type="button"
                 onClick={() => window.dispatchEvent(new CustomEvent("openDaisyChat", { detail: { message: `Hi, I'm interested in the ${pkg.name} solar package (${pkg.price}). Can you help me?` } }))}
-                className="text-[#D4AF37] hover:underline"
+                className="text-[#C8B993] hover:underline"
               >
                 chat with us directly
               </button>
@@ -520,7 +520,7 @@ export default function SolarWizard() {
         </div>
       )}
 
-      <div className="bg-[#111111] border border-[#1F1F1F] rounded-2xl p-5">
+      <div className="bg-[#1D1D1D] border border-[#2A2A2A] rounded-2xl p-5">
         <ProgressBar step={step} total={TOTAL} />
 
         {/* ── Step 1: Property Type ── */}
@@ -531,7 +531,7 @@ export default function SolarWizard() {
             <div className="grid grid-cols-2 gap-3">
               {PROPERTY_TYPES.map((p) => (
                 <SelectCard key={p.id} selected={answers.propertyType === p.id} onClick={() => setAnswers((a) => ({ ...a, propertyType: p.id }))}>
-                  <div className={`mb-3 ${answers.propertyType === p.id ? "text-[#D4AF37]" : "text-gray-500"}`}>{p.icon}</div>
+                  <div className={`mb-3 ${answers.propertyType === p.id ? "text-[#C8B993]" : "text-gray-500"}`}>{p.icon}</div>
                   <p className={`font-semibold text-sm mb-0.5 ${answers.propertyType === p.id ? "text-white" : "text-gray-300"}`}>{p.label}</p>
                   <p className="text-xs text-gray-500">{p.sub}</p>
                 </SelectCard>
@@ -554,7 +554,7 @@ export default function SolarWizard() {
                       <p className={`font-semibold text-sm ${answers.monthlyBill === b.id ? "text-white" : "text-gray-300"}`}>{b.label}</p>
                       <p className="text-xs text-gray-500">{b.sub}</p>
                     </div>
-                    {answers.monthlyBill === b.id && <Check size={18} color="#D4AF37" />}
+                    {answers.monthlyBill === b.id && <Check size={18} color="#C8B993" />}
                   </div>
                 </SelectCard>
               ))}
@@ -572,12 +572,12 @@ export default function SolarWizard() {
               {MAIN_GOALS.map((g) => (
                 <SelectCard key={g.id} selected={answers.mainGoal === g.id} onClick={() => setAnswers((a) => ({ ...a, mainGoal: g.id }))}>
                   <div className="flex items-center gap-4">
-                    <div className={`shrink-0 ${answers.mainGoal === g.id ? "text-[#D4AF37]" : "text-gray-500"}`}>{g.icon}</div>
+                    <div className={`shrink-0 ${answers.mainGoal === g.id ? "text-[#C8B993]" : "text-gray-500"}`}>{g.icon}</div>
                     <div>
                       <p className={`font-semibold text-sm ${answers.mainGoal === g.id ? "text-white" : "text-gray-300"}`}>{g.label}</p>
                       <p className="text-xs text-gray-500">{g.sub}</p>
                     </div>
-                    {answers.mainGoal === g.id && <Check size={18} color="#D4AF37" className="ml-auto shrink-0" />}
+                    {answers.mainGoal === g.id && <Check size={18} color="#C8B993" className="ml-auto shrink-0" />}
                   </div>
                 </SelectCard>
               ))}
@@ -600,11 +600,11 @@ export default function SolarWizard() {
                     key={a.id}
                     className="flex items-center gap-4 rounded-xl border p-3.5 transition-all"
                     style={{
-                      background: selected ? "rgba(212,175,55,0.06)" : "#0f0f0f",
-                      borderColor: selected ? "rgba(212,175,55,0.5)" : "#1F1F1F",
+                      background: selected ? "rgba(200,185,147,0.06)" : "#0f0f0f",
+                      borderColor: selected ? "rgba(200,185,147,0.5)" : "#2A2A2A",
                     }}
                   >
-                    <div className={`shrink-0 ${selected ? "text-[#D4AF37]" : "text-gray-500"}`}>{a.icon}</div>
+                    <div className={`shrink-0 ${selected ? "text-[#C8B993]" : "text-gray-500"}`}>{a.icon}</div>
                     <div className="flex-1 min-w-0">
                       <p className={`text-sm font-medium ${selected ? "text-white" : "text-gray-300"}`}>{a.label}</p>
                       <p className="text-xs text-gray-600">{a.watts > 0 ? `${a.watts}W` : "Variable"}</p>
@@ -614,17 +614,17 @@ export default function SolarWizard() {
                         type="button"
                         onClick={() => setAppliance(a.id, qty - 1)}
                         disabled={qty === 0}
-                        className="w-7 h-7 rounded-lg border border-[#2a2a2a] flex items-center justify-center text-gray-400 hover:text-white hover:border-[#D4AF37]/50 transition-colors disabled:opacity-30 text-lg font-bold"
+                        className="w-7 h-7 rounded-lg border border-[#2a2a2a] flex items-center justify-center text-gray-400 hover:text-white hover:border-[#C8B993]/50 transition-colors disabled:opacity-30 text-lg font-bold"
                       >
                         −
                       </button>
-                      <span className={`w-6 text-center text-sm font-bold ${selected ? "text-[#D4AF37]" : "text-gray-600"}`}>
+                      <span className={`w-6 text-center text-sm font-bold ${selected ? "text-[#C8B993]" : "text-gray-600"}`}>
                         {qty}
                       </span>
                       <button
                         type="button"
                         onClick={() => setAppliance(a.id, qty + 1)}
-                        className="w-7 h-7 rounded-lg border border-[#2a2a2a] flex items-center justify-center text-gray-400 hover:text-white hover:border-[#D4AF37]/50 transition-colors text-lg font-bold"
+                        className="w-7 h-7 rounded-lg border border-[#2a2a2a] flex items-center justify-center text-gray-400 hover:text-white hover:border-[#C8B993]/50 transition-colors text-lg font-bold"
                       >
                         +
                       </button>
@@ -654,7 +654,7 @@ export default function SolarWizard() {
                       <p className={`font-semibold text-sm ${answers.budget === b.id ? "text-white" : "text-gray-300"}`}>{b.label}</p>
                       <p className="text-xs text-gray-500">{b.sub}</p>
                     </div>
-                    {answers.budget === b.id && <Check size={18} color="#D4AF37" />}
+                    {answers.budget === b.id && <Check size={18} color="#C8B993" />}
                   </div>
                 </SelectCard>
               ))}

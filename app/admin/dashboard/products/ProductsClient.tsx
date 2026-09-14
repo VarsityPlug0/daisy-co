@@ -85,8 +85,8 @@ export default function ProductsClient({ products }: { products: Product[] }) {
           onClick={() => { setDepartment("all"); setCat("All"); }}
           className={`flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all ${
             department === "all"
-              ? "bg-[#D4AF37] text-black shadow-lg shadow-[#D4AF37]/20"
-              : "bg-[#111111] border border-[#1F1F1F] text-gray-400 hover:text-white"
+              ? "bg-[#C8B993] text-black shadow-lg shadow-[#C8B993]/20"
+              : "bg-[#1D1D1D] border border-[#2A2A2A] text-gray-400 hover:text-white"
           }`}
         >
           <LayoutGrid size={13} />
@@ -98,7 +98,7 @@ export default function ProductsClient({ products }: { products: Product[] }) {
           className={`flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all ${
             department === "devices"
               ? "bg-[#3B82F6] text-white shadow-lg shadow-[#3B82F6]/20"
-              : "bg-[#111111] border border-[#1F1F1F] text-gray-400 hover:text-white"
+              : "bg-[#1D1D1D] border border-[#2A2A2A] text-gray-400 hover:text-white"
           }`}
         >
           <Cpu size={13} />
@@ -110,7 +110,7 @@ export default function ProductsClient({ products }: { products: Product[] }) {
           className={`flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all ${
             department === "clothing"
               ? "bg-[#F43F5E] text-white shadow-lg shadow-[#F43F5E]/20"
-              : "bg-[#111111] border border-[#1F1F1F] text-gray-400 hover:text-white"
+              : "bg-[#1D1D1D] border border-[#2A2A2A] text-gray-400 hover:text-white"
           }`}
         >
           <Shirt size={13} />
@@ -125,19 +125,19 @@ export default function ProductsClient({ products }: { products: Product[] }) {
           placeholder="Search products…"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="flex-1 bg-[#111111] border border-[#1F1F1F] rounded-xl px-4 py-2.5 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-[#D4AF37]/40"
+          className="flex-1 bg-[#1D1D1D] border border-[#2A2A2A] rounded-xl px-4 py-2.5 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-[#C8B993]/40"
         />
         <select
           value={cat}
           onChange={(e) => setCat(e.target.value)}
-          className="bg-[#111111] border border-[#1F1F1F] rounded-xl px-4 py-2.5 text-sm text-gray-300 focus:outline-none focus:border-[#D4AF37]/40"
+          className="bg-[#1D1D1D] border border-[#2A2A2A] rounded-xl px-4 py-2.5 text-sm text-gray-300 focus:outline-none focus:border-[#C8B993]/40"
         >
           {categories.map((c) => <option key={c}>{c}</option>)}
         </select>
         <select
           value={stockFilter}
           onChange={(e) => setStockFilter(e.target.value)}
-          className="bg-[#111111] border border-[#1F1F1F] rounded-xl px-4 py-2.5 text-sm text-gray-300 focus:outline-none focus:border-[#D4AF37]/40"
+          className="bg-[#1D1D1D] border border-[#2A2A2A] rounded-xl px-4 py-2.5 text-sm text-gray-300 focus:outline-none focus:border-[#C8B993]/40"
         >
           {["All", "In Stock", "Out of Stock", "Featured"].map((s) => <option key={s}>{s}</option>)}
         </select>
@@ -146,14 +146,14 @@ export default function ProductsClient({ products }: { products: Product[] }) {
       <p className="text-xs text-gray-600 mb-3">{filtered.length} product{filtered.length !== 1 ? "s" : ""}</p>
 
       {filtered.length === 0 ? (
-        <div className="bg-[#111111] border border-[#1F1F1F] rounded-2xl p-12 text-center">
+        <div className="bg-[#1D1D1D] border border-[#2A2A2A] rounded-2xl p-12 text-center">
           <p className="text-gray-500">No products match your filters.</p>
         </div>
       ) : (
         <>
           {/* Desktop table */}
-          <div className="hidden md:block bg-[#111111] border border-[#1F1F1F] rounded-2xl overflow-hidden">
-            <div className="grid grid-cols-[52px_1fr_140px_160px_110px_110px] gap-3 px-5 py-3 border-b border-[#1F1F1F]">
+          <div className="hidden md:block bg-[#1D1D1D] border border-[#2A2A2A] rounded-2xl overflow-hidden">
+            <div className="grid grid-cols-[52px_1fr_140px_160px_110px_110px] gap-3 px-5 py-3 border-b border-[#2A2A2A]">
               {["", "Product", "Price", "Category", "Status", "Actions"].map((h) => (
                 <p key={h} className="text-[11px] text-gray-500 uppercase tracking-wider font-medium">{h}</p>
               ))}
@@ -161,7 +161,7 @@ export default function ProductsClient({ products }: { products: Product[] }) {
             {filtered.map((p) => (
               <div key={p.id}
                 className="grid grid-cols-[52px_1fr_140px_160px_110px_110px] gap-3 items-center px-5 py-3.5 border-b border-[#1A1A1A] last:border-0 hover:bg-white/[0.02] transition-colors">
-                <div className="w-11 h-11 rounded-lg overflow-hidden bg-[#0A0A0A] shrink-0">
+                <div className="w-11 h-11 rounded-lg overflow-hidden bg-[#111111] shrink-0">
                   {p.imageUrl
                     ? <img src={p.imageUrl} alt={p.name} className="w-full h-full object-cover" />
                     : <div className="w-full h-full flex items-center justify-center text-gray-700 text-xs">–</div>}
@@ -171,7 +171,7 @@ export default function ProductsClient({ products }: { products: Product[] }) {
                   {p.description && <p className="text-gray-500 text-xs truncate mt-0.5">{p.description}</p>}
                 </div>
                 <div>
-                  <p className="text-[#D4AF37] font-bold text-sm">{p.price}</p>
+                  <p className="text-[#C8B993] font-bold text-sm">{p.price}</p>
                   {p.originalPrice && <p className="text-gray-600 text-xs line-through">{p.originalPrice}</p>}
                 </div>
                 <p className="text-gray-400 text-sm truncate">{p.category}</p>
@@ -180,7 +180,7 @@ export default function ProductsClient({ products }: { products: Product[] }) {
                     {p.inStock ? "In Stock" : "Out"}
                   </span>
                   {p.featured && (
-                    <span className="text-[10px] px-2 py-0.5 rounded-full font-medium bg-[#D4AF37]/10 text-[#D4AF37]">Featured</span>
+                    <span className="text-[10px] px-2 py-0.5 rounded-full font-medium bg-[#C8B993]/10 text-[#C8B993]">Featured</span>
                   )}
                 </div>
                 <div className="flex gap-1.5">
@@ -188,7 +188,7 @@ export default function ProductsClient({ products }: { products: Product[] }) {
                     <button
                       onClick={() => setCropProduct(p)}
                       title="Crop image"
-                      className="px-2 py-1.5 rounded-lg text-xs font-medium text-[#D4AF37] bg-[#D4AF37]/10 hover:bg-[#D4AF37]/20 transition-colors"
+                      className="px-2 py-1.5 rounded-lg text-xs font-medium text-[#C8B993] bg-[#C8B993]/10 hover:bg-[#C8B993]/20 transition-colors"
                     >
                       ✂
                     </button>
@@ -206,16 +206,16 @@ export default function ProductsClient({ products }: { products: Product[] }) {
           {/* Mobile cards */}
           <div className="md:hidden space-y-3">
             {filtered.map((p) => (
-              <div key={p.id} className="bg-[#111111] border border-[#1F1F1F] rounded-2xl p-4">
+              <div key={p.id} className="bg-[#1D1D1D] border border-[#2A2A2A] rounded-2xl p-4">
                 <div className="flex gap-3">
-                  <div className="w-14 h-14 rounded-xl overflow-hidden bg-[#0A0A0A] shrink-0">
+                  <div className="w-14 h-14 rounded-xl overflow-hidden bg-[#111111] shrink-0">
                     {p.imageUrl
                       ? <img src={p.imageUrl} alt={p.name} className="w-full h-full object-cover" />
                       : <div className="w-full h-full flex items-center justify-center text-gray-700 text-xs">–</div>}
                   </div>
                   <div className="flex-1 min-w-0">
                     <p className="text-white font-semibold text-sm leading-snug truncate">{p.name}</p>
-                    <p className="text-[#D4AF37] font-bold text-sm mt-0.5">{p.price}</p>
+                    <p className="text-[#C8B993] font-bold text-sm mt-0.5">{p.price}</p>
                     {p.originalPrice && <p className="text-gray-600 text-xs line-through">{p.originalPrice}</p>}
                     <p className="text-gray-500 text-xs mt-0.5 truncate">{p.category}</p>
                   </div>
@@ -226,7 +226,7 @@ export default function ProductsClient({ products }: { products: Product[] }) {
                       {p.inStock ? "In Stock" : "Out of Stock"}
                     </span>
                     {p.featured && (
-                      <span className="text-[10px] px-2 py-0.5 rounded-full font-medium bg-[#D4AF37]/10 text-[#D4AF37]">Featured</span>
+                      <span className="text-[10px] px-2 py-0.5 rounded-full font-medium bg-[#C8B993]/10 text-[#C8B993]">Featured</span>
                     )}
                   </div>
                   <div className="flex gap-2">
@@ -234,7 +234,7 @@ export default function ProductsClient({ products }: { products: Product[] }) {
                       <button
                         onClick={() => setCropProduct(p)}
                         title="Crop image"
-                        className="px-2 py-1.5 rounded-lg text-xs font-medium text-[#D4AF37] bg-[#D4AF37]/10 hover:bg-[#D4AF37]/20 transition-colors"
+                        className="px-2 py-1.5 rounded-lg text-xs font-medium text-[#C8B993] bg-[#C8B993]/10 hover:bg-[#C8B993]/20 transition-colors"
                       >
                         ✂
                       </button>
@@ -262,7 +262,7 @@ export default function ProductsClient({ products }: { products: Product[] }) {
       {cropSaving && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80">
           <div className="flex flex-col items-center gap-3">
-            <div className="w-10 h-10 border-2 border-[#D4AF37] border-t-transparent rounded-full animate-spin" />
+            <div className="w-10 h-10 border-2 border-[#C8B993] border-t-transparent rounded-full animate-spin" />
             <p className="text-white text-sm">Saving cropped image…</p>
           </div>
         </div>

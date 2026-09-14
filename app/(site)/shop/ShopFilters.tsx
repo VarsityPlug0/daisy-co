@@ -25,7 +25,7 @@ const CAT_META: Record<string, { icon: React.ElementType; color: string }> = {
   "Caps & Accessories":      { icon: Tag,            color: "#A855F7" },
   "Furniture":               { icon: Sofa,           color: "#A78BFA" },
   "Home Appliances":         { icon: WashingMachine, color: "#60A5FA" },
-  "Solar & Power Solutions": { icon: Zap,            color: "#D4AF37" },
+  "Solar & Power Solutions": { icon: Zap,            color: "#C8B993" },
   "Electric Ride-On Cars":   { icon: Car,            color: "#F97316" },
   "Kitchen Appliances":      { icon: ChefHat,        color: "#EC4899" },
   "Office Equipment":        { icon: Printer,        color: "#6B7280" },
@@ -108,7 +108,7 @@ export default function ShopFilters({ total }: { total: number }) {
       : [...DEVICE_CATEGORIES, ...CLOTHING_CATEGORIES];
 
   const visibleCats = [
-    { id: "", label: department === "all" ? "All Categories" : department === "devices" ? "All Devices" : "All Clothing", icon: LayoutGrid, color: "#D4AF37" },
+    { id: "", label: department === "all" ? "All Categories" : department === "devices" ? "All Devices" : "All Clothing", icon: LayoutGrid, color: "#C8B993" },
     ...activeCatList.map(c => ({
       id: c,
       label: c,
@@ -120,7 +120,7 @@ export default function ShopFilters({ total }: { total: number }) {
   return (
     <div className="mb-6 space-y-4">
       {/* ── Main Department Switcher Tabs ─────────────────────── */}
-      <div className="flex items-center gap-2 p-1.5 bg-[#111111] border border-[#1F1F1F] rounded-2xl w-full overflow-x-auto">
+      <div className="flex items-center gap-2 p-1.5 bg-[#1D1D1D] border border-[#2A2A2A] rounded-2xl w-full overflow-x-auto">
         <button
           type="button"
           onClick={() => handleDepartmentChange("all")}
@@ -130,7 +130,7 @@ export default function ShopFilters({ total }: { total: number }) {
               : "text-gray-400 hover:text-white hover:bg-white/5"
           }`}
         >
-          <Layers size={15} className={department === "all" ? "text-[#D4AF37]" : "text-gray-500"} />
+          <Layers size={15} className={department === "all" ? "text-[#C8B993]" : "text-gray-500"} />
           <span>All Store</span>
         </button>
 
@@ -139,7 +139,7 @@ export default function ShopFilters({ total }: { total: number }) {
           onClick={() => handleDepartmentChange("devices")}
           className={`flex-1 min-w-[160px] flex items-center justify-center gap-2 py-3 px-4 rounded-xl text-xs font-bold transition-all ${
             department === "devices"
-              ? "bg-[#D4AF37]/15 text-[#D4AF37] border border-[#D4AF37]/40 shadow-lg shadow-[#D4AF37]/10"
+              ? "bg-[#C8B993]/15 text-[#C8B993] border border-[#C8B993]/40 shadow-lg shadow-[#C8B993]/10"
               : "text-gray-400 hover:text-white hover:bg-white/5"
           }`}
         >
@@ -152,7 +152,7 @@ export default function ShopFilters({ total }: { total: number }) {
           onClick={() => handleDepartmentChange("clothing")}
           className={`flex-1 min-w-[180px] flex items-center justify-center gap-2 py-3 px-4 rounded-xl text-xs font-bold transition-all ${
             department === "clothing"
-              ? "bg-gradient-to-r from-[#D4AF37] to-[#AA771C] text-black shadow-lg shadow-[#D4AF37]/20 font-black"
+              ? "bg-gradient-to-r from-[#C8B993] to-[#AA771C] text-black shadow-lg shadow-[#C8B993]/20 font-black"
               : "text-gray-400 hover:text-white hover:bg-white/5"
           }`}
         >
@@ -166,9 +166,9 @@ export default function ShopFilters({ total }: { total: number }) {
 
       {/* Department Notice for Clothing */}
       {department === "clothing" && (
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 p-4 rounded-2xl bg-gradient-to-r from-[#D4AF37]/15 via-[#141414] to-[#141414] border border-[#D4AF37]/30">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 p-4 rounded-2xl bg-gradient-to-r from-[#C8B993]/15 via-[#141414] to-[#141414] border border-[#C8B993]/30">
           <div className="flex items-center gap-2.5">
-            <Sparkles size={18} className="text-[#D4AF37] shrink-0" />
+            <Sparkles size={18} className="text-[#C8B993] shrink-0" />
             <div>
               <p className="text-xs font-bold text-white">Official Clothing & Streetwear Drop — Coming Soon</p>
               <p className="text-[11px] text-gray-400">Email us to get launch-day priority.</p>
@@ -193,7 +193,7 @@ export default function ShopFilters({ total }: { total: number }) {
             placeholder={department === "clothing" ? "Search hoodies, jackets, sneakers, caps…" : "Search smartphones, TVs, laptops, solar…"}
             value={searchVal}
             onChange={e => handleSearch(e.target.value)}
-            className="w-full bg-[#111111] border border-[#1F1F1F] rounded-xl pl-9 pr-8 py-2.5 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-[#D4AF37]/50 transition-colors"
+            className="w-full bg-[#1D1D1D] border border-[#2A2A2A] rounded-xl pl-9 pr-8 py-2.5 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-[#C8B993]/50 transition-colors"
           />
           {searchVal && (
             <button
@@ -209,7 +209,7 @@ export default function ShopFilters({ total }: { total: number }) {
           <select
             value={sort}
             onChange={e => push({ sort: e.target.value })}
-            className="appearance-none bg-[#111111] border border-[#1F1F1F] rounded-xl pl-3 pr-8 py-2.5 text-sm text-gray-300 focus:outline-none focus:border-[#D4AF37]/50 transition-colors cursor-pointer"
+            className="appearance-none bg-[#1D1D1D] border border-[#2A2A2A] rounded-xl pl-3 pr-8 py-2.5 text-sm text-gray-300 focus:outline-none focus:border-[#C8B993]/50 transition-colors cursor-pointer"
           >
             {SORT_OPTIONS.map(o => <option key={o.value} value={o.value}>{o.label}</option>)}
           </select>
@@ -225,8 +225,8 @@ export default function ShopFilters({ total }: { total: number }) {
             onClick={() => push({ price: r.value })}
             className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
               price === r.value
-                ? "bg-[#D4AF37]/15 text-[#D4AF37] border border-[#D4AF37]/40"
-                : "bg-[#111111] border border-[#1F1F1F] text-gray-400 hover:border-[#D4AF37]/30 hover:text-gray-200"
+                ? "bg-[#C8B993]/15 text-[#C8B993] border border-[#C8B993]/40"
+                : "bg-[#1D1D1D] border border-[#2A2A2A] text-gray-400 hover:border-[#C8B993]/30 hover:text-gray-200"
             }`}
           >
             {r.label}
@@ -243,9 +243,9 @@ export default function ShopFilters({ total }: { total: number }) {
           onClick={() => scrollBy(-1)}
           aria-label="Scroll left"
           className="hidden md:flex absolute left-0 top-0 bottom-0 z-10 items-center pr-4 pl-1"
-          style={{ background: "linear-gradient(to right, #0A0A0A 55%, transparent)" }}
+          style={{ background: "linear-gradient(to right, #111111 55%, transparent)" }}
         >
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" strokeWidth="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C8B993" strokeWidth="2.5"><path d="M15 18l-6-6 6-6"/></svg>
         </button>
 
         <div
@@ -265,19 +265,19 @@ export default function ShopFilters({ total }: { total: number }) {
                 <div
                   className="w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-200"
                   style={{
-                    background: active ? "#D4AF37" : `${color}18`,
-                    border: active ? "1px solid #D4AF37" : "1px solid rgba(255,255,255,0.06)",
-                    boxShadow: active ? "0 4px 14px rgba(212,175,55,0.3)" : "none",
+                    background: active ? "#C8B993" : `${color}18`,
+                    border: active ? "1px solid #C8B993" : "1px solid rgba(255,255,255,0.06)",
+                    boxShadow: active ? "0 4px 14px rgba(200,185,147,0.3)" : "none",
                   }}
                 >
-                  <Icon size={17} color={active ? "#0A0A0A" : color} strokeWidth={active ? 2.5 : 1.8} />
+                  <Icon size={17} color={active ? "#111111" : color} strokeWidth={active ? 2.5 : 1.8} />
                 </div>
                 <span
                   style={{
                     fontSize: 11,
                     fontFamily: "var(--font-outfit)",
                     fontWeight: active ? 700 : 500,
-                    color: active ? "#D4AF37" : "#6B7280",
+                    color: active ? "#C8B993" : "#6B7280",
                     whiteSpace: "nowrap",
                   }}
                 >
@@ -292,9 +292,9 @@ export default function ShopFilters({ total }: { total: number }) {
           onClick={() => scrollBy(1)}
           aria-label="Scroll right"
           className="hidden md:flex absolute right-0 top-0 bottom-0 z-10 items-center pl-4 pr-1 justify-end"
-          style={{ background: "linear-gradient(to left, #0A0A0A 55%, transparent)" }}
+          style={{ background: "linear-gradient(to left, #111111 55%, transparent)" }}
         >
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" strokeWidth="2.5"><path d="M9 18l6-6-6-6"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C8B993" strokeWidth="2.5"><path d="M9 18l6-6-6-6"/></svg>
         </button>
       </div>
 
@@ -305,9 +305,9 @@ export default function ShopFilters({ total }: { total: number }) {
             <span
               className="inline-flex items-center gap-1 text-xs px-2.5 py-1 rounded-full"
               style={{
-                background: `${CAT_META[cat]?.color ?? "#D4AF37"}15`,
-                color: CAT_META[cat]?.color ?? "#D4AF37",
-                border: `1px solid ${CAT_META[cat]?.color ?? "#D4AF37"}30`,
+                background: `${CAT_META[cat]?.color ?? "#C8B993"}15`,
+                color: CAT_META[cat]?.color ?? "#C8B993",
+                border: `1px solid ${CAT_META[cat]?.color ?? "#C8B993"}30`,
               }}
             >
               {cat}
@@ -315,7 +315,7 @@ export default function ShopFilters({ total }: { total: number }) {
             </span>
           )}
           {price && (
-            <span className="inline-flex items-center gap-1 text-xs px-2.5 py-1 rounded-full bg-[#D4AF37]/10 text-[#D4AF37] border border-[#D4AF37]/25">
+            <span className="inline-flex items-center gap-1 text-xs px-2.5 py-1 rounded-full bg-[#C8B993]/10 text-[#C8B993] border border-[#C8B993]/25">
               {PRICE_RANGES.find(r => r.value === price)?.label}
               <button onClick={() => push({ price: "" })}><X size={9} /></button>
             </span>

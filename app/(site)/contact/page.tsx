@@ -48,7 +48,7 @@ export default function ContactPage() {
           {[
             {
               icon: Mail, label: "Email",
-              content: <a href="mailto:support@bevanssons.store" className="text-white font-semibold hover:text-[#D4AF37] transition-colors text-sm">support@bevanssons.store</a>,
+              content: <a href="mailto:support@bevanssons.store" className="text-white font-semibold hover:text-[#C8B993] transition-colors text-sm">support@bevanssons.store</a>,
               sub: "We reply within 24 hours",
             },
             {
@@ -62,9 +62,9 @@ export default function ContactPage() {
               sub: "Sunday: 9am–3pm",
             },
           ].map(({ icon: Icon, label, content, sub }) => (
-            <div key={label} className="bg-[#111111] border border-[#1F1F1F] rounded-2xl p-5 flex gap-4">
-              <div className="w-10 h-10 rounded-xl bg-[#D4AF37]/10 flex items-center justify-center shrink-0">
-                <Icon size={18} color="#D4AF37" strokeWidth={1.8} />
+            <div key={label} className="bg-[#1D1D1D] border border-[#2A2A2A] rounded-2xl p-5 flex gap-4">
+              <div className="w-10 h-10 rounded-xl bg-[#C8B993]/10 flex items-center justify-center shrink-0">
+                <Icon size={18} color="#C8B993" strokeWidth={1.8} />
               </div>
               <div>
                 <p className="text-gray-500 text-xs uppercase tracking-wide font-semibold mb-1">{label}</p>
@@ -74,7 +74,7 @@ export default function ContactPage() {
             </div>
           ))}
 
-          <div className="bg-[#111111] border border-[#D4AF37]/20 rounded-2xl p-5">
+          <div className="bg-[#1D1D1D] border border-[#C8B993]/20 rounded-2xl p-5">
             <p className="text-white font-bold text-sm mb-2">Fastest Response</p>
             <p className="text-gray-400 text-sm leading-relaxed mb-4">
               For the quickest help, email us directly. We typically reply within a few hours.
@@ -90,15 +90,15 @@ export default function ContactPage() {
         {/* Form */}
         <div className="md:col-span-3">
           {status === "done" ? (
-            <div className="bg-[#111111] border border-[#1F1F1F] rounded-2xl p-10 text-center h-full flex flex-col items-center justify-center gap-4">
-              <div className="w-16 h-16 rounded-full bg-[#D4AF37]/10 border border-[#D4AF37]/30 flex items-center justify-center">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" strokeWidth="2.5"><polyline points="20 6 9 17 4 12" /></svg>
+            <div className="bg-[#1D1D1D] border border-[#2A2A2A] rounded-2xl p-10 text-center h-full flex flex-col items-center justify-center gap-4">
+              <div className="w-16 h-16 rounded-full bg-[#C8B993]/10 border border-[#C8B993]/30 flex items-center justify-center">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C8B993" strokeWidth="2.5"><polyline points="20 6 9 17 4 12" /></svg>
               </div>
               <h3 className="text-xl font-bold text-white">Message Sent!</h3>
               <p className="text-gray-400">Thanks for reaching out. We&apos;ll be in touch within 24 hours.</p>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="bg-[#111111] border border-[#1F1F1F] rounded-2xl p-8 space-y-5">
+            <form onSubmit={handleSubmit} className="bg-[#1D1D1D] border border-[#2A2A2A] rounded-2xl p-8 space-y-5">
               <h2 className="text-lg font-bold text-white mb-2">Send Us a Message</h2>
 
               <div className="grid sm:grid-cols-2 gap-4">
@@ -107,14 +107,14 @@ export default function ContactPage() {
                   <input required type="text" value={form.name}
                     onChange={e => setForm(f => ({ ...f, name: e.target.value }))}
                     placeholder="John Smith"
-                    className="w-full bg-[#0A0A0A] border border-[#2a2a2a] rounded-xl px-4 py-3 text-white text-sm placeholder-gray-600" />
+                    className="w-full bg-[#111111] border border-[#2a2a2a] rounded-xl px-4 py-3 text-white text-sm placeholder-gray-600" />
                 </div>
                 <div>
                   <label className="block text-sm text-gray-400 mb-1.5">Phone *</label>
                   <input required type="tel" value={form.phone}
                     onChange={e => setForm(f => ({ ...f, phone: e.target.value }))}
                     placeholder="082 000 0000"
-                    className="w-full bg-[#0A0A0A] border border-[#2a2a2a] rounded-xl px-4 py-3 text-white text-sm placeholder-gray-600" />
+                    className="w-full bg-[#111111] border border-[#2a2a2a] rounded-xl px-4 py-3 text-white text-sm placeholder-gray-600" />
                 </div>
               </div>
 
@@ -123,14 +123,14 @@ export default function ContactPage() {
                 <input type="email" value={form.email}
                   onChange={e => setForm(f => ({ ...f, email: e.target.value }))}
                   placeholder="john@example.com"
-                  className="w-full bg-[#0A0A0A] border border-[#2a2a2a] rounded-xl px-4 py-3 text-white text-sm placeholder-gray-600" />
+                  className="w-full bg-[#111111] border border-[#2a2a2a] rounded-xl px-4 py-3 text-white text-sm placeholder-gray-600" />
               </div>
 
               <div>
                 <label className="block text-sm text-gray-400 mb-1.5">Enquiry Type</label>
                 <select value={form.type}
                   onChange={e => setForm(f => ({ ...f, type: e.target.value }))}
-                  className="w-full bg-[#0A0A0A] border border-[#2a2a2a] rounded-xl px-4 py-3 text-white text-sm">
+                  className="w-full bg-[#111111] border border-[#2a2a2a] rounded-xl px-4 py-3 text-white text-sm">
                   {["General Enquiry", "Product Availability", "Order Tracking", "Delivery Information", "Returns & Refunds", "Warranty Claim", "Bulk / Business Order", "Other"].map(t => (
                     <option key={t} value={t}>{t}</option>
                   ))}
@@ -142,7 +142,7 @@ export default function ContactPage() {
                 <textarea required rows={5} value={form.message}
                   onChange={e => setForm(f => ({ ...f, message: e.target.value }))}
                   placeholder="Tell us what you need..."
-                  className="w-full bg-[#0A0A0A] border border-[#2a2a2a] rounded-xl px-4 py-3 text-white text-sm placeholder-gray-600 resize-none" />
+                  className="w-full bg-[#111111] border border-[#2a2a2a] rounded-xl px-4 py-3 text-white text-sm placeholder-gray-600 resize-none" />
               </div>
 
               {status === "error" && (

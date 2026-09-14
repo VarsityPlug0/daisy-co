@@ -8,7 +8,7 @@ import Link from "next/link";
 export const dynamic = "force-dynamic";
 
 // Section card config
-const GOLD  = "#D4AF37";
+const GOLD  = "#C8B993";
 const GREEN = "#10b981";
 const BLUE  = "#3b82f6";
 const AMBER = "#f59e0b";
@@ -97,8 +97,8 @@ export default async function Dashboard() {
           { label: "New Install. Apps", value: newInstallments, gold: newInstallments > 0 },
         ].map((s) => (
           <div key={s.label}
-            className={`bg-[#111111] border rounded-xl p-3 text-center ${s.gold ? "border-[#D4AF37]/40" : "border-[#1F1F1F]"}`}>
-            <p className={`text-2xl font-bold mb-0.5 ${s.gold ? "text-[#D4AF37]" : "text-white"}`}>{s.value}</p>
+            className={`bg-[#1D1D1D] border rounded-xl p-3 text-center ${s.gold ? "border-[#C8B993]/40" : "border-[#2A2A2A]"}`}>
+            <p className={`text-2xl font-bold mb-0.5 ${s.gold ? "text-[#C8B993]" : "text-white"}`}>{s.value}</p>
             <p className="text-gray-500 text-[10px] leading-tight">{s.label}</p>
           </div>
         ))}
@@ -111,7 +111,7 @@ export default async function Dashboard() {
 
           {/* Orders */}
           <Link href="/admin/dashboard/orders"
-            className="group bg-[#111111] border border-[#1F1F1F] hover:border-[#D4AF37]/40 rounded-2xl p-4 transition-all hover:bg-[#141414]">
+            className="group bg-[#1D1D1D] border border-[#2A2A2A] hover:border-[#C8B993]/40 rounded-2xl p-4 transition-all hover:bg-[#141414]">
             <div className="flex items-start justify-between mb-3">
               <div className="w-9 h-9 rounded-xl flex items-center justify-center" style={{ background: `${AMBER}18` }}>
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={AMBER} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -130,7 +130,7 @@ export default async function Dashboard() {
 
           {/* Quotes */}
           <Link href="/admin/dashboard/quotes"
-            className="group bg-[#111111] border border-[#1F1F1F] hover:border-[#D4AF37]/40 rounded-2xl p-4 transition-all hover:bg-[#141414]">
+            className="group bg-[#1D1D1D] border border-[#2A2A2A] hover:border-[#C8B993]/40 rounded-2xl p-4 transition-all hover:bg-[#141414]">
             <div className="flex items-start justify-between mb-3">
               <div className="w-9 h-9 rounded-xl flex items-center justify-center" style={{ background: `${BLUE}18` }}>
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={BLUE} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -149,7 +149,7 @@ export default async function Dashboard() {
 
           {/* Installments */}
           <Link href="/admin/dashboard/installments"
-            className="group bg-[#111111] border border-[#1F1F1F] hover:border-[#D4AF37]/40 rounded-2xl p-4 transition-all hover:bg-[#141414]">
+            className="group bg-[#1D1D1D] border border-[#2A2A2A] hover:border-[#C8B993]/40 rounded-2xl p-4 transition-all hover:bg-[#141414]">
             <div className="flex items-start justify-between mb-3">
               <div className="w-9 h-9 rounded-xl flex items-center justify-center" style={{ background: `${GREEN}18` }}>
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={GREEN} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -168,7 +168,7 @@ export default async function Dashboard() {
 
           {/* Leads */}
           <Link href="/admin/dashboard/leads"
-            className="group bg-[#111111] border border-[#1F1F1F] hover:border-[#D4AF37]/40 rounded-2xl p-4 transition-all hover:bg-[#141414]">
+            className="group bg-[#1D1D1D] border border-[#2A2A2A] hover:border-[#C8B993]/40 rounded-2xl p-4 transition-all hover:bg-[#141414]">
             <div className="flex items-start justify-between mb-3">
               <div className="w-9 h-9 rounded-xl flex items-center justify-center" style={{ background: `${PURPLE}18` }}>
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={PURPLE} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -187,7 +187,7 @@ export default async function Dashboard() {
 
           {/* Customers */}
           <Link href="/admin/dashboard/customers"
-            className="group bg-[#111111] border border-[#1F1F1F] hover:border-[#D4AF37]/40 rounded-2xl p-4 transition-all hover:bg-[#141414]">
+            className="group bg-[#1D1D1D] border border-[#2A2A2A] hover:border-[#C8B993]/40 rounded-2xl p-4 transition-all hover:bg-[#141414]">
             <div className="flex items-start justify-between mb-3">
               <div className="w-9 h-9 rounded-xl flex items-center justify-center" style={{ background: `${TEAL}18` }}>
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={TEAL} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -204,7 +204,7 @@ export default async function Dashboard() {
 
           {/* Site Images */}
           <Link href="/admin/dashboard/images"
-            className="group bg-[#111111] border border-[#1F1F1F] hover:border-[#D4AF37]/40 rounded-2xl p-4 transition-all hover:bg-[#141414]">
+            className="group bg-[#1D1D1D] border border-[#2A2A2A] hover:border-[#C8B993]/40 rounded-2xl p-4 transition-all hover:bg-[#141414]">
             <div className="flex items-start justify-between mb-3">
               <div className="w-9 h-9 rounded-xl flex items-center justify-center" style={{ background: `${ORANGE}18` }}>
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={ORANGE} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -218,7 +218,7 @@ export default async function Dashboard() {
 
           {/* Chat */}
           <Link href="/admin/dashboard/chat"
-            className="group bg-[#111111] border border-[#1F1F1F] hover:border-[#D4AF37]/40 rounded-2xl p-4 transition-all hover:bg-[#141414]">
+            className="group bg-[#1D1D1D] border border-[#2A2A2A] hover:border-[#C8B993]/40 rounded-2xl p-4 transition-all hover:bg-[#141414]">
             <div className="flex items-start justify-between mb-3">
               <div className="w-9 h-9 rounded-xl flex items-center justify-center" style={{ background: `${PINK}18` }}>
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={PINK} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -232,7 +232,7 @@ export default async function Dashboard() {
 
           {/* Products */}
           <Link href="/admin/dashboard/products"
-            className="group bg-[#111111] border border-[#1F1F1F] hover:border-[#D4AF37]/40 rounded-2xl p-4 transition-all hover:bg-[#141414]">
+            className="group bg-[#1D1D1D] border border-[#2A2A2A] hover:border-[#C8B993]/40 rounded-2xl p-4 transition-all hover:bg-[#141414]">
             <div className="flex items-start justify-between mb-3">
               <div className="w-9 h-9 rounded-xl flex items-center justify-center" style={{ background: `${GOLD}18` }}>
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={GOLD} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -250,7 +250,7 @@ export default async function Dashboard() {
 
           {/* Clothing & Apparel */}
           <Link href="/admin/dashboard/clothing"
-            className="group bg-[#111111] border border-[#1F1F1F] hover:border-[#D4AF37]/40 rounded-2xl p-4 transition-all hover:bg-[#141414]">
+            className="group bg-[#1D1D1D] border border-[#2A2A2A] hover:border-[#C8B993]/40 rounded-2xl p-4 transition-all hover:bg-[#141414]">
             <div className="flex items-start justify-between mb-3">
               <div className="w-9 h-9 rounded-xl flex items-center justify-center" style={{ background: `${ROSE}18` }}>
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={ROSE} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -271,10 +271,10 @@ export default async function Dashboard() {
       {/* ── Analytics ────────────────────────────────────────────────────────── */}
       <div className="grid lg:grid-cols-3 gap-4 mb-8">
 
-        <div className="lg:col-span-2 bg-[#111111] border border-[#1F1F1F] rounded-2xl p-5">
+        <div className="lg:col-span-2 bg-[#1D1D1D] border border-[#2A2A2A] rounded-2xl p-5">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-sm font-bold text-white">Weekly Revenue</h2>
-            <p className="text-[#D4AF37] font-bold text-sm">R {totalRevenue.toLocaleString()}</p>
+            <p className="text-[#C8B993] font-bold text-sm">R {totalRevenue.toLocaleString()}</p>
           </div>
           <div className="flex items-end gap-1.5 h-24">
             {weeklyRevenue.map(({ label, revenue }) => (
@@ -283,14 +283,14 @@ export default async function Dashboard() {
                   className="w-full rounded-t-sm"
                   style={{
                     height: revenue > 0 ? `${Math.max((revenue / maxWeekRevenue) * 100, 6)}%` : "3px",
-                    background: revenue > 0 ? "#D4AF37" : "#1F1F1F",
+                    background: revenue > 0 ? "#C8B993" : "#2A2A2A",
                   }}
                 />
                 <span className="text-[8px] text-gray-600 whitespace-nowrap leading-none">{label}</span>
               </div>
             ))}
           </div>
-          <div className="flex gap-6 mt-4 pt-3 border-t border-[#1F1F1F]">
+          <div className="flex gap-6 mt-4 pt-3 border-t border-[#2A2A2A]">
             <div>
               <p className="text-[10px] text-gray-500 uppercase tracking-wider">Avg Order</p>
               <p className="text-white font-bold text-sm">R {avgOrderValue.toLocaleString()}</p>
@@ -301,19 +301,19 @@ export default async function Dashboard() {
             </div>
             <div>
               <p className="text-[10px] text-gray-500 uppercase tracking-wider">Total Revenue</p>
-              <p className="text-[#D4AF37] font-bold text-sm">R {totalRevenue.toLocaleString()}</p>
+              <p className="text-[#C8B993] font-bold text-sm">R {totalRevenue.toLocaleString()}</p>
             </div>
           </div>
         </div>
 
-        <div className="bg-[#111111] border border-[#1F1F1F] rounded-2xl p-5">
+        <div className="bg-[#1D1D1D] border border-[#2A2A2A] rounded-2xl p-5">
           <h2 className="text-sm font-bold text-white mb-4">Conversion Funnel</h2>
           <div className="space-y-3.5">
             {([
               { label: "Orders Placed",   value: totalOrders, p: 100,             color: "#9ca3af" },
               { label: "Proof Submitted", value: withProof,   p: pct(withProof),  color: "#f59e0b" },
               { label: "Approved",        value: approvedN,   p: pct(approvedN),  color: "#10b981" },
-              { label: "Delivered",       value: deliveredN,  p: pct(deliveredN), color: "#D4AF37" },
+              { label: "Delivered",       value: deliveredN,  p: pct(deliveredN), color: "#C8B993" },
             ] as { label: string; value: number; p: number; color: string }[]).map(({ label, value, p, color }) => (
               <div key={label}>
                 <div className="flex justify-between mb-1">
@@ -322,7 +322,7 @@ export default async function Dashboard() {
                     {value} <span className="text-gray-600 font-normal">({p}%)</span>
                   </span>
                 </div>
-                <div className="h-1.5 bg-[#1F1F1F] rounded-full overflow-hidden">
+                <div className="h-1.5 bg-[#2A2A2A] rounded-full overflow-hidden">
                   <div className="h-full rounded-full" style={{ width: `${p}%`, background: color }} />
                 </div>
               </div>
@@ -333,8 +333,8 @@ export default async function Dashboard() {
 
       {/* Top selling products */}
       {topProducts.length > 0 && (
-        <div className="bg-[#111111] border border-[#1F1F1F] rounded-2xl overflow-hidden mb-8">
-          <div className="px-5 py-3.5 border-b border-[#1F1F1F]">
+        <div className="bg-[#1D1D1D] border border-[#2A2A2A] rounded-2xl overflow-hidden mb-8">
+          <div className="px-5 py-3.5 border-b border-[#2A2A2A]">
             <h2 className="text-sm font-bold text-white">Top Selling Products</h2>
           </div>
           <div className="divide-y divide-[#1A1A1A]">
@@ -343,7 +343,7 @@ export default async function Dashboard() {
                 <span className="text-gray-600 text-xs font-bold w-4 shrink-0">{i + 1}</span>
                 <p className="text-white text-sm flex-1 truncate">{p.name}</p>
                 <span className="text-gray-500 text-xs shrink-0">{p.qty} sold</span>
-                <span className="text-[#D4AF37] font-bold text-sm shrink-0">R {Math.round(p.revenue).toLocaleString()}</span>
+                <span className="text-[#C8B993] font-bold text-sm shrink-0">R {Math.round(p.revenue).toLocaleString()}</span>
               </div>
             ))}
           </div>

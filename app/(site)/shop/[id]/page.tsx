@@ -96,11 +96,11 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
       {/* Breadcrumb */}
       <div className="flex items-center justify-between gap-2 mb-6">
         <div className="flex items-center gap-2 text-sm text-gray-500 min-w-0">
-          <Link href="/shop" className="flex items-center gap-1.5 hover:text-[#D4AF37] transition-colors shrink-0">
+          <Link href="/shop" className="flex items-center gap-1.5 hover:text-[#C8B993] transition-colors shrink-0">
             <ArrowLeft size={14} /> Shop
           </Link>
           <span>/</span>
-          <span className="text-[#D4AF37] shrink-0">{product.category}</span>
+          <span className="text-[#C8B993] shrink-0">{product.category}</span>
           <span>/</span>
           <span className="text-gray-400 truncate">{product.name}</span>
         </div>
@@ -111,7 +111,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
 
         {/* Image */}
-        <div className="relative aspect-square rounded-3xl overflow-hidden bg-[#111111] border border-[#1F1F1F]">
+        <div className="relative aspect-square rounded-3xl overflow-hidden bg-[#1D1D1D] border border-[#2A2A2A]">
           {product.imageUrl ? (
             <Image
               src={product.imageUrl}
@@ -135,10 +135,10 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
 
         {/* Details */}
         <div className="flex flex-col justify-center">
-          <p className="text-[#D4AF37] text-xs uppercase tracking-widest mb-3">{product.category}</p>
+          <p className="text-[#C8B993] text-xs uppercase tracking-widest mb-3">{product.category}</p>
           <h1 className="text-2xl sm:text-3xl font-extrabold text-white mb-3 leading-tight">{product.name}</h1>
           <div className="flex items-center gap-3 mb-4">
-            <p className="text-3xl font-bold text-[#D4AF37]">{product.price}</p>
+            <p className="text-3xl font-bold text-[#C8B993]">{product.price}</p>
             {product.originalPrice && (
               <p className="text-gray-500 text-lg line-through">{product.originalPrice}</p>
             )}
@@ -157,7 +157,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
               { icon: MessageCircle,text: "Expert advice available by email" },
             ].map((item) => (
               <div key={item.text} className="flex items-center gap-3 text-sm text-gray-300">
-                <item.icon size={16} color="#D4AF37" strokeWidth={2} className="shrink-0" />
+                <item.icon size={16} color="#C8B993" strokeWidth={2} className="shrink-0" />
                 {item.text}
               </div>
             ))}
@@ -192,16 +192,16 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
         <section>
           <div className="flex items-center gap-5 mb-8">
             <h2 className="text-2xl font-bold text-white whitespace-nowrap">More in {product.category}</h2>
-            <div className="flex-1 h-px bg-[#1F1F1F]" />
+            <div className="flex-1 h-px bg-[#2A2A2A]" />
             <Link href={`/shop?cat=${encodeURIComponent(product.category)}`}
-              className="text-[#D4AF37] text-sm hover:underline whitespace-nowrap">
+              className="text-[#C8B993] text-sm hover:underline whitespace-nowrap">
               View all
             </Link>
           </div>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-5">
             {related.map((p) => (
               <Link key={p.id} href={`/shop/${p.id}`}
-                className="bg-[#111111] border border-[#1F1F1F] rounded-2xl overflow-hidden card-hover flex flex-col group">
+                className="bg-[#1D1D1D] border border-[#2A2A2A] rounded-2xl overflow-hidden card-hover flex flex-col group">
                 <div className="relative h-64 bg-[#0f0f0f] overflow-hidden">
                   {p.imageUrl ? (
                     <Image src={p.imageUrl} alt={p.name} fill className="object-contain transition-transform duration-500 group-hover:scale-105"
@@ -211,11 +211,11 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
                       <Package size={40} color="#2a2a2a" strokeWidth={1} />
                     </div>
                   )}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#111111]/60 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#1D1D1D]/60 to-transparent" />
                 </div>
                 <div className="p-4 flex flex-col flex-1">
                   <p className="font-semibold text-white text-sm leading-snug mb-2 flex-1">{p.name}</p>
-                  <p className="text-[#D4AF37] font-bold text-base">{p.price}</p>
+                  <p className="text-[#C8B993] font-bold text-base">{p.price}</p>
                 </div>
               </Link>
             ))}

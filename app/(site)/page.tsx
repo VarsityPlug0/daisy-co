@@ -30,7 +30,7 @@ const CATEGORIES = [
   { label: "Gaming PCs",         href: "/shop?cat=Gaming%20PCs",                     icon: Gamepad2,     color: "#F59E0B" },
   { label: "Laptops & MacBooks", href: "/shop?cat=Laptops%20%26%20MacBooks",         icon: Laptop,       color: "#10B981" },
   { label: "Home Appliances",    href: "/shop?cat=Home%20Appliances",                icon: Package,      color: "#06B6D4" },
-  { label: "Solar & Power",      href: "/shop?cat=Solar%20%26%20Power%20Solutions",  icon: Zap,          color: "#D4AF37" },
+  { label: "Solar & Power",      href: "/shop?cat=Solar%20%26%20Power%20Solutions",  icon: Zap,          color: "#C8B993" },
   { label: "All Products",       href: "/shop",                                      icon: Package,      color: "#6B7280" },
 ];
 
@@ -78,17 +78,17 @@ export default async function HomePage() {
     <div className="overflow-x-hidden">
 
       {/* ── Hero ─────────────────────────────────────────────────── */}
-      <section className="relative min-h-[88vh] flex items-center" style={{ background: "linear-gradient(135deg, #0A0A0A 0%, #111111 50%, #0f0d08 100%)" }}>
+      <section className="relative min-h-[88vh] flex items-center" style={{ background: "linear-gradient(135deg, #111111 0%, #1D1D1D 50%, #0f0d08 100%)" }}>
         {/* Radial glow */}
         <div className="absolute inset-0 pointer-events-none">
-          <div style={{ position: "absolute", top: "10%", left: "50%", transform: "translateX(-50%)", width: 900, height: 500, background: "radial-gradient(ellipse, rgba(212,175,55,0.08) 0%, transparent 70%)", borderRadius: "50%" }} />
+          <div style={{ position: "absolute", top: "10%", left: "50%", transform: "translateX(-50%)", width: 900, height: 500, background: "radial-gradient(ellipse, rgba(200,185,147,0.08) 0%, transparent 70%)", borderRadius: "50%" }} />
         </div>
 
         <div className="max-w-7xl mx-auto px-5 sm:px-8 w-full py-20 md:py-28 grid md:grid-cols-2 gap-12 items-center">
           <div>
-            <div className="inline-flex items-center gap-2 bg-[#D4AF37]/10 border border-[#D4AF37]/20 rounded-full px-4 py-2 mb-6">
-              <Tag size={12} color="#D4AF37" />
-              <span style={{ fontSize: 11, fontFamily: "var(--font-outfit)", fontWeight: 700, color: "#D4AF37", letterSpacing: "0.08em" }}>SPECIAL OFFERS — AUG TO DEC</span>
+            <div className="inline-flex items-center gap-2 bg-[#C8B993]/10 border border-[#C8B993]/20 rounded-full px-4 py-2 mb-6">
+              <Tag size={12} color="#C8B993" />
+              <span style={{ fontSize: 11, fontFamily: "var(--font-outfit)", fontWeight: 700, color: "#C8B993", letterSpacing: "0.08em" }}>SPECIAL OFFERS — AUG TO DEC</span>
             </div>
             <h1 style={{ fontFamily: "var(--font-outfit)", fontWeight: 900, fontSize: "clamp(2.4rem,5vw,4rem)", lineHeight: 1.08, color: "#fff", marginBottom: "1.5rem" }}>
               Premium Gadgets<br />
@@ -109,7 +109,7 @@ export default async function HomePage() {
             <div className="flex flex-wrap gap-6 mt-10">
               {["Free Worldwide Delivery", "25% Off R10k+ Orders", "Authentic Products"].map((b) => (
                 <div key={b} className="flex items-center gap-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#D4AF37]" />
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#C8B993]" />
                   <span style={{ fontSize: 12, color: "#9CA3AF", fontFamily: "var(--font-outfit)", fontWeight: 500 }}>{b}</span>
                 </div>
               ))}
@@ -142,12 +142,12 @@ export default async function HomePage() {
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
           {CATEGORIES.map(({ label, href, icon: Icon, color }) => (
             <Link key={label} href={href}
-              className="bg-[#111111] border border-[#1F1F1F] rounded-2xl p-5 flex flex-col items-center gap-3 text-center card-hover group">
+              className="bg-[#1D1D1D] border border-[#2A2A2A] rounded-2xl p-5 flex flex-col items-center gap-3 text-center card-hover group">
               <div className="w-12 h-12 rounded-xl flex items-center justify-center" style={{ background: `${color}18` }}>
                 <Icon size={22} color={color} strokeWidth={1.8} />
               </div>
               <span style={{ fontSize: 13, fontFamily: "var(--font-outfit)", fontWeight: 600, color: "#D1D5DB" }}
-                className="group-hover:text-[#D4AF37] transition-colors">{label}</span>
+                className="group-hover:text-[#C8B993] transition-colors">{label}</span>
             </Link>
           ))}
         </div>
@@ -156,17 +156,17 @@ export default async function HomePage() {
       {/* ── Special Offer Banner ─────────────────────────────────── */}
       <section className="mx-4 sm:mx-8 lg:mx-auto max-w-7xl mb-8">
         <div className="relative rounded-3xl overflow-hidden p-10 md:p-16 text-center"
-          style={{ background: "linear-gradient(135deg, #C9971C, #D4AF37, #F0CE6A, #D4AF37, #C9971C)" }}>
+          style={{ background: "linear-gradient(135deg, #9C8F72, #C8B993, #DDD2B7, #C8B993, #9C8F72)" }}>
           <div className="relative z-10">
-            <p style={{ fontSize: 11, fontFamily: "var(--font-outfit)", fontWeight: 800, letterSpacing: "0.15em", color: "#0A0A0A", textTransform: "uppercase", marginBottom: 8 }}>Limited Time</p>
-            <h2 style={{ fontFamily: "var(--font-outfit)", fontWeight: 900, fontSize: "clamp(2rem,5vw,3.5rem)", color: "#0A0A0A", lineHeight: 1.1, marginBottom: 12 }}>
+            <p style={{ fontSize: 11, fontFamily: "var(--font-outfit)", fontWeight: 800, letterSpacing: "0.15em", color: "#111111", textTransform: "uppercase", marginBottom: 8 }}>Limited Time</p>
+            <h2 style={{ fontFamily: "var(--font-outfit)", fontWeight: 900, fontSize: "clamp(2rem,5vw,3.5rem)", color: "#111111", lineHeight: 1.1, marginBottom: 12 }}>
               30% OFF Selected Products
             </h2>
             <p style={{ color: "#1a1a00", fontSize: 16, marginBottom: 28, fontWeight: 500 }}>
               Home Appliances · Tablets · Watches — Orders over R10,000 get an extra 25% discount
             </p>
             <Link href="/special-offers"
-              className="inline-flex items-center gap-2 bg-[#0A0A0A] text-[#D4AF37] font-bold px-8 py-4 rounded-xl text-sm hover:bg-[#111] transition-colors">
+              className="inline-flex items-center gap-2 bg-[#111111] text-[#C8B993] font-bold px-8 py-4 rounded-xl text-sm hover:bg-[#111] transition-colors">
               Shop the Sale <ChevronRight size={15} />
             </Link>
           </div>
@@ -181,7 +181,7 @@ export default async function HomePage() {
               <p className="section-label mb-2">⚡ Hand-picked Devices</p>
               <h2 className="text-3xl font-extrabold text-white">Featured <span className="gold-text">Devices & Tech</span></h2>
             </div>
-            <Link href="/shop" className="text-[#D4AF37] text-sm font-semibold flex items-center gap-1 hover:gap-2 transition-all">
+            <Link href="/shop" className="text-[#C8B993] text-sm font-semibold flex items-center gap-1 hover:gap-2 transition-all">
               View All Tech <ChevronRight size={14} />
             </Link>
           </div>
@@ -193,10 +193,10 @@ export default async function HomePage() {
 
       {/* ── Streetwear & Apparel Drop (Coming Soon) ────────────── */}
       {featuredClothing.length > 0 && (
-        <section className="max-w-7xl mx-auto px-5 sm:px-8 py-16 border-t border-[#1F1F1F]">
+        <section className="max-w-7xl mx-auto px-5 sm:px-8 py-16 border-t border-[#2A2A2A]">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-10 gap-4">
             <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#D4AF37]/15 border border-[#D4AF37]/40 text-[#D4AF37] text-xs font-bold uppercase tracking-wider mb-2">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#C8B993]/15 border border-[#C8B993]/40 text-[#C8B993] text-xs font-bold uppercase tracking-wider mb-2">
                 <Sparkles size={13} /> Official Drop Preview
               </div>
               <h2 className="text-3xl font-extrabold text-white">Bevanssons Streetwear <span className="gold-text">Collection</span></h2>
@@ -214,13 +214,13 @@ export default async function HomePage() {
 
       {/* ── New Arrivals ─────────────────────────────────────────── */}
       {newArrivals.length > 0 && (
-        <section className="max-w-7xl mx-auto px-5 sm:px-8 pb-20 border-t border-[#1F1F1F] pt-16">
+        <section className="max-w-7xl mx-auto px-5 sm:px-8 pb-20 border-t border-[#2A2A2A] pt-16">
           <div className="flex items-end justify-between mb-10">
             <div>
               <p className="section-label mb-2">Just landed</p>
               <h2 className="text-3xl font-extrabold text-white">New <span className="gold-text">Arrivals</span></h2>
             </div>
-            <Link href="/new-arrivals" className="text-[#D4AF37] text-sm font-semibold flex items-center gap-1 hover:gap-2 transition-all">
+            <Link href="/new-arrivals" className="text-[#C8B993] text-sm font-semibold flex items-center gap-1 hover:gap-2 transition-all">
               See All <ChevronRight size={14} />
             </Link>
           </div>
@@ -231,7 +231,7 @@ export default async function HomePage() {
       )}
 
       {/* ── Why Choose Us ────────────────────────────────────────── */}
-      <section style={{ background: "#111111", borderTop: "1px solid rgba(255,255,255,0.05)", borderBottom: "1px solid rgba(255,255,255,0.05)" }}>
+      <section style={{ background: "#1D1D1D", borderTop: "1px solid rgba(255,255,255,0.05)", borderBottom: "1px solid rgba(255,255,255,0.05)" }}>
         <div className="max-w-7xl mx-auto px-5 sm:px-8 py-20">
           <div className="text-center mb-14">
             <p className="section-label mb-3">Why Bevanssons</p>
@@ -239,9 +239,9 @@ export default async function HomePage() {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {TRUST.map(({ icon: Icon, title, desc }) => (
-              <div key={title} className="bg-[#0d0d0d] border border-[#1F1F1F] rounded-2xl p-6 text-center">
-                <div className="w-12 h-12 rounded-xl bg-[#D4AF37]/10 flex items-center justify-center mx-auto mb-4">
-                  <Icon size={22} color="#D4AF37" strokeWidth={1.8} />
+              <div key={title} className="bg-[#0d0d0d] border border-[#2A2A2A] rounded-2xl p-6 text-center">
+                <div className="w-12 h-12 rounded-xl bg-[#C8B993]/10 flex items-center justify-center mx-auto mb-4">
+                  <Icon size={22} color="#C8B993" strokeWidth={1.8} />
                 </div>
                 <h3 style={{ fontFamily: "var(--font-outfit)", fontWeight: 700, fontSize: 15, color: "#fff", marginBottom: 8 }}>{title}</h3>
                 <p className="text-gray-500 text-sm leading-relaxed">{desc}</p>
@@ -259,14 +259,14 @@ export default async function HomePage() {
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {REVIEWS.map((r) => (
-            <div key={r.name} className="bg-[#111111] border border-[#1F1F1F] rounded-2xl p-6">
+            <div key={r.name} className="bg-[#1D1D1D] border border-[#2A2A2A] rounded-2xl p-6">
               <div className="flex gap-0.5 mb-3">
                 {Array.from({ length: r.stars }).map((_, i) => (
-                  <Star key={i} size={14} fill="#D4AF37" color="#D4AF37" />
+                  <Star key={i} size={14} fill="#C8B993" color="#C8B993" />
                 ))}
               </div>
               <p className="text-gray-300 text-sm leading-relaxed mb-4">&ldquo;{r.text}&rdquo;</p>
-              <div className="border-t border-[#1F1F1F] pt-4">
+              <div className="border-t border-[#2A2A2A] pt-4">
                 <p style={{ fontFamily: "var(--font-outfit)", fontWeight: 700, fontSize: 13, color: "#fff" }}>{r.name}</p>
                 <p className="text-xs text-gray-600">{r.location} &middot; {r.product}</p>
               </div>
@@ -282,7 +282,7 @@ export default async function HomePage() {
 
       {/* ── Contact CTA ─────────────────────────────────────────── */}
       <section className="max-w-7xl mx-auto px-5 sm:px-8 pb-24">
-        <div className="bg-[#111111] border border-[#1F1F1F] rounded-3xl p-12 text-center">
+        <div className="bg-[#1D1D1D] border border-[#2A2A2A] rounded-3xl p-12 text-center">
           <h2 className="text-3xl font-extrabold text-white mb-4">Need Help Choosing?</h2>
           <p className="text-gray-400 text-base leading-relaxed mb-8 max-w-xl mx-auto">
             Contact our team. We&apos;ll help you find the perfect gadget, check availability, and get you the best deal.
@@ -308,7 +308,7 @@ function ProductCard({ product }: { product: ReturnType<typeof getProducts>[0] }
 
   return (
     <Link href={`/shop/${product.id}`}
-      className="bg-[#111111] border border-[#1F1F1F] rounded-2xl overflow-hidden card-hover flex flex-col group">
+      className="bg-[#1D1D1D] border border-[#2A2A2A] rounded-2xl overflow-hidden card-hover flex flex-col group">
       <div className="relative h-64 bg-[#0f0f0f] overflow-hidden">
         {product.imageUrl ? (
           <Image src={product.imageUrl} alt={product.name} fill
@@ -319,9 +319,9 @@ function ProductCard({ product }: { product: ReturnType<typeof getProducts>[0] }
             <Package size={40} color="#2a2a2a" strokeWidth={1} />
           </div>
         )}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#111111]/60 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#1D1D1D]/60 to-transparent" />
         {isClothing ? (
-          <span className="absolute top-3 right-3 bg-[#D4AF37] text-black text-[9px] font-black uppercase tracking-wider px-2.5 py-1 rounded-full shadow-lg">
+          <span className="absolute top-3 right-3 bg-[#C8B993] text-black text-[9px] font-black uppercase tracking-wider px-2.5 py-1 rounded-full shadow-lg">
             COMING SOON
           </span>
         ) : product.featured ? (
@@ -329,10 +329,10 @@ function ProductCard({ product }: { product: ReturnType<typeof getProducts>[0] }
         ) : null}
       </div>
       <div className="p-5 flex flex-col flex-1">
-        <p className="text-[10px] text-[#D4AF37] uppercase tracking-wider mb-1.5">{product.category}</p>
+        <p className="text-[10px] text-[#C8B993] uppercase tracking-wider mb-1.5">{product.category}</p>
         <p className="font-semibold text-white text-sm leading-snug mb-2 flex-1 line-clamp-2">{product.name}</p>
-        <p className="text-[#D4AF37] font-bold text-lg mb-3">{product.price}</p>
-        <div className="w-full py-2.5 rounded-xl text-xs font-semibold text-center text-white border border-[#2a2a2a] group-hover:border-[#D4AF37]/50 transition-colors">
+        <p className="text-[#C8B993] font-bold text-lg mb-3">{product.price}</p>
+        <div className="w-full py-2.5 rounded-xl text-xs font-semibold text-center text-white border border-[#2a2a2a] group-hover:border-[#C8B993]/50 transition-colors">
           {isClothing ? "Preview Item (Soon)" : "View Details"}
         </div>
       </div>

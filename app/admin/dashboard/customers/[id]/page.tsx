@@ -12,7 +12,7 @@ const STATUS_COLORS: Record<string, string> = {
   approved:        "#10b981",
   rejected:        "#ef4444",
   shipped:         "#3b82f6",
-  delivered:       "#D4AF37",
+  delivered:       "#C8B993",
 };
 
 const PAID = new Set(["approved", "shipped", "delivered"]);
@@ -104,8 +104,8 @@ export default async function CustomerProfilePage({ params }: { params: Promise<
 
       {/* Header */}
       <div className="flex items-start gap-4 mb-6">
-        <div className="w-14 h-14 rounded-2xl bg-[#1F1F1F] flex items-center justify-center shrink-0">
-          <span className="text-2xl font-bold text-[#D4AF37]">{customer.name.charAt(0).toUpperCase()}</span>
+        <div className="w-14 h-14 rounded-2xl bg-[#2A2A2A] flex items-center justify-center shrink-0">
+          <span className="text-2xl font-bold text-[#C8B993]">{customer.name.charAt(0).toUpperCase()}</span>
         </div>
         <div className="flex-1 min-w-0">
           <h1 className="text-xl font-bold text-white">{customer.name}</h1>
@@ -115,11 +115,11 @@ export default async function CustomerProfilePage({ params }: { params: Promise<
         <div className="flex gap-2 shrink-0">
           <a href={`https://wa.me/${toWaPhone(customer.phone)}?text=${encodeURIComponent(`Hi ${customer.name.split(" ")[0]}, this is Bevanssons `)}`}
             target="_blank" rel="noopener noreferrer"
-            className="p-2.5 rounded-xl border border-[#1F1F1F] text-gray-500 hover:text-[#25D366] hover:border-[#25D366]/30 transition-colors">
+            className="p-2.5 rounded-xl border border-[#2A2A2A] text-gray-500 hover:text-[#25D366] hover:border-[#25D366]/30 transition-colors">
             <MessageCircle size={16} />
           </a>
           <a href={`mailto:${customer.email}`}
-            className="p-2.5 rounded-xl border border-[#1F1F1F] text-gray-500 hover:text-[#D4AF37] hover:border-[#D4AF37]/30 transition-colors">
+            className="p-2.5 rounded-xl border border-[#2A2A2A] text-gray-500 hover:text-[#C8B993] hover:border-[#C8B993]/30 transition-colors">
             <Mail size={16} />
           </a>
         </div>
@@ -133,7 +133,7 @@ export default async function CustomerProfilePage({ params }: { params: Promise<
           { label: "Pending",       value: pendingCount,                     color: pendingCount > 0 ? "text-amber-400" : "text-gray-500" },
           { label: "Member Since",  value: new Date(customer.memberSince).toLocaleDateString("en-ZA", { month: "short", year: "numeric" }), color: "text-gray-400" },
         ].map((s) => (
-          <div key={s.label} className="bg-[#111111] border border-[#1F1F1F] rounded-xl p-4 text-center">
+          <div key={s.label} className="bg-[#1D1D1D] border border-[#2A2A2A] rounded-xl p-4 text-center">
             <p className={`text-xl font-bold mb-0.5 ${s.color}`}>{s.value}</p>
             <p className="text-gray-600 text-xs">{s.label}</p>
           </div>
@@ -146,8 +146,8 @@ export default async function CustomerProfilePage({ params }: { params: Promise<
         <div className="lg:col-span-3 space-y-6">
 
           {/* Order history */}
-          <div className="bg-[#111111] border border-[#1F1F1F] rounded-2xl overflow-hidden">
-            <div className="px-5 py-4 border-b border-[#1F1F1F]">
+          <div className="bg-[#1D1D1D] border border-[#2A2A2A] rounded-2xl overflow-hidden">
+            <div className="px-5 py-4 border-b border-[#2A2A2A]">
               <h2 className="text-sm font-bold text-white">Order History</h2>
             </div>
             <div className="divide-y divide-[#1A1A1A]">
@@ -155,7 +155,7 @@ export default async function CustomerProfilePage({ params }: { params: Promise<
                 <div key={order.id} className="p-5">
                   <div className="flex items-center justify-between mb-3">
                     <div className="flex items-center gap-2">
-                      <span className="text-[#D4AF37] font-bold text-sm font-mono">{order.ref}</span>
+                      <span className="text-[#C8B993] font-bold text-sm font-mono">{order.ref}</span>
                       <span className="text-[10px] font-bold px-2 py-0.5 rounded-full capitalize"
                         style={{ color: STATUS_COLORS[order.status] ?? "#9ca3af", background: (STATUS_COLORS[order.status] ?? "#9ca3af") + "18" }}>
                         {order.status.replace(/_/g, " ")}
@@ -171,9 +171,9 @@ export default async function CustomerProfilePage({ params }: { params: Promise<
                     {order.items.map((item, i) => (
                       <div key={i} className="flex items-center gap-3">
                         {item.imageUrl ? (
-                          <img src={item.imageUrl} alt={item.name} className="w-10 h-10 rounded-lg object-cover shrink-0 border border-[#1F1F1F]" />
+                          <img src={item.imageUrl} alt={item.name} className="w-10 h-10 rounded-lg object-cover shrink-0 border border-[#2A2A2A]" />
                         ) : (
-                          <div className="w-10 h-10 rounded-lg bg-[#0A0A0A] border border-[#1F1F1F] flex items-center justify-center shrink-0">
+                          <div className="w-10 h-10 rounded-lg bg-[#111111] border border-[#2A2A2A] flex items-center justify-center shrink-0">
                             <Package size={14} className="text-gray-700" />
                           </div>
                         )}
@@ -181,7 +181,7 @@ export default async function CustomerProfilePage({ params }: { params: Promise<
                           <p className="text-white text-xs font-medium truncate">{item.name}</p>
                           <p className="text-gray-500 text-xs">Qty: {item.qty}</p>
                         </div>
-                        <p className="text-[#D4AF37] text-xs font-bold shrink-0">{item.price}</p>
+                        <p className="text-[#C8B993] text-xs font-bold shrink-0">{item.price}</p>
                       </div>
                     ))}
                   </div>
@@ -198,8 +198,8 @@ export default async function CustomerProfilePage({ params }: { params: Promise<
 
           {/* Installment applications */}
           {installments.length > 0 && (
-            <div className="bg-[#111111] border border-[#1F1F1F] rounded-2xl overflow-hidden">
-              <div className="px-5 py-4 border-b border-[#1F1F1F]">
+            <div className="bg-[#1D1D1D] border border-[#2A2A2A] rounded-2xl overflow-hidden">
+              <div className="px-5 py-4 border-b border-[#2A2A2A]">
                 <h2 className="text-sm font-bold text-white">Installment Applications</h2>
               </div>
               <div className="divide-y divide-[#1A1A1A]">
@@ -224,8 +224,8 @@ export default async function CustomerProfilePage({ params }: { params: Promise<
 
           {/* Cart items */}
           {rawCartEvents.length > 0 && (
-            <div className="bg-[#111111] border border-[#1F1F1F] rounded-2xl overflow-hidden">
-              <div className="px-5 py-4 border-b border-[#1F1F1F] flex items-center justify-between">
+            <div className="bg-[#1D1D1D] border border-[#2A2A2A] rounded-2xl overflow-hidden">
+              <div className="px-5 py-4 border-b border-[#2A2A2A] flex items-center justify-between">
                 <h2 className="text-sm font-bold text-white">Cart Items</h2>
                 <span className="text-[10px] text-amber-400 font-bold px-2 py-0.5 rounded-full bg-amber-400/10 border border-amber-400/20">
                   {rawCartEvents.length} item{rawCartEvents.length !== 1 ? "s" : ""}
@@ -239,7 +239,7 @@ export default async function CustomerProfilePage({ params }: { params: Promise<
                       <p className="text-gray-500 text-xs">{item.category}</p>
                     </div>
                     <div className="text-right shrink-0">
-                      <p className="text-[#D4AF37] text-sm font-bold">{item.price}</p>
+                      <p className="text-[#C8B993] text-sm font-bold">{item.price}</p>
                       <p className="text-gray-600 text-[10px]">{new Date(item.lastAdded).toLocaleDateString("en-ZA")}</p>
                     </div>
                   </div>
@@ -250,15 +250,15 @@ export default async function CustomerProfilePage({ params }: { params: Promise<
 
           {/* Contact submissions */}
           {leads.length > 0 && (
-            <div className="bg-[#111111] border border-[#1F1F1F] rounded-2xl overflow-hidden">
-              <div className="px-5 py-4 border-b border-[#1F1F1F]">
+            <div className="bg-[#1D1D1D] border border-[#2A2A2A] rounded-2xl overflow-hidden">
+              <div className="px-5 py-4 border-b border-[#2A2A2A]">
                 <h2 className="text-sm font-bold text-white">Contact Submissions</h2>
               </div>
               <div className="divide-y divide-[#1A1A1A]">
                 {leads.map((lead) => (
                   <div key={lead.id} className="px-5 py-3.5">
                     {lead.productInterest && (
-                      <p className="text-[#D4AF37] text-xs font-medium mb-1">{lead.productInterest}</p>
+                      <p className="text-[#C8B993] text-xs font-medium mb-1">{lead.productInterest}</p>
                     )}
                     <p className="text-gray-400 text-sm leading-relaxed">{lead.message}</p>
                     <p className="text-gray-600 text-xs mt-1">{new Date(lead.createdAt).toLocaleDateString("en-ZA")}</p>
@@ -271,7 +271,7 @@ export default async function CustomerProfilePage({ params }: { params: Promise<
 
         {/* Right: Email panel */}
         <div className="lg:col-span-2">
-          <div className="bg-[#111111] border border-[#1F1F1F] rounded-2xl p-5 sticky top-6">
+          <div className="bg-[#1D1D1D] border border-[#2A2A2A] rounded-2xl p-5 sticky top-6">
             <h2 className="text-sm font-bold text-white mb-4">Send Email</h2>
             <CustomerEmailSender
               email={customer.email}

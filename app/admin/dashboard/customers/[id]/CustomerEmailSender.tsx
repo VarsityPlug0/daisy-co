@@ -79,22 +79,22 @@ export default function CustomerEmailSender({
       </div>
 
       <input value={subject} onChange={(e) => setSubject(e.target.value)} placeholder="Subject…"
-        className="w-full bg-[#0A0A0A] border border-[#2a2a2a] rounded-xl px-4 py-2.5 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-[#D4AF37]/50" />
+        className="w-full bg-[#111111] border border-[#2a2a2a] rounded-xl px-4 py-2.5 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-[#C8B993]/50" />
 
       <textarea value={body} onChange={(e) => setBody(e.target.value)} rows={5} placeholder="Message…"
-        className="w-full bg-[#0A0A0A] border border-[#2a2a2a] rounded-xl px-4 py-3 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-[#D4AF37]/50 resize-none" />
+        className="w-full bg-[#111111] border border-[#2a2a2a] rounded-xl px-4 py-3 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-[#C8B993]/50 resize-none" />
 
       <div className="grid grid-cols-2 gap-3">
         <input value={ctaText} onChange={(e) => setCtaText(e.target.value)} placeholder="Button text"
-          className="w-full bg-[#0A0A0A] border border-[#2a2a2a] rounded-xl px-4 py-2.5 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-[#D4AF37]/50" />
+          className="w-full bg-[#111111] border border-[#2a2a2a] rounded-xl px-4 py-2.5 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-[#C8B993]/50" />
         <input value={ctaUrl} onChange={(e) => setCtaUrl(e.target.value)} placeholder="Button URL"
-          className="w-full bg-[#0A0A0A] border border-[#2a2a2a] rounded-xl px-4 py-2.5 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-[#D4AF37]/50" />
+          className="w-full bg-[#111111] border border-[#2a2a2a] rounded-xl px-4 py-2.5 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-[#C8B993]/50" />
       </div>
 
       {lastOrderItems?.length ? (
-        <label className="flex items-center gap-3 p-3 rounded-xl border border-[#1F1F1F] cursor-pointer hover:border-[#2a2a2a] transition-colors">
+        <label className="flex items-center gap-3 p-3 rounded-xl border border-[#2A2A2A] cursor-pointer hover:border-[#2a2a2a] transition-colors">
           <input type="checkbox" checked={includeOrderItems} onChange={(e) => { setIncludeOrderItems(e.target.checked); if (e.target.checked) setIncludeCartItems(false); }}
-            className="accent-[#D4AF37]" />
+            className="accent-[#C8B993]" />
           <div>
             <p className="text-white text-xs font-medium">Include their last order items</p>
             <p className="text-gray-500 text-xs">Shows ordered products with images + a "Complete Your Order" button</p>

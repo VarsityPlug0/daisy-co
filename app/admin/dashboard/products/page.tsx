@@ -38,9 +38,9 @@ export default function ProductsPage() {
           { label: "Total",        value: total,    color: "text-white" },
           { label: "In Stock",     value: inStock,  color: "text-green-400" },
           { label: "Out of Stock", value: outStock, color: outStock > 0 ? "text-red-400" : "text-gray-500" },
-          { label: "Featured",     value: featured, color: "text-[#D4AF37]" },
+          { label: "Featured",     value: featured, color: "text-[#C8B993]" },
         ].map((s) => (
-          <div key={s.label} className="bg-[#111111] border border-[#1F1F1F] rounded-xl p-4 text-center">
+          <div key={s.label} className="bg-[#1D1D1D] border border-[#2A2A2A] rounded-xl p-4 text-center">
             <p className={`text-2xl font-bold mb-0.5 ${s.color}`}>{s.value}</p>
             <p className="text-gray-500 text-xs">{s.label}</p>
           </div>
@@ -48,11 +48,11 @@ export default function ProductsPage() {
       </div>
 
       {/* Category breakdown */}
-      <div className="bg-[#111111] border border-[#1F1F1F] rounded-xl px-4 py-3 mb-6 flex flex-wrap gap-2">
+      <div className="bg-[#1D1D1D] border border-[#2A2A2A] rounded-xl px-4 py-3 mb-6 flex flex-wrap gap-2">
         {categoriesSorted.map(([name, count]) => (
           <span key={name} className="flex items-center gap-1.5 text-xs bg-white/5 rounded-lg px-3 py-1.5">
             <span className="text-gray-400">{name}</span>
-            <span className="font-bold text-[#D4AF37]">{count}</span>
+            <span className="font-bold text-[#C8B993]">{count}</span>
           </span>
         ))}
       </div>

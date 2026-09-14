@@ -145,16 +145,16 @@ export default function FAQPage() {
         {sections.map((section) => (
           <div key={section.title}>
             <h2 className="text-xl font-bold text-white mb-5 flex items-center gap-3">
-              <span className="text-[#D4AF37]">/</span> {section.title}
+              <span className="text-[#C8B993]">/</span> {section.title}
             </h2>
             <div className="space-y-3">
               {section.items.map((item) => (
-                <details key={item.q} className="group bg-[#111111] border border-[#1F1F1F] rounded-2xl overflow-hidden">
+                <details key={item.q} className="group bg-[#1D1D1D] border border-[#2A2A2A] rounded-2xl overflow-hidden">
                   <summary className="flex items-center justify-between px-6 py-5 cursor-pointer select-none list-none">
                     <span style={{ fontFamily: "var(--font-outfit)", fontWeight: 600, fontSize: 15, color: "#F0F0F0" }}>{item.q}</span>
-                    <svg className="shrink-0 ml-3 transition-transform duration-200 group-open:rotate-180" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" strokeWidth="2.5"><path d="M6 9l6 6 6-6" /></svg>
+                    <svg className="shrink-0 ml-3 transition-transform duration-200 group-open:rotate-180" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C8B993" strokeWidth="2.5"><path d="M6 9l6 6 6-6" /></svg>
                   </summary>
-                  <div className="px-6 pb-5 text-gray-400 text-sm leading-relaxed border-t border-[#1F1F1F] pt-4">
+                  <div className="px-6 pb-5 text-gray-400 text-sm leading-relaxed border-t border-[#2A2A2A] pt-4">
                     {item.a}
                   </div>
                 </details>
@@ -164,7 +164,7 @@ export default function FAQPage() {
         ))}
       </div>
 
-      <div className="mt-14 bg-[#111111] border border-[#D4AF37]/20 rounded-2xl p-8 text-center">
+      <div className="mt-14 bg-[#1D1D1D] border border-[#C8B993]/20 rounded-2xl p-8 text-center">
         <h3 className="text-xl font-bold text-white mb-3">Still have questions?</h3>
         <p className="text-gray-400 mb-6 text-sm">Our team is ready to help. Send us a message and we'll get back to you quickly.</p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">

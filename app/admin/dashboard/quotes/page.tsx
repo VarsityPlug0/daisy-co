@@ -20,7 +20,7 @@ export default async function AdminQuotesPage() {
   const quotes = getQuotes();
 
   return (
-    <div className="min-h-screen bg-[#0A0A0A]">
+    <div className="min-h-screen bg-[#111111]">
       <header className="bg-[#0f0f0f] border-b border-[#1A1A1A] px-6 py-4 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <Link href="/admin/dashboard" className="text-gray-500 hover:text-white text-sm transition-colors">
@@ -43,7 +43,7 @@ export default async function AdminQuotesPage() {
             const count = quotes.filter((q) => q.status === s).length;
             const colors = STATUS_COLORS[s];
             return (
-              <div key={s} className="bg-[#111111] border border-[#1F1F1F] rounded-2xl p-5 text-center">
+              <div key={s} className="bg-[#1D1D1D] border border-[#2A2A2A] rounded-2xl p-5 text-center">
                 <p className={`text-2xl font-bold mb-1 ${colors.text}`}>{count}</p>
                 <p className="text-gray-500 text-xs capitalize">{s}</p>
               </div>
@@ -52,7 +52,7 @@ export default async function AdminQuotesPage() {
         </div>
 
         {quotes.length === 0 ? (
-          <div className="bg-[#111111] border border-[#1F1F1F] rounded-2xl p-16 text-center">
+          <div className="bg-[#1D1D1D] border border-[#2A2A2A] rounded-2xl p-16 text-center">
             <p className="text-gray-500 text-lg">No quote requests yet.</p>
             <p className="text-gray-700 text-sm mt-2">They will appear here when customers use the Solar Wizard or contact form.</p>
           </div>
@@ -69,11 +69,11 @@ export default async function AdminQuotesPage() {
               );
 
               return (
-                <div key={q.id} className="bg-[#111111] border border-[#1F1F1F] rounded-2xl overflow-hidden">
+                <div key={q.id} className="bg-[#1D1D1D] border border-[#2A2A2A] rounded-2xl overflow-hidden">
                   {/* Header row */}
                   <div className="flex items-center justify-between flex-wrap gap-4 px-6 py-4 border-b border-[#1A1A1A]">
                     <div className="flex items-center gap-4 flex-wrap">
-                      <span className="text-[#D4AF37] font-bold text-sm font-mono">{q.ref}</span>
+                      <span className="text-[#C8B993] font-bold text-sm font-mono">{q.ref}</span>
                       <span className={`text-[10px] px-2.5 py-1 rounded-full font-bold uppercase ${colors.bg} ${colors.text}`}>
                         {q.status}
                       </span>
@@ -122,7 +122,7 @@ export default async function AdminQuotesPage() {
                     <div className="px-6 py-5">
                       <p className="text-xs text-gray-600 uppercase tracking-wider mb-3">Recommendation</p>
                       {q.recommendedPackage && (
-                        <p className="text-[#D4AF37] font-bold text-sm mb-1">{q.recommendedPackage}</p>
+                        <p className="text-[#C8B993] font-bold text-sm mb-1">{q.recommendedPackage}</p>
                       )}
                       {q.estimatedPrice && (
                         <p className="text-white font-semibold text-sm">{q.estimatedPrice}</p>

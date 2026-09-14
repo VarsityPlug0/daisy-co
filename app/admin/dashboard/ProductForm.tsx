@@ -123,7 +123,7 @@ export default function ProductForm({ product }: Props) {
               value={form.name}
               onChange={(e) => set("name", e.target.value)}
               placeholder='e.g. 55" Samsung QLED TV'
-              className="w-full bg-[#0A0A0A] border border-[#2a2a2a] rounded-xl px-4 py-3 text-white text-sm placeholder-gray-600 focus:outline-none"
+              className="w-full bg-[#111111] border border-[#2a2a2a] rounded-xl px-4 py-3 text-white text-sm placeholder-gray-600 focus:outline-none"
             />
           </div>
 
@@ -134,7 +134,7 @@ export default function ProductForm({ product }: Props) {
               value={form.price}
               onChange={(e) => set("price", e.target.value)}
               placeholder="e.g. R7,999"
-              className="w-full bg-[#0A0A0A] border border-[#2a2a2a] rounded-xl px-4 py-3 text-white text-sm placeholder-gray-600 focus:outline-none"
+              className="w-full bg-[#111111] border border-[#2a2a2a] rounded-xl px-4 py-3 text-white text-sm placeholder-gray-600 focus:outline-none"
             />
           </div>
 
@@ -145,7 +145,7 @@ export default function ProductForm({ product }: Props) {
               value={form.originalPrice}
               onChange={(e) => set("originalPrice", e.target.value)}
               placeholder="e.g. R11,999"
-              className="w-full bg-[#0A0A0A] border border-[#2a2a2a] rounded-xl px-4 py-3 text-white text-sm placeholder-gray-600 focus:outline-none"
+              className="w-full bg-[#111111] border border-[#2a2a2a] rounded-xl px-4 py-3 text-white text-sm placeholder-gray-600 focus:outline-none"
             />
           </div>
 
@@ -155,7 +155,7 @@ export default function ProductForm({ product }: Props) {
             <select
               value={form.category}
               onChange={(e) => set("category", e.target.value)}
-              className="w-full bg-[#0A0A0A] border border-[#2a2a2a] rounded-xl px-4 py-3 text-white text-sm focus:outline-none"
+              className="w-full bg-[#111111] border border-[#2a2a2a] rounded-xl px-4 py-3 text-white text-sm focus:outline-none"
             >
               <optgroup label="── Clothing & Streetwear ──">
                 {CLOTHING_CATEGORIES.map((c) => (
@@ -178,7 +178,7 @@ export default function ProductForm({ product }: Props) {
               onChange={(e) => set("description", e.target.value)}
               rows={4}
               placeholder="Brief product description..."
-              className="w-full bg-[#0A0A0A] border border-[#2a2a2a] rounded-xl px-4 py-3 text-white text-sm placeholder-gray-600 focus:outline-none resize-none"
+              className="w-full bg-[#111111] border border-[#2a2a2a] rounded-xl px-4 py-3 text-white text-sm placeholder-gray-600 focus:outline-none resize-none"
             />
           </div>
 
@@ -196,7 +196,7 @@ export default function ProductForm({ product }: Props) {
             <label className="flex items-center gap-3 cursor-pointer">
               <div
                 onClick={() => set("featured", !form.featured)}
-                className={`w-10 h-6 rounded-full transition-colors relative ${form.featured ? "bg-[#D4AF37]" : "bg-[#2a2a2a]"}`}>
+                className={`w-10 h-6 rounded-full transition-colors relative ${form.featured ? "bg-[#C8B993]" : "bg-[#2a2a2a]"}`}>
                 <span className={`absolute top-1 w-4 h-4 bg-white rounded-full transition-all ${form.featured ? "left-5" : "left-1"}`} />
               </div>
               <span className="text-sm text-gray-300">Featured</span>
@@ -211,7 +211,7 @@ export default function ProductForm({ product }: Props) {
           {/* Upload zone */}
           <div
             onClick={() => fileRef.current?.click()}
-            className="relative border-2 border-dashed border-[#2a2a2a] hover:border-[#D4AF37]/50 rounded-2xl overflow-hidden cursor-pointer transition-colors group"
+            className="relative border-2 border-dashed border-[#2a2a2a] hover:border-[#C8B993]/50 rounded-2xl overflow-hidden cursor-pointer transition-colors group"
             style={{ minHeight: 260 }}
           >
             {form.imageUrl ? (
@@ -224,7 +224,7 @@ export default function ProductForm({ product }: Props) {
                 <button
                   type="button"
                   onClick={(e) => { e.stopPropagation(); setCropSrc(form.imageUrl); }}
-                  className="absolute top-3 left-3 w-8 h-8 bg-black/70 rounded-full flex items-center justify-center text-[#D4AF37] hover:bg-[#D4AF37] hover:text-black transition-colors"
+                  className="absolute top-3 left-3 w-8 h-8 bg-black/70 rounded-full flex items-center justify-center text-[#C8B993] hover:bg-[#C8B993] hover:text-black transition-colors"
                   title="Crop image"
                 >
                   <Scissors size={14} />
@@ -240,7 +240,7 @@ export default function ProductForm({ product }: Props) {
             ) : (
               <div className="h-64 flex flex-col items-center justify-center gap-3 text-gray-600">
                 {uploading ? (
-                  <div className="w-8 h-8 border-2 border-[#D4AF37] border-t-transparent rounded-full animate-spin" />
+                  <div className="w-8 h-8 border-2 border-[#C8B993] border-t-transparent rounded-full animate-spin" />
                 ) : (
                   <>
                     <Upload size={32} strokeWidth={1.5} />
@@ -267,7 +267,7 @@ export default function ProductForm({ product }: Props) {
               value={form.imageUrl}
               onChange={(e) => set("imageUrl", e.target.value)}
               placeholder="https://..."
-              className="w-full bg-[#0A0A0A] border border-[#2a2a2a] rounded-xl px-4 py-2.5 text-white text-sm placeholder-gray-600 focus:outline-none"
+              className="w-full bg-[#111111] border border-[#2a2a2a] rounded-xl px-4 py-2.5 text-white text-sm placeholder-gray-600 focus:outline-none"
             />
           </div>
         </div>
