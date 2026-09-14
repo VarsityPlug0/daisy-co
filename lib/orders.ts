@@ -98,6 +98,12 @@ export function updateOrder(id: string, data: Partial<Pick<Order, "status" | "pr
   return getOrder(id);
 }
 
+export function deleteOrder(id: string): boolean {
+  const db = getDb();
+  const result = db.prepare("DELETE FROM orders WHERE id = ? OR ref = ?").run(id, id);
+  return result.changes > 0;
+}
+
 export function generateTrackingNumber(): string {
   const db = getDb();
   const date = new Date().toISOString().slice(0, 10).replace(/-/g, "");

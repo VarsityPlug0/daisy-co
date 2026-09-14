@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getOrder, updateOrder, generateTrackingNumber } from "@/lib/orders";
+import { getOrder, updateOrder, deleteOrder, generateTrackingNumber } from "@/lib/orders";
 import { isAuthenticated } from "@/lib/auth";
 import { sendStatusUpdate, sendOrderConfirmation, sendRejectionEmail } from "@/lib/mailer";
 import { getBankById } from "@/lib/bankDetails";
@@ -72,4 +72,15 @@ export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id
   }
 
   return NextResponse.json(order);
+}
+
+export async function DELETE(_: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+  const ok = await isAuthenticated();
+  if (!ok) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+
+  const { id } = await params;
+  const deleted = deleteOrder(id);
+  if (!deleted) return NextResponse.json({ error: "Not found" }, { status: 404 });
+
+  return NextResponse.json({ ok: true });
 }
