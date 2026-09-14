@@ -62,6 +62,8 @@
   "/api/ai-assistant/route": "/api/ai-assistant",
   "/api/chat/messages/route": "/api/chat/messages",
   "/api/chat/session/route": "/api/chat/session",
+  "/api/checkout/payfast-notify/route": "/api/checkout/payfast-notify",
+  "/api/checkout/payfast/route": "/api/checkout/payfast",
   "/api/contact/route": "/api/contact",
   "/api/cron/follow-ups/route": "/api/cron/follow-ups",
   "/api/installments/apply/route": "/api/installments/apply",

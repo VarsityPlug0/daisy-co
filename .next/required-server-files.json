@@ -134,7 +134,7 @@
         "transform": "lodash/{{member}}"
       }
     },
-    "outputFileTracingRoot": "C:\\Users\\money\\daisy-co-main",
+    "outputFileTracingRoot": "C:\\Users\\money\\daisy-co",
     "enablePrerenderSourceMaps": true,
     "cacheComponents": false,
     "cacheLife": {
@@ -354,9 +354,9 @@
       "cloudinary",
       "nodemailer"
     ],
-    "repoRoot": "C:\\Users\\money\\daisy-co-main",
+    "repoRoot": "C:\\Users\\money\\daisy-co",
     "turbopack": {
-      "root": "C:\\Users\\money\\daisy-co-main"
+      "root": "C:\\Users\\money\\daisy-co"
     },
     "distDirRoot": ".next",
     "_originalRedirects": [
@@ -382,7 +382,7 @@
       }
     ]
   },
-  "appDir": "C:\\Users\\money\\daisy-co-main",
+  "appDir": "C:\\Users\\money\\daisy-co",
   "relativeAppDir": "",
   "files": [
     ".next\\package.json",

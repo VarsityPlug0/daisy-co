@@ -317,6 +317,18 @@
       "namedRegex": "^/api/chat/session(?:/)?$"
     },
     {
+      "page": "/api/checkout/payfast",
+      "regex": "^/api/checkout/payfast(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/checkout/payfast(?:/)?$"
+    },
+    {
+      "page": "/api/checkout/payfast-notify",
+      "regex": "^/api/checkout/payfast\\-notify(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/checkout/payfast\\-notify(?:/)?$"
+    },
+    {
       "page": "/api/contact",
       "regex": "^/api/contact(?:/)?$",
       "routeKeys": {},

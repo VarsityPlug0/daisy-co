@@ -62,6 +62,8 @@
   "/api/ai-assistant/route": "app/api/ai-assistant/route.js",
   "/api/chat/messages/route": "app/api/chat/messages/route.js",
   "/api/chat/session/route": "app/api/chat/session/route.js",
+  "/api/checkout/payfast-notify/route": "app/api/checkout/payfast-notify/route.js",
+  "/api/checkout/payfast/route": "app/api/checkout/payfast/route.js",
   "/api/contact/route": "app/api/contact/route.js",
   "/api/cron/follow-ups/route": "app/api/cron/follow-ups/route.js",
   "/api/installments/apply/route": "app/api/installments/apply/route.js",
