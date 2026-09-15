@@ -1,5 +1,6 @@
 import { getDb } from "./db";
 import { randomBytes } from "crypto";
+import { createOrderCreatedOutboxEvent, createOrderPaidOutboxEvent } from "./outbox";
 
 export interface OrderItem {
   id: string;
@@ -48,10 +49,7 @@ export function createOrder(data: {
   const id = randomBytes(8).toString("hex");
   const ref = genRef();
 
-  db.prepare(`
-    INSERT INTO orders (id, ref, name, email, phone, address, items, total, status, payment_method, eft_reference, bank_id, createdAt, updatedAt)
-    VALUES (@id, @ref, @name, @email, @phone, @address, @items, @total, 'pending', 'eft', @eft_reference, @bank_id, @now, @now)
-  `).run({
+  const insertParams = {
     id, ref,
     name: data.name,
     email: data.email,
@@ -62,7 +60,29 @@ export function createOrder(data: {
     eft_reference: data.eft_reference ?? null,
     bank_id: data.bank_id ?? null,
     now,
-  });
+  };
+
+  // Phase 2B: the order INSERT and the ORDER_CREATED outbox INSERT must be
+  // atomic — same requirement, same db.transaction() pattern already
+  // proven for leads (see app/api/contact/route.ts). No network call
+  // happens here; the outbox row just sits pending until the relay (on
+  // the Bevans VPS, not this app) picks it up.
+  db.transaction(() => {
+    db.prepare(`
+      INSERT INTO orders (id, ref, name, email, phone, address, items, total, status, payment_method, eft_reference, bank_id, createdAt, updatedAt)
+      VALUES (@id, @ref, @name, @email, @phone, @address, @items, @total, 'pending', 'eft', @eft_reference, @bank_id, @now, @now)
+    `).run(insertParams);
+    createOrderCreatedOutboxEvent(db, {
+      id, ref,
+      name: data.name,
+      email: data.email,
+      phone: data.phone,
+      items: data.items,
+      total: data.total,
+      payment_method: "eft",
+      createdAt: now,
+    });
+  })();
 
   return getOrder(id)!;
 }
@@ -94,8 +114,28 @@ export function updateOrder(id: string, data: Partial<Pick<Order, "status" | "pr
   if (!sets.length) return getOrder(id);
   sets.push("updatedAt = @now");
 
-  db.prepare(`UPDATE orders SET ${sets.join(", ")} WHERE id = @id`).run(params);
-  return getOrder(id);
+  // Phase 2C: this is the ONE place both approval paths (the admin PATCH
+  // route and the PayFast ITN handler) go through, so the transition
+  // check — and the atomic outbox write once it fires — only has to live
+  // here, not duplicated in both routes. willApprove alone doesn't emit
+  // anything; only a genuine previousStatus!=='approved' -> 'approved'
+  // transition does, checked and written inside the same transaction as
+  // the UPDATE itself so a crash between them can't happen. This is the
+  // smallest change that makes the two atomic together — nothing about
+  // what either caller considers "approved" changes.
+  const willApprove = data.status === "approved";
+  const run = db.transaction(() => {
+    const before = willApprove ? getOrder(id) : null;
+    db.prepare(`UPDATE orders SET ${sets.join(", ")} WHERE id = @id`).run(params);
+    const after = getOrder(id);
+    if (willApprove && after && (!before || before.status !== "approved")) {
+      const paidVia: "eft_manual" | "payfast" = after.payment_method === "payfast" ? "payfast" : "eft_manual";
+      createOrderPaidOutboxEvent(db, after, paidVia, params.now as string);
+    }
+    return after;
+  });
+
+  return run();
 }
 
 export function deleteOrder(id: string): boolean {
