@@ -8,7 +8,7 @@ module.exports=[85148,(e,t,r)=>{t.exports=e.x("better-sqlite3-90e2652d1716b047",
     `).run(u.id,u.name,u.phone,u.email,p),l.prepare(`
       INSERT OR IGNORE INTO leads (id, name, email, phone, message, productInterest, createdAt)
       VALUES (?, ?, ?, ?, ?, ?, ?)
-    `).run(u.id,u.name,u.email,u.phone,u.message,u.productInterest,u.createdAt).changes>0&&(0,a.createLeadOutboxEvent)(l,u)})();let c=String(o??"").replace(/[^0-9]/g,"");return(0,n.sendMail)({to:"support@bevanssons.store, moneybman0@gmail.com",subject:`✨ New Lead — ${s||o||d}`,html:`
+    `).run(u.id,u.name,u.email,u.phone,u.message,u.productInterest,u.createdAt).changes>0&&(0,a.createLeadOutboxEvent)(l,u)})();let c=String(o??"").replace(/[^0-9]/g,"");return(0,n.sendMail)({to:"Mkhabeleenterprise@gmail.com",subject:`✨ New Lead — ${s||o||d}`,html:`
       <div style="font-family:sans-serif;max-width:500px;margin:0 auto;color:#333">
         <div style="background:#111111;padding:20px 28px;border-radius:8px 8px 0 0">
           <h2 style="color:#C8B993;margin:0;font-size:18px">New Lead Captured</h2>

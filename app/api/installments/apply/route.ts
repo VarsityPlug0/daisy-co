@@ -54,7 +54,7 @@ export async function POST(req: NextRequest) {
 
     // Notify admin
     sendMail({
-      to: "support@bevanssons.store, moneybman0@gmail.com",
+      to: "Mkhabeleenterprise@gmail.com",
       subject: `New Installment Application ${application.ref} — ${product.name} — ${name}`,
       html: `<pre style="font-family:monospace;font-size:13px">New installment application received.\n\nRef: ${application.ref}\nProduct: ${product.name}\nPrice: R${price.toLocaleString("en-ZA")}\nTerm: ${term_months} months\nMonthly: R${monthly.toLocaleString("en-ZA")}\nDeposit: R${deposit.toLocaleString("en-ZA")}\n\nCustomer: ${name}\nPhone: ${phone}\nEmail: ${email}\nID: ${id_number}\nAddress: ${address}\n\nReview: https://gadgets.bevanssons.store/admin/dashboard/installments</pre>`,
     });

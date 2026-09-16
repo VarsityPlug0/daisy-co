@@ -54,7 +54,7 @@ export async function POST(req: NextRequest) {
 
   // Email admin
   sendMail({
-    to: "support@bevanssons.store, moneybman0@gmail.com",
+    to: "Mkhabeleenterprise@gmail.com",
     subject: `✨ New Lead — ${name || phone || email}`,
     html: `
       <div style="font-family:sans-serif;max-width:500px;margin:0 auto;color:#333">

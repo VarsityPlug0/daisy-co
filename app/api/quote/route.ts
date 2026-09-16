@@ -35,7 +35,7 @@ export async function POST(req: NextRequest) {
       const waNum = String(phone).replace(/[^0-9]/g, "");
       await transporter.sendMail({
         from: "Bevanssons <noreply@bevanssons.store>",
-        to: "support@bevanssons.store, moneybman0@gmail.com",
+        to: "Mkhabeleenterprise@gmail.com",
         subject: `New Quote Request — ${esc(type)} — ${esc(name)}`,
         html: `
           <div style="font-family:sans-serif;max-width:600px;margin:0 auto;">

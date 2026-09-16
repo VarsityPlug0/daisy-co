@@ -41,7 +41,7 @@ export async function POST(req: NextRequest) {
     const name = String(session.name || "Anonymous");
     const phone = String(session.phone || "—");
     sendMail({
-      to: "support@bevanssons.store, moneybman0@gmail.com",
+      to: "Mkhabeleenterprise@gmail.com",
       subject: `💬 New Chat — ${name}`,
       html: `
         <div style="font-family:sans-serif;max-width:500px;margin:0 auto;background:#111111;border-radius:10px;padding:28px;color:#e5e7eb">
