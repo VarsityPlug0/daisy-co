@@ -119,6 +119,22 @@
       "namedRegex": "^/api/installments/settings/(?<nxtPproductId>[^/]+?)(?:/)?$"
     },
     {
+      "page": "/api/integration/v1/orders/[id]",
+      "regex": "^/api/integration/v1/orders/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPid": "nxtPid"
+      },
+      "namedRegex": "^/api/integration/v1/orders/(?<nxtPid>[^/]+?)(?:/)?$"
+    },
+    {
+      "page": "/api/integration/v1/products/[id]",
+      "regex": "^/api/integration/v1/products/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPid": "nxtPid"
+      },
+      "namedRegex": "^/api/integration/v1/products/(?<nxtPid>[^/]+?)(?:/)?$"
+    },
+    {
       "page": "/api/orders/[id]",
       "regex": "^/api/orders/([^/]+?)(?:/)?$",
       "routeKeys": {
@@ -375,6 +391,24 @@
       "regex": "^/api/installments/events(?:/)?$",
       "routeKeys": {},
       "namedRegex": "^/api/installments/events(?:/)?$"
+    },
+    {
+      "page": "/api/integration/v1/leads",
+      "regex": "^/api/integration/v1/leads(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/integration/v1/leads(?:/)?$"
+    },
+    {
+      "page": "/api/integration/v1/orders",
+      "regex": "^/api/integration/v1/orders(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/integration/v1/orders(?:/)?$"
+    },
+    {
+      "page": "/api/integration/v1/products",
+      "regex": "^/api/integration/v1/products(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/integration/v1/products(?:/)?$"
     },
     {
       "page": "/api/orders",
