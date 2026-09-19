@@ -297,6 +297,12 @@
       "namedRegex": "^/api/admin/logout(?:/)?$"
     },
     {
+      "page": "/api/admin/optouts",
+      "regex": "^/api/admin/optouts(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/admin/optouts(?:/)?$"
+    },
+    {
       "page": "/api/admin/outbox/pending",
       "regex": "^/api/admin/outbox/pending(?:/)?$",
       "routeKeys": {},
@@ -625,6 +631,12 @@
       "regex": "^/track\\-order(?:/)?$",
       "routeKeys": {},
       "namedRegex": "^/track\\-order(?:/)?$"
+    },
+    {
+      "page": "/unsubscribe",
+      "regex": "^/unsubscribe(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/unsubscribe(?:/)?$"
     }
   ],
   "dataRoutes": [],

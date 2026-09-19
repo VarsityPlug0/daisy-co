@@ -53,6 +53,7 @@
   "/api/admin/installments/settings/[productId]/route": "/api/admin/installments/settings/[productId]",
   "/api/admin/login/route": "/api/admin/login",
   "/api/admin/logout/route": "/api/admin/logout",
+  "/api/admin/optouts/route": "/api/admin/optouts",
   "/api/admin/orders/[id]/notify/route": "/api/admin/orders/[id]/notify",
   "/api/admin/orders/[id]/proof/route": "/api/admin/orders/[id]/proof",
   "/api/admin/outbox/pending/route": "/api/admin/outbox/pending",
@@ -90,5 +91,6 @@
   "/api/track/lead/route": "/api/track/lead",
   "/favicon.ico/route": "/favicon.ico",
   "/robots.txt/route": "/robots.txt",
-  "/sitemap.xml/route": "/sitemap.xml"
+  "/sitemap.xml/route": "/sitemap.xml",
+  "/unsubscribe/route": "/unsubscribe"
 }

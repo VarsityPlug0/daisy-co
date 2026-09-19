@@ -53,6 +53,7 @@
   "/api/admin/installments/settings/[productId]/route": "app/api/admin/installments/settings/[productId]/route.js",
   "/api/admin/login/route": "app/api/admin/login/route.js",
   "/api/admin/logout/route": "app/api/admin/logout/route.js",
+  "/api/admin/optouts/route": "app/api/admin/optouts/route.js",
   "/api/admin/orders/[id]/notify/route": "app/api/admin/orders/[id]/notify/route.js",
   "/api/admin/orders/[id]/proof/route": "app/api/admin/orders/[id]/proof/route.js",
   "/api/admin/outbox/pending/route": "app/api/admin/outbox/pending/route.js",
@@ -90,5 +91,6 @@
   "/api/track/lead/route": "app/api/track/lead/route.js",
   "/favicon.ico/route": "app/favicon.ico/route.js",
   "/robots.txt/route": "app/robots.txt/route.js",
-  "/sitemap.xml/route": "app/sitemap.xml/route.js"
+  "/sitemap.xml/route": "app/sitemap.xml/route.js",
+  "/unsubscribe/route": "app/unsubscribe/route.js"
 }

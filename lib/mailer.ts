@@ -2,6 +2,7 @@ import nodemailer from "nodemailer";
 import path from "path";
 import { existsSync } from "fs";
 import { getBankById, type BankDetails } from "./bankDetails";
+import { unsubscribeUrl } from "./optout";
 
 const LOGO_PATH = path.join(process.cwd(), "public", "logo.jpg");
 const LOGO_CID  = "logo@daisygadgets";
@@ -45,7 +46,7 @@ type MailAttachment =
   | { filename: string; path: string; cid: string }
   | { filename: string; content: Buffer; cid: string };
 
-export async function sendMail(opts: { to: string; subject: string; html: string; attachments?: MailAttachment[] }) {
+export async function sendMail(opts: { to: string; subject: string; html: string; attachments?: MailAttachment[]; headers?: Record<string, string> }) {
   const transporter = createTransporter();
   if (!transporter) { console.error("mailer: env vars missing"); return; }
   try {
@@ -59,6 +60,7 @@ export async function sendMail(opts: { to: string; subject: string; html: string
       subject: opts.subject,
       html: opts.html,
       attachments,
+      ...(opts.headers ? { headers: opts.headers } : {}),
     });
   } catch (err) { console.error("mailer send error:", err); }
 }
@@ -1256,6 +1258,7 @@ export async function sendCampaignEmail(data: {
   restoreCartUrl?: string;
   trackingId?: string;
 }) {
+  const unsubUrl = unsubscribeUrl(data.to);
   const ctaHref = data.ctaUrl && data.trackingId
     ? `${SITE}/api/track/email?id=${data.trackingId}&e=click&url=${encodeURIComponent(data.ctaUrl)}`
     : data.ctaUrl;
@@ -1362,7 +1365,8 @@ export async function sendCampaignEmail(data: {
     ${productSection}
     ${divider()}
     <p style="margin:0;color:${MUTED};font-size:12px;text-align:center">
-      You received this because you placed an order with Bevanssons
+      You are receiving this because you shared your email address with Bevanssons or placed an order.<br>
+      <a href="${unsubUrl}" style="color:${MUTED};text-decoration:underline">Unsubscribe</a> from marketing and follow-up emails.
     </p>
     ${pixel}
   `;
@@ -1372,5 +1376,9 @@ export async function sendCampaignEmail(data: {
     subject: data.subject,
     html: layout(content),
     attachments: imgAttachments.length ? imgAttachments : undefined,
+    headers: {
+      "List-Unsubscribe": `<${unsubUrl}>`,
+      "List-Unsubscribe-Post": "List-Unsubscribe=One-Click",
+    },
   });
 }

@@ -134,7 +134,7 @@ self.__SERVER_FILES_MANIFEST={
         "transform": "lodash/{{member}}"
       }
     },
-    "outputFileTracingRoot": "C:\\Users\\money\\daisy-co-exportfix",
+    "outputFileTracingRoot": "C:\\Users\\money\\daisy-co-optout",
     "enablePrerenderSourceMaps": true,
     "cacheComponents": false,
     "cacheLife": {
@@ -354,9 +354,9 @@ self.__SERVER_FILES_MANIFEST={
       "cloudinary",
       "nodemailer"
     ],
-    "repoRoot": "C:\\Users\\money\\daisy-co-exportfix",
+    "repoRoot": "C:\\Users\\money\\daisy-co-optout",
     "turbopack": {
-      "root": "C:\\Users\\money\\daisy-co-exportfix"
+      "root": "C:\\Users\\money\\daisy-co-optout"
     },
     "distDirRoot": ".next",
     "_originalRedirects": [
@@ -382,7 +382,7 @@ self.__SERVER_FILES_MANIFEST={
       }
     ]
   },
-  "appDir": "C:\\Users\\money\\daisy-co-exportfix",
+  "appDir": "C:\\Users\\money\\daisy-co-optout",
   "relativeAppDir": "",
   "files": [
     ".next\\package.json",

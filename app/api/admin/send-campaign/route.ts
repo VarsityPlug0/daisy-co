@@ -3,6 +3,7 @@ import { isAuthenticated } from "@/lib/auth";
 import { getDb } from "@/lib/db";
 import { listOrders } from "@/lib/orders";
 import { sendCampaignEmail } from "@/lib/mailer";
+import { isOptedOut } from "@/lib/optout";
 import { randomUUID } from "crypto";
 
 export async function POST(req: NextRequest) {
@@ -43,8 +44,13 @@ export async function POST(req: NextRequest) {
     }
   }
 
+  // Honour unsubscribes: never send campaign email to an address that opted out.
+  const totalBeforeOptOut = targets.length;
+  targets = targets.filter((t) => !isOptedOut(t.email));
+  const skippedUnsubscribed = totalBeforeOptOut - targets.length;
+
   if (targets.length === 0) {
-    return NextResponse.json({ error: "No recipients found" }, { status: 400 });
+    return NextResponse.json({ error: skippedUnsubscribed ? "No recipients found (all have unsubscribed)" : "No recipients found" }, { status: 400 });
   }
 
   // Prepare last-order lookup if includeOrderItems is on
@@ -107,5 +113,5 @@ export async function POST(req: NextRequest) {
     new Date().toISOString()
   );
 
-  return NextResponse.json({ ok: true, sent, total: targets.length });
+  return NextResponse.json({ ok: true, sent, total: targets.length, skippedUnsubscribed });
 }

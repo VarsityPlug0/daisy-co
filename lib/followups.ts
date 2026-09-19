@@ -1,6 +1,7 @@
 import { randomUUID } from "crypto";
 import { getDb } from "./db";
 import { sendCampaignEmail } from "./mailer";
+import { isOptedOut } from "./optout";
 
 const SITE = "https://gadgets.bevanssons.store";
 
@@ -61,6 +62,7 @@ export async function runFollowUps(): Promise<{ sent: number; skipped: number }>
 
   for (const row of abandoned) {
     const ref = row.lastAdded.slice(0, 10); // date as dedup key
+    if (isOptedOut(row.email)) { skipped++; continue; }
     if (alreadySent(db, row.email, "cart_abandon_1d", ref)) { skipped++; continue; }
 
     const items = db.prepare(`
@@ -107,6 +109,7 @@ export async function runFollowUps(): Promise<{ sent: number; skipped: number }>
   `).all() as { id: string; ref: string; email: string; name: string }[];
 
   for (const order of delivered) {
+    if (isOptedOut(order.email)) { skipped++; continue; }
     if (alreadySent(db, order.email, "delivery_followup", order.ref)) { skipped++; continue; }
 
     const sendId = randomUUID();
@@ -142,6 +145,7 @@ export async function runFollowUps(): Promise<{ sent: number; skipped: number }>
   `).all() as { email: string; name: string; lastOrder: string }[];
 
   for (const customer of inactive) {
+    if (isOptedOut(customer.email)) { skipped++; continue; }
     if (alreadySent(db, customer.email, "reengagement_30d")) { skipped++; continue; }
 
     const sendId = randomUUID();
