@@ -24,6 +24,7 @@ const FILES_TO_SCAN = [
   "lib/mailer.ts",
   "app/(site)/payment-options/page.tsx",
   "app/(site)/checkout/page.tsx",
+  "components/Footer.tsx",
 ];
 
 let failures = [];
