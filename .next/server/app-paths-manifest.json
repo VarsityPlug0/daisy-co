@@ -46,12 +46,14 @@
   "/admin/page": "app/admin/page.js",
   "/api/admin/chat/reply/route": "app/api/admin/chat/reply/route.js",
   "/api/admin/chat/sessions/route": "app/api/admin/chat/sessions/route.js",
+  "/api/admin/full-export/route": "app/api/admin/full-export/route.js",
   "/api/admin/historical-export/route": "app/api/admin/historical-export/route.js",
   "/api/admin/installments/[id]/route": "app/api/admin/installments/[id]/route.js",
   "/api/admin/installments/route": "app/api/admin/installments/route.js",
   "/api/admin/installments/settings/[productId]/route": "app/api/admin/installments/settings/[productId]/route.js",
   "/api/admin/login/route": "app/api/admin/login/route.js",
   "/api/admin/logout/route": "app/api/admin/logout/route.js",
+  "/api/admin/optouts/route": "app/api/admin/optouts/route.js",
   "/api/admin/orders/[id]/notify/route": "app/api/admin/orders/[id]/notify/route.js",
   "/api/admin/orders/[id]/proof/route": "app/api/admin/orders/[id]/proof/route.js",
   "/api/admin/outbox/pending/route": "app/api/admin/outbox/pending/route.js",
@@ -89,5 +91,6 @@
   "/api/track/lead/route": "app/api/track/lead/route.js",
   "/favicon.ico/route": "app/favicon.ico/route.js",
   "/robots.txt/route": "app/robots.txt/route.js",
-  "/sitemap.xml/route": "app/sitemap.xml/route.js"
+  "/sitemap.xml/route": "app/sitemap.xml/route.js",
+  "/unsubscribe/route": "app/unsubscribe/route.js"
 }

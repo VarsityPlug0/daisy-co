@@ -46,12 +46,14 @@
   "/admin/page": "/admin",
   "/api/admin/chat/reply/route": "/api/admin/chat/reply",
   "/api/admin/chat/sessions/route": "/api/admin/chat/sessions",
+  "/api/admin/full-export/route": "/api/admin/full-export",
   "/api/admin/historical-export/route": "/api/admin/historical-export",
   "/api/admin/installments/[id]/route": "/api/admin/installments/[id]",
   "/api/admin/installments/route": "/api/admin/installments",
   "/api/admin/installments/settings/[productId]/route": "/api/admin/installments/settings/[productId]",
   "/api/admin/login/route": "/api/admin/login",
   "/api/admin/logout/route": "/api/admin/logout",
+  "/api/admin/optouts/route": "/api/admin/optouts",
   "/api/admin/orders/[id]/notify/route": "/api/admin/orders/[id]/notify",
   "/api/admin/orders/[id]/proof/route": "/api/admin/orders/[id]/proof",
   "/api/admin/outbox/pending/route": "/api/admin/outbox/pending",
@@ -89,5 +91,6 @@
   "/api/track/lead/route": "/api/track/lead",
   "/favicon.ico/route": "/favicon.ico",
   "/robots.txt/route": "/robots.txt",
-  "/sitemap.xml/route": "/sitemap.xml"
+  "/sitemap.xml/route": "/sitemap.xml",
+  "/unsubscribe/route": "/unsubscribe"
 }

@@ -206,6 +206,14 @@ module.exports=[62294,e=>{"use strict";var t=e.i(85148),a=e.i(14747),i=e.i(22734
       clicked_at TEXT,
       createdAt  TEXT NOT NULL
     );
+
+    -- Marketing/follow-up email opt-outs (see lib/optout.ts). Transactional
+    -- emails about orders/installments are NOT affected by this table.
+    CREATE TABLE IF NOT EXISTS email_optouts (
+      email     TEXT PRIMARY KEY,
+      source    TEXT NOT NULL DEFAULT 'unsubscribe_link',
+      createdAt TEXT NOT NULL
+    );
   `);try{e.exec("ALTER TABLE orders ADD COLUMN bank_id TEXT")}catch{}try{e.exec("ALTER TABLE orders ADD COLUMN tracking_number TEXT")}catch{}try{e.exec("ALTER TABLE installment_applications ADD COLUMN product_imageUrl TEXT")}catch{}}(n),function(e){try{e.exec("ALTER TABLE products ADD COLUMN originalPrice TEXT NOT NULL DEFAULT ''")}catch{}}(n),function(e){if(!e.prepare("SELECT name FROM migrations WHERE name = ?").get("json_import_gadgets_v1")){for(let t of s)if((0,i.existsSync)(t))try{let a=JSON.parse((0,i.readFileSync)(t,"utf-8"));if(Array.isArray(a)&&a.length>0){e.prepare("DELETE FROM products").run();let t=e.prepare(`
           INSERT OR REPLACE INTO products
             (id, name, price, category, description, imageUrl, inStock, featured, createdAt, updatedAt)

@@ -246,6 +246,14 @@ function initSchema(db: Database.Database) {
       clicked_at TEXT,
       createdAt  TEXT NOT NULL
     );
+
+    -- Marketing/follow-up email opt-outs (see lib/optout.ts). Transactional
+    -- emails about orders/installments are NOT affected by this table.
+    CREATE TABLE IF NOT EXISTS email_optouts (
+      email     TEXT PRIMARY KEY,
+      source    TEXT NOT NULL DEFAULT 'unsubscribe_link',
+      createdAt TEXT NOT NULL
+    );
   `);
 
   // Migrate existing orders tables that predate bank_id / tracking_number columns
