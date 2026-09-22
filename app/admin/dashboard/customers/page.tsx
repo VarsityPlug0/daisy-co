@@ -34,8 +34,8 @@ const STATUS_COLORS: Record<string, string> = {
 };
 
 const BANK_LABELS: Record<string, { label: string; color: string }> = {
-  fnb:      { label: "FNB",      color: "#10b981" },
-  tymebank: { label: "TymeBank", color: "#8b5cf6" },
+  fnb:     { label: "FNB",     color: "#10b981" },
+  payfast: { label: "PayFast", color: "#C8B993" },
 };
 
 function toWaPhone(phone: string) {

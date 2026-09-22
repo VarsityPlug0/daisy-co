@@ -37,8 +37,8 @@ const STATUS_CONFIG: Record<string, { label: string; color: string; icon: React.
 };
 
 const BANK_LABELS: Record<string, { label: string; color: string }> = {
-  fnb:      { label: "FNB",      color: "#10b981" },
-  tymebank: { label: "TymeBank", color: "#8b5cf6" },
+  fnb:     { label: "FNB",     color: "#10b981" },
+  payfast: { label: "PayFast", color: "#C8B993" },
 };
 
 const NOTIFY_TEMPLATES = [

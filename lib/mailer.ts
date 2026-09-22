@@ -17,6 +17,12 @@ const MUTED       = "#6b7280";
 const SITE        = "https://gadgets.bevanssons.store";
 const SUPPORT_EMAIL = "support@bevanssons.store";
 
+const BANK_NAME           = process.env.BANK_NAME || "First National Bank (FNB)";
+const BANK_ACCOUNT_HOLDER = process.env.BANK_ACCOUNT_HOLDER || "Bevans Sons (Pty) Ltd";
+const BANK_ACCOUNT_TYPE   = process.env.BANK_ACCOUNT_TYPE || "Gold Business Account";
+const BANK_ACCOUNT_NUMBER = process.env.BANK_ACCOUNT_NUMBER || "63225313418";
+const BANK_BRANCH_CODE    = process.env.BANK_BRANCH_CODE || "250655";
+
 
 function createTransporter() {
   if (process.env.RESEND_API_KEY) {
@@ -845,10 +851,13 @@ export async function sendInstallmentApproval(data: {
 
   const bankRows = `
     <tr>
-      <td colspan="2" style="padding:10px 0 4px;color:${MUTED};font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;border-top:1px solid ${BORDER}">PayFast Secure Payment</td>
+      <td colspan="2" style="padding:10px 0 4px;color:${MUTED};font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;border-top:1px solid ${BORDER}">Banking Details (EFT / Bank Transfer)</td>
     </tr>
-    ${infoRow("Payment Method", "PayFast (Card / Instant EFT)")}
-    ${infoRow("Merchant", "Bevanssons")}
+    ${infoRow("Bank", BANK_NAME)}
+    ${infoRow("Account Name", BANK_ACCOUNT_HOLDER)}
+    ${infoRow("Account Type", BANK_ACCOUNT_TYPE)}
+    ${infoRow("Account Number", BANK_ACCOUNT_NUMBER)}
+    ${infoRow("Branch Code", BANK_BRANCH_CODE)}
     ${infoRow("Reference", data.ref)}
   `;
 
@@ -890,13 +899,13 @@ export async function sendInstallmentApproval(data: {
     <!-- How to start -->
     <div style="background:#f59e0b11;border:1px solid #f59e0b44;border-radius:12px;padding:16px 20px;margin-bottom:24px">
       <p style="margin:0 0 6px;color:#f59e0b;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em">⚡ Next Step — Pay Your Deposit</p>
-      <p style="margin:0;color:#d1d5db;font-size:13px;line-height:1.6">Pay your deposit of <strong style="color:#f59e0b">${fmt(data.deposit)}</strong> securely via PayFast using reference <strong style="color:#fff">${data.ref}</strong> to activate your plan.</p>
+      <p style="margin:0;color:#d1d5db;font-size:13px;line-height:1.6">Please transfer your deposit of <strong style="color:#f59e0b">${fmt(data.deposit)}</strong> to our <strong style="color:#fff">${BANK_ACCOUNT_TYPE}</strong> at <strong style="color:#fff">${BANK_NAME}</strong> using your reference <strong style="color:#fff">${data.ref}</strong> to activate your plan.</p>
     </div>
 
     ${divider()}
 
     <!-- Payment details -->
-    <p style="margin:0 0 12px;color:#fff;font-size:15px;font-weight:700">Payment Details</p>
+    <p style="margin:0 0 12px;color:#fff;font-size:15px;font-weight:700">Banking Details</p>
     <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:24px">
       ${bankRows}
     </table>
@@ -971,12 +980,15 @@ function installmentSummaryTable(deposit: number, monthly: number, term: number,
 function bankDetailsBlock(ref: string) {
   return `
     <div style="background:#f59e0b0d;border:1px solid #f59e0b44;border-radius:12px;padding:16px 20px;margin-bottom:20px">
-      <p style="margin:0 0 6px;color:#f59e0b;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em">Deposit Payment via PayFast</p>
+      <p style="margin:0 0 6px;color:#f59e0b;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em">Deposit Banking Details</p>
       <p style="margin:0 0 12px;color:#d1d5db;font-size:13px;line-height:1.6">Use <strong style="color:#fff">${ref}</strong> as your payment reference.</p>
       <table width="100%" cellpadding="0" cellspacing="0">
-        <tr><td colspan="2" style="padding:6px 0 2px;color:${MUTED};font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em">PayFast Online Payment</td></tr>
-        ${infoRow("Payment Method", "PayFast (Card / Instant EFT)")}
-        ${infoRow("Merchant", "Bevanssons")}
+        <tr><td colspan="2" style="padding:6px 0 2px;color:${MUTED};font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em">Banking Details (EFT / Bank Transfer)</td></tr>
+        ${infoRow("Bank", BANK_NAME)}
+        ${infoRow("Account Name", BANK_ACCOUNT_HOLDER)}
+        ${infoRow("Account Type", BANK_ACCOUNT_TYPE)}
+        ${infoRow("Account Number", BANK_ACCOUNT_NUMBER)}
+        ${infoRow("Branch Code", BANK_BRANCH_CODE)}
         ${infoRow("Reference", ref)}
       </table>
     </div>`;
@@ -1029,7 +1041,7 @@ export async function sendInstallmentAwaitingPayment(data: InstallmentUpdateBase
     ${installmentRefCard(data.ref, data.product_name)}
 
     <p style="color:#9ca3af;font-size:14px;line-height:1.7;margin:0 0 20px">
-      Your application has been processed. To activate your installment plan, please pay the deposit of <strong style="color:#f59e0b;font-size:16px">${fmt(data.deposit)}</strong> securely via PayFast.
+      Your application has been processed. To activate your installment plan, please pay the deposit of <strong style="color:#f59e0b;font-size:16px">${fmt(data.deposit)}</strong> to our <strong style="color:#fff">${BANK_ACCOUNT_TYPE}</strong> at <strong style="color:#fff">${BANK_NAME}</strong>.
     </p>
 
     ${installmentSummaryTable(data.deposit, data.monthly_payment, data.term_months, data.total_repayable)}
@@ -1074,7 +1086,7 @@ export async function sendInstallmentActive(data: InstallmentUpdateBase) {
 
     <div style="background:${BLACK};border:1px solid ${BORDER};border-radius:12px;padding:16px 20px;margin-bottom:24px">
       <p style="margin:0 0 10px;color:#fff;font-size:14px;font-weight:700">Payment Instructions</p>
-      <p style="margin:0 0 8px;color:#d1d5db;font-size:13px;line-height:1.6">Make your monthly payment to the same bank account using <strong style="color:${GOLD}">${data.ref}</strong> as your reference.</p>
+      <p style="margin:0 0 8px;color:#d1d5db;font-size:13px;line-height:1.6">Make your monthly payment to our ${BANK_ACCOUNT_TYPE} at ${BANK_NAME} (Acc: <strong style="color:#fff">${BANK_ACCOUNT_NUMBER}</strong>, Branch: <strong style="color:#fff">${BANK_BRANCH_CODE}</strong>) using <strong style="color:${GOLD}">${data.ref}</strong> as your reference.</p>
       <p style="margin:0;color:#d1d5db;font-size:13px;line-height:1.6">Send proof of each monthly payment by email to keep your account in good standing.</p>
     </div>
 

@@ -449,11 +449,11 @@
   },
   {
     "route": "/admin/dashboard/installments",
-    "firstLoadUncompressedJsBytes": 496286,
+    "firstLoadUncompressedJsBytes": 496295,
     "firstLoadChunkPaths": [
       ".next\\static\\chunks\\44oxwbh__ebkl.js",
       ".next\\static\\chunks\\2lsorf19_nzaw.js",
-      ".next\\static\\chunks\\3zkbtssg5kaw3.js",
+      ".next\\static\\chunks\\1iopufwl30-2u.js",
       ".next\\static\\chunks\\3ivcc6t1s04dh.js",
       ".next\\static\\chunks\\06w359146frpk.js",
       ".next\\static\\chunks\\3eugurg7-xpx7.js",

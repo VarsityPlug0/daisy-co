@@ -17,6 +17,14 @@ export const BANKS: BankDetails[] = [
     accountNumber: "Card / Instant EFT",
     branchCode: "PayFast",
   },
+  {
+    id: "fnb",
+    bank: "First National Bank (FNB)",
+    accountHolder: "Bevans Sons (Pty) Ltd",
+    accountType: "Gold Business Account",
+    accountNumber: "63225313418",
+    branchCode: "250655",
+  },
 ];
 
 export function getBankById(id: string): BankDetails {
