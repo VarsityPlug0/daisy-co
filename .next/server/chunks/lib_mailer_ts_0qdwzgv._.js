@@ -1,4 +1,4 @@
-module.exports=[67010,33464,e=>{"use strict";var t=e.i(84423),o=e.i(14747),i=e.i(22734);let r=[{id:"tymebank",bank:"TymeBank / GoTymeBank",accountHolder:"Bevanssons",accountType:"Business Account",accountNumber:"51072673949",branchCode:"678910"}];function n(e){return r.find(t=>t.id===e)??r[0]}e.s(["getBankById",0,n],33464);var a=e.i(2529);let l=o.default.join(process.cwd(),"public","logo.jpg"),s="logo@daisygadgets",p="#C8B993",d="#f5d76e",c="#111111",g="#1A1A1A",m="#2A2A2A",x="#6b7280",f="https://gadgets.bevanssons.store",y="support@bevanssons.store";async function u(e){let o=process.env.RESEND_API_KEY?t.default.createTransport({host:"smtp.resend.com",port:587,secure:!1,auth:{user:"resend",pass:process.env.RESEND_API_KEY}}):process.env.MAIL_USER&&process.env.MAIL_PASS?t.default.createTransport({service:"gmail",auth:{user:process.env.MAIL_USER,pass:process.env.MAIL_PASS}}):null;if(!o)return void console.error("mailer: env vars missing");try{let t=e.attachments??[];(0,i.existsSync)(l)&&t.unshift({filename:"logo.jpg",path:l,cid:s}),await o.sendMail({from:process.env.RESEND_API_KEY?'"Bevanssons" <noreply@bevanssons.store>':`"Bevanssons" <${process.env.MAIL_USER??"noreply@bevanssons.store"}>`,to:e.to,subject:e.subject,html:e.html,attachments:t,...e.headers?{headers:e.headers}:{}})}catch(e){console.error("mailer send error:",e)}}async function b(e){try{let t=await fetch(e,{signal:AbortSignal.timeout(5e3)});if(!t.ok)return null;return Buffer.from(await t.arrayBuffer())}catch{return null}}async function h(e){let t=[],o=new Map;return await Promise.all(e.map(async(e,i)=>{if(!e.imageUrl)return;let r=await b(e.imageUrl.startsWith("http")?e.imageUrl:f+e.imageUrl);if(!r)return;let n=`product-${i}@daisy`,a=e.imageUrl.split(".").pop()?.split("?")[0]??"jpg";t.push({filename:`product-${i}.${a}`,content:r,cid:n}),o.set(e.imageUrl,`cid:${n}`)})),{attachments:t,cidMap:o}}function $(e,t=""){return`<!DOCTYPE html>
+module.exports=[67010,33464,e=>{"use strict";var t=e.i(84423),o=e.i(14747),i=e.i(22734);let r=[{id:"payfast",bank:"PayFast Online Payment",accountHolder:"Bevanssons",accountType:"Instant Payment Gateway",accountNumber:"Card / Instant EFT",branchCode:"PayFast"}];function n(e){return r.find(t=>t.id===e)??r[0]}e.s(["getBankById",0,n],33464);var a=e.i(2529);let s=o.default.join(process.cwd(),"public","logo.jpg"),l="logo@bevanssons",p="#C8B993",d="#f5d76e",c="#111111",g="#1A1A1A",m="#2A2A2A",x="#6b7280",f="https://gadgets.bevanssons.store",y="support@bevanssons.store";async function u(e){let o=process.env.RESEND_API_KEY?t.default.createTransport({host:"smtp.resend.com",port:587,secure:!1,auth:{user:"resend",pass:process.env.RESEND_API_KEY}}):process.env.MAIL_USER&&process.env.MAIL_PASS?t.default.createTransport({service:"gmail",auth:{user:process.env.MAIL_USER,pass:process.env.MAIL_PASS.replace(/\s+/g,"")}}):null;if(!o)return void console.error("mailer: env vars missing");try{let t=e.attachments??[];(0,i.existsSync)(s)&&t.unshift({filename:"logo.jpg",path:s,cid:l}),await o.sendMail({from:function(){if(process.env.RESEND_API_KEY)return'"Bevanssons" <noreply@bevanssons.store>';let e=process.env.MAIL_USER??"support@bevanssons.store";return`"Bevanssons" <${e}>`}(),replyTo:process.env.MAIL_USER??"support@bevanssons.store",to:e.to,subject:e.subject,text:e.text,html:e.html,attachments:t,...e.headers?{headers:e.headers}:{}})}catch(e){console.error("mailer send error:",e)}}async function h(e){try{let t=await fetch(e,{signal:AbortSignal.timeout(5e3)});if(!t.ok)return null;return Buffer.from(await t.arrayBuffer())}catch{return null}}async function b(e){let t=[],o=new Map;return await Promise.all(e.map(async(e,i)=>{if(!e.imageUrl)return;let r=await h(e.imageUrl.startsWith("http")?e.imageUrl:f+e.imageUrl);if(!r)return;let n=`product-${i}@daisy`,a=e.imageUrl.split(".").pop()?.split("?")[0]??"jpg";t.push({filename:`product-${i}.${a}`,content:r,cid:n}),o.set(e.imageUrl,`cid:${n}`)})),{attachments:t,cidMap:o}}function $(e,t=""){return`<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -19,7 +19,7 @@ module.exports=[67010,33464,e=>{"use strict";var t=e.i(84423),o=e.i(14747),i=e.i
             <table width="100%" cellpadding="0" cellspacing="0">
               <tr>
                 <td>
-                  <img src="cid:${s}" alt="Bevanssons" height="44" style="height:44px;width:auto;display:block;border:0" />
+                  <img src="cid:${l}" alt="Bevanssons" height="44" style="height:44px;width:auto;display:block;border:0" />
                 </td>
                 <td align="right">
                   <a href="${f}" style="color:${x};font-size:12px;text-decoration:none">gadgets.bevanssons.store</a>
@@ -63,7 +63,7 @@ module.exports=[67010,33464,e=>{"use strict";var t=e.i(84423),o=e.i(14747),i=e.i
 </html>`}function v(e){return`<p style="margin:0 0 3px;color:${x};font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em">${e}</p>`}function w(){return`<div style="height:1px;background:${m};margin:24px 0"></div>`}function z(e,t,o=p,i=c){return`<a href="${t}" style="display:inline-block;background:${o};color:${i};font-weight:800;text-decoration:none;padding:13px 26px;border-radius:10px;font-size:14px;letter-spacing:0.02em">${e}</a>`}function k(e,t){return`<tr>
     <td style="padding:8px 0;color:${x};font-size:13px;width:150px;vertical-align:top;border-bottom:1px solid ${m}">${e}</td>
     <td style="padding:8px 0;color:#e5e7eb;font-size:13px;font-weight:600;vertical-align:top;border-bottom:1px solid ${m}">${t}</td>
-  </tr>`}function A(e,t){return`<span style="display:inline-block;background:${t}22;color:${t};border:1px solid ${t}55;padding:4px 14px;border-radius:20px;font-size:12px;font-weight:700;letter-spacing:0.05em">${e}</span>`}async function U(e){let{attachments:t,cidMap:o}=await h(e.items),i=e.items.map(e=>{let t=(parseFloat(String(e.price).replace(/[^0-9.]/g,""))*e.qty).toLocaleString("en-ZA"),i=e.imageUrl?o.get(e.imageUrl)??(e.imageUrl.startsWith("http")?e.imageUrl:f+e.imageUrl):null,r=i?`<img src="${i}" alt="${e.name}" width="64" height="64" style="width:64px;height:64px;object-fit:cover;border-radius:10px;display:block;border:1px solid ${m}" />`:`<div style="width:64px;height:64px;background:${g};border:1px solid ${m};border-radius:10px"></div>`;return`
+  </tr>`}function P(e,t){return`<span style="display:inline-block;background:${t}22;color:${t};border:1px solid ${t}55;padding:4px 14px;border-radius:20px;font-size:12px;font-weight:700;letter-spacing:0.05em">${e}</span>`}async function U(e){let{attachments:t,cidMap:o}=await b(e.items),i=e.items.map(e=>{let t=(parseFloat(String(e.price).replace(/[^0-9.]/g,""))*e.qty).toLocaleString("en-ZA"),i=e.imageUrl?o.get(e.imageUrl)??(e.imageUrl.startsWith("http")?e.imageUrl:f+e.imageUrl):null,r=i?`<img src="${i}" alt="${e.name}" width="64" height="64" style="width:64px;height:64px;object-fit:cover;border-radius:10px;display:block;border:1px solid ${m}" />`:`<div style="width:64px;height:64px;background:${g};border:1px solid ${m};border-radius:10px"></div>`;return`
     <tr>
       <td style="padding:12px 0;border-bottom:1px solid ${m};width:76px;vertical-align:middle">${r}</td>
       <td style="padding:12px 12px;border-bottom:1px solid ${m};vertical-align:middle">
@@ -142,20 +142,20 @@ module.exports=[67010,33464,e=>{"use strict";var t=e.i(84423),o=e.i(14747),i=e.i
     <div style="text-align:center">
       ${z("✉️ Email Us",`mailto:${y}?subject=Order%20${e.ref}`,p,c)}
     </div>
-  `);await u({to:e.email,subject:`Order Confirmed ✨ — ${e.ref} | Bevanssons`,html:r,attachments:t})}async function B(e){let t=e.bank??n("tymebank"),{attachments:o,cidMap:i}=await h(e.items),r=e.items.map(e=>{let t=(parseFloat(String(e.price).replace(/[^0-9.]/g,""))*e.qty).toLocaleString("en-ZA"),o=parseFloat(String(e.price).replace(/[^0-9.]/g,"")).toLocaleString("en-ZA"),r=e.imageUrl?i.get(e.imageUrl)??(e.imageUrl.startsWith("http")?e.imageUrl:f+e.imageUrl):null,n=r?`<img src="${r}" alt="${e.name}" width="64" height="64" style="width:64px;height:64px;object-fit:cover;border-radius:10px;display:block;border:1px solid ${m}" />`:`<div style="width:64px;height:64px;background:${g};border:1px solid ${m};border-radius:10px"></div>`;return`
+  `);await u({to:e.email,subject:`Order Confirmed ✨ — ${e.ref} | Bevanssons`,html:r,attachments:t})}async function A(e){e.bank??n("payfast");let{attachments:t,cidMap:o}=await b(e.items),i=e.items.map(e=>{let t=(parseFloat(String(e.price).replace(/[^0-9.]/g,""))*e.qty).toLocaleString("en-ZA"),i=parseFloat(String(e.price).replace(/[^0-9.]/g,"")).toLocaleString("en-ZA"),r=e.imageUrl?o.get(e.imageUrl)??(e.imageUrl.startsWith("http")?e.imageUrl:f+e.imageUrl):null,n=r?`<img src="${r}" alt="${e.name}" width="64" height="64" style="width:64px;height:64px;object-fit:cover;border-radius:10px;display:block;border:1px solid ${m}" />`:`<div style="width:64px;height:64px;background:${g};border:1px solid ${m};border-radius:10px"></div>`;return`
     <tr>
       <td style="padding:12px 0;border-bottom:1px solid ${m};width:76px;vertical-align:middle">${n}</td>
       <td style="padding:12px 10px;border-bottom:1px solid ${m};vertical-align:middle">
         <p style="margin:0 0 3px;color:#e5e7eb;font-size:14px;font-weight:600">${e.name}</p>
-        <p style="margin:0;color:${x};font-size:12px">R ${o} \xd7 ${e.qty}</p>
+        <p style="margin:0;color:${x};font-size:12px">R ${i} \xd7 ${e.qty}</p>
       </td>
       <td style="padding:12px 0;border-bottom:1px solid ${m};text-align:right;vertical-align:middle">
         <span style="color:${p};font-size:14px;font-weight:700">R ${t}</span>
       </td>
-    </tr>`}).join(""),a=e.reason?`<div style="background:${g};border-left:3px solid #ef4444;border-radius:0 10px 10px 0;padding:16px 20px;margin-bottom:24px">
+    </tr>`}).join(""),r=e.reason?`<div style="background:${g};border-left:3px solid #ef4444;border-radius:0 10px 10px 0;padding:16px 20px;margin-bottom:24px">
         <p style="margin:0 0 4px;color:#ef4444;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em">Reason from our team</p>
         <p style="margin:0;color:#fca5a5;font-size:14px;line-height:1.6">${e.reason}</p>
-       </div>`:"",l=$(`
+       </div>`:"",a=$(`
     <!-- Hero -->
     <div style="text-align:center;margin-bottom:28px">
       <div style="font-size:48px;line-height:1;margin-bottom:14px">🔔</div>
@@ -164,7 +164,7 @@ module.exports=[67010,33464,e=>{"use strict";var t=e.i(84423),o=e.i(14747),i=e.i
       <p style="margin:0;color:#9ca3af;font-size:14px;line-height:1.6">Hi <strong style="color:#e5e7eb">${e.name.split(" ")[0]}</strong>, we were unable to verify your proof of payment for order <strong style="color:${p};font-family:monospace">${e.ref}</strong>.</p>
     </div>
 
-    ${a}
+    ${r}
 
     <p style="margin:0 0 24px;color:#9ca3af;font-size:14px;line-height:1.7">
       Don&apos;t worry — this happens sometimes. Please re-do your payment using the details below and upload a clear screenshot or photo of your confirmation.
@@ -175,7 +175,7 @@ module.exports=[67010,33464,e=>{"use strict";var t=e.i(84423),o=e.i(14747),i=e.i
     <!-- Order summary with images -->
     <p style="margin:0 0 14px;color:#e5e7eb;font-size:15px;font-weight:700">✦ Your Order</p>
     <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:4px">
-      ${r}
+      ${i}
     </table>
     <table width="100%" cellpadding="0" cellspacing="0" style="margin:10px 0 28px">
       <tr>
@@ -194,28 +194,24 @@ module.exports=[67010,33464,e=>{"use strict";var t=e.i(84423),o=e.i(14747),i=e.i
 
     ${w()}
 
-    <!-- Bank details -->
-    <p style="margin:0 0 14px;color:#e5e7eb;font-size:15px;font-weight:700">✦ Payment Details (EFT)</p>
+    <!-- Payment details -->
+    <p style="margin:0 0 14px;color:#e5e7eb;font-size:15px;font-weight:700">✦ Secure Payment (PayFast)</p>
     <div style="background:${g};border:1px solid ${m};border-radius:12px;padding:4px 20px;margin-bottom:28px">
       <table width="100%" cellpadding="0" cellspacing="0">
-        ${k("Bank",t.bank)}
-        ${k("Account Holder",t.accountHolder)}
-        ${k("Account Type",t.accountType)}
-        ${k("Account Number",`<span style="font-family:monospace;font-size:15px;color:${p};letter-spacing:0.06em">${t.accountNumber}</span>`)}
-        ${k("Branch Code",t.branchCode)}
-        ${t.payshap?k("PayShap",t.payshap):""}
+        ${k("Payment Method","PayFast Online Payment")}
+        ${k("Accepted","Visa, Mastercard & Instant EFT")}
         ${k("Reference",`<strong style="color:${p};font-size:15px;font-family:monospace">${e.ref}</strong>`)}
-        ${k("Amount",`<strong style="color:${p};font-size:15px">R ${e.total.toLocaleString("en-ZA")}</strong>`)}
+        ${k("Amount Due",`<strong style="color:${p};font-size:15px">R ${e.total.toLocaleString("en-ZA")}</strong>`)}
       </table>
     </div>
 
-    <p style="margin:0 0 20px;color:#9ca3af;font-size:14px">Once paid, upload your new proof of payment — or send it directly by email and we will update your order manually.</p>
+    <p style="margin:0 0 20px;color:#9ca3af;font-size:14px">Please complete your payment securely online via PayFast to confirm your order.</p>
     <div>
-      ${z("📤 Upload New Proof",`${f}/checkout`,p,c)}
+      ${z("💳 Pay with PayFast",`${f}/checkout`,p,c)}
       &nbsp;&nbsp;
-      ${z("✉️ Send via Email",`mailto:${y}?subject=Re-sending%20proof%20for%20order%20${e.ref}`,p,c)}
+      ${z("✉️ Contact Support",`mailto:${y}?subject=Payment%20help%20for%20order%20${e.ref}`,p,c)}
     </div>
-  `);await u({to:e.email,subject:`⚠️ Action Required — ${e.ref} | Bevanssons`,html:l,attachments:o})}let j={approved:{pill:["Payment Approved","#22c55e"],icon:"🎊",title:"Your payment is confirmed!",body:"Great news — your payment has been verified and your order is now being packed and prepared for dispatch. We will notify you as soon as it ships.",cta:["✉️ Email Us",`mailto:${y}`]},shipped:{pill:["Shipped","#3b82f6"],icon:"📦",title:"Your order has been shipped!",body:"We are pleased to inform you that your order has been successfully packed, processed and shipped.\n\nYour parcel is now in transit to the selected delivery destination. Please keep your contact number available in case our delivery team needs to contact you regarding your order.\n\nWe will notify you again when your order moves to Out for Delivery.",cta:["✉️ Track via Email",`mailto:${y}`]},delivered:{pill:["Delivered",p],icon:"🎁",title:"Your order has been delivered!",body:"We are delighted to confirm that your Bevanssons order has been successfully delivered.\n\nThank you for trusting Bevanssons with your purchase. We hope you are completely satisfied with your order. If you experience any issue with the product or require assistance after delivery, please contact our customer support team and we will be happy to assist.\n\nWe would also appreciate your feedback about your shopping experience with us.\n\nThank you for choosing Bevanssons — Smart Tech. Better Living.",cta:["⭐ Leave a Review",`${f}/reviews`]}};async function P(e){let t=j[e.status];if(!t)return;let o=e.notes?`<div style="background:${g};border-left:3px solid ${p};border-radius:0 10px 10px 0;padding:14px 18px;margin:20px 0">
+  `);await u({to:e.email,subject:`⚠️ Action Required — ${e.ref} | Bevanssons`,html:a,attachments:t})}let R={approved:{pill:["Payment Approved","#22c55e"],icon:"🎊",title:"Your payment is confirmed!",body:"Great news — your payment has been verified and your order is now being packed and prepared for dispatch. We will notify you as soon as it ships.",cta:["✉️ Email Us",`mailto:${y}`]},shipped:{pill:["Shipped","#3b82f6"],icon:"📦",title:"Your order has been shipped!",body:"We are pleased to inform you that your order has been successfully packed, processed and shipped.\n\nYour parcel is now in transit to the selected delivery destination. Please keep your contact number available in case our delivery team needs to contact you regarding your order.\n\nWe will notify you again when your order moves to Out for Delivery.",cta:["✉️ Track via Email",`mailto:${y}`]},delivered:{pill:["Delivered",p],icon:"🎁",title:"Your order has been delivered!",body:"We are delighted to confirm that your Bevanssons order has been successfully delivered.\n\nThank you for trusting Bevanssons with your purchase. We hope you are completely satisfied with your order. If you experience any issue with the product or require assistance after delivery, please contact our customer support team and we will be happy to assist.\n\nWe would also appreciate your feedback about your shopping experience with us.\n\nThank you for choosing Bevanssons — Smart Tech. Better Living.",cta:["⭐ Leave a Review",`${f}/reviews`]}};async function S(e){let t=R[e.status];if(!t)return;let o=e.notes?`<div style="background:${g};border-left:3px solid ${p};border-radius:0 10px 10px 0;padding:14px 18px;margin:20px 0">
         <p style="margin:0 0 4px;color:${x};font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em">Note from our team</p>
         <p style="margin:0;color:#d1d5db;font-size:14px;font-style:italic;line-height:1.6">"${e.notes}"</p>
        </div>`:"",i="shipped"===e.status&&e.tracking_number?`<div style="background:${g};border:1px solid #3b82f644;border-left:3px solid #3b82f6;border-radius:0 12px 12px 0;padding:16px 20px;margin:4px 0 20px">
@@ -233,7 +229,7 @@ module.exports=[67010,33464,e=>{"use strict";var t=e.i(84423),o=e.i(14747),i=e.i
           </tr>
         </table>
        </div>`:"",n={approved:`Payment Approved — ${e.ref} | Bevanssons`,rejected:`Action Required — ${e.ref} | Bevanssons`,shipped:`Your Order Has Been Shipped – #${e.ref}`,delivered:`Order Successfully Delivered – #${e.ref}`},a=$(`
-    <div style="margin-bottom:16px">${A(...t.pill)}</div>
+    <div style="margin-bottom:16px">${P(...t.pill)}</div>
     <div style="font-size:36px;margin-bottom:12px;line-height:1">${t.icon}</div>
     <h1 style="margin:0 0 6px;color:#f9fafb;font-size:26px;font-weight:900">${t.title}</h1>
     <p style="margin:0 0 4px;color:${x};font-size:13px">Order: <strong style="color:${p}">${e.ref}</strong></p>
@@ -244,23 +240,23 @@ module.exports=[67010,33464,e=>{"use strict";var t=e.i(84423),o=e.i(14747),i=e.i
     ${t.body.split("\n\n").map(e=>`<p style="margin:0 0 14px;color:#9ca3af;font-size:15px;line-height:1.7">${e}</p>`).join("")}
     ${o}
     ${t.cta?`<div style="margin-top:24px">${z(t.cta[0],t.cta[1])}&nbsp;&nbsp;${z("✉️ Email Us",`mailto:${y}?subject=Order%20${e.ref}`,p,c)}</div>`:""}
-  `);await u({to:e.email,subject:n[e.status]??`Order Update — ${e.ref}`,html:a})}let R={processing:{icon:"⚙️",pillText:"Being Prepared",pillColor:"#8b5cf6",title:"Your order is being prepared",subject:"Your Order Is Being Prepared – Bevanssons",defaultMessage:"We are pleased to confirm that your order has been successfully confirmed and is now being prepared by our fulfilment team.\n\nOur team is carefully preparing your order to ensure everything is correct before it moves to the next stage.\n\nWe will notify you as soon as your order is ready for packing.",stage:2},packed:{icon:"📦",pillText:"Being Packed",pillColor:"#3b82f6",title:"Your order is being packed",subject:"Your Order Is Being Packed – Bevanssons",defaultMessage:"Your order has successfully moved to the packing stage.\n\nOur fulfilment team is currently checking and securely packaging your order to ensure that it is properly prepared for transportation.\n\nOnce packing and final quality checks are completed, your order will proceed to shipping. You will receive another notification when your order has been dispatched.",stage:3},out_for_delivery:{icon:"🏠",pillText:"Out for Delivery",pillColor:"#10b981",title:"Your order is out for delivery today!",subject:"Your Order Is Out for Delivery Today",defaultMessage:"Great news. Your Bevanssons order is now out for delivery.\n\nYour assigned delivery driver is currently completing the delivery route and will contact you directly when they are approaching your location.\n\nKindly keep your phone available and ensure that someone is available to receive the order.\n\nPlease note: Delivery times may vary depending on the driver's route, traffic and other scheduled deliveries.\n\nWe appreciate your patience and look forward to completing your delivery successfully.",stage:5},delayed:{icon:"⏳",pillText:"Slight Delay",pillColor:"#f59e0b",title:"A small update on your order",subject:"Update on Your Order – Bevanssons",defaultMessage:"We would like to inform you that there has been a slight delay with your order. We sincerely apologise for any inconvenience this may cause.\n\nOur team is working to resolve this as quickly as possible and your order will be on its way shortly. We will keep you updated with any further changes.",stage:-1},custom:{icon:"📬",pillText:"Update",pillColor:p,title:"An update on your order",subject:"Update on Your Order – Bevanssons",defaultMessage:"",stage:-1}};async function S(e){var t;let o,i,r,n=R[e.templateId]??R.custom,a=e.message?e.message.split("\n\n").map(e=>`<p style="margin:0 0 14px;color:#9ca3af;font-size:15px;line-height:1.7">${e}</p>`).join(""):"",l=e.tracking_number?`<div style="background:${g};border:1px solid #3b82f644;border-left:3px solid #3b82f6;border-radius:0 12px 12px 0;padding:16px 20px;margin:16px 0 20px">
+  `);await u({to:e.email,subject:n[e.status]??`Order Update — ${e.ref}`,html:a})}let j={processing:{icon:"⚙️",pillText:"Being Prepared",pillColor:"#8b5cf6",title:"Your order is being prepared",subject:"Your Order Is Being Prepared – Bevanssons",defaultMessage:"We are pleased to confirm that your order has been successfully confirmed and is now being prepared by our fulfilment team.\n\nOur team is carefully preparing your order to ensure everything is correct before it moves to the next stage.\n\nWe will notify you as soon as your order is ready for packing.",stage:2},packed:{icon:"📦",pillText:"Being Packed",pillColor:"#3b82f6",title:"Your order is being packed",subject:"Your Order Is Being Packed – Bevanssons",defaultMessage:"Your order has successfully moved to the packing stage.\n\nOur fulfilment team is currently checking and securely packaging your order to ensure that it is properly prepared for transportation.\n\nOnce packing and final quality checks are completed, your order will proceed to shipping. You will receive another notification when your order has been dispatched.",stage:3},out_for_delivery:{icon:"🏠",pillText:"Out for Delivery",pillColor:"#10b981",title:"Your order is out for delivery today!",subject:"Your Order Is Out for Delivery Today",defaultMessage:"Great news. Your Bevanssons order is now out for delivery.\n\nYour assigned delivery driver is currently completing the delivery route and will contact you directly when they are approaching your location.\n\nKindly keep your phone available and ensure that someone is available to receive the order.\n\nPlease note: Delivery times may vary depending on the driver's route, traffic and other scheduled deliveries.\n\nWe appreciate your patience and look forward to completing your delivery successfully.",stage:5},delayed:{icon:"⏳",pillText:"Slight Delay",pillColor:"#f59e0b",title:"A small update on your order",subject:"Update on Your Order – Bevanssons",defaultMessage:"We would like to inform you that there has been a slight delay with your order. We sincerely apologise for any inconvenience this may cause.\n\nOur team is working to resolve this as quickly as possible and your order will be on its way shortly. We will keep you updated with any further changes.",stage:-1},custom:{icon:"📬",pillText:"Update",pillColor:p,title:"An update on your order",subject:"Update on Your Order – Bevanssons",defaultMessage:"",stage:-1}};async function I(e){var t;let o,i,r,n=j[e.templateId]??j.custom,a=e.message?e.message.split("\n\n").map(e=>`<p style="margin:0 0 14px;color:#9ca3af;font-size:15px;line-height:1.7">${e}</p>`).join(""):"",s=e.tracking_number?`<div style="background:${g};border:1px solid #3b82f644;border-left:3px solid #3b82f6;border-radius:0 12px 12px 0;padding:16px 20px;margin:16px 0 20px">
         <p style="margin:0 0 4px;color:${x};font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em">Your Tracking Number</p>
         <p style="margin:0;color:#93c5fd;font-size:20px;font-weight:700;font-family:monospace;letter-spacing:0.08em">${e.tracking_number}</p>
-       </div>`:"",s=$(`
-    <div style="margin-bottom:16px">${A(n.pillText,n.pillColor)}</div>
+       </div>`:"",l=$(`
+    <div style="margin-bottom:16px">${P(n.pillText,n.pillColor)}</div>
     <div style="font-size:36px;margin-bottom:12px;line-height:1">${n.icon}</div>
     <h1 style="margin:0 0 6px;color:#f9fafb;font-size:26px;font-weight:900">${n.title}</h1>
     <p style="margin:0 0 4px;color:${x};font-size:13px">Order: <strong style="color:${p}">${e.ref}</strong></p>
     ${w()}
     <p style="margin:0 0 14px;color:#9ca3af;font-size:15px">Dear ${e.name.split(" ")[0]},</p>
-    ${n.stage>0?(t=n.stage,i=[],r=[],(o=["Order Placed","Processing","Packed","Dispatched","Delivered"]).forEach((e,n)=>{let a=n+1,l=a<t,s=a===t,d=l?"#10b981":s?p:"#1a1a1a",g=l?"#fff":s?c:"#555";i.push(`<td align="center"><table cellpadding="0" cellspacing="0" style="margin:0 auto"><tr><td align="center" width="28" height="28" style="width:28px;height:28px;border-radius:14px;background:${d};border:2px solid ${l?"#10b981":s?p:"#2a2a2a"};text-align:center;vertical-align:middle;font-size:11px;font-weight:800;color:${g};line-height:24px">${l?"&#10003;":a}</td></tr></table></td>`),r.push(`<td align="center" style="padding:6px 2px 0;vertical-align:top"><p style="margin:0;font-size:10px;color:${s?"#e5e7eb":l?"#9ca3af":"#4b5563"};font-weight:${s?700:400};line-height:1.4">${e}</p></td>`),n<o.length-1&&(i.push(`<td style="vertical-align:middle;padding-bottom:4px"><div style="height:2px;background:${n+1<t?"#10b981":"#2a2a2a"}"></div></td>`),r.push("<td></td>"))}),`<table width="100%" cellpadding="0" cellspacing="0" style="margin:20px 0 8px"><tr>${i.join("")}</tr><tr>${r.join("")}</tr></table>`):""}
-    ${l}
+    ${n.stage>0?(t=n.stage,i=[],r=[],(o=["Order Placed","Processing","Packed","Dispatched","Delivered"]).forEach((e,n)=>{let a=n+1,s=a<t,l=a===t,d=s?"#10b981":l?p:"#1a1a1a",g=s?"#fff":l?c:"#555";i.push(`<td align="center"><table cellpadding="0" cellspacing="0" style="margin:0 auto"><tr><td align="center" width="28" height="28" style="width:28px;height:28px;border-radius:14px;background:${d};border:2px solid ${s?"#10b981":l?p:"#2a2a2a"};text-align:center;vertical-align:middle;font-size:11px;font-weight:800;color:${g};line-height:24px">${s?"&#10003;":a}</td></tr></table></td>`),r.push(`<td align="center" style="padding:6px 2px 0;vertical-align:top"><p style="margin:0;font-size:10px;color:${l?"#e5e7eb":s?"#9ca3af":"#4b5563"};font-weight:${l?700:400};line-height:1.4">${e}</p></td>`),n<o.length-1&&(i.push(`<td style="vertical-align:middle;padding-bottom:4px"><div style="height:2px;background:${n+1<t?"#10b981":"#2a2a2a"}"></div></td>`),r.push("<td></td>"))}),`<table width="100%" cellpadding="0" cellspacing="0" style="margin:20px 0 8px"><tr>${i.join("")}</tr><tr>${r.join("")}</tr></table>`):""}
+    ${s}
     ${a}
     <div style="margin-top:8px">
       ${z("✉️ Email Us",`mailto:${y}?subject=Order%20${e.ref}`,p,c)}
     </div>
-  `);await u({to:e.email,subject:n.subject,html:s})}async function T(e){let t=$(`
+  `);await u({to:e.email,subject:n.subject,html:l})}async function B(e){let t=$(`
     ${v("Your Quote is Ready")}
     <h1 style="margin:6px 0 6px;color:#f9fafb;font-size:28px;font-weight:900">Hi ${e.name.split(" ")[0]}, here is your quote</h1>
     <p style="margin:0 0 28px;color:${x};font-size:13px">Reference: <strong style="color:#e5e7eb">${e.ref}</strong></p>
@@ -284,7 +280,7 @@ module.exports=[67010,33464,e=>{"use strict";var t=e.i(84423),o=e.i(14747),i=e.i
     ${z("Accept Quote",`mailto:${y}?subject=Accept%20quote%20${e.ref}`,p,c)}
     &nbsp;&nbsp;
     ${z("Ask a Question",`mailto:${y}?subject=Question%20about%20quote%20${e.ref}`,p,c)}
-  `);await u({to:e.email,subject:`Your Quote — ${e.ref} | Bevanssons`,html:t})}async function I(e){let t=$(`
+  `);await u({to:e.email,subject:`Your Quote — ${e.ref} | Bevanssons`,html:t})}async function _(e){let t=$(`
     ${v("Welcome to the family")}
     <h1 style="margin:6px 0 10px;color:#f9fafb;font-size:28px;font-weight:900">
       ✨ You are in${e.name?`, ${e.name.split(" ")[0]}`:""}!
@@ -305,12 +301,11 @@ module.exports=[67010,33464,e=>{"use strict";var t=e.i(84423),o=e.i(14747),i=e.i
     ${z("✉️ Claim via Email",`mailto:${y}?subject=Discount%20code%20BEVANS25`,p,c)}
   `);await u({to:e.email,subject:"✨ Your 25% Discount Code — Bevanssons",html:t})}async function D(e){let t=e=>`R ${e.toLocaleString("en-ZA",{minimumFractionDigits:2})}`,o=encodeURIComponent(`Hi, I received approval for my installment application ${e.ref} for the ${e.product_name}. I'm ready to pay my deposit of ${t(e.deposit)}.`),i=`
     <tr>
-      <td colspan="2" style="padding:10px 0 4px;color:${x};font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;border-top:1px solid ${m}">TymeBank / GoTymeBank</td>
+      <td colspan="2" style="padding:10px 0 4px;color:${x};font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;border-top:1px solid ${m}">PayFast Secure Payment</td>
     </tr>
-    ${k("Account Holder","Bevanssons")}
-    ${k("Account Type","Business Account")}
-    ${k("Account Number","51072673949")}
-    ${k("Branch Code","678910")}
+    ${k("Payment Method","PayFast (Card / Instant EFT)")}
+    ${k("Merchant","Bevanssons")}
+    ${k("Reference",e.ref)}
   `,r=$(`
     <!-- Approved badge -->
     <div style="text-align:center;margin-bottom:28px">
@@ -349,12 +344,12 @@ module.exports=[67010,33464,e=>{"use strict";var t=e.i(84423),o=e.i(14747),i=e.i
     <!-- How to start -->
     <div style="background:#f59e0b11;border:1px solid #f59e0b44;border-radius:12px;padding:16px 20px;margin-bottom:24px">
       <p style="margin:0 0 6px;color:#f59e0b;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em">⚡ Next Step — Pay Your Deposit</p>
-      <p style="margin:0;color:#d1d5db;font-size:13px;line-height:1.6">Transfer <strong style="color:#f59e0b">${t(e.deposit)}</strong> to one of our accounts below using <strong style="color:#fff">${e.ref}</strong> as your payment reference, then send proof of payment by email to activate your plan.</p>
+      <p style="margin:0;color:#d1d5db;font-size:13px;line-height:1.6">Pay your deposit of <strong style="color:#f59e0b">${t(e.deposit)}</strong> securely via PayFast using reference <strong style="color:#fff">${e.ref}</strong> to activate your plan.</p>
     </div>
 
     ${w()}
 
-    <!-- Bank details -->
+    <!-- Payment details -->
     <p style="margin:0 0 12px;color:#fff;font-size:15px;font-weight:700">Payment Details</p>
     <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:24px">
       ${i}
@@ -365,20 +360,20 @@ module.exports=[67010,33464,e=>{"use strict";var t=e.i(84423),o=e.i(14747),i=e.i
       ${z("✉️ Send Proof of Payment by Email",`mailto:${y}?subject=${o}`,p,c)}
     </div>
     <p style="margin:12px 0 0;color:${x};font-size:12px;text-align:center">Always use <strong style="color:#fff">${e.ref}</strong> as your payment reference.</p>
-  `);await u({to:e.email,subject:`✅ Installment Approved — ${e.ref} | Bevanssons`,html:r})}function _(e,t,o){return`
+  `);await u({to:e.email,subject:`✅ Installment Approved — ${e.ref} | Bevanssons`,html:r})}function C(e,t,o){return`
     <div style="text-align:center;margin-bottom:28px">
       <div style="display:inline-block;background:#ffffff0f;border-radius:50%;width:64px;height:64px;line-height:64px;font-size:28px;margin-bottom:12px">${e}</div>
       <h1 style="margin:0 0 8px;color:#fff;font-size:22px;font-weight:900">${t}</h1>
       <p style="margin:0;color:#9ca3af;font-size:14px">${o}</p>
-    </div>`}function C(e,t){return`
+    </div>`}function E(e,t){return`
     <div style="background:${c};border:1px solid ${p}44;border-radius:12px;padding:16px 20px;margin-bottom:24px">
       ${v("Application Reference")}
       <p style="margin:4px 0 12px;color:${p};font-size:24px;font-weight:900;font-family:monospace;letter-spacing:0.1em">${e}</p>
       ${v("Product")}
       <p style="margin:4px 0 0;color:#fff;font-size:15px;font-weight:700">${t}</p>
-    </div>`}async function E(e){let t=encodeURIComponent(`Hi, I am following up on my installment application ${e.ref} for the ${e.product_name}.`),o=$(`
-    ${_("🔍","Application Under Review",`Hi ${e.name.split(" ")[0]}, we are looking into your application.`)}
-    ${C(e.ref,e.product_name)}
+    </div>`}async function T(e){let t=encodeURIComponent(`Hi, I am following up on my installment application ${e.ref} for the ${e.product_name}.`),o=$(`
+    ${C("🔍","Application Under Review",`Hi ${e.name.split(" ")[0]}, we are looking into your application.`)}
+    ${E(e.ref,e.product_name)}
 
     <p style="color:#9ca3af;font-size:14px;line-height:1.7;margin:0 0 20px">
       Our team is currently reviewing your installment application. We will verify your details and get back to you as soon as possible — usually within <strong style="color:#fff">24 hours</strong>.
@@ -402,38 +397,38 @@ module.exports=[67010,33464,e=>{"use strict";var t=e.i(84423),o=e.i(14747),i=e.i
     <div style="text-align:center">
       ${z("Email Us",`mailto:${y}?subject=${t}`,p,c)}
     </div>
-  `);await u({to:e.email,subject:`Application Under Review — ${e.ref} | Bevanssons`,html:o})}async function Y(e){var t,o,i,r,n;let a,l,s=encodeURIComponent(`Hi, I am sending proof of payment for my installment deposit. Application: ${e.ref} — ${e.product_name}.`),d=$(`
-    ${_("💳","Deposit Payment Required",`Hi ${e.name.split(" ")[0]}, one step away from activating your plan!`)}
-    ${C(e.ref,e.product_name)}
+  `);await u({to:e.email,subject:`Application Under Review — ${e.ref} | Bevanssons`,html:o})}async function O(e){var t,o,i,r,n;let a,s,l=encodeURIComponent(`Hi, I am sending proof of payment for my installment deposit. Application: ${e.ref} — ${e.product_name}.`),d=$(`
+    ${C("💳","Deposit Payment Required",`Hi ${e.name.split(" ")[0]}, one step away from activating your plan!`)}
+    ${E(e.ref,e.product_name)}
 
     <p style="color:#9ca3af;font-size:14px;line-height:1.7;margin:0 0 20px">
-      Your application has been processed. To activate your installment plan, please pay the deposit of <strong style="color:#f59e0b;font-size:16px">${(a=e.deposit,`R ${a.toLocaleString("en-ZA",{minimumFractionDigits:2})}`)}</strong> to one of our accounts below.
+      Your application has been processed. To activate your installment plan, please pay the deposit of <strong style="color:#f59e0b;font-size:16px">${(a=e.deposit,`R ${a.toLocaleString("en-ZA",{minimumFractionDigits:2})}`)}</strong> securely via PayFast.
     </p>
 
-    ${(t=e.deposit,o=e.monthly_payment,i=e.term_months,r=e.total_repayable,l=e=>`R ${e.toLocaleString("en-ZA",{minimumFractionDigits:2})}`,`
+    ${(t=e.deposit,o=e.monthly_payment,i=e.term_months,r=e.total_repayable,s=e=>`R ${e.toLocaleString("en-ZA",{minimumFractionDigits:2})}`,`
     <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:24px">
       <tr>
         <td style="padding:10px 0;border-bottom:1px solid ${m};color:${x};font-size:13px">Deposit</td>
-        <td style="padding:10px 0;border-bottom:1px solid ${m};color:#f59e0b;font-size:16px;font-weight:900;text-align:right">${l(t)}</td>
+        <td style="padding:10px 0;border-bottom:1px solid ${m};color:#f59e0b;font-size:16px;font-weight:900;text-align:right">${s(t)}</td>
       </tr>
       <tr>
         <td style="padding:10px 0;border-bottom:1px solid ${m};color:${x};font-size:13px">Monthly x ${i} months</td>
-        <td style="padding:10px 0;border-bottom:1px solid ${m};color:${p};font-size:16px;font-weight:900;text-align:right">${l(o)}/mo</td>
+        <td style="padding:10px 0;border-bottom:1px solid ${m};color:${p};font-size:16px;font-weight:900;text-align:right">${s(o)}/mo</td>
       </tr>
       <tr>
         <td style="padding:10px 0;color:${x};font-size:13px">Total Repayable</td>
-        <td style="padding:10px 0;color:#e5e7eb;font-size:14px;font-weight:700;text-align:right">${l(r)}</td>
+        <td style="padding:10px 0;color:#e5e7eb;font-size:14px;font-weight:700;text-align:right">${s(r)}</td>
       </tr>
     </table>`)}
     ${(n=e.ref,`
     <div style="background:#f59e0b0d;border:1px solid #f59e0b44;border-radius:12px;padding:16px 20px;margin-bottom:20px">
-      <p style="margin:0 0 6px;color:#f59e0b;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em">Deposit Payment Details</p>
+      <p style="margin:0 0 6px;color:#f59e0b;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em">Deposit Payment via PayFast</p>
       <p style="margin:0 0 12px;color:#d1d5db;font-size:13px;line-height:1.6">Use <strong style="color:#fff">${n}</strong> as your payment reference.</p>
       <table width="100%" cellpadding="0" cellspacing="0">
-        <tr><td colspan="2" style="padding:6px 0 2px;color:${x};font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em">TymeBank / GoTymeBank</td></tr>
-        ${k("Account","Bevanssons")}
-        ${k("Account No.","51072673949")}
-        ${k("Branch","678910")}
+        <tr><td colspan="2" style="padding:6px 0 2px;color:${x};font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em">PayFast Online Payment</td></tr>
+        ${k("Payment Method","PayFast (Card / Instant EFT)")}
+        ${k("Merchant","Bevanssons")}
+        ${k("Reference",n)}
       </table>
     </div>`)}
 
@@ -444,12 +439,12 @@ module.exports=[67010,33464,e=>{"use strict";var t=e.i(84423),o=e.i(14747),i=e.i
     </div>`:""}
 
     <div style="text-align:center">
-      ${z("Send Proof of Payment",`mailto:${y}?subject=${s}`,p,c)}
+      ${z("Send Proof of Payment",`mailto:${y}?subject=${l}`,p,c)}
     </div>
     <p style="margin:12px 0 0;color:${x};font-size:12px;text-align:center">After we confirm receipt, your plan will be activated immediately.</p>
-  `);await u({to:e.email,subject:`Deposit Required — ${e.ref} | Bevanssons`,html:d})}async function O(e){let t=e=>`R ${e.toLocaleString("en-ZA",{minimumFractionDigits:2})}`,o=encodeURIComponent(`Hi, I would like to check on my active installment plan ${e.ref} for the ${e.product_name}.`),i=$(`
-    ${_("🟢","Your Plan is Now Active!",`Hi ${e.name.split(" ")[0]}, welcome to your installment plan.`)}
-    ${C(e.ref,e.product_name)}
+  `);await u({to:e.email,subject:`Deposit Required — ${e.ref} | Bevanssons`,html:d})}async function Y(e){let t=e=>`R ${e.toLocaleString("en-ZA",{minimumFractionDigits:2})}`,o=encodeURIComponent(`Hi, I would like to check on my active installment plan ${e.ref} for the ${e.product_name}.`),i=$(`
+    ${C("🟢","Your Plan is Now Active!",`Hi ${e.name.split(" ")[0]}, welcome to your installment plan.`)}
+    ${E(e.ref,e.product_name)}
 
     <p style="color:#9ca3af;font-size:14px;line-height:1.7;margin:0 0 20px">
       Your deposit has been received and your installment plan is now <strong style="color:#10b981">active</strong>. Here is your monthly payment schedule:
@@ -476,9 +471,9 @@ module.exports=[67010,33464,e=>{"use strict";var t=e.i(84423),o=e.i(14747),i=e.i
     <div style="text-align:center">
       ${z("Contact Us by Email",`mailto:${y}?subject=${o}`,p,c)}
     </div>
-  `);await u({to:e.email,subject:`Plan Activated — ${e.ref} | Bevanssons`,html:i})}async function H(e){let t,o=encodeURIComponent(`Hi, I would like to enquire about another product on installments. My previous plan was ${e.ref}.`),i=$(`
-    ${_("🏆","Fully Paid — Congratulations!",`Hi ${e.name.split(" ")[0]}, you have completed your installment plan!`)}
-    ${C(e.ref,e.product_name)}
+  `);await u({to:e.email,subject:`Plan Activated — ${e.ref} | Bevanssons`,html:i})}async function F(e){let t,o=encodeURIComponent(`Hi, I would like to enquire about another product on installments. My previous plan was ${e.ref}.`),i=$(`
+    ${C("🏆","Fully Paid — Congratulations!",`Hi ${e.name.split(" ")[0]}, you have completed your installment plan!`)}
+    ${E(e.ref,e.product_name)}
 
     <p style="color:#9ca3af;font-size:14px;line-height:1.7;margin:0 0 20px">
       You have successfully completed all payments on your installment plan. Thank you for trusting Bevanssons — we truly appreciate your commitment.
@@ -500,8 +495,8 @@ module.exports=[67010,33464,e=>{"use strict";var t=e.i(84423),o=e.i(14747),i=e.i
       &nbsp;&nbsp;
       ${z("Email Us",`mailto:${y}?subject=${o}`,p,c)}
     </div>
-  `);await u({to:e.email,subject:`Plan Complete — ${e.ref} | Bevanssons`,html:i})}async function L(e){let t=encodeURIComponent(`Hi, I would like to discuss my declined installment application ${e.ref} for the ${e.product_name} and explore other options.`),o=$(`
-    ${_("📋","Application Update",`Hi ${e.name.split(" ")[0]}, regarding your application ${e.ref}.`)}
+  `);await u({to:e.email,subject:`Plan Complete — ${e.ref} | Bevanssons`,html:i})}async function M(e){let t=encodeURIComponent(`Hi, I would like to discuss my declined installment application ${e.ref} for the ${e.product_name} and explore other options.`),o=$(`
+    ${C("📋","Application Update",`Hi ${e.name.split(" ")[0]}, regarding your application ${e.ref}.`)}
 
     <p style="color:#9ca3af;font-size:14px;line-height:1.7;margin:0 0 20px">
       Thank you for applying for an installment plan on the <strong style="color:#fff">${e.product_name}</strong>. After reviewing your application, we are unfortunately unable to approve it at this time.
@@ -532,7 +527,7 @@ module.exports=[67010,33464,e=>{"use strict";var t=e.i(84423),o=e.i(14747),i=e.i
       <br><br>
       ${z("Browse Other Products",`${f}/shop`)}
     </div>
-  `);await u({to:e.email,subject:`Application Update — ${e.ref} | Bevanssons`,html:o})}async function W(e){let{attachments:t,cidMap:o}=await h(e.items),i=e.items.map(e=>{let t=e.imageUrl?o.get(e.imageUrl)??(e.imageUrl.startsWith("http")?e.imageUrl:f+e.imageUrl):null,i=t?`<img src="${t}" alt="${e.name}" width="64" height="64" style="width:64px;height:64px;object-fit:cover;border-radius:10px;display:block;border:1px solid ${m}" />`:`<div style="width:64px;height:64px;background:${g};border:1px solid ${m};border-radius:10px"></div>`;return`
+  `);await u({to:e.email,subject:`Application Update — ${e.ref} | Bevanssons`,html:o})}async function H(e){let{attachments:t,cidMap:o}=await b(e.items),i=e.items.map(e=>{let t=e.imageUrl?o.get(e.imageUrl)??(e.imageUrl.startsWith("http")?e.imageUrl:f+e.imageUrl):null,i=t?`<img src="${t}" alt="${e.name}" width="64" height="64" style="width:64px;height:64px;object-fit:cover;border-radius:10px;display:block;border:1px solid ${m}" />`:`<div style="width:64px;height:64px;background:${g};border:1px solid ${m};border-radius:10px"></div>`;return`
     <tr>
       <td style="padding:10px 0;border-bottom:1px solid ${m};width:76px;vertical-align:middle">${i}</td>
       <td style="padding:10px 12px;border-bottom:1px solid ${m};vertical-align:middle">
@@ -568,7 +563,7 @@ module.exports=[67010,33464,e=>{"use strict";var t=e.i(84423),o=e.i(14747),i=e.i
     <p style="margin:0;color:${x};font-size:13px;text-align:center">
       Questions? ${z("Email Us",`mailto:${y}?subject=Order%20${encodeURIComponent(e.ref)}`,g,p)}
     </p>
-  `;await u({to:e.email,subject:`Order ${e.ref} received — clear your cart | Bevanssons`,html:$(r),attachments:t})}async function M(e){let t=(0,a.unsubscribeUrl)(e.to),o=e.ctaUrl&&e.trackingId?`${f}/api/track/email?id=${e.trackingId}&e=click&url=${encodeURIComponent(e.ctaUrl)}`:e.ctaUrl,i=e.ctaText&&o?`<div style="text-align:center;margin:28px 0">${z(e.ctaText,o)}</div>`:"",r=e.trackingId?`<img src="${f}/api/track/email?id=${e.trackingId}&e=open" width="1" height="1" style="display:none;width:1px;height:1px;border:0" alt="" />`:"",n="",l=[];if(e.orderItems?.length){let{attachments:t,cidMap:o}=await h(e.orderItems.map(e=>({name:e.name,imageUrl:e.imageUrl})));l=t;let i=e.orderItems.map(e=>{let t=e.imageUrl?o.get(e.imageUrl)??(e.imageUrl.startsWith("http")?e.imageUrl:f+e.imageUrl):null,i=t?`<img src="${t}" alt="${e.name}" width="64" height="64" style="width:64px;height:64px;object-fit:cover;border-radius:10px;display:block;border:1px solid ${m}" />`:`<div style="width:64px;height:64px;background:${g};border:1px solid ${m};border-radius:10px"></div>`,r=e.id?`${f}/shop/${e.id}`:`${f}/shop`;return`
+  `;await u({to:e.email,subject:`Order ${e.ref} received — clear your cart | Bevanssons`,html:$(r),attachments:t})}async function L(e){let t=(0,a.unsubscribeUrl)(e.to),o=e.ctaUrl&&e.trackingId?`${f}/api/track/email?id=${e.trackingId}&e=click&url=${encodeURIComponent(e.ctaUrl)}`:e.ctaUrl,i=e.ctaText&&o?`<div style="text-align:center;margin:28px 0">${z(e.ctaText,o)}</div>`:"",r=e.trackingId?`<img src="${f}/api/track/email?id=${e.trackingId}&e=open" width="1" height="1" style="display:none;width:1px;height:1px;border:0" alt="" />`:"",n="",s=[];if(e.orderItems?.length){let{attachments:t,cidMap:o}=await b(e.orderItems.map(e=>({name:e.name,imageUrl:e.imageUrl})));s=t;let i=e.orderItems.map(e=>{let t=e.imageUrl?o.get(e.imageUrl)??(e.imageUrl.startsWith("http")?e.imageUrl:f+e.imageUrl):null,i=t?`<img src="${t}" alt="${e.name}" width="64" height="64" style="width:64px;height:64px;object-fit:cover;border-radius:10px;display:block;border:1px solid ${m}" />`:`<div style="width:64px;height:64px;background:${g};border:1px solid ${m};border-radius:10px"></div>`,r=e.id?`${f}/shop/${e.id}`:`${f}/shop`;return`
       <tr>
         <td style="padding:10px 0;border-bottom:1px solid ${m};width:76px;vertical-align:middle">
           <a href="${r}">${i}</a>
@@ -589,7 +584,7 @@ module.exports=[67010,33464,e=>{"use strict";var t=e.i(84423),o=e.i(14747),i=e.i
       <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:8px">
         ${i}
       </table>
-      ${a}`}else if(e.featuredProducts?.length){let{attachments:t,cidMap:o}=await h(e.featuredProducts.map(e=>({name:e.name,imageUrl:e.imageUrl})));l=t;let i=e.featuredProducts.map(e=>{let t=e.imageUrl?o.get(e.imageUrl)??(e.imageUrl.startsWith("http")?e.imageUrl:f+e.imageUrl):null,i=t?`<img src="${t}" alt="${e.name}" width="200" style="width:100%;max-width:200px;height:140px;object-fit:cover;border-radius:10px;display:block;border:1px solid ${m}" />`:`<div style="width:100%;height:140px;background:${g};border:1px solid ${m};border-radius:10px"></div>`;return`
+      ${a}`}else if(e.featuredProducts?.length){let{attachments:t,cidMap:o}=await b(e.featuredProducts.map(e=>({name:e.name,imageUrl:e.imageUrl})));s=t;let i=e.featuredProducts.map(e=>{let t=e.imageUrl?o.get(e.imageUrl)??(e.imageUrl.startsWith("http")?e.imageUrl:f+e.imageUrl):null,i=t?`<img src="${t}" alt="${e.name}" width="200" style="width:100%;max-width:200px;height:140px;object-fit:cover;border-radius:10px;display:block;border:1px solid ${m}" />`:`<div style="width:100%;height:140px;background:${g};border:1px solid ${m};border-radius:10px"></div>`;return`
         <td style="width:48%;vertical-align:top;padding:6px">
           <a href="${f}/shop/${e.id}" style="text-decoration:none;display:block">
             ${i}
@@ -601,7 +596,7 @@ module.exports=[67010,33464,e=>{"use strict";var t=e.i(84423),o=e.i(14747),i=e.i
       <p style="margin:0 0 16px;color:#e5e7eb;font-size:14px;font-weight:700">Featured Products</p>
       <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:8px">
         ${r.join("")}
-      </table>`}let s=`
+      </table>`}let l=`
     <h1 style="margin:0 0 20px;color:#fff;font-size:22px;font-weight:800;letter-spacing:-0.02em">${e.heading}</h1>
     <div style="color:#d1d5db;font-size:14px;line-height:1.75;white-space:pre-wrap">${e.body}</div>
     ${i}
@@ -612,6 +607,6 @@ module.exports=[67010,33464,e=>{"use strict";var t=e.i(84423),o=e.i(14747),i=e.i
       <a href="${t}" style="color:${x};text-decoration:underline">Unsubscribe</a> from marketing and follow-up emails.
     </p>
     ${r}
-  `;await u({to:e.to,subject:e.subject,html:$(s),attachments:l.length?l:void 0,headers:{"List-Unsubscribe":`<${t}>`,"List-Unsubscribe-Post":"List-Unsubscribe=One-Click"}})}e.s(["TRACKING_TEMPLATES",0,R,"sendCampaignEmail",0,M,"sendClearCartReminder",0,W,"sendInstallmentActive",0,O,"sendInstallmentApproval",0,D,"sendInstallmentAwaitingPayment",0,Y,"sendInstallmentCompleted",0,H,"sendInstallmentDeclined",0,L,"sendInstallmentReviewing",0,E,"sendMail",0,u,"sendOrderConfirmation",0,U,"sendQuoteReply",0,T,"sendRejectionEmail",0,B,"sendStatusUpdate",0,P,"sendTrackingUpdate",0,S,"sendWelcomeEmail",0,I],67010)}];
+  `;await u({to:e.to,subject:e.subject,html:$(l),attachments:s.length?s:void 0,headers:{"List-Unsubscribe":`<${t}>`,"List-Unsubscribe-Post":"List-Unsubscribe=One-Click"}})}e.s(["TRACKING_TEMPLATES",0,j,"sendCampaignEmail",0,L,"sendClearCartReminder",0,H,"sendInstallmentActive",0,Y,"sendInstallmentApproval",0,D,"sendInstallmentAwaitingPayment",0,O,"sendInstallmentCompleted",0,F,"sendInstallmentDeclined",0,M,"sendInstallmentReviewing",0,T,"sendMail",0,u,"sendOrderConfirmation",0,U,"sendQuoteReply",0,B,"sendRejectionEmail",0,A,"sendStatusUpdate",0,S,"sendTrackingUpdate",0,I,"sendWelcomeEmail",0,_],67010)}];
 
 //# sourceMappingURL=lib_mailer_ts_0qdwzgv._.js.map
