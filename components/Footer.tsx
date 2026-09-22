@@ -12,7 +12,7 @@ const navItems = [
   { href: "/contact",        label: "Contact", icon: Phone },
 ];
 
-function DaisyLogo() {
+function BrandLogo() {
   // White-on-black mark — works as-is on this dark footer, no inversion
   // needed (same as the real Bevans Sons footer).
   return (
@@ -33,7 +33,7 @@ export default function Footer() {
             {/* Brand */}
             <div className="col-span-3">
               <div className="flex items-center gap-3 mb-3">
-                <DaisyLogo />
+                <BrandLogo />
                 <div>
                   <p style={{ fontFamily: "var(--font-outfit)", fontWeight: 700, fontSize: 15, color: "#C8B993", lineHeight: 1.2 }}>
                     Bevanssons
@@ -47,19 +47,18 @@ export default function Footer() {
                 Premium gadgets for everyday convenience. Worldwide shipping available. Same-day delivery in South Africa.
               </p>
               <div className="mt-5 p-4 border border-[#1D1D1D] bg-[#0A0A0A]">
-                <p className="text-[10px] text-gray-600 uppercase tracking-wide mb-2 font-semibold">Bank Details</p>
+                <p className="text-[10px] text-gray-600 uppercase tracking-wide mb-2 font-semibold">Payment Methods</p>
                 <div className="space-y-1">
                   {[
-                    ["Bank", "TymeBank / GoTymeBank"],
-                    ["Account Holder", "Bevanssons"],
-                    ["Account Type", "Business Account"],
-                    ["Account No.", "51072673949"],
-                    ["Branch Code", "678910"],
-                    ["Reference", "Name & Surname"],
+                    ["Payment Partner", "PayFast Secure"],
+                    ["Cards Accepted", "Visa & Mastercard"],
+                    ["Instant EFT", "All Major SA Banks"],
+                    ["Verification", "Instant & Automatic"],
+                    ["Encryption", "256-Bit SSL"],
                   ].map(([k, v]) => (
                     <div key={k} className="flex justify-between gap-2">
                       <span className="text-[10px] text-gray-600">{k}</span>
-                      <span className={`text-[10px] font-semibold ${k === "Account No." ? "text-[#C8B993] font-mono" : "text-gray-300"}`}>{v}</span>
+                      <span className={`text-[10px] font-semibold ${k === "Payment Partner" ? "text-[#C8B993]" : "text-gray-300"}`}>{v}</span>
                     </div>
                   ))}
                 </div>
