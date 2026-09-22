@@ -4,7 +4,7 @@ import { existsSync } from "fs";
 import { getBankById, type BankDetails } from "./bankDetails";
 
 const LOGO_PATH = path.join(process.cwd(), "public", "logo.jpg");
-const LOGO_CID  = "logo@daisygadgets";
+const LOGO_CID  = "logo@bevanssons";
 
 const GOLD        = "#C8B993";
 const GOLD_LIGHT  = "#f5d76e";
@@ -29,23 +29,25 @@ function createTransporter() {
   if (process.env.MAIL_USER && process.env.MAIL_PASS) {
     return nodemailer.createTransport({
       service: "gmail",
-      auth: { user: process.env.MAIL_USER, pass: process.env.MAIL_PASS },
+      auth: { user: process.env.MAIL_USER, pass: process.env.MAIL_PASS.replace(/\s+/g, "") },
     });
   }
   return null;
 }
 
 function fromAddress() {
-  return process.env.RESEND_API_KEY
-    ? `"Bevanssons" <noreply@bevanssons.store>`
-    : `"Bevanssons" <${process.env.MAIL_USER ?? "noreply@bevanssons.store"}>`;
+  if (process.env.RESEND_API_KEY) {
+    return `"Bevanssons" <noreply@bevanssons.store>`;
+  }
+  const user = process.env.MAIL_USER ?? "support@bevanssons.store";
+  return `"Bevanssons" <${user}>`;
 }
 
 type MailAttachment =
   | { filename: string; path: string; cid: string }
   | { filename: string; content: Buffer; cid: string };
 
-export async function sendMail(opts: { to: string; subject: string; html: string; attachments?: MailAttachment[] }) {
+export async function sendMail(opts: { to: string; subject: string; html: string; text?: string; attachments?: MailAttachment[] }) {
   const transporter = createTransporter();
   if (!transporter) { console.error("mailer: env vars missing"); return; }
   try {
@@ -55,8 +57,10 @@ export async function sendMail(opts: { to: string; subject: string; html: string
     }
     await transporter.sendMail({
       from: fromAddress(),
+      replyTo: process.env.MAIL_USER ?? "support@bevanssons.store",
       to: opts.to,
       subject: opts.subject,
+      text: opts.text,
       html: opts.html,
       attachments,
     });
@@ -330,7 +334,7 @@ export interface RejectionEmailData {
 }
 
 export async function sendRejectionEmail(data: RejectionEmailData) {
-  const bank = data.bank ?? getBankById("tymebank");
+  const bank = data.bank ?? getBankById("payfast");
   const { attachments: imgAttachments, cidMap } = await buildProductAttachments(data.items);
 
   const itemRows = data.items.map(i => {
@@ -399,26 +403,22 @@ export async function sendRejectionEmail(data: RejectionEmailData) {
 
     ${divider()}
 
-    <!-- Bank details -->
-    <p style="margin:0 0 14px;color:#e5e7eb;font-size:15px;font-weight:700">✦ Payment Details (EFT)</p>
+    <!-- Payment details -->
+    <p style="margin:0 0 14px;color:#e5e7eb;font-size:15px;font-weight:700">✦ Secure Payment (PayFast)</p>
     <div style="background:${DARK2};border:1px solid ${BORDER};border-radius:12px;padding:4px 20px;margin-bottom:28px">
       <table width="100%" cellpadding="0" cellspacing="0">
-        ${infoRow("Bank", bank.bank)}
-        ${infoRow("Account Holder", bank.accountHolder)}
-        ${infoRow("Account Type", bank.accountType)}
-        ${infoRow("Account Number", `<span style="font-family:monospace;font-size:15px;color:${GOLD};letter-spacing:0.06em">${bank.accountNumber}</span>`)}
-        ${infoRow("Branch Code", bank.branchCode)}
-        ${bank.payshap ? infoRow("PayShap", bank.payshap) : ""}
+        ${infoRow("Payment Method", "PayFast Online Payment")}
+        ${infoRow("Accepted", "Visa, Mastercard & Instant EFT")}
         ${infoRow("Reference", `<strong style="color:${GOLD};font-size:15px;font-family:monospace">${data.ref}</strong>`)}
-        ${infoRow("Amount", `<strong style="color:${GOLD};font-size:15px">R ${data.total.toLocaleString("en-ZA")}</strong>`)}
+        ${infoRow("Amount Due", `<strong style="color:${GOLD};font-size:15px">R ${data.total.toLocaleString("en-ZA")}</strong>`)}
       </table>
     </div>
 
-    <p style="margin:0 0 20px;color:#9ca3af;font-size:14px">Once paid, upload your new proof of payment — or send it directly by email and we will update your order manually.</p>
+    <p style="margin:0 0 20px;color:#9ca3af;font-size:14px">Please complete your payment securely online via PayFast to confirm your order.</p>
     <div>
-      ${btn("📤 Upload New Proof", `${SITE}/checkout`, GOLD, BLACK)}
+      ${btn("💳 Pay with PayFast", `${SITE}/checkout`, GOLD, BLACK)}
       &nbsp;&nbsp;
-      ${btn("✉️ Send via Email", `mailto:${SUPPORT_EMAIL}?subject=Re-sending%20proof%20for%20order%20${data.ref}`, GOLD, BLACK)}
+      ${btn("✉️ Contact Support", `mailto:${SUPPORT_EMAIL}?subject=Payment%20help%20for%20order%20${data.ref}`, GOLD, BLACK)}
     </div>
   `);
 
@@ -843,12 +843,11 @@ export async function sendInstallmentApproval(data: {
 
   const bankRows = `
     <tr>
-      <td colspan="2" style="padding:10px 0 4px;color:${MUTED};font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;border-top:1px solid ${BORDER}">TymeBank / GoTymeBank</td>
+      <td colspan="2" style="padding:10px 0 4px;color:${MUTED};font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;border-top:1px solid ${BORDER}">PayFast Secure Payment</td>
     </tr>
-    ${infoRow("Account Holder", "Bevanssons")}
-    ${infoRow("Account Type", "Business Account")}
-    ${infoRow("Account Number", "51072673949")}
-    ${infoRow("Branch Code", "678910")}
+    ${infoRow("Payment Method", "PayFast (Card / Instant EFT)")}
+    ${infoRow("Merchant", "Bevanssons")}
+    ${infoRow("Reference", data.ref)}
   `;
 
   const html = layout(`
@@ -889,12 +888,12 @@ export async function sendInstallmentApproval(data: {
     <!-- How to start -->
     <div style="background:#f59e0b11;border:1px solid #f59e0b44;border-radius:12px;padding:16px 20px;margin-bottom:24px">
       <p style="margin:0 0 6px;color:#f59e0b;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em">⚡ Next Step — Pay Your Deposit</p>
-      <p style="margin:0;color:#d1d5db;font-size:13px;line-height:1.6">Transfer <strong style="color:#f59e0b">${fmt(data.deposit)}</strong> to one of our accounts below using <strong style="color:#fff">${data.ref}</strong> as your payment reference, then send proof of payment by email to activate your plan.</p>
+      <p style="margin:0;color:#d1d5db;font-size:13px;line-height:1.6">Pay your deposit of <strong style="color:#f59e0b">${fmt(data.deposit)}</strong> securely via PayFast using reference <strong style="color:#fff">${data.ref}</strong> to activate your plan.</p>
     </div>
 
     ${divider()}
 
-    <!-- Bank details -->
+    <!-- Payment details -->
     <p style="margin:0 0 12px;color:#fff;font-size:15px;font-weight:700">Payment Details</p>
     <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:24px">
       ${bankRows}
@@ -970,13 +969,13 @@ function installmentSummaryTable(deposit: number, monthly: number, term: number,
 function bankDetailsBlock(ref: string) {
   return `
     <div style="background:#f59e0b0d;border:1px solid #f59e0b44;border-radius:12px;padding:16px 20px;margin-bottom:20px">
-      <p style="margin:0 0 6px;color:#f59e0b;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em">Deposit Payment Details</p>
+      <p style="margin:0 0 6px;color:#f59e0b;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em">Deposit Payment via PayFast</p>
       <p style="margin:0 0 12px;color:#d1d5db;font-size:13px;line-height:1.6">Use <strong style="color:#fff">${ref}</strong> as your payment reference.</p>
       <table width="100%" cellpadding="0" cellspacing="0">
-        <tr><td colspan="2" style="padding:6px 0 2px;color:${MUTED};font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em">TymeBank / GoTymeBank</td></tr>
-        ${infoRow("Account", "Bevanssons")}
-        ${infoRow("Account No.", "51072673949")}
-        ${infoRow("Branch", "678910")}
+        <tr><td colspan="2" style="padding:6px 0 2px;color:${MUTED};font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em">PayFast Online Payment</td></tr>
+        ${infoRow("Payment Method", "PayFast (Card / Instant EFT)")}
+        ${infoRow("Merchant", "Bevanssons")}
+        ${infoRow("Reference", ref)}
       </table>
     </div>`;
 }
@@ -1028,7 +1027,7 @@ export async function sendInstallmentAwaitingPayment(data: InstallmentUpdateBase
     ${installmentRefCard(data.ref, data.product_name)}
 
     <p style="color:#9ca3af;font-size:14px;line-height:1.7;margin:0 0 20px">
-      Your application has been processed. To activate your installment plan, please pay the deposit of <strong style="color:#f59e0b;font-size:16px">${fmt(data.deposit)}</strong> to one of our accounts below.
+      Your application has been processed. To activate your installment plan, please pay the deposit of <strong style="color:#f59e0b;font-size:16px">${fmt(data.deposit)}</strong> securely via PayFast.
     </p>
 
     ${installmentSummaryTable(data.deposit, data.monthly_payment, data.term_months, data.total_repayable)}

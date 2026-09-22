@@ -10,12 +10,12 @@ export interface BankDetails {
 
 export const BANKS: BankDetails[] = [
   {
-    id: "tymebank",
-    bank: "TymeBank / GoTymeBank",
+    id: "payfast",
+    bank: "PayFast Online Payment",
     accountHolder: "Bevanssons",
-    accountType: "Business Account",
-    accountNumber: "51072673949",
-    branchCode: "678910",
+    accountType: "Instant Payment Gateway",
+    accountNumber: "Card / Instant EFT",
+    branchCode: "PayFast",
   },
 ];
 
