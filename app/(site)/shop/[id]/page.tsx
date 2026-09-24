@@ -172,6 +172,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
             <AddToEnquiry id={product.id} name={product.name} price={product.price} originalPrice={product.originalPrice} imageUrl={product.imageUrl ?? ""} category={product.category} />
 
             {/* Installment option */}
+            <div id="debug-installment-marker">{JSON.stringify({ price: product.price, priceParsed: parseFloat(product.price.replace(/[^0-9.]/g, "")) || 0, installmentSettings })}</div>
             {installmentSettings && (
               <InstallmentSection
                 product={{ id: product.id, name: product.name, price: product.price }}
