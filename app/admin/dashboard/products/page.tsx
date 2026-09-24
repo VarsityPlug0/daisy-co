@@ -1,4 +1,5 @@
 import { getProducts } from "@/lib/products";
+import { listAllSettings } from "@/lib/installments";
 import Link from "next/link";
 import ProductsClient from "./ProductsClient";
 
@@ -6,6 +7,9 @@ export const dynamic = "force-dynamic";
 
 export default function ProductsPage() {
   const products = getProducts();
+  const installmentSettings = Object.fromEntries(
+    listAllSettings().map((s) => [s.product_id, s])
+  );
 
   const total     = products.length;
   const inStock   = products.filter((p) => p.inStock).length;
@@ -58,7 +62,7 @@ export default function ProductsPage() {
       </div>
 
       {/* Searchable / filterable table */}
-      <ProductsClient products={products} />
+      <ProductsClient products={products} installmentSettings={installmentSettings} />
     </div>
   );
 }
