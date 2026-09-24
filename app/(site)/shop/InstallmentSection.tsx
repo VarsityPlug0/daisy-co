@@ -30,7 +30,7 @@ export default function InstallmentSection({ product, settings }: Props) {
   const [open, setOpen] = useState(false);
 
   const price = parseFloat(product.price.replace(/[^0-9.]/g, "")) || 0;
-  if (price < 5000) return null;
+  if (price < 4000) return null;
   const deposit = Math.max(2000, Math.ceil(price * settings.min_deposit_pct / 100 * 100) / 100);
   const terms = settings.eligible_terms;
   const maxTerm = Math.max(...terms);
