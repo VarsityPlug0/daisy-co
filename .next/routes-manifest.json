@@ -405,6 +405,12 @@
       "namedRegex": "^/api/installments/events(?:/)?$"
     },
     {
+      "page": "/api/integration/v1/installments/lookup",
+      "regex": "^/api/integration/v1/installments/lookup(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/integration/v1/installments/lookup(?:/)?$"
+    },
+    {
       "page": "/api/integration/v1/leads",
       "regex": "^/api/integration/v1/leads(?:/)?$",
       "routeKeys": {},

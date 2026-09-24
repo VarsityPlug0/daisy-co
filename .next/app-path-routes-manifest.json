@@ -76,6 +76,7 @@
   "/api/installments/apply/route": "/api/installments/apply",
   "/api/installments/events/route": "/api/installments/events",
   "/api/installments/settings/[productId]/route": "/api/installments/settings/[productId]",
+  "/api/integration/v1/installments/lookup/route": "/api/integration/v1/installments/lookup",
   "/api/integration/v1/leads/route": "/api/integration/v1/leads",
   "/api/integration/v1/orders/[id]/route": "/api/integration/v1/orders/[id]",
   "/api/integration/v1/orders/route": "/api/integration/v1/orders",

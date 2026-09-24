@@ -76,6 +76,7 @@
   "/api/installments/apply/route": "app/api/installments/apply/route.js",
   "/api/installments/events/route": "app/api/installments/events/route.js",
   "/api/installments/settings/[productId]/route": "app/api/installments/settings/[productId]/route.js",
+  "/api/integration/v1/installments/lookup/route": "app/api/integration/v1/installments/lookup/route.js",
   "/api/integration/v1/leads/route": "app/api/integration/v1/leads/route.js",
   "/api/integration/v1/orders/[id]/route": "app/api/integration/v1/orders/[id]/route.js",
   "/api/integration/v1/orders/route": "app/api/integration/v1/orders/route.js",
