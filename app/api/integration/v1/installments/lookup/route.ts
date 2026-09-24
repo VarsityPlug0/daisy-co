@@ -34,7 +34,7 @@ export async function GET(req: NextRequest) {
   const db = getDb();
   const rows = db
     .prepare(
-      `SELECT ref, product_id, product_name, product_price, term_months, monthly_payment,
+      `SELECT ref, product_id, product_name, product_price, quantity, term_months, monthly_payment,
               deposit, total_repayable, name, phone, status, createdAt, updatedAt
        FROM installment_applications
        ORDER BY createdAt DESC`

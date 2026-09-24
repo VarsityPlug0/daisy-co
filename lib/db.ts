@@ -195,6 +195,7 @@ function initSchema(db: Database.Database) {
       product_id       TEXT NOT NULL,
       product_name     TEXT NOT NULL,
       product_price    REAL NOT NULL,
+      quantity         INTEGER NOT NULL DEFAULT 1,
       term_months      INTEGER NOT NULL,
       monthly_payment  REAL NOT NULL,
       deposit          REAL NOT NULL,
@@ -260,6 +261,7 @@ function initSchema(db: Database.Database) {
   try { db.exec("ALTER TABLE orders ADD COLUMN bank_id TEXT"); } catch { /* already exists */ }
   try { db.exec("ALTER TABLE orders ADD COLUMN tracking_number TEXT"); } catch { /* already exists */ }
   try { db.exec("ALTER TABLE installment_applications ADD COLUMN product_imageUrl TEXT"); } catch { /* already exists */ }
+  try { db.exec("ALTER TABLE installment_applications ADD COLUMN quantity INTEGER NOT NULL DEFAULT 1"); } catch { /* already exists */ }
 }
 
 function migrateFromJson(db: Database.Database) {

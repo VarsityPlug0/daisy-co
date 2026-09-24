@@ -22,6 +22,7 @@ export interface InstallmentApplication {
   product_name: string;
   product_price: number;
   product_imageUrl: string | null;
+  quantity: number;
   term_months: number;
   monthly_payment: number;
   deposit: number;
@@ -138,6 +139,7 @@ export function createApplication(data: {
   product_name: string;
   product_price: number;
   product_imageUrl?: string | null;
+  quantity?: number;
   term_months: number;
   monthly_payment: number;
   deposit: number;
@@ -155,14 +157,14 @@ export function createApplication(data: {
 
   db.prepare(`
     INSERT INTO installment_applications
-      (id, ref, product_id, product_name, product_price, product_imageUrl, term_months, monthly_payment,
+      (id, ref, product_id, product_name, product_price, product_imageUrl, quantity, term_months, monthly_payment,
        deposit, total_repayable, name, phone, email, id_number, address,
        status, whatsapp_clicked, createdAt, updatedAt)
     VALUES
-      (@id, @ref, @product_id, @product_name, @product_price, @product_imageUrl, @term_months, @monthly_payment,
+      (@id, @ref, @product_id, @product_name, @product_price, @product_imageUrl, @quantity, @term_months, @monthly_payment,
        @deposit, @total_repayable, @name, @phone, @email, @id_number, @address,
        'new', 0, @now, @now)
-  `).run({ id, ref, ...data, product_imageUrl: data.product_imageUrl ?? null, now });
+  `).run({ id, ref, ...data, product_imageUrl: data.product_imageUrl ?? null, quantity: data.quantity ?? 1, now });
 
   return getApplication(id)!;
 }

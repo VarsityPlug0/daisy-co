@@ -37,11 +37,13 @@ function track(event: string, extra?: Record<string, unknown>) {
 }
 
 export default function InstallmentModal({ product, settings, onClose }: Props) {
-  const price = parseFloat(product.price.replace(/[^0-9.]/g, "")) || 0;
-  const deposit = Math.max(2000, Math.ceil(price * settings.min_deposit_pct / 100 * 100) / 100);
+  const unitPrice = parseFloat(product.price.replace(/[^0-9.]/g, "")) || 0;
   const terms = settings.eligible_terms;
 
   const [step, setStep] = useState<1 | 2 | 3 | "success">(1);
+  const [quantity, setQuantity] = useState(1);
+  const price = unitPrice * quantity;
+  const deposit = Math.max(2000, Math.ceil(price * settings.min_deposit_pct / 100 * 100) / 100);
   const [term, setTerm] = useState<number>(terms.includes(24) ? 24 : terms[terms.length - 1]);
   const [form, setForm] = useState({ name: "", phone: "", email: "", id_number: "", address: "" });
   const [consent, setConsent] = useState(false);
@@ -84,6 +86,12 @@ export default function InstallmentModal({ product, settings, onClose }: Props) 
     track("term_changed", { product_id: product.id, term_months: t });
   }
 
+  function handleQuantityChange(q: number) {
+    const clamped = Math.min(10, Math.max(1, q));
+    setQuantity(clamped);
+    track("quantity_changed", { product_id: product.id, quantity: clamped });
+  }
+
   function goStep2() {
     track("step1_complete", { product_id: product.id, term_months: term });
     setStep(2);
@@ -104,6 +112,7 @@ export default function InstallmentModal({ product, settings, onClose }: Props) 
         body: JSON.stringify({
           product_id: product.id,
           term_months: term,
+          quantity,
           ...form,
         }),
       });
@@ -194,6 +203,33 @@ export default function InstallmentModal({ product, settings, onClose }: Props) 
                 )}
               </div>
 
+              {/* Quantity selector */}
+              <div>
+                <p className={labelClass}>How many do you want on this plan?</p>
+                <div className="flex items-center gap-4">
+                  <button
+                    onClick={() => handleQuantityChange(quantity - 1)}
+                    disabled={quantity <= 1}
+                    className="w-10 h-10 rounded-xl border border-[#2a2a2a] text-white text-lg font-bold flex items-center justify-center hover:border-[#C8B993]/40 disabled:opacity-30 disabled:hover:border-[#2a2a2a] transition-colors"
+                  >
+                    −
+                  </button>
+                  <span className="text-white text-lg font-bold w-8 text-center">{quantity}</span>
+                  <button
+                    onClick={() => handleQuantityChange(quantity + 1)}
+                    disabled={quantity >= 10}
+                    className="w-10 h-10 rounded-xl border border-[#2a2a2a] text-white text-lg font-bold flex items-center justify-center hover:border-[#C8B993]/40 disabled:opacity-30 disabled:hover:border-[#2a2a2a] transition-colors"
+                  >
+                    +
+                  </button>
+                  {quantity > 1 && (
+                    <span className="text-gray-500 text-xs ml-auto">
+                      {quantity} × {product.price} = R {price.toLocaleString("en-ZA")}
+                    </span>
+                  )}
+                </div>
+              </div>
+
               {/* Term selector */}
               <div>
                 <p className={labelClass}>Choose your installment period</p>
@@ -282,7 +318,8 @@ export default function InstallmentModal({ product, settings, onClose }: Props) 
               <div className="bg-[#111111] border border-[#2A2A2A] rounded-2xl divide-y divide-[#2A2A2A]">
                 {[
                   ["Product",    product.name],
-                  ["Cash Price", product.price],
+                  ...(quantity > 1 ? [["Quantity", `${quantity}`]] as [string, string][] : []),
+                  ["Cash Price", quantity > 1 ? `R ${price.toLocaleString("en-ZA")} (${quantity} × ${product.price})` : product.price],
                   ["Term",       `${term} months`],
                   ["Monthly",    `R ${monthly.toLocaleString("en-ZA")}`],
                   ["Deposit",    `R ${deposit.toLocaleString("en-ZA")}`],
@@ -376,7 +413,7 @@ export default function InstallmentModal({ product, settings, onClose }: Props) 
                 </button>
                 <button onClick={submit} disabled={submitting}
                   className="btn-gold flex-1 py-3.5 rounded-xl font-bold text-sm disabled:opacity-50">
-                  {submitting ? "Submitting…" : `APPLY FOR THIS ${product.name.split(" ")[0].toUpperCase()}`}
+                  {submitting ? "Submitting…" : quantity > 1 ? `APPLY FOR ${quantity}x ${product.name.split(" ")[0].toUpperCase()}` : `APPLY FOR THIS ${product.name.split(" ")[0].toUpperCase()}`}
                 </button>
               </div>
             )}
