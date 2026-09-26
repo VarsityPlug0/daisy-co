@@ -21,7 +21,7 @@ const deviceLinks = [
 // Clothing now lives on the sister store (bevanssons.store). These link
 // out to the live clothing storefront instead of an internal "coming soon"
 // hub, so customers move straight between the two Bevans Sons stores.
-const CLOTHING_STORE_URL = "https://bevanssons.store";
+const CLOTHING_STORE_URL = "https://shop.bevanssons.store";
 const clothingLinks = [
   { label: "Shop the Clothing Store", href: CLOTHING_STORE_URL, desc: "Hoodies, streetwear & apparel" },
   { label: "Hoodies & Streetwear",    href: CLOTHING_STORE_URL, desc: "Heavyweight oversized hoodies" },
