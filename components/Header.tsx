@@ -18,13 +18,17 @@ const deviceLinks = [
   { label: "Browse All Devices",  href: "/shop",                                      desc: "Explore full gadgets catalog" },
 ];
 
+// Clothing now lives on the sister store (bevanssons.store). These link
+// out to the live clothing storefront instead of an internal "coming soon"
+// hub, so customers move straight between the two Bevans Sons stores.
+const CLOTHING_STORE_URL = "https://bevanssons.store";
 const clothingLinks = [
-  { label: "Clothing Drop Hub",   href: "/clothing",                                  desc: "Official streetwear drop (Coming Soon)" },
-  { label: "Hoodies & Drops",     href: "/shop?cat=Hoodies%20%26%20Streetwear",       desc: "Heavyweight oversized hoodies" },
-  { label: "Men's Wear",          href: "/shop?cat=Men%27s%20Wear",                   desc: "Jackets, denim & everyday fits" },
-  { label: "Women's Fashion",     href: "/shop?cat=Women%27s%20Fashion",              desc: "Sets, knitwear & chic apparel" },
-  { label: "Sneakers & Kicks",    href: "/shop?cat=Sneakers%20%26%20Shoes",           desc: "Retro & lifestyle footwear" },
-  { label: "Caps & Accessories",  href: "/shop?cat=Caps%20%26%20Accessories",         desc: "Snapbacks, beanies & bags" },
+  { label: "Shop the Clothing Store", href: CLOTHING_STORE_URL, desc: "Hoodies, streetwear & apparel" },
+  { label: "Hoodies & Streetwear",    href: CLOTHING_STORE_URL, desc: "Heavyweight oversized hoodies" },
+  { label: "Men's Wear",              href: CLOTHING_STORE_URL, desc: "Jackets, denim & everyday fits" },
+  { label: "Women's Fashion",         href: CLOTHING_STORE_URL, desc: "Sets, knitwear & chic apparel" },
+  { label: "Sneakers & Kicks",        href: CLOTHING_STORE_URL, desc: "Retro & lifestyle footwear" },
+  { label: "Caps & Accessories",      href: CLOTHING_STORE_URL, desc: "Snapbacks, beanies & bags" },
 ];
 
 // Same light, sharp-edged, uppercase-tracked nav language as the real
@@ -167,14 +171,11 @@ export default function Header() {
                     <div className="pt-2 border-t border-[#DADADA]">
                       <div className="px-3 py-1.5 flex items-center justify-between text-[11px] font-bold text-[#111111] uppercase tracking-wider border-b border-[#DADADA]">
                         <span className="flex items-center gap-1.5">
-                          Clothing & Drops
-                          <span className="text-[9px] font-black uppercase px-1.5 py-0.2 bg-[#C8B993] text-[#111111]">
-                            SOON
-                          </span>
+                          Clothing & Apparel
                         </span>
-                        <Link href="/clothing" onClick={() => setShopOpen(false)} className="text-[10px] text-[#9C8F72] hover:underline normal-case">
-                          Hub &rarr;
-                        </Link>
+                        <a href={CLOTHING_STORE_URL} className="text-[10px] text-[#9C8F72] hover:underline normal-case">
+                          Visit Store &rarr;
+                        </a>
                       </div>
                       <div className="grid grid-cols-2 gap-1 pt-1.5">
                         {clothingLinks.map((item) => (
@@ -192,9 +193,9 @@ export default function Header() {
               )}
             </div>
 
-            <Link href="/clothing" className={`flex items-center gap-1 ${isActive("/clothing") ? "text-[#C8B993]" : "text-[#111111] hover:text-[#C8B993] transition-colors"}`}>
-              Clothing <span className="text-[9px] font-bold text-[#111111] bg-[#C8B993] px-1.5 py-0.5 leading-none normal-case">Soon</span>
-            </Link>
+            <a href={CLOTHING_STORE_URL} className="text-[#111111] hover:text-[#C8B993] transition-colors">
+              Clothing
+            </a>
             <Link href="/special-offers" className={`flex items-center gap-1 ${isActive("/special-offers") ? "text-[#C8B993]" : "text-[#111111] hover:text-[#C8B993] transition-colors"}`}>
               Offers <span className="text-[9px] font-bold text-[#111111] bg-[#C8B993] px-1.5 py-0.5 leading-none normal-case">30%</span>
             </Link>
@@ -231,7 +232,7 @@ export default function Header() {
           <div className="max-w-7xl mx-auto px-5 py-4 flex flex-col gap-0.5">
             {[
               { label: "Home",             href: "/" },
-              { label: "Clothing & Apparel", href: "/clothing" },
+              { label: "Clothing Store", href: CLOTHING_STORE_URL },
               { label: "Shop All",         href: "/shop" },
               { label: "Special Offers",   href: "/special-offers" },
               { label: "New Arrivals",     href: "/new-arrivals" },

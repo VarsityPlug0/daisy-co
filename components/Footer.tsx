@@ -71,7 +71,7 @@ export default function Footer() {
               <ul className="space-y-2.5">
                 {[
                   ["All Products",       "/shop"],
-                  ["Clothing & Apparel", "/clothing"],
+                  ["Clothing Store", "https://bevanssons.store"],
                   ["Smartphones",        "/shop?cat=Smartphones"],
                   ["Smart TVs",          "/shop?cat=TVs"],
                   ["Gaming Consoles",    "/shop?cat=Gaming%20Consoles"],
