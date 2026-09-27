@@ -8,7 +8,7 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
   return (
     <CartProvider>
       <Header />
-      <main className="pt-[116px] pb-[64px] md:pb-0">{children}</main>
+      <main className="pt-[116px]">{children}</main>
       <Footer />
       <AIAssistant />
       <LeadCapturePopup />

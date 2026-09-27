@@ -226,43 +226,80 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Mobile menu */}
-      {mobileOpen && (
-        <div className="lg:hidden bg-white border-t border-[#DADADA]">
-          <div className="max-w-7xl mx-auto px-5 py-4 flex flex-col gap-0.5">
-            {[
-              { label: "Home",             href: "/" },
-              { label: "Clothing Store", href: CLOTHING_STORE_URL },
-              { label: "Shop All",         href: "/shop" },
-              { label: "Special Offers",   href: "/special-offers" },
-              { label: "New Arrivals",     href: "/new-arrivals" },
-              { label: "Track My Order",   href: "/track-order" },
-              { label: "FAQ",              href: "/faq" },
-              { label: "About Us",         href: "/about" },
-              { label: "Contact Us",       href: "/contact" },
-              { label: "Delivery Info",    href: "/delivery" },
-              { label: "Payment Options",  href: "/payment-options" },
-            ].map((item) => {
-              const active = item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
-              return (
-                <Link key={item.href} href={item.href} onClick={() => setMobileOpen(false)}
-                  className="flex items-center justify-between px-4 py-3 border-b border-[#F0F0F0] transition-colors"
-                  style={{ fontFamily: "var(--font-outfit)", fontWeight: 700, fontSize: 12, letterSpacing: "0.1em", textTransform: "uppercase",
-                    color: active ? "#C8B993" : "#111111" }}>
-                  {item.label}
-                  {active && <ChevronDown size={15} color="#C8B993" style={{ transform: "rotate(-90deg)" }} />}
-                </Link>
-              );
-            })}
-            <div className="pt-4 pb-1 flex flex-col gap-2.5">
-              <Link href="/special-offers" onClick={() => setMobileOpen(false)}
-                className="w-full py-3 text-[11px] font-semibold tracking-[0.1em] uppercase text-[#111111] border border-[#111111] flex items-center justify-center gap-1.5">
-                <Sparkles size={14} /> View Special Offers
-              </Link>
+      {/* Mobile drawer overlay */}
+      <div
+        onClick={() => setMobileOpen(false)}
+        className={`fixed inset-0 z-40 bg-black/50 lg:hidden transition-opacity duration-300 ${
+          mobileOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+        }`}
+        aria-hidden="true"
+      />
+
+      {/* Mobile drawer — full-height slide-out, matches the Bevans Sons clothing store */}
+      <div
+        className={`fixed top-0 left-0 z-50 h-full w-72 max-w-[85vw] bg-white shadow-2xl flex flex-col transform transition-transform duration-300 ease-in-out lg:hidden ${
+          mobileOpen ? "translate-x-0" : "-translate-x-full"
+        }`}
+      >
+        {/* Drawer header */}
+        <div className="flex items-center justify-between px-5 h-16 border-b border-[#DADADA] shrink-0">
+          <Link href="/" onClick={() => setMobileOpen(false)} className="flex items-center gap-2.5">
+            <BevansLogo />
+            <div>
+              <p style={{ fontFamily: "var(--font-outfit)", fontWeight: 700, fontSize: 15, color: "#111111", lineHeight: 1.2 }}>Bevanssons</p>
+              <p style={{ fontSize: 9, color: "#A7A7AA", letterSpacing: "0.1em", textTransform: "uppercase" }}>Premium Gadgets</p>
             </div>
+          </Link>
+          <button onClick={() => setMobileOpen(false)}
+            className="w-9 h-9 flex items-center justify-center text-[#111111]" aria-label="Close menu">
+            <X size={20} strokeWidth={2.2} />
+          </button>
+        </div>
+
+        {/* Drawer nav links */}
+        <div className="flex-1 overflow-y-auto py-2">
+          {[
+            { section: "Shop", links: [
+              { label: "Home",           href: "/" },
+              { label: "Shop All",       href: "/shop" },
+              { label: "Special Offers", href: "/special-offers" },
+              { label: "New Arrivals",   href: "/new-arrivals" },
+            ]},
+            { section: "More", links: [
+              { label: "Clothing Store", href: CLOTHING_STORE_URL, external: true },
+              { label: "Track My Order", href: "/track-order" },
+              { label: "About Us",       href: "/about" },
+              { label: "Contact Us",     href: "/contact" },
+            ]},
+            { section: "Help", links: [
+              { label: "FAQ",             href: "/faq" },
+              { label: "Delivery Info",   href: "/delivery" },
+              { label: "Payment Options", href: "/payment-options" },
+            ]},
+          ].map((group) => (
+            <div key={group.section}>
+              <p className="px-6 pt-5 pb-1 text-[9px] font-bold tracking-[0.2em] uppercase text-[#A7A7AA]">{group.section}</p>
+              {group.links.map((item) => {
+                const active = !item.external && (item.href === "/" ? pathname === "/" : pathname.startsWith(item.href));
+                const cls = "block px-6 py-3.5 text-[12px] font-bold tracking-[0.15em] uppercase hover:text-[#C8B993] hover:bg-[#F5F5F5] transition-colors border-b border-[#EDEDED]";
+                return item.external ? (
+                  <a key={item.label} href={item.href} onClick={() => setMobileOpen(false)}
+                    className={cls} style={{ color: "#111111" }}>{item.label}</a>
+                ) : (
+                  <Link key={item.label} href={item.href} onClick={() => setMobileOpen(false)}
+                    className={cls} style={{ color: active ? "#C8B993" : "#111111" }}>{item.label}</Link>
+                );
+              })}
+            </div>
+          ))}
+          <div className="px-5 pt-5 pb-6">
+            <Link href="/special-offers" onClick={() => setMobileOpen(false)}
+              className="w-full py-3 text-[11px] font-semibold tracking-[0.1em] uppercase text-[#111111] border border-[#111111] flex items-center justify-center gap-1.5 hover:bg-[#111111] hover:text-white transition-colors">
+              <Sparkles size={14} /> View Special Offers
+            </Link>
           </div>
         </div>
-      )}
+      </div>
     </header>
   );
 }

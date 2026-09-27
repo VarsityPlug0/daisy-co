@@ -1,16 +1,6 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
-import { Home, ShoppingBag, Tag, HelpCircle, Phone } from "lucide-react";
-
-const navItems = [
-  { href: "/",               label: "Home",    icon: Home },
-  { href: "/shop",           label: "Shop",    icon: ShoppingBag },
-  { href: "/special-offers", label: "Offers",  icon: Tag },
-  { href: "/faq",            label: "FAQ",     icon: HelpCircle },
-  { href: "/contact",        label: "Contact", icon: Phone },
-];
 
 function BrandLogo() {
   // White-on-black mark — works as-is on this dark footer, no inversion
@@ -21,17 +11,15 @@ function BrandLogo() {
 }
 
 export default function Footer() {
-  const pathname = usePathname();
-
   return (
     <>
       {/* Desktop Footer */}
-      <footer className="hidden lg:block" style={{ background: "#111111", borderTop: "1px solid #1D1D1D" }}>
-        <div className="max-w-7xl mx-auto px-8 py-14">
-          <div className="grid grid-cols-12 gap-10">
+      <footer className="block" style={{ background: "#111111", borderTop: "1px solid #1D1D1D" }}>
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-10 lg:py-14">
+          <div className="grid grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-10">
 
             {/* Brand */}
-            <div className="col-span-3">
+            <div className="col-span-2 lg:col-span-3">
               <div className="flex items-center gap-3 mb-3">
                 <BrandLogo />
                 <div>
@@ -66,7 +54,7 @@ export default function Footer() {
             </div>
 
             {/* Shop */}
-            <div className="col-span-2 col-start-5">
+            <div className="col-span-1 lg:col-span-2 lg:col-start-5">
               <p className="section-label mb-5">Shop</p>
               <ul className="space-y-2.5">
                 {[
@@ -91,7 +79,7 @@ export default function Footer() {
             </div>
 
             {/* Support */}
-            <div className="col-span-2">
+            <div className="col-span-1 lg:col-span-2">
               <p className="section-label mb-5">Support</p>
               <ul className="space-y-2.5">
                 {[
@@ -127,7 +115,7 @@ export default function Footer() {
             </div>
 
             {/* Contact & Social */}
-            <div className="col-span-3 col-start-10">
+            <div className="col-span-2 lg:col-span-3 lg:col-start-10">
               <p className="section-label mb-5">Contact Us</p>
               <ul className="space-y-3 text-xs text-gray-500 mb-6">
                 <li className="flex items-start gap-2.5">
@@ -182,26 +170,6 @@ export default function Footer() {
           </p>
         </div>
       </footer>
-
-      {/* Mobile Bottom Nav */}
-      <nav className="lg:hidden fixed bottom-0 left-0 right-0 z-50"
-        style={{ background: "rgba(10,10,10,0.98)", backdropFilter: "blur(20px)", borderTop: "1px solid rgba(255,255,255,0.07)" }}>
-        <div className="grid grid-cols-5 h-16">
-          {navItems.map((item) => {
-            const active = item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
-            const IconComponent = item.icon;
-            return (
-              <Link key={item.href} href={item.href}
-                className="flex flex-col items-center justify-center gap-1 transition-colors"
-                style={{ color: active ? "#C8B993" : "#6B7280", fontFamily: "var(--font-outfit)", fontSize: 9, fontWeight: active ? 700 : 500 }}>
-                <IconComponent size={21} strokeWidth={active ? 2.2 : 1.8} color={active ? "#C8B993" : "#6B7280"} />
-                {item.label}
-              </Link>
-            );
-          })}
-        </div>
-        <div className="h-safe-area-inset-bottom" />
-      </nav>
     </>
   );
 }
