@@ -215,7 +215,35 @@ module.exports=[62294,e=>{"use strict";var t=e.i(85148),a=e.i(14747),i=e.i(22734
       source    TEXT NOT NULL DEFAULT 'unsubscribe_link',
       createdAt TEXT NOT NULL
     );
-  `);try{e.exec("ALTER TABLE orders ADD COLUMN bank_id TEXT")}catch{}try{e.exec("ALTER TABLE orders ADD COLUMN tracking_number TEXT")}catch{}try{e.exec("ALTER TABLE installment_applications ADD COLUMN product_imageUrl TEXT")}catch{}try{e.exec("ALTER TABLE installment_applications ADD COLUMN quantity INTEGER NOT NULL DEFAULT 1")}catch{}}(n),function(e){try{e.exec("ALTER TABLE products ADD COLUMN originalPrice TEXT NOT NULL DEFAULT ''")}catch{}}(n),function(e){if(!e.prepare("SELECT name FROM migrations WHERE name = ?").get("json_import_gadgets_v1")){for(let t of s)if((0,i.existsSync)(t))try{let a=JSON.parse((0,i.readFileSync)(t,"utf-8"));if(Array.isArray(a)&&a.length>0){e.prepare("DELETE FROM products").run();let t=e.prepare(`
+
+    -- Document-verification workflow: uploaded identity/supporting documents per application
+    CREATE TABLE IF NOT EXISTS installment_documents (
+      id           TEXT PRIMARY KEY,
+      ref          TEXT NOT NULL,
+      doc_type     TEXT NOT NULL,            -- id_card_front | id_card_back | id_book | passport | proof_of_address | payslip
+      provider     TEXT NOT NULL DEFAULT 'cloudinary',
+      url          TEXT NOT NULL,            -- secure/signed delivery URL or storage path
+      public_id    TEXT,                     -- Cloudinary public_id (for signed access / deletion)
+      filename     TEXT,
+      mime         TEXT,
+      size_bytes   INTEGER,
+      uploaded_by  TEXT NOT NULL DEFAULT 'customer',
+      createdAt    TEXT NOT NULL
+    );
+    CREATE INDEX IF NOT EXISTS idx_installment_documents_ref ON installment_documents(ref);
+
+    -- Audit: every application status change (who + when + optional note)
+    CREATE TABLE IF NOT EXISTS application_status_history (
+      id          TEXT PRIMARY KEY,
+      ref         TEXT NOT NULL,
+      from_status TEXT,
+      to_status   TEXT NOT NULL,
+      changed_by  TEXT NOT NULL,            -- reviewer name / 'system' / 'ai'
+      note        TEXT,
+      createdAt   TEXT NOT NULL
+    );
+    CREATE INDEX IF NOT EXISTS idx_application_status_history_ref ON application_status_history(ref);
+  `);try{e.exec("ALTER TABLE orders ADD COLUMN bank_id TEXT")}catch{}try{e.exec("ALTER TABLE orders ADD COLUMN tracking_number TEXT")}catch{}try{e.exec("ALTER TABLE installment_applications ADD COLUMN product_imageUrl TEXT")}catch{}try{e.exec("ALTER TABLE installment_applications ADD COLUMN quantity INTEGER NOT NULL DEFAULT 1")}catch{}try{e.exec("ALTER TABLE installment_applications ADD COLUMN upload_token TEXT")}catch{}try{e.exec("ALTER TABLE installment_applications ADD COLUMN documents_status TEXT NOT NULL DEFAULT 'none'")}catch{}try{e.exec("ALTER TABLE installment_applications ADD COLUMN reviewed_by TEXT")}catch{}try{e.exec("ALTER TABLE installment_applications ADD COLUMN reviewed_at TEXT")}catch{}}(n),function(e){try{e.exec("ALTER TABLE products ADD COLUMN originalPrice TEXT NOT NULL DEFAULT ''")}catch{}}(n),function(e){if(!e.prepare("SELECT name FROM migrations WHERE name = ?").get("json_import_gadgets_v1")){for(let t of s)if((0,i.existsSync)(t))try{let a=JSON.parse((0,i.readFileSync)(t,"utf-8"));if(Array.isArray(a)&&a.length>0){e.prepare("DELETE FROM products").run();let t=e.prepare(`
           INSERT OR REPLACE INTO products
             (id, name, price, category, description, imageUrl, inStock, featured, createdAt, updatedAt)
           VALUES

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createApplication, getSettings, calcMonthly, trackEvent } from "@/lib/installments";
+import { createApplication, getSettings, calcMonthly, trackEvent, ensureUploadToken, markAwaitingDocuments } from "@/lib/installments";
 import { sendMail } from "@/lib/mailer";
 
 export async function POST(req: NextRequest) {
@@ -59,6 +59,12 @@ export async function POST(req: NextRequest) {
 
     trackEvent({ event: "application_submitted", product_id, ref: application.ref, term_months: Number(term_months) });
 
+    // Document-verification: issue a secure upload link and move to "awaiting documents"
+    const uploadToken = ensureUploadToken(application.ref);
+    markAwaitingDocuments(application.ref);
+    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://gadgets.bevanssons.store";
+    const uploadUrl = `${siteUrl}/verify/${uploadToken}`;
+
     // Notify admin
     sendMail({
       to: "Mkhabeleenterprise@gmail.com",
@@ -78,7 +84,10 @@ export async function POST(req: NextRequest) {
           <p style="margin:0 0 8px;color:#6b7280;font-size:12px">Application Reference</p>
           <p style="margin:0;color:#C8B993;font-size:22px;font-weight:900;font-family:monospace">${application.ref}</p>
         </div>
-        <p style="color:#9ca3af;margin:0 0 20px">We'll contact you at <strong style="color:#fff">${phone}</strong> to complete the process.</p>
+        <p style="color:#9ca3af;margin:0 0 16px">To move your application forward, please upload your identity documents securely:</p>
+        <p style="margin:0 0 20px"><a href="${uploadUrl}" style="display:inline-block;background:#C8B993;color:#111;font-weight:800;text-decoration:none;padding:12px 22px;border-radius:8px">Upload my documents</a></p>
+        <p style="color:#6b7280;font-size:12px;margin:0 0 16px">Or open this secure link: <a href="${uploadUrl}" style="color:#C8B993">${uploadUrl}</a></p>
+        <p style="color:#9ca3af;margin:0 0 20px">We'll also contact you at <strong style="color:#fff">${phone}</strong> to complete the process.</p>
         <p style="color:#6b7280;font-size:12px;margin:0">© ${new Date().getFullYear()} Bevanssons</p>
       </div>`,
     });

@@ -1,0 +1,3 @@
+{
+  "/api/installments/verify/[token]/route": "app/api/installments/verify/[token]/route.js"
+}

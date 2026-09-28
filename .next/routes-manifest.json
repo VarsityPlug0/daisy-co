@@ -119,6 +119,14 @@
       "namedRegex": "^/api/installments/settings/(?<nxtPproductId>[^/]+?)(?:/)?$"
     },
     {
+      "page": "/api/installments/verify/[token]",
+      "regex": "^/api/installments/verify/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPtoken": "nxtPtoken"
+      },
+      "namedRegex": "^/api/installments/verify/(?<nxtPtoken>[^/]+?)(?:/)?$"
+    },
+    {
       "page": "/api/integration/v1/orders/[id]",
       "regex": "^/api/integration/v1/orders/([^/]+?)(?:/)?$",
       "routeKeys": {
@@ -149,6 +157,14 @@
         "nxtPid": "nxtPid"
       },
       "namedRegex": "^/shop/(?<nxtPid>[^/]+?)(?:/)?$"
+    },
+    {
+      "page": "/verify/[token]",
+      "regex": "^/verify/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPtoken": "nxtPtoken"
+      },
+      "namedRegex": "^/verify/(?<nxtPtoken>[^/]+?)(?:/)?$"
     }
   ],
   "staticRoutes": [

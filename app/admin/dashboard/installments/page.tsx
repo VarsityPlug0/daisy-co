@@ -14,6 +14,14 @@ interface Application {
 
 interface Product { id: string; name: string; price: string; }
 
+interface DocRow { id: string; doc_type: string; url: string; mime: string | null; filename: string | null; createdAt: string; }
+interface HistRow { id: string; from_status: string | null; to_status: string; changed_by: string; note: string | null; createdAt: string; }
+
+const DOC_LABEL: Record<string, string> = {
+  id_card_front: "ID card — front", id_card_back: "ID card — back", id_book: "Green ID book",
+  passport: "Passport", proof_of_address: "Proof of address", payslip: "Payslip / income",
+};
+
 const PIPELINE = ["new", "reviewing", "approved", "awaiting_payment", "active", "completed"] as const;
 
 const STATUSES = [...PIPELINE, "declined"] as string[];
@@ -47,6 +55,7 @@ export default function AdminInstallmentsPage() {
   const [expanded, setExpanded] = useState<string | null>(null);
   const [updating, setUpdating] = useState<string | null>(null);
   const [statusFilter, setStatusFilter] = useState("all");
+  const [review, setReview] = useState<Record<string, { documents: DocRow[]; history: HistRow[] }>>({});
 
   // Settings tab
   const [products, setProducts] = useState<Product[]>([]);
@@ -90,6 +99,25 @@ export default function AdminInstallmentsPage() {
       body: JSON.stringify({ status, admin_notes: notes }),
     });
     await fetchApplications();
+    setUpdating(null);
+  }
+
+  async function loadReview(id: string) {
+    try {
+      const r = await fetch(`/api/admin/installments/${id}`);
+      if (r.ok) { const data = await r.json(); setReview((p) => ({ ...p, [id]: data })); }
+    } catch { /* ignore */ }
+  }
+
+  async function reviewAction(id: string, status: string) {
+    setUpdating(id);
+    await fetch(`/api/admin/installments/${id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ status, reviewer: "admin" }),
+    });
+    await fetchApplications();
+    await loadReview(id);
     setUpdating(null);
   }
 
@@ -262,7 +290,7 @@ export default function AdminInstallmentsPage() {
                       <p className="text-[#C8B993] font-bold">R {Number(app.monthly_payment).toLocaleString("en-ZA")}/mo</p>
                       <p className="text-gray-500 text-xs">{app.term_months} months · R{Number(app.product_price).toLocaleString("en-ZA")}</p>
                     </div>
-                    <button onClick={() => setExpanded(e => e === app.id ? null : app.id)}
+                    <button onClick={() => { setExpanded(e => e === app.id ? null : app.id); if (expanded !== app.id) loadReview(app.id); }}
                       className="text-gray-400 hover:text-white p-1">
                       {expanded === app.id ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
                     </button>
@@ -312,6 +340,65 @@ export default function AdminInstallmentsPage() {
                           <p className="text-gray-300 text-sm">{app.admin_notes}</p>
                         </div>
                       )}
+
+                      {/* ── Document verification (human-only review) ── */}
+                      <div className="bg-[#111111] border border-[#2A2A2A] rounded-2xl p-4">
+                        <p className="text-gray-500 text-[10px] uppercase tracking-widest font-semibold mb-3">Documents</p>
+                        {(() => {
+                          const rv = review[app.id];
+                          const docs = rv?.documents ?? [];
+                          if (!rv) return <p className="text-gray-500 text-sm">Loading documents…</p>;
+                          if (docs.length === 0) return <p className="text-gray-500 text-sm">No documents uploaded yet.</p>;
+                          return (
+                            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                              {docs.map((d) => (
+                                <div key={d.id} className="bg-[#0d0d0d] border border-[#2A2A2A] rounded-xl p-2">
+                                  <p className="text-gray-300 text-xs font-semibold mb-1">{DOC_LABEL[d.doc_type] ?? d.doc_type}</p>
+                                  {d.mime?.startsWith("image/") ? (
+                                    // eslint-disable-next-line @next/next/no-img-element
+                                    <img src={d.url} alt={d.doc_type} className="w-full h-28 object-cover rounded-lg border border-[#2A2A2A]" />
+                                  ) : (
+                                    <div className="h-28 flex items-center justify-center rounded-lg border border-[#2A2A2A] bg-[#111]">
+                                      <span className="text-gray-500 text-xs">PDF</span>
+                                    </div>
+                                  )}
+                                  <a href={d.url} target="_blank" rel="noopener noreferrer" className="mt-1.5 block text-center text-[#C8B993] text-xs underline">Open / download</a>
+                                  <p className="text-gray-600 text-[10px] mt-1 text-center">{new Date(d.createdAt).toLocaleString("en-ZA")}</p>
+                                </div>
+                              ))}
+                            </div>
+                          );
+                        })()}
+
+                        {/* Human-only review actions */}
+                        <div className="flex flex-wrap gap-2 mt-4">
+                          <button onClick={() => reviewAction(app.id, "verification_pending")} disabled={!!updating}
+                            className="px-3 py-2 rounded-lg text-xs font-semibold border border-yellow-500/40 text-yellow-400 hover:bg-yellow-500/10 disabled:opacity-50">Verify Documents</button>
+                          <button onClick={() => reviewAction(app.id, "needs_more_info")} disabled={!!updating}
+                            className="px-3 py-2 rounded-lg text-xs font-semibold border border-blue-500/40 text-blue-400 hover:bg-blue-500/10 disabled:opacity-50">Request Additional Documents</button>
+                          <button onClick={() => reviewAction(app.id, "approved")} disabled={!!updating}
+                            className="px-3 py-2 rounded-lg text-xs font-semibold border border-green-500/40 text-green-400 hover:bg-green-500/10 disabled:opacity-50">Approve Application</button>
+                          <button onClick={() => reviewAction(app.id, "declined")} disabled={!!updating}
+                            className="px-3 py-2 rounded-lg text-xs font-semibold border border-red-500/40 text-red-400 hover:bg-red-500/10 disabled:opacity-50">Decline Application</button>
+                        </div>
+                        <p className="text-gray-600 text-[10px] mt-2">These actions are recorded against the reviewer and time-stamped.</p>
+
+                        {/* Audit trail */}
+                        {review[app.id]?.history?.length ? (
+                          <div className="mt-4 border-t border-[#2A2A2A] pt-3">
+                            <p className="text-gray-500 text-[10px] uppercase tracking-widest font-semibold mb-2">History</p>
+                            <ul className="space-y-1">
+                              {review[app.id].history.map((h) => (
+                                <li key={h.id} className="text-gray-400 text-xs">
+                                  <span className="text-gray-300">{h.to_status}</span>
+                                  <span className="text-gray-600"> · {h.changed_by} · {new Date(h.createdAt).toLocaleString("en-ZA")}</span>
+                                  {h.note ? <span className="text-gray-500"> — {h.note}</span> : null}
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        ) : null}
+                      </div>
 
                       {/* ── Status pipeline stepper ── */}
                       <div className="bg-[#111111] border border-[#2A2A2A] rounded-2xl p-4">

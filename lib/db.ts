@@ -255,6 +255,34 @@ function initSchema(db: Database.Database) {
       source    TEXT NOT NULL DEFAULT 'unsubscribe_link',
       createdAt TEXT NOT NULL
     );
+
+    -- Document-verification workflow: uploaded identity/supporting documents per application
+    CREATE TABLE IF NOT EXISTS installment_documents (
+      id           TEXT PRIMARY KEY,
+      ref          TEXT NOT NULL,
+      doc_type     TEXT NOT NULL,            -- id_card_front | id_card_back | id_book | passport | proof_of_address | payslip
+      provider     TEXT NOT NULL DEFAULT 'cloudinary',
+      url          TEXT NOT NULL,            -- secure/signed delivery URL or storage path
+      public_id    TEXT,                     -- Cloudinary public_id (for signed access / deletion)
+      filename     TEXT,
+      mime         TEXT,
+      size_bytes   INTEGER,
+      uploaded_by  TEXT NOT NULL DEFAULT 'customer',
+      createdAt    TEXT NOT NULL
+    );
+    CREATE INDEX IF NOT EXISTS idx_installment_documents_ref ON installment_documents(ref);
+
+    -- Audit: every application status change (who + when + optional note)
+    CREATE TABLE IF NOT EXISTS application_status_history (
+      id          TEXT PRIMARY KEY,
+      ref         TEXT NOT NULL,
+      from_status TEXT,
+      to_status   TEXT NOT NULL,
+      changed_by  TEXT NOT NULL,            -- reviewer name / 'system' / 'ai'
+      note        TEXT,
+      createdAt   TEXT NOT NULL
+    );
+    CREATE INDEX IF NOT EXISTS idx_application_status_history_ref ON application_status_history(ref);
   `);
 
   // Migrate existing orders tables that predate bank_id / tracking_number columns
@@ -262,6 +290,11 @@ function initSchema(db: Database.Database) {
   try { db.exec("ALTER TABLE orders ADD COLUMN tracking_number TEXT"); } catch { /* already exists */ }
   try { db.exec("ALTER TABLE installment_applications ADD COLUMN product_imageUrl TEXT"); } catch { /* already exists */ }
   try { db.exec("ALTER TABLE installment_applications ADD COLUMN quantity INTEGER NOT NULL DEFAULT 1"); } catch { /* already exists */ }
+  // Document-verification workflow: secure per-application upload token + doc/review tracking
+  try { db.exec("ALTER TABLE installment_applications ADD COLUMN upload_token TEXT"); } catch { /* already exists */ }
+  try { db.exec("ALTER TABLE installment_applications ADD COLUMN documents_status TEXT NOT NULL DEFAULT 'none'"); } catch { /* already exists */ } // none | awaiting | received | verified
+  try { db.exec("ALTER TABLE installment_applications ADD COLUMN reviewed_by TEXT"); } catch { /* already exists */ }
+  try { db.exec("ALTER TABLE installment_applications ADD COLUMN reviewed_at TEXT"); } catch { /* already exists */ }
 }
 
 function migrateFromJson(db: Database.Database) {
