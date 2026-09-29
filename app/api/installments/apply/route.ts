@@ -34,7 +34,8 @@ export async function POST(req: NextRequest) {
   if (!product) return NextResponse.json({ error: "Product not found" }, { status: 404 });
 
   const unitPrice = parseFloat(product.price.replace(/[^0-9.]/g, "")) || 0;
-  if (unitPrice < 5000) return NextResponse.json({ error: "Product not eligible for installments" }, { status: 400 });
+  // Eligibility is governed by the product's active installment settings (checked above),
+  // which is exactly what the storefront uses to show the installment option — no separate price floor.
   const price = unitPrice * quantity;
   const deposit = Math.max(2000, Math.ceil(price * settings.min_deposit_pct / 100 * 100) / 100);
   const { monthly, total } = calcMonthly(price, deposit, Number(term_months), settings.monthly_rate, settings.admin_fee);
