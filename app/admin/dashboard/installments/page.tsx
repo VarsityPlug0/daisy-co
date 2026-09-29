@@ -1,6 +1,6 @@
 "use client";
 import { useCallback, useEffect, useState } from "react";
-import { ArrowLeft, RefreshCw, ChevronDown, ChevronUp, MessageCircle, Plus, Save, Mail } from "lucide-react";
+import { ArrowLeft, RefreshCw, ChevronDown, ChevronUp, MessageCircle, Plus, Save, Mail, Upload } from "lucide-react";
 import Link from "next/link";
 
 interface Application {
@@ -128,6 +128,24 @@ export default function AdminInstallmentsPage() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ action: "resend_invoice" }),
     });
+    setUpdating(null);
+  }
+
+  // Opens WhatsApp pre-filled with the customer's OWN secure document-upload link (token ensured server-side).
+  async function remindUpload(id: string) {
+    setUpdating(id + "_upload");
+    try {
+      const r = await fetch(`/api/admin/installments/${id}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ action: "upload_link" }),
+      });
+      const d = await r.json();
+      if (r.ok && d.waLink) window.open(d.waLink, "_blank", "noopener,noreferrer");
+      else alert(d.error || "Could not create the upload reminder link.");
+    } catch {
+      alert("Could not create the upload reminder link.");
+    }
     setUpdating(null);
   }
 
@@ -496,6 +514,13 @@ export default function AdminInstallmentsPage() {
                           className="flex items-center gap-1.5 text-xs font-semibold px-4 py-2 rounded-lg border border-green-500/30 bg-green-500/10 text-green-400 hover:bg-green-500/20 transition-colors">
                           <MessageCircle size={13} /> WhatsApp Customer
                         </a>
+                        <button
+                          onClick={() => remindUpload(app.id)}
+                          disabled={updating === app.id + "_upload"}
+                          className="flex items-center gap-1.5 text-xs font-semibold px-4 py-2 rounded-lg border border-green-500/30 bg-green-500/10 text-green-400 hover:bg-green-500/20 transition-colors disabled:opacity-50">
+                          <Upload size={13} />
+                          {updating === app.id + "_upload" ? "Opening…" : "Remind to Upload Docs"}
+                        </button>
                         {(app.status === "approved" || app.status === "awaiting_payment" || app.status === "active") && (
                           <button
                             onClick={() => resendInvoice(app.id)}

@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { isAuthenticated } from "@/lib/auth";
-import { getApplication, reviewApplication, getReviewBundle } from "@/lib/installments";
+import { getApplication, reviewApplication, getReviewBundle, ensureUploadToken } from "@/lib/installments";
 import {
   sendInstallmentApproval,
   sendInstallmentReviewing,
@@ -80,12 +80,32 @@ export async function POST(req: NextRequest, { params }: { params: Promise<{ id:
   const { id } = await params;
   const { action } = await req.json();
 
+  const app = getApplication(id);
+  if (!app) return NextResponse.json({ error: "Not found" }, { status: 404 });
+
+  // Build a one-tap WhatsApp reminder that carries the customer's own secure document-upload link.
+  if (action === "upload_link") {
+    const token = ensureUploadToken(app.ref);
+    if (!token) return NextResponse.json({ error: "Could not create upload link" }, { status: 500 });
+    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://gadgets.bevanssons.store";
+    const uploadUrl = `${siteUrl}/verify/${token}`;
+    const firstName = (app.name || "there").trim().split(/\s+/)[0];
+    const message =
+      `Hi ${firstName}, it's Bevans Sons about your installment for the ${app.product_name} (Ref ${app.ref}). ` +
+      `You're almost there — just upload your documents securely here to finish your order: ${uploadUrl}. ` +
+      `Any questions, reply here. Thank you!`;
+    // Normalise SA number to international digits for wa.me (0XXXXXXXXX -> 27XXXXXXXXX).
+    let digits = (app.phone || "").replace(/\D/g, "");
+    if (digits.startsWith("0")) digits = "27" + digits.slice(1);
+    else if (digits.startsWith("27")) { /* already international */ }
+    else if (digits.length === 9) digits = "27" + digits;
+    const waLink = `https://wa.me/${digits}?text=${encodeURIComponent(message)}`;
+    return NextResponse.json({ ok: true, waLink, message, url: uploadUrl, phone: digits });
+  }
+
   if (action !== "resend_invoice") {
     return NextResponse.json({ error: "Unknown action" }, { status: 400 });
   }
-
-  const app = getApplication(id);
-  if (!app) return NextResponse.json({ error: "Not found" }, { status: 404 });
 
   await sendInstallmentApproval({
     name: app.name,
