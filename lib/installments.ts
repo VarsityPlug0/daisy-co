@@ -1,5 +1,5 @@
 import { getDb } from "./db";
-import { randomBytes } from "crypto";
+import { createHash, randomBytes } from "crypto";
 
 // ── Types ────────────────────────────────────────────────────────────────────
 
@@ -441,4 +441,220 @@ export function getReviewBundle(id: string): { documents: InstallmentDocument[];
   const row = db.prepare("SELECT ref FROM installment_applications WHERE id = ?").get(id) as { ref: string } | undefined;
   if (!row) return null;
   return { documents: listDocuments(row.ref), history: listStatusHistory(row.ref) };
+}
+
+// Admin status change by id OR ref. getApplication() accepts either, but reviewApplication()
+// updates by id only — passing a ref used to change nothing while the route still answered
+// {ok:true} and emailed the customer. Returns before/after, or null when nothing was written.
+export function adminSetApplicationStatus(
+  idOrRef: string,
+  status: InstallmentStatus,
+  reviewer: string,
+  note?: string | null
+): { before: InstallmentApplication; after: InstallmentApplication } | null {
+  const before = getApplication(idOrRef);
+  if (!before) return null;
+  if (!reviewApplication(before.id, status, reviewer, note)) return null;
+  const after = getApplication(before.id);
+  return after && after.status === status ? { before, after } : null;
+}
+
+// ─── Integration API: owner-commanded status changes (Bevans) ──────────────────
+
+export const INSTALLMENT_STATUSES = Object.keys(INSTALLMENT_STATUS_LABELS) as InstallmentStatus[];
+export const INSTALLMENT_REF_RE = /^IA-[0-9A-F]{6}$/;
+
+// The only status changes the integration write API will make. Anything else is refused.
+export const INTEGRATION_STATUS_TRANSITIONS: Partial<Record<InstallmentStatus, InstallmentStatus[]>> = {
+  reviewing: ["approved", "declined"],
+  awaiting_payment: ["approved", "active"],
+  approved: ["active"],
+};
+
+export function isIntegrationTransitionAllowed(from: string, to: string): boolean {
+  return (INTEGRATION_STATUS_TRANSITIONS[from as InstallmentStatus] ?? []).includes(to as InstallmentStatus);
+}
+
+function last9Digits(raw: string): string {
+  return String(raw ?? "").replace(/\D/g, "").slice(-9);
+}
+
+// What the integration API may expose about an application: never the ID number, address,
+// email, full name, full phone, upload token or free-text admin notes.
+export interface PublicApplication {
+  ref: string;
+  product_name: string;
+  product_price: number;
+  quantity: number;
+  term_months: number;
+  monthly_payment: number;
+  deposit: number;
+  total_repayable: number;
+  status: InstallmentStatus;
+  documents_status: string;
+  first_name: string;
+  phone_masked: string;
+  reviewed_by: string | null;
+  reviewed_at: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export function toPublicApplication(app: InstallmentApplication): PublicApplication {
+  const digits = String(app.phone ?? "").replace(/\D/g, "");
+  return {
+    ref: app.ref,
+    product_name: app.product_name,
+    product_price: app.product_price,
+    quantity: app.quantity ?? 1,
+    term_months: app.term_months,
+    monthly_payment: app.monthly_payment,
+    deposit: app.deposit,
+    total_repayable: app.total_repayable,
+    status: app.status,
+    documents_status: app.documents_status ?? "none",
+    first_name: String(app.name ?? "").trim().split(/\s+/)[0] || "",
+    phone_masked: digits ? `…${digits.slice(-3)}` : "",
+    reviewed_by: app.reviewed_by ?? null,
+    reviewed_at: app.reviewed_at ?? null,
+    createdAt: app.createdAt,
+    updatedAt: app.updatedAt,
+  };
+}
+
+export interface IntegrationApplicationView {
+  application: PublicApplication;
+  history: ReturnType<typeof listStatusHistory>;
+  siblings: Array<{ ref: string; product_name: string; status: string; createdAt: string }>;
+  relatedOrders: Array<{
+    ref: string; status: string; total: number; tracking_number: string | null;
+    has_proof: boolean; has_eft_reference: boolean; createdAt: string; match: "phone" | "notes";
+  }>;
+  signals: { dispatched: boolean; paymentRecorded: boolean; notesMentionDepositPaid: boolean };
+}
+
+// One application by ref plus what an owner must see before changing it: other applications on
+// the same phone, orders that may belong to it (same phone, or a tracking number/ref named in the
+// admin notes — Gadgets has no structured link), and payment/dispatch signals. Gadgets has no
+// deposit-received record, so paymentRecorded only reflects proof/EFT reference on those orders.
+export function getIntegrationApplicationView(ref: string): IntegrationApplicationView | null {
+  const db = getDb();
+  const app = db.prepare("SELECT * FROM installment_applications WHERE ref = ?").get(ref) as InstallmentApplication | undefined;
+  if (!app) return null;
+  const key = last9Digits(app.phone);
+  const notes = String(app.admin_notes ?? "");
+
+  const others = db
+    .prepare("SELECT ref, product_name, status, createdAt, phone FROM installment_applications WHERE ref != ? ORDER BY createdAt")
+    .all(ref) as Array<{ ref: string; product_name: string; status: string; createdAt: string; phone: string }>;
+  const siblings = key.length === 9
+    ? others.filter((o) => last9Digits(o.phone) === key).map((o) => ({ ref: o.ref, product_name: o.product_name, status: o.status, createdAt: o.createdAt }))
+    : [];
+
+  const orders = db
+    .prepare("SELECT ref, status, total, tracking_number, proof_url, eft_reference, createdAt, phone FROM orders ORDER BY createdAt")
+    .all() as Array<{
+      ref: string; status: string; total: number; tracking_number: string | null;
+      proof_url: string | null; eft_reference: string | null; createdAt: string; phone: string;
+    }>;
+  const relatedOrders = orders.flatMap((o) => {
+    const byNotes = Boolean(o.tracking_number && notes.includes(o.tracking_number)) || notes.includes(o.ref);
+    const byPhone = key.length === 9 && last9Digits(o.phone) === key;
+    if (!byNotes && !byPhone) return [];
+    return [{
+      ref: o.ref, status: o.status, total: o.total, tracking_number: o.tracking_number,
+      has_proof: Boolean(o.proof_url), has_eft_reference: Boolean(o.eft_reference), createdAt: o.createdAt,
+      match: byNotes ? ("notes" as const) : ("phone" as const),
+    }];
+  });
+
+  return {
+    application: toPublicApplication(app),
+    history: listStatusHistory(ref),
+    siblings,
+    relatedOrders,
+    signals: {
+      dispatched: app.status === "dispatched" || relatedOrders.some((o) => ["shipped", "delivered"].includes(o.status)),
+      paymentRecorded: relatedOrders.some((o) => o.has_proof || o.has_eft_reference),
+      notesMentionDepositPaid: /deposit\s+(paid|received)/i.test(notes),
+    },
+  };
+}
+
+type IntegrationStatusChangeSuccess = {
+  ok: true; replayed: boolean; historyId: string;
+  fromStatus: InstallmentStatus; toStatus: InstallmentStatus; application: PublicApplication;
+};
+export type IntegrationStatusChangeResult =
+  | IntegrationStatusChangeSuccess
+  | {
+      ok: false; httpStatus: 404 | 409 | 422;
+      code: "NOT_FOUND" | "STALE_STATUS" | "TRANSITION_NOT_ALLOWED" | "IDEMPOTENCY_KEY_REUSED";
+      error: string; currentStatus?: string;
+    };
+
+// One owner-commanded status change, atomically: allowed transition, compare-and-set on the
+// expected status, exactly one row changed, status-history entry, idempotency record. A repeated
+// idempotency key returns the stored result and writes nothing. Never notifies the customer.
+export function changeStatusViaIntegration(input: {
+  ref: string;
+  expectedStatus: InstallmentStatus;
+  toStatus: InstallmentStatus;
+  reason: string;
+  actor: string;
+  idempotencyKey: string;
+}): IntegrationStatusChangeResult {
+  const db = getDb();
+  const requestHash = createHash("sha256")
+    .update(JSON.stringify([input.ref, input.expectedStatus, input.toStatus, input.reason, input.actor]))
+    .digest("hex");
+
+  const run = db.transaction((): IntegrationStatusChangeResult => {
+    const prior = db.prepare("SELECT request_hash, response_json FROM integration_write_requests WHERE idempotency_key = ?")
+      .get(input.idempotencyKey) as { request_hash: string; response_json: string } | undefined;
+    if (prior) {
+      if (prior.request_hash !== requestHash) {
+        return { ok: false, httpStatus: 409, code: "IDEMPOTENCY_KEY_REUSED", error: "idempotency key already used for a different request" };
+      }
+      return { ...(JSON.parse(prior.response_json) as IntegrationStatusChangeSuccess), replayed: true };
+    }
+
+    const app = db.prepare("SELECT * FROM installment_applications WHERE ref = ?").get(input.ref) as InstallmentApplication | undefined;
+    if (!app) return { ok: false, httpStatus: 404, code: "NOT_FOUND", error: "application not found" };
+    if (!isIntegrationTransitionAllowed(input.expectedStatus, input.toStatus)) {
+      return {
+        ok: false, httpStatus: 422, code: "TRANSITION_NOT_ALLOWED",
+        error: `${input.expectedStatus} -> ${input.toStatus} is not an allowed transition`, currentStatus: app.status,
+      };
+    }
+    if (app.status !== input.expectedStatus) {
+      return { ok: false, httpStatus: 409, code: "STALE_STATUS", error: `status is ${app.status}, expected ${input.expectedStatus}`, currentStatus: app.status };
+    }
+
+    const now = new Date().toISOString();
+    const changed = db.prepare(
+      "UPDATE installment_applications SET status = ?, reviewed_by = ?, reviewed_at = ?, updatedAt = ? WHERE ref = ? AND status = ?"
+    ).run(input.toStatus, input.actor, now, now, input.ref, input.expectedStatus);
+    if (changed.changes !== 1) {
+      const current = db.prepare("SELECT status FROM installment_applications WHERE ref = ?").get(input.ref) as { status: string } | undefined;
+      return { ok: false, httpStatus: 409, code: "STALE_STATUS", error: "application changed during the update", currentStatus: current?.status };
+    }
+
+    const historyId = randomBytes(10).toString("hex");
+    db.prepare(`
+      INSERT INTO application_status_history (id, ref, from_status, to_status, changed_by, note, createdAt)
+      VALUES (?, ?, ?, ?, ?, ?, ?)
+    `).run(historyId, input.ref, input.expectedStatus, input.toStatus, input.actor, `${input.reason} [idempotency:${input.idempotencyKey}]`, now);
+
+    const updated = db.prepare("SELECT * FROM installment_applications WHERE ref = ?").get(input.ref) as InstallmentApplication;
+    const result: IntegrationStatusChangeSuccess = {
+      ok: true, replayed: false, historyId, fromStatus: input.expectedStatus, toStatus: input.toStatus,
+      application: toPublicApplication(updated),
+    };
+    db.prepare("INSERT INTO integration_write_requests (idempotency_key, ref, request_hash, response_json, createdAt) VALUES (?, ?, ?, ?, ?)")
+      .run(input.idempotencyKey, input.ref, requestHash, JSON.stringify(result), now);
+    return result;
+  });
+
+  return run();
 }

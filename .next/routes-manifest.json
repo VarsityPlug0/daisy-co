@@ -127,6 +127,22 @@
       "namedRegex": "^/api/installments/verify/(?<nxtPtoken>[^/]+?)(?:/)?$"
     },
     {
+      "page": "/api/integration/v1/installments/[ref]",
+      "regex": "^/api/integration/v1/installments/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPref": "nxtPref"
+      },
+      "namedRegex": "^/api/integration/v1/installments/(?<nxtPref>[^/]+?)(?:/)?$"
+    },
+    {
+      "page": "/api/integration/v1/installments/[ref]/status",
+      "regex": "^/api/integration/v1/installments/([^/]+?)/status(?:/)?$",
+      "routeKeys": {
+        "nxtPref": "nxtPref"
+      },
+      "namedRegex": "^/api/integration/v1/installments/(?<nxtPref>[^/]+?)/status(?:/)?$"
+    },
+    {
       "page": "/api/integration/v1/orders/[id]",
       "regex": "^/api/integration/v1/orders/([^/]+?)(?:/)?$",
       "routeKeys": {

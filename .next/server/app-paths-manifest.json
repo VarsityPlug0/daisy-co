@@ -78,6 +78,8 @@
   "/api/installments/events/route": "app/api/installments/events/route.js",
   "/api/installments/settings/[productId]/route": "app/api/installments/settings/[productId]/route.js",
   "/api/installments/verify/[token]/route": "app/api/installments/verify/[token]/route.js",
+  "/api/integration/v1/installments/[ref]/route": "app/api/integration/v1/installments/[ref]/route.js",
+  "/api/integration/v1/installments/[ref]/status/route": "app/api/integration/v1/installments/[ref]/status/route.js",
   "/api/integration/v1/installments/lookup/route": "app/api/integration/v1/installments/lookup/route.js",
   "/api/integration/v1/leads/route": "app/api/integration/v1/leads/route.js",
   "/api/integration/v1/orders/[id]/route": "app/api/integration/v1/orders/[id]/route.js",

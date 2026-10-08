@@ -78,6 +78,8 @@
   "/api/installments/events/route": "/api/installments/events",
   "/api/installments/settings/[productId]/route": "/api/installments/settings/[productId]",
   "/api/installments/verify/[token]/route": "/api/installments/verify/[token]",
+  "/api/integration/v1/installments/[ref]/route": "/api/integration/v1/installments/[ref]",
+  "/api/integration/v1/installments/[ref]/status/route": "/api/integration/v1/installments/[ref]/status",
   "/api/integration/v1/installments/lookup/route": "/api/integration/v1/installments/lookup",
   "/api/integration/v1/leads/route": "/api/integration/v1/leads",
   "/api/integration/v1/orders/[id]/route": "/api/integration/v1/orders/[id]",

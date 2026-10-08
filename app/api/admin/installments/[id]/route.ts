@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { isAuthenticated } from "@/lib/auth";
-import { getApplication, reviewApplication, getReviewBundle, ensureUploadToken } from "@/lib/installments";
+import { getApplication, adminSetApplicationStatus, getReviewBundle, ensureUploadToken } from "@/lib/installments";
 import {
   sendInstallmentApproval,
   sendInstallmentReviewing,
@@ -37,11 +37,13 @@ export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id
   if (!VALID_STATUSES.includes(status)) {
     return NextResponse.json({ error: "Invalid status" }, { status: 400 });
   }
-  const app = getApplication(id);
-  if (!app) return NextResponse.json({ error: "Not found" }, { status: 404 });
+  if (!getApplication(id)) return NextResponse.json({ error: "Not found" }, { status: 404 });
 
   // Records the human reviewer + timestamp + audit-trail entry (all status changes here are human-initiated).
-  reviewApplication(id, status, typeof reviewer === "string" && reviewer.trim() ? reviewer.trim() : "admin", admin_notes);
+  // Accepts an id or a ref; only a change verified in the database counts, and only then is the customer emailed.
+  const changed = adminSetApplicationStatus(id, status, typeof reviewer === "string" && reviewer.trim() ? reviewer.trim() : "admin", admin_notes);
+  if (!changed) return NextResponse.json({ error: "Status was not updated" }, { status: 500 });
+  const app = changed.before;
 
   const emailData = {
     name: app.name,

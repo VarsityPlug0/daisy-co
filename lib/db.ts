@@ -283,6 +283,22 @@ function initSchema(db: Database.Database) {
       createdAt   TEXT NOT NULL
     );
     CREATE INDEX IF NOT EXISTS idx_application_status_history_ref ON application_status_history(ref);
+
+    -- Signed integration writes (Bevans owner command): one row per idempotency key, so a
+    -- repeated request returns the original result instead of changing anything again.
+    CREATE TABLE IF NOT EXISTS integration_write_requests (
+      idempotency_key TEXT PRIMARY KEY,
+      ref             TEXT NOT NULL,
+      request_hash    TEXT NOT NULL,
+      response_json   TEXT NOT NULL,
+      createdAt       TEXT NOT NULL
+    );
+
+    -- Replay protection for signed integration writes: a nonce is accepted once.
+    CREATE TABLE IF NOT EXISTS integration_nonces (
+      nonce     TEXT PRIMARY KEY,
+      createdAt TEXT NOT NULL
+    );
   `);
 
   // Migrate existing orders tables that predate bank_id / tracking_number columns

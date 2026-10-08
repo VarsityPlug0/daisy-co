@@ -243,6 +243,22 @@ module.exports=[62294,e=>{"use strict";var t=e.i(85148),a=e.i(14747),i=e.i(22734
       createdAt   TEXT NOT NULL
     );
     CREATE INDEX IF NOT EXISTS idx_application_status_history_ref ON application_status_history(ref);
+
+    -- Signed integration writes (Bevans owner command): one row per idempotency key, so a
+    -- repeated request returns the original result instead of changing anything again.
+    CREATE TABLE IF NOT EXISTS integration_write_requests (
+      idempotency_key TEXT PRIMARY KEY,
+      ref             TEXT NOT NULL,
+      request_hash    TEXT NOT NULL,
+      response_json   TEXT NOT NULL,
+      createdAt       TEXT NOT NULL
+    );
+
+    -- Replay protection for signed integration writes: a nonce is accepted once.
+    CREATE TABLE IF NOT EXISTS integration_nonces (
+      nonce     TEXT PRIMARY KEY,
+      createdAt TEXT NOT NULL
+    );
   `);try{e.exec("ALTER TABLE orders ADD COLUMN bank_id TEXT")}catch{}try{e.exec("ALTER TABLE orders ADD COLUMN tracking_number TEXT")}catch{}try{e.exec("ALTER TABLE installment_applications ADD COLUMN product_imageUrl TEXT")}catch{}try{e.exec("ALTER TABLE installment_applications ADD COLUMN quantity INTEGER NOT NULL DEFAULT 1")}catch{}try{e.exec("ALTER TABLE installment_applications ADD COLUMN upload_token TEXT")}catch{}try{e.exec("ALTER TABLE installment_applications ADD COLUMN documents_status TEXT NOT NULL DEFAULT 'none'")}catch{}try{e.exec("ALTER TABLE installment_applications ADD COLUMN reviewed_by TEXT")}catch{}try{e.exec("ALTER TABLE installment_applications ADD COLUMN reviewed_at TEXT")}catch{}}(n),function(e){try{e.exec("ALTER TABLE products ADD COLUMN originalPrice TEXT NOT NULL DEFAULT ''")}catch{}}(n),function(e){if(!e.prepare("SELECT name FROM migrations WHERE name = ?").get("json_import_gadgets_v1")){for(let t of s)if((0,i.existsSync)(t))try{let a=JSON.parse((0,i.readFileSync)(t,"utf-8"));if(Array.isArray(a)&&a.length>0){e.prepare("DELETE FROM products").run();let t=e.prepare(`
           INSERT OR REPLACE INTO products
             (id, name, price, category, description, imageUrl, inStock, featured, createdAt, updatedAt)
