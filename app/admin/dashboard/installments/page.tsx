@@ -1,6 +1,6 @@
 "use client";
 import { useCallback, useEffect, useState } from "react";
-import { ArrowLeft, RefreshCw, ChevronDown, ChevronUp, MessageCircle, Plus, Save, Mail, Upload } from "lucide-react";
+import { ArrowLeft, RefreshCw, ChevronDown, ChevronUp, MessageCircle, Plus, Save, Mail, Upload, Search, X } from "lucide-react";
 import Link from "next/link";
 
 interface Application {
@@ -55,6 +55,7 @@ export default function AdminInstallmentsPage() {
   const [expanded, setExpanded] = useState<string | null>(null);
   const [updating, setUpdating] = useState<string | null>(null);
   const [statusFilter, setStatusFilter] = useState("all");
+  const [search, setSearch] = useState("");
   const [review, setReview] = useState<Record<string, { documents: DocRow[]; history: HistRow[] }>>({});
 
   // Settings tab
@@ -206,7 +207,16 @@ export default function AdminInstallmentsPage() {
     }));
   }
 
-  const filtered = statusFilter === "all" ? applications : applications.filter(a => a.status === statusFilter);
+  const q = search.trim().toLowerCase();
+  const qDigits = q.replace(/\D/g, "");
+  const filtered = applications.filter(a => {
+    if (statusFilter !== "all" && a.status !== statusFilter) return false;
+    if (!q) return true;
+    const hay = `${a.name ?? ""} ${a.ref ?? ""} ${a.email ?? ""} ${a.product_name ?? ""}`.toLowerCase();
+    if (hay.includes(q)) return true;
+    if (qDigits && String(a.phone ?? "").replace(/\D/g, "").includes(qDigits)) return true;
+    return false;
+  });
 
   const inputClass = "bg-[#111111] border border-[#2a2a2a] rounded-xl px-4 py-2.5 text-white text-sm focus:outline-none focus:border-[#C8B993] w-full";
 
@@ -261,6 +271,32 @@ export default function AdminInstallmentsPage() {
         {/* ── Applications tab ── */}
         {tab === "applications" && (
           <>
+            {/* Search */}
+            <div className="relative mb-4">
+              <Search size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-500 pointer-events-none" />
+              <input
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                placeholder="Search by name, phone, reference, email or product…"
+                className="w-full bg-[#1D1D1D] border border-[#2A2A2A] rounded-xl pl-10 pr-10 py-3 text-white text-sm focus:outline-none focus:border-[#C8B993]"
+              />
+              {search && (
+                <button
+                  onClick={() => setSearch("")}
+                  aria-label="Clear search"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-white"
+                >
+                  <X size={16} />
+                </button>
+              )}
+            </div>
+            {search && (
+              <p className="text-gray-500 text-xs mb-3">
+                {filtered.length} result{filtered.length === 1 ? "" : "s"} for “{search}”
+                {statusFilter !== "all" && <span> in {STATUS_LABEL[statusFilter]}</span>}
+              </p>
+            )}
+
             {/* Status filter */}
             <div className="flex flex-wrap gap-2 mb-4">
               {["all", ...STATUSES].map(s => (
