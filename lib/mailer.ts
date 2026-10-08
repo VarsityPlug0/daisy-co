@@ -1,6 +1,6 @@
 import nodemailer from "nodemailer";
 import path from "path";
-import { existsSync } from "fs";
+import { existsSync, readFileSync } from "fs";
 import { getBankById, type BankDetails } from "./bankDetails";
 import { unsubscribeUrl } from "./optout";
 
@@ -55,13 +55,48 @@ type MailAttachment =
   | { filename: string; content: Buffer; cid: string };
 
 export async function sendMail(opts: { to: string; subject: string; html: string; text?: string; attachments?: MailAttachment[]; headers?: Record<string, string> }) {
+  // Build attachment list: inline logo + any caller attachments.
+  const rawAttachments: MailAttachment[] = opts.attachments ? [...opts.attachments] : [];
+  if (existsSync(LOGO_PATH)) {
+    rawAttachments.unshift({ filename: "logo.jpg", path: LOGO_PATH, cid: LOGO_CID });
+  }
+
+  // Primary path: Resend HTTP API over :443. This host (DigitalOcean) blocks
+  // outbound SMTP (:587/:465), so smtp.resend.com times out — every customer
+  // email failed silently. The HTTP API is the supported path here.
+  if (process.env.RESEND_API_KEY) {
+    try {
+      const attachments = rawAttachments.map((a) => ({
+        filename: a.filename,
+        content: ("content" in a ? a.content : readFileSync(a.path)).toString("base64"),
+        content_id: a.cid, // maps to a CID so cid:<id> references inline correctly
+      }));
+      const res = await fetch("https://api.resend.com/emails", {
+        method: "POST",
+        headers: { Authorization: `Bearer ${process.env.RESEND_API_KEY}`, "Content-Type": "application/json" },
+        body: JSON.stringify({
+          from: fromAddress(),
+          reply_to: process.env.MAIL_USER ?? "support@bevanssons.store",
+          to: opts.to,
+          subject: opts.subject,
+          html: opts.html,
+          ...(opts.text ? { text: opts.text } : {}),
+          ...(attachments.length ? { attachments } : {}),
+          ...(opts.headers ? { headers: opts.headers } : {}),
+        }),
+      });
+      if (!res.ok) {
+        const detail = await res.text().catch(() => "");
+        console.error("mailer send error: resend api", res.status, detail);
+      }
+    } catch (err) { console.error("mailer send error:", err); }
+    return;
+  }
+
+  // Fallback: SMTP transport (local/dev with Gmail creds). Not used in prod.
   const transporter = createTransporter();
   if (!transporter) { console.error("mailer: env vars missing"); return; }
   try {
-    const attachments: MailAttachment[] = opts.attachments ?? [];
-    if (existsSync(LOGO_PATH)) {
-      attachments.unshift({ filename: "logo.jpg", path: LOGO_PATH, cid: LOGO_CID });
-    }
     await transporter.sendMail({
       from: fromAddress(),
       replyTo: process.env.MAIL_USER ?? "support@bevanssons.store",
@@ -69,7 +104,7 @@ export async function sendMail(opts: { to: string; subject: string; html: string
       subject: opts.subject,
       text: opts.text,
       html: opts.html,
-      attachments,
+      attachments: rawAttachments,
       ...(opts.headers ? { headers: opts.headers } : {}),
     });
   } catch (err) { console.error("mailer send error:", err); }
