@@ -1,10 +1,12 @@
-FROM node:20
+FROM node:20-slim
 
 WORKDIR /app
 
-# Install all dependencies (gets Linux binaries for native modules)
+# Runtime dependencies only (.next is pre-built and committed). better-sqlite3
+# uses its prebuilt linux-x64 binary; if that download ever fails the build
+# fails here, not at runtime.
 COPY package.json package-lock.json ./
-RUN npm ci
+RUN npm ci --omit=dev && npm cache clean --force
 
 # Copy pre-built app (built locally, .next committed without node_modules)
 COPY . .

@@ -1,0 +1,12 @@
+node_modules
+.git
+.next/cache
+.next/dev
+.env*
+*.db
+*.db-*
+data/*.db*
+backups
+tests
+coverage
+tsconfig.tsbuildinfo
